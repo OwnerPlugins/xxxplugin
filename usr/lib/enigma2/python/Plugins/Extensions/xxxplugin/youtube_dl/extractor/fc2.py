@@ -60,17 +60,23 @@ class FC2IE(InfoExtractor):
 
         login_data = urlencode_postdata(login_form_strs)
         request = sanitized_Request(
-            'https://secure.id.fc2.com/index.php?mode=login&switch_language=en', login_data)
+            'https://secure.id.fc2.com/index.php?mode=login&switch_language=en',
+            login_data)
 
-        login_results = self._download_webpage(request, None, note='Logging in', errnote='Unable to log in')
+        login_results = self._download_webpage(
+            request, None, note='Logging in', errnote='Unable to log in')
         if 'mode=redirect&login=done' not in login_results:
             self.report_warning('unable to log in: bad username or password')
             return False
 
         # this is also needed
-        login_redir = sanitized_Request('http://id.fc2.com/?mode=redirect&login=done')
+        login_redir = sanitized_Request(
+            'http://id.fc2.com/?mode=redirect&login=done')
         self._download_webpage(
-            login_redir, None, note='Login redirect', errnote='Login redirect failed')
+            login_redir,
+            None,
+            note='Login redirect',
+            errnote='Login redirect failed')
 
         return True
 
@@ -88,20 +94,30 @@ class FC2IE(InfoExtractor):
         if webpage is not None:
             title = self._og_search_title(webpage)
             thumbnail = self._og_search_thumbnail(webpage)
-        refer = url.replace('/content/', '/a/content/') if '/a/content/' not in url else url
+        refer = url.replace(
+            '/content/',
+            '/a/content/') if '/a/content/' not in url else url
 
-        mimi = hashlib.md5((video_id + '_gGddgPfeaf_gzyr').encode('utf-8')).hexdigest()
+        mimi = hashlib.md5(
+            (video_id + '_gGddgPfeaf_gzyr').encode('utf-8')).hexdigest()
 
         info_url = (
-            'http://video.fc2.com/ginfo.php?mimi={1:s}&href={2:s}&v={0:s}&fversion=WIN%2011%2C6%2C602%2C180&from=2&otag=0&upid={0:s}&tk=null&'.
-            format(video_id, mimi, compat_urllib_request.quote(refer, safe=b'').replace('.', '%2E')))
+            'http://video.fc2.com/ginfo.php?mimi={1:s}&href={2:s}&v={0:s}&fversion=WIN%2011%2C6%2C602%2C180&from=2&otag=0&upid={0:s}&tk=null&'. format(
+                video_id,
+                mimi,
+                compat_urllib_request.quote(
+                    refer,
+                    safe=b'').replace(
+                    '.',
+                    '%2E')))
 
         info_webpage = self._download_webpage(
             info_url, video_id, note='Downloading info page')
         info = compat_urlparse.parse_qs(info_webpage)
 
         if 'err_code' in info:
-            # most of the time we can still download wideo even if err_code is 403 or 602
+            # most of the time we can still download wideo even if err_code is
+            # 403 or 602
             self.report_warning(
                 'Error code was: %s... but still trying' % info['err_code'][0])
 
@@ -148,8 +164,8 @@ class FC2EmbedIE(InfoExtractor):
         thumbnail = None
         if sj:
             # See thumbnailImagePath() in ServerConst.as of flv2.swf
-            thumbnail = 'http://video%s-thumbnail.fc2.com/up/pic/%s.jpg' % (
-                sj, '/'.join((video_id[:6], video_id[6:8], video_id[-2], video_id[-1], video_id)))
+            thumbnail = 'http://video%s-thumbnail.fc2.com/up/pic/%s.jpg' % (sj, '/'.join(
+                (video_id[:6], video_id[6:8], video_id[-2], video_id[-1], video_id)))
 
         return {
             '_type': 'url_transparent',

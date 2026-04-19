@@ -43,10 +43,9 @@ class CloudflareStreamIE(InfoExtractor):
     @staticmethod
     def _extract_urls(webpage):
         return [
-            mobj.group('url')
-            for mobj in re.finditer(
-                r'<script[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//%s(?:%s).*?)\1' % (CloudflareStreamIE._EMBED_RE, CloudflareStreamIE._ID_RE),
-                webpage)]
+            mobj.group('url') for mobj in re.finditer(
+                r'<script[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//%s(?:%s).*?)\1' %
+                (CloudflareStreamIE._EMBED_RE, CloudflareStreamIE._ID_RE), webpage)]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

@@ -21,8 +21,7 @@ class BildIE(InfoExtractor):
             'description': 'md5:a4058c4fa2a804ab59c00d7244bbf62f',
             'thumbnail': r're:^https?://.*\.jpg$',
             'duration': 196,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

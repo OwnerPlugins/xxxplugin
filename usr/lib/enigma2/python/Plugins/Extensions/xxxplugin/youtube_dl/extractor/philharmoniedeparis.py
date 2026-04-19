@@ -19,34 +19,31 @@ class PhilharmonieDeParisIE(InfoExtractor):
                         )
                         (?P<id>\d+)
                     '''
-    _TESTS = [{
-        'url': 'http://pad.philharmoniedeparis.fr/doc/CIMU/1086697/jazz-a-la-villette-knower',
-        'md5': 'a0a4b195f544645073631cbec166a2c2',
-        'info_dict': {
-            'id': '1086697',
-            'ext': 'mp4',
-            'title': 'Jazz à la Villette : Knower',
-        },
-    }, {
-        'url': 'http://live.philharmoniedeparis.fr/concert/1032066.html',
-        'info_dict': {
-            'id': '1032066',
-            'title': 'md5:0a031b81807b3593cffa3c9a87a167a0',
-        },
-        'playlist_mincount': 2,
-    }, {
-        'url': 'http://live.philharmoniedeparis.fr/Concert/1030324.html',
-        'only_matching': True,
-    }, {
-        'url': 'http://live.philharmoniedeparis.fr/misc/Playlist.ashx?id=1030324&track=&lang=fr',
-        'only_matching': True,
-    }, {
-        'url': 'https://live.philharmoniedeparis.fr/embedapp/1098406/berlioz-fantastique-lelio-les-siecles-national-youth-choir-of.html?lang=fr-FR',
-        'only_matching': True,
-    }, {
-        'url': 'https://live.philharmoniedeparis.fr/embed/1098406/berlioz-fantastique-lelio-les-siecles-national-youth-choir-of.html?lang=fr-FR',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://pad.philharmoniedeparis.fr/doc/CIMU/1086697/jazz-a-la-villette-knower',
+               'md5': 'a0a4b195f544645073631cbec166a2c2',
+               'info_dict': {'id': '1086697',
+                             'ext': 'mp4',
+                             'title': 'Jazz à la Villette : Knower',
+                             },
+               },
+              {'url': 'http://live.philharmoniedeparis.fr/concert/1032066.html',
+               'info_dict': {'id': '1032066',
+                             'title': 'md5:0a031b81807b3593cffa3c9a87a167a0',
+                             },
+               'playlist_mincount': 2,
+               },
+              {'url': 'http://live.philharmoniedeparis.fr/Concert/1030324.html',
+               'only_matching': True,
+               },
+              {'url': 'http://live.philharmoniedeparis.fr/misc/Playlist.ashx?id=1030324&track=&lang=fr',
+               'only_matching': True,
+               },
+              {'url': 'https://live.philharmoniedeparis.fr/embedapp/1098406/berlioz-fantastique-lelio-les-siecles-national-youth-choir-of.html?lang=fr-FR',
+               'only_matching': True,
+               },
+              {'url': 'https://live.philharmoniedeparis.fr/embed/1098406/berlioz-fantastique-lelio-les-siecles-national-youth-choir-of.html?lang=fr-FR',
+               'only_matching': True,
+               }]
     _LIVE_URL = 'https://live.philharmoniedeparis.fr'
 
     def _real_extract(self, url):

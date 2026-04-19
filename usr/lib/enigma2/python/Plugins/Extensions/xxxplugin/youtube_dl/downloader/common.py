@@ -192,8 +192,11 @@ class FileDownloader(object):
 
     def temp_name(self, filename):
         """Returns a temporary filename for the given filename."""
-        if self.params.get('nopart', False) or filename == '-' or \
-                (os.path.exists(encodeFilename(filename)) and not os.path.isfile(encodeFilename(filename))):
+        if self.params.get(
+            'nopart', False) or filename == '-' or (
+            os.path.exists(
+                encodeFilename(filename)) and not os.path.isfile(
+                encodeFilename(filename))):
             return filename
         return filename + '.part'
 
@@ -209,9 +212,13 @@ class FileDownloader(object):
         try:
             if old_filename == new_filename:
                 return
-            os.rename(encodeFilename(old_filename), encodeFilename(new_filename))
+            os.rename(
+                encodeFilename(old_filename),
+                encodeFilename(new_filename))
         except (IOError, OSError) as err:
-            self.report_error('unable to rename file: %s' % error_to_compat_str(err))
+            self.report_error(
+                'unable to rename file: %s' %
+                error_to_compat_str(err))
 
     def try_utime(self, filename, last_modified_hdr):
         """Try to set the last-modified time of the given file."""
@@ -282,9 +289,11 @@ class FileDownloader(object):
             s['_eta_str'] = 'Unknown ETA'
 
         if s.get('total_bytes') and s.get('downloaded_bytes') is not None:
-            s['_percent_str'] = self.format_percent(100 * s['downloaded_bytes'] / s['total_bytes'])
+            s['_percent_str'] = self.format_percent(
+                100 * s['downloaded_bytes'] / s['total_bytes'])
         elif s.get('total_bytes_estimate') and s.get('downloaded_bytes') is not None:
-            s['_percent_str'] = self.format_percent(100 * s['downloaded_bytes'] / s['total_bytes_estimate'])
+            s['_percent_str'] = self.format_percent(
+                100 * s['downloaded_bytes'] / s['total_bytes_estimate'])
         else:
             if s.get('downloaded_bytes') == 0:
                 s['_percent_str'] = self.format_percent(0)
@@ -300,11 +309,13 @@ class FileDownloader(object):
             s['_total_bytes_str'] = format_bytes(s['total_bytes'])
             msg_template = '%(_percent_str)s of %(_total_bytes_str)s at %(_speed_str)s ETA %(_eta_str)s'
         elif s.get('total_bytes_estimate') is not None:
-            s['_total_bytes_estimate_str'] = format_bytes(s['total_bytes_estimate'])
+            s['_total_bytes_estimate_str'] = format_bytes(
+                s['total_bytes_estimate'])
             msg_template = '%(_percent_str)s of ~%(_total_bytes_estimate_str)s at %(_speed_str)s ETA %(_eta_str)s'
         else:
             if s.get('downloaded_bytes') is not None:
-                s['_downloaded_bytes_str'] = format_bytes(s['downloaded_bytes'])
+                s['_downloaded_bytes_str'] = format_bytes(
+                    s['downloaded_bytes'])
                 if s.get('elapsed'):
                     s['_elapsed_str'] = self.format_seconds(s['elapsed'])
                     msg_template = '%(_downloaded_bytes_str)s at %(_speed_str)s (%(_elapsed_str)s)'
@@ -322,13 +333,15 @@ class FileDownloader(object):
     def report_retry(self, err, count, retries):
         """Report retry in case of HTTP error 5xx"""
         self.to_screen(
-            '[download] Got server HTTP error: %s. Retrying (attempt %d of %s)...'
-            % (error_to_compat_str(err), count, self.format_retries(retries)))
+            '[download] Got server HTTP error: %s. Retrying (attempt %d of %s)...' %
+            (error_to_compat_str(err), count, self.format_retries(retries)))
 
     def report_file_already_downloaded(self, file_name):
         """Report file has already been fully downloaded."""
         try:
-            self.to_screen('[download] %s has already been downloaded' % file_name)
+            self.to_screen(
+                '[download] %s has already been downloaded' %
+                file_name)
         except UnicodeEncodeError:
             self.to_screen('[download] The file has already been downloaded')
 
@@ -358,7 +371,8 @@ class FileDownloader(object):
             )
 
             # Check file already present
-            if filename != '-' and (nooverwrites_and_exists or continuedl_and_exists):
+            if filename != '-' and (
+                    nooverwrites_and_exists or continuedl_and_exists):
                 self.report_file_already_downloaded(filename)
                 self._hook_progress({
                     'filename': filename,
@@ -369,8 +383,10 @@ class FileDownloader(object):
 
         min_sleep_interval = self.params.get('sleep_interval')
         if min_sleep_interval:
-            max_sleep_interval = self.params.get('max_sleep_interval', min_sleep_interval)
-            sleep_interval = random.uniform(min_sleep_interval, max_sleep_interval)
+            max_sleep_interval = self.params.get(
+                'max_sleep_interval', min_sleep_interval)
+            sleep_interval = random.uniform(
+                min_sleep_interval, max_sleep_interval)
             self.to_screen(
                 '[download] Sleeping %s seconds...' % (
                     int(sleep_interval) if sleep_interval.is_integer()
@@ -381,7 +397,8 @@ class FileDownloader(object):
 
     def real_download(self, filename, info_dict):
         """Real download process. Redefine in subclasses."""
-        raise NotImplementedError('This method must be implemented by subclasses')
+        raise NotImplementedError(
+            'This method must be implemented by subclasses')
 
     def _hook_progress(self, status):
         for ph in self._progress_hooks:

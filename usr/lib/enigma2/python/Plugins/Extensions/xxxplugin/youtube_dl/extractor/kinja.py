@@ -58,49 +58,48 @@ class KinjaEmbedIE(InfoExtractor):
             vine|
             youtube-(?:list|video)
         )-(?P<id>[^&]+)''' % (_DOMAIN_REGEX, _COMMON_REGEX)
-    _TESTS = [{
-        'url': 'https://kinja.com/ajax/inset/iframe?id=fb-10103303356633621',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=kinjavideo-100313',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=megaphone-PPY1300931075',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=ooyala-xzMXhleDpopuT0u1ijt_qZj3Va-34pEX%2FZTIxYmJjZDM2NWYzZDViZGRiOWJjYzc5',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=soundcloud-128574047',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=soundcloud-playlist-317413750',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=tumblr-post-160130699814-daydreams-at-midnight',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=twitch-stream-libratus_extra',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=twitter-1068875942473404422',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=ustream-channel-10414700',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=vimeo-120153502',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=vine-5BlvV5qqPrD',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=youtube-list-BCQ3KyrPjgA/PLE6509247C270A72E',
-        'only_matching': True,
-    }, {
-        'url': 'https://kinja.com/ajax/inset/iframe?id=youtube-video-00QyL0AgPAE',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://kinja.com/ajax/inset/iframe?id=fb-10103303356633621',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=kinjavideo-100313',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=megaphone-PPY1300931075',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=ooyala-xzMXhleDpopuT0u1ijt_qZj3Va-34pEX%2FZTIxYmJjZDM2NWYzZDViZGRiOWJjYzc5',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=soundcloud-128574047',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=soundcloud-playlist-317413750',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=tumblr-post-160130699814-daydreams-at-midnight',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=twitch-stream-libratus_extra',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=twitter-1068875942473404422',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=ustream-channel-10414700',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=vimeo-120153502',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=vine-5BlvV5qqPrD',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=youtube-list-BCQ3KyrPjgA/PLE6509247C270A72E',
+               'only_matching': True,
+               },
+              {'url': 'https://kinja.com/ajax/inset/iframe?id=youtube-video-00QyL0AgPAE',
+               'only_matching': True,
+               }]
     _JWPLATFORM_PROVIDER = ('cdn.jwplayer.com/v2/media/', 'JWPlatform')
     _PROVIDER_MAP = {
         'fb': ('facebook.com/video.php?v=', 'Facebook'),
@@ -124,9 +123,12 @@ class KinjaEmbedIE(InfoExtractor):
 
     @staticmethod
     def _extract_urls(webpage, url):
-        return [urljoin(url, unescapeHTML(mobj.group('url'))) for mobj in re.finditer(
-            r'(?x)<iframe[^>]+?src=(?P<q>["\'])(?P<url>(?:(?:https?:)?//%s)?%s(?:(?!\1).)+)\1' % (KinjaEmbedIE._DOMAIN_REGEX, KinjaEmbedIE._COMMON_REGEX),
-            webpage)]
+        return [
+            urljoin(
+                url, unescapeHTML(
+                    mobj.group('url'))) for mobj in re.finditer(
+                r'(?x)<iframe[^>]+?src=(?P<q>["\'])(?P<url>(?:(?:https?:)?//%s)?%s(?:(?!\1).)+)\1' %
+                (KinjaEmbedIE._DOMAIN_REGEX, KinjaEmbedIE._COMMON_REGEX), webpage)]
 
     def _real_extract(self, url):
         video_type, video_id = re.match(self._VALID_URL, url).groups()
@@ -165,7 +167,8 @@ class KinjaEmbedIE(InfoExtractor):
             poster = data.get('poster') or {}
             poster_id = poster.get('id')
             if poster_id:
-                thumbnail = 'https://i.kinja-img.com/gawker-media/image/upload/%s.%s' % (poster_id, poster.get('format') or 'jpg')
+                thumbnail = 'https://i.kinja-img.com/gawker-media/image/upload/%s.%s' % (
+                    poster_id, poster.get('format') or 'jpg')
 
             return {
                 'id': video_id,
@@ -212,10 +215,18 @@ class KinjaEmbedIE(InfoExtractor):
             return {
                 'id': video_id,
                 'title': title,
-                'thumbnail': try_get(iptc, lambda x: x['cloudinaryLink']['link'], compat_str),
+                'thumbnail': try_get(
+                    iptc,
+                    lambda x: x['cloudinaryLink']['link'],
+                    compat_str),
                 'uploader': fmg.get('network'),
-                'duration': int_or_none(iptc.get('fileDuration')),
+                'duration': int_or_none(
+                    iptc.get('fileDuration')),
                 'formats': formats,
-                'description': try_get(iptc, lambda x: x['description']['en'], compat_str),
-                'timestamp': parse_iso8601(iptc.get('dateReleased')),
+                'description': try_get(
+                    iptc,
+                    lambda x: x['description']['en'],
+                    compat_str),
+                'timestamp': parse_iso8601(
+                    iptc.get('dateReleased')),
             }

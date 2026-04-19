@@ -95,7 +95,9 @@ class CBSNewsIE(CBSIE):
         webpage = self._download_webpage(url, display_id)
 
         entries = []
-        for embed_url in re.findall(r'<iframe[^>]+data-src="(https?://(?:www\.)?cbsnews\.com/embed/video/[^#]*#[^"]+)"', webpage):
+        for embed_url in re.findall(
+            r'<iframe[^>]+data-src="(https?://(?:www\.)?cbsnews\.com/embed/video/[^#]*#[^"]+)"',
+                webpage):
             entries.append(self.url_result(embed_url, CBSNewsEmbedIE.ie_key()))
         if entries:
             return self.playlist_result(
@@ -113,7 +115,8 @@ class CBSNewsLiveVideoIE(InfoExtractor):
     IE_DESC = 'CBS News Live Videos'
     _VALID_URL = r'https?://(?:www\.)?cbsnews\.com/live/video/(?P<id>[^/?#]+)'
 
-    # Live videos get deleted soon. See http://www.cbsnews.com/live/ for the latest examples
+    # Live videos get deleted soon. See http://www.cbsnews.com/live/ for the
+    # latest examples
     _TEST = {
         'url': 'http://www.cbsnews.com/live/video/clinton-sanders-prepare-to-face-off-in-nh/',
         'info_dict': {
@@ -142,6 +145,7 @@ class CBSNewsLiveVideoIE(InfoExtractor):
             'display_id': display_id,
             'title': video_info['headline'],
             'thumbnail': video_info.get('thumbnail_url_hd') or video_info.get('thumbnail_url_sd'),
-            'duration': parse_duration(video_info.get('segmentDur')),
+            'duration': parse_duration(
+                video_info.get('segmentDur')),
             'formats': formats,
         }

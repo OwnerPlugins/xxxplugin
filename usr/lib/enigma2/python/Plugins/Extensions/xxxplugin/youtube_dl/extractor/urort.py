@@ -34,7 +34,9 @@ class UrortIE(InfoExtractor):
     def _real_extract(self, url):
         playlist_id = self._match_id(url)
 
-        fstr = compat_urllib_parse.quote("InternalBandUrl eq '%s'" % playlist_id)
+        fstr = compat_urllib_parse.quote(
+            "InternalBandUrl eq '%s'" %
+            playlist_id)
         json_url = 'http://urort.p3.no/breeze/urort/TrackDTOViews?$filter=%s&$orderby=Released%%20desc&$expand=Tags%%2CFiles' % fstr
         songs = self._download_json(json_url, playlist_id)
         entries = []

@@ -43,7 +43,9 @@ class MLBBaseIE(InfoExtractor):
                         'tbr': int(mobj.group(1)),
                         'width': int(mobj.group(2)),
                     })
-                mobj = re.search(r'_(\d+)x(\d+)_(\d+)_(\d+)K\.mp4', playback_url)
+                mobj = re.search(
+                    r'_(\d+)x(\d+)_(\d+)_(\d+)K\.mp4',
+                    playback_url)
                 if mobj:
                     f.update({
                         'fps': int(mobj.group(3)),
@@ -172,7 +174,8 @@ class MLBIE(MLBBaseIE):
             'only_matching': True,
         },
         {
-            # From http://m.mlb.com/news/article/118550098/blue-jays-kevin-pillar-goes-spidey-up-the-wall-to-rob-tim-beckham-of-a-homer
+            # From
+            # http://m.mlb.com/news/article/118550098/blue-jays-kevin-pillar-goes-spidey-up-the-wall-to-rob-tim-beckham-of-a-homer
             'url': 'http://mlb.mlb.com/shared/video/embed/m-internal-embed.html?content_id=75609783&property=mlb&autoplay=true&hashmode=false&siteSection=mlb/multimedia/article_118550098/article_embed&club=mlb',
             'only_matching': True,
         },
@@ -188,7 +191,8 @@ class MLBIE(MLBBaseIE):
         subtitles = {}
         for keyword in (feed.get('keywordsAll') or []):
             keyword_type = keyword.get('type')
-            if keyword_type and keyword_type.startswith('closed_captions_location_'):
+            if keyword_type and keyword_type.startswith(
+                    'closed_captions_location_'):
                 cc_location = keyword.get('value')
                 if cc_location:
                     subtitles.setdefault(language, []).append({
@@ -198,8 +202,8 @@ class MLBIE(MLBBaseIE):
 
     def _download_video_data(self, display_id):
         return self._download_json(
-            'http://content.mlb.com/mlb/item/id/v1/%s/details/web-v1.json' % display_id,
-            display_id)
+            'http://content.mlb.com/mlb/item/id/v1/%s/details/web-v1.json' %
+            display_id, display_id)
 
 
 class MLBVideoIE(MLBBaseIE):
@@ -222,7 +226,8 @@ class MLBVideoIE(MLBBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if MLBIE.suitable(url) else super(MLBVideoIE, cls).suitable(url)
+        return False if MLBIE.suitable(url) else super(
+            MLBVideoIE, cls).suitable(url)
 
     @staticmethod
     def _get_feed(video):

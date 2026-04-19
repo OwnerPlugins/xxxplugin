@@ -10,14 +10,21 @@ class XiamiBaseIE(InfoExtractor):
     _API_BASE_URL = 'https://emumo.xiami.com/song/playlist/cat/json/id'
 
     def _download_webpage_handle(self, *args, **kwargs):
-        webpage = super(XiamiBaseIE, self)._download_webpage_handle(*args, **kwargs)
+        webpage = super(
+            XiamiBaseIE,
+            self)._download_webpage_handle(
+            *args,
+            **kwargs)
         if '>Xiami is currently not available in your country.<' in webpage:
-            self.raise_geo_restricted('Xiami is currently not available in your country')
+            self.raise_geo_restricted(
+                'Xiami is currently not available in your country')
         return webpage
 
     def _extract_track(self, track, track_id=None):
-        track_name = track.get('songName') or track.get('name') or track['subName']
-        artist = track.get('artist') or track.get('artist_name') or track.get('singers')
+        track_name = track.get('songName') or track.get(
+            'name') or track['subName']
+        artist = track.get('artist') or track.get(
+            'artist_name') or track.get('singers')
         title = '%s - %s' % (artist, track_name) if artist else track_name
         track_url = self._decrypt(track['location'])
 
@@ -42,8 +49,13 @@ class XiamiBaseIE(InfoExtractor):
 
     def _extract_tracks(self, item_id, referer, typ=None):
         playlist = self._download_json(
-            '%s/%s%s' % (self._API_BASE_URL, item_id, '/type/%s' % typ if typ else ''),
-            item_id, headers={
+            '%s/%s%s' %
+            (self._API_BASE_URL,
+             item_id,
+             '/type/%s' %
+             typ if typ else ''),
+            item_id,
+            headers={
                 'Referer': referer,
             })
         return [
@@ -144,7 +156,9 @@ class XiamiSongIE(XiamiBaseIE):
 class XiamiPlaylistBaseIE(XiamiBaseIE):
     def _real_extract(self, url):
         item_id = self._match_id(url)
-        return self.playlist_result(self._extract_tracks(item_id, url, self._TYPE), item_id)
+        return self.playlist_result(
+            self._extract_tracks(
+                item_id, url, self._TYPE), item_id)
 
 
 class XiamiAlbumIE(XiamiPlaylistBaseIE):
@@ -152,20 +166,18 @@ class XiamiAlbumIE(XiamiPlaylistBaseIE):
     IE_DESC = '虾米音乐 - 专辑'
     _VALID_URL = r'https?://(?:www\.)?xiami\.com/album/(?P<id>[^/?#&]+)'
     _TYPE = '1'
-    _TESTS = [{
-        'url': 'http://www.xiami.com/album/2100300444',
-        'info_dict': {
-            'id': '2100300444',
-        },
-        'playlist_count': 10,
-        'skip': 'Georestricted',
-    }, {
-        'url': 'http://www.xiami.com/album/512288?spm=a1z1s.6843761.1110925389.6.hhE9p9',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.xiami.com/album/URVDji2a506',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.xiami.com/album/2100300444',
+               'info_dict': {'id': '2100300444',
+                             },
+               'playlist_count': 10,
+               'skip': 'Georestricted',
+               },
+              {'url': 'http://www.xiami.com/album/512288?spm=a1z1s.6843761.1110925389.6.hhE9p9',
+               'only_matching': True,
+               },
+              {'url': 'http://www.xiami.com/album/URVDji2a506',
+               'only_matching': True,
+               }]
 
 
 class XiamiArtistIE(XiamiPlaylistBaseIE):

@@ -69,9 +69,11 @@ class RoosterTeethIE(InfoExtractor):
         except ExtractorError as e:
             msg = 'Unable to login'
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
-                resp = self._parse_json(e.cause.read().decode(), None, fatal=False)
+                resp = self._parse_json(
+                    e.cause.read().decode(), None, fatal=False)
                 if resp:
-                    error = resp.get('extra_info') or resp.get('error_description') or resp.get('error')
+                    error = resp.get('extra_info') or resp.get(
+                        'error_description') or resp.get('error')
                     if error:
                         msg += ': ' + error
             self.report_warning(msg)
@@ -91,7 +93,9 @@ class RoosterTeethIE(InfoExtractor):
                 'Downloading video JSON metadata')['data'][0]['attributes']['url']
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
-                if self._parse_json(e.cause.read().decode(), display_id).get('access') is False:
+                if self._parse_json(
+                        e.cause.read().decode(),
+                        display_id).get('access') is False:
                     self.raise_login_required(
                         '%s is only available for FIRST members' % display_id)
             raise
@@ -126,12 +130,16 @@ class RoosterTeethIE(InfoExtractor):
             'description': attributes.get('description') or attributes.get('caption'),
             'thumbnails': thumbnails,
             'series': attributes.get('show_title'),
-            'season_number': int_or_none(attributes.get('season_number')),
+            'season_number': int_or_none(
+                attributes.get('season_number')),
             'season_id': attributes.get('season_id'),
             'episode': title,
-            'episode_number': int_or_none(attributes.get('number')),
-            'episode_id': str_or_none(episode.get('uuid')),
+            'episode_number': int_or_none(
+                attributes.get('number')),
+            'episode_id': str_or_none(
+                episode.get('uuid')),
             'formats': formats,
             'channel_id': attributes.get('channel_id'),
-            'duration': int_or_none(attributes.get('length')),
+            'duration': int_or_none(
+                attributes.get('length')),
         }

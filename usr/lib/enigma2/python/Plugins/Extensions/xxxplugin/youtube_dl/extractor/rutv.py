@@ -113,7 +113,8 @@ class RUTVIE(InfoExtractor):
     @classmethod
     def _extract_url(cls, webpage):
         mobj = re.search(
-            r'<iframe[^>]+?src=(["\'])(?P<url>https?://(?:test)?player\.(?:rutv\.ru|vgtrk\.com)/(?:iframe/(?:swf|video|live)/id|index/iframe/cast_id)/.+?)\1', webpage)
+            r'<iframe[^>]+?src=(["\'])(?P<url>https?://(?:test)?player\.(?:rutv\.ru|vgtrk\.com)/(?:iframe/(?:swf|video|live)/id|index/iframe/cast_id)/.+?)\1',
+            webpage)
         if mobj:
             return mobj.group('url')
 
@@ -140,18 +141,21 @@ class RUTVIE(InfoExtractor):
         is_live = video_type == 'live'
 
         json_data = self._download_json(
-            'http://player.rutv.ru/iframe/data%s/id/%s' % ('live' if is_live else 'video', video_id),
-            video_id, 'Downloading JSON')
+            'http://player.rutv.ru/iframe/data%s/id/%s' %
+            ('live' if is_live else 'video', video_id), video_id, 'Downloading JSON')
 
         if json_data['errors']:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, json_data['errors']), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, json_data['errors']), expected=True)
 
         playlist = json_data['data']['playlist']
         medialist = playlist['medialist']
         media = medialist[0]
 
         if media['errors']:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, media['errors']), expected=True)
+            raise ExtractorError('%s said: %s' %
+                                 (self.IE_NAME, media['errors']), expected=True)
 
         view_count = playlist.get('count_views')
         priority_transport = playlist['priority_transport']
@@ -169,7 +173,8 @@ class RUTVIE(InfoExtractor):
             for quality, url in links.items():
                 preference = -1 if priority_transport == transport else -2
                 if transport == 'rtmp':
-                    mobj = re.search(r'^(?P<url>rtmp://[^/]+/(?P<app>.+))/(?P<playpath>.+)$', url)
+                    mobj = re.search(
+                        r'^(?P<url>rtmp://[^/]+/(?P<app>.+))/(?P<playpath>.+)$', url)
                     if not mobj:
                         continue
                     fmt = {
@@ -184,8 +189,13 @@ class RUTVIE(InfoExtractor):
                         'preference': preference,
                     }
                 elif transport == 'm3u8':
-                    formats.extend(self._extract_m3u8_formats(
-                        url, video_id, 'mp4', preference=preference, m3u8_id='hls'))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            url,
+                            video_id,
+                            'mp4',
+                            preference=preference,
+                            m3u8_id='hls'))
                     continue
                 else:
                     fmt = {

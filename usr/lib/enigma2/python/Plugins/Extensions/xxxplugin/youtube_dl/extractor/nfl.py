@@ -74,7 +74,8 @@ class NFLBaseIE(InfoExtractor):
             info = {'id': media_id}
             ext = determine_ext(item_url)
             if ext == 'm3u8':
-                info['formats'] = self._extract_m3u8_formats(item_url, media_id, 'mp4')
+                info['formats'] = self._extract_m3u8_formats(
+                    item_url, media_id, 'mp4')
                 self._sort_formats(info['formats'])
             else:
                 info['url'] = item_url
@@ -82,7 +83,9 @@ class NFLBaseIE(InfoExtractor):
                     info['vcodec'] = 'none'
             is_live = video_config.get('live') is True
             thumbnails = None
-            image_url = item.get(item.get('imageSrc')) or item.get(item.get('posterImage'))
+            image_url = item.get(
+                item.get('imageSrc')) or item.get(
+                item.get('posterImage'))
             if image_url:
                 thumbnails = [{
                     'url': image_url,
@@ -99,35 +102,31 @@ class NFLBaseIE(InfoExtractor):
 
 class NFLIE(NFLBaseIE):
     IE_NAME = 'nfl.com'
-    _VALID_URL = NFLBaseIE._VALID_URL_BASE + r'(?:videos?|listen|audio)/(?P<id>[^/#?&]+)'
-    _TESTS = [{
-        'url': 'https://www.nfl.com/videos/baker-mayfield-s-game-changing-plays-from-3-td-game-week-14',
-        'info_dict': {
-            'id': '899441',
-            'ext': 'mp4',
-            'title': "Baker Mayfield's game-changing plays from 3-TD game Week 14",
-            'description': 'md5:85e05a3cc163f8c344340f220521136d',
-            'upload_date': '20201215',
-            'timestamp': 1608009755,
-            'thumbnail': r're:^https?://.*\.jpg$',
-            'uploader': 'NFL',
-        }
-    }, {
-        'url': 'https://www.chiefs.com/listen/patrick-mahomes-travis-kelce-react-to-win-over-dolphins-the-breakdown',
-        'md5': '6886b32c24b463038c760ceb55a34566',
-        'info_dict': {
-            'id': 'd87e8790-3e14-11eb-8ceb-ff05c2867f99',
-            'ext': 'mp3',
-            'title': 'Patrick Mahomes, Travis Kelce React to Win Over Dolphins | The Breakdown',
-            'description': 'md5:12ada8ee70e6762658c30e223e095075',
-        }
-    }, {
-        'url': 'https://www.buffalobills.com/video/buffalo-bills-military-recognition-week-14',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.raiders.com/audio/instant-reactions-raiders-week-14-loss-to-indianapolis-colts-espn-jason-fitz',
-        'only_matching': True,
-    }]
+    _VALID_URL = NFLBaseIE._VALID_URL_BASE + \
+        r'(?:videos?|listen|audio)/(?P<id>[^/#?&]+)'
+    _TESTS = [{'url': 'https://www.nfl.com/videos/baker-mayfield-s-game-changing-plays-from-3-td-game-week-14',
+               'info_dict': {'id': '899441',
+                             'ext': 'mp4',
+                             'title': "Baker Mayfield's game-changing plays from 3-TD game Week 14",
+                             'description': 'md5:85e05a3cc163f8c344340f220521136d',
+                             'upload_date': '20201215',
+                             'timestamp': 1608009755,
+                             'thumbnail': r're:^https?://.*\.jpg$',
+                             'uploader': 'NFL',
+                             }},
+              {'url': 'https://www.chiefs.com/listen/patrick-mahomes-travis-kelce-react-to-win-over-dolphins-the-breakdown',
+               'md5': '6886b32c24b463038c760ceb55a34566',
+               'info_dict': {'id': 'd87e8790-3e14-11eb-8ceb-ff05c2867f99',
+                             'ext': 'mp3',
+                             'title': 'Patrick Mahomes, Travis Kelce React to Win Over Dolphins | The Breakdown',
+                             'description': 'md5:12ada8ee70e6762658c30e223e095075',
+                             }},
+              {'url': 'https://www.buffalobills.com/video/buffalo-bills-military-recognition-week-14',
+               'only_matching': True,
+               },
+              {'url': 'https://www.raiders.com/audio/instant-reactions-raiders-week-14-loss-to-indianapolis-colts-espn-jason-fitz',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         display_id = self._match_id(url)

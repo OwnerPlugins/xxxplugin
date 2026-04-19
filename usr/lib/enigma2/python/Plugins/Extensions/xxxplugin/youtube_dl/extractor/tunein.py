@@ -29,13 +29,20 @@ class TuneInBaseIE(InfoExtractor):
         location = content_info.get('Location')
         streams_url = content_info.get('StreamUrl')
         if not streams_url:
-            raise ExtractorError('No downloadable streams found', expected=True)
+            raise ExtractorError(
+                'No downloadable streams found',
+                expected=True)
         if not streams_url.startswith('http://'):
             streams_url = compat_urlparse.urljoin(url, streams_url)
 
         streams = self._download_json(
-            streams_url, content_id, note='Downloading stream data',
-            transform_source=lambda s: re.sub(r'^\s*\((.*)\);\s*$', r'\1', s))['Streams']
+            streams_url,
+            content_id,
+            note='Downloading stream data',
+            transform_source=lambda s: re.sub(
+                r'^\s*\((.*)\);\s*$',
+                r'\1',
+                s))['Streams']
 
         is_live = None
         formats = []
@@ -93,7 +100,8 @@ class TuneInStationIE(TuneInBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if TuneInClipIE.suitable(url) else super(TuneInStationIE, cls).suitable(url)
+        return False if TuneInClipIE.suitable(url) else super(
+            TuneInStationIE, cls).suitable(url)
 
     _TESTS = [{
         'url': 'http://tunein.com/radio/Jazz24-885-s34682/',

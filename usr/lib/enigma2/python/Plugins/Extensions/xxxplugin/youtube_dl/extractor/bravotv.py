@@ -13,31 +13,31 @@ from ..utils import (
 
 class BravoTVIE(AdobePassIE):
     _VALID_URL = r'https?://(?:www\.)?(?P<req_id>bravotv|oxygen)\.com/(?:[^/]+/)+(?P<id>[^/?#]+)'
-    _TESTS = [{
-        'url': 'https://www.bravotv.com/top-chef/season-16/episode-15/videos/the-top-chef-season-16-winner-is',
-        'md5': 'e34684cfea2a96cd2ee1ef3a60909de9',
-        'info_dict': {
-            'id': 'epL0pmK1kQlT',
-            'ext': 'mp4',
-            'title': 'The Top Chef Season 16 Winner Is...',
-            'description': 'Find out who takes the title of Top Chef!',
-            'uploader': 'NBCU-BRAV',
-            'upload_date': '20190314',
-            'timestamp': 1552591860,
-        }
-    }, {
-        'url': 'http://www.bravotv.com/below-deck/season-3/ep-14-reunion-part-1',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.oxygen.com/in-ice-cold-blood/season-2/episode-16/videos/handling-the-horwitz-house-after-the-murder-season-2',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.bravotv.com/top-chef/season-16/episode-15/videos/the-top-chef-season-16-winner-is',
+               'md5': 'e34684cfea2a96cd2ee1ef3a60909de9',
+               'info_dict': {'id': 'epL0pmK1kQlT',
+                             'ext': 'mp4',
+                             'title': 'The Top Chef Season 16 Winner Is...',
+                             'description': 'Find out who takes the title of Top Chef!',
+                             'uploader': 'NBCU-BRAV',
+                             'upload_date': '20190314',
+                             'timestamp': 1552591860,
+                             }},
+              {'url': 'http://www.bravotv.com/below-deck/season-3/ep-14-reunion-part-1',
+               'only_matching': True,
+               },
+              {'url': 'https://www.oxygen.com/in-ice-cold-blood/season-2/episode-16/videos/handling-the-horwitz-house-after-the-murder-season-2',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         site, display_id = re.match(self._VALID_URL, url).groups()
         webpage = self._download_webpage(url, display_id)
-        settings = self._parse_json(self._search_regex(
-            r'<script[^>]+data-drupal-selector="drupal-settings-json"[^>]*>({.+?})</script>', webpage, 'drupal settings'),
+        settings = self._parse_json(
+            self._search_regex(
+                r'<script[^>]+data-drupal-selector="drupal-settings-json"[^>]*>({.+?})</script>',
+                webpage,
+                'drupal settings'),
             display_id)
         info = {}
         query = {
@@ -47,7 +47,9 @@ class BravoTVIE(AdobePassIE):
         tve = settings.get('ls_tve')
         if tve:
             query['manifest'] = 'm3u'
-            mobj = re.search(r'<[^>]+id="pdk-player"[^>]+data-url=["\']?(?:https?:)?//player\.theplatform\.com/p/([^/]+)/(?:[^/]+/)*select/([^?#&"\']+)', webpage)
+            mobj = re.search(
+                r'<[^>]+id="pdk-player"[^>]+data-url=["\']?(?:https?:)?//player\.theplatform\.com/p/([^/]+)/(?:[^/]+/)*select/([^?#&"\']+)',
+                webpage)
             if mobj:
                 account_pid, tp_path = mobj.groups()
                 release_pid = tp_path.strip('/').split('/')[-1]

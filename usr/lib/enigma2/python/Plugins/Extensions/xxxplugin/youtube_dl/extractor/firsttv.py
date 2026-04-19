@@ -110,7 +110,8 @@ class FirstTVIE(InfoExtractor):
             # master.m3u8). dashEdges (that is currently balancer-vod.1tv.ru)
             # is taken from [2].
             # 1. http://static.1tv.ru/player/eump1tv-current/eump-1tv.all.min.js?rnd=9097422834:formatted
-            # 2. http://static.1tv.ru/player/eump1tv-config/config-main.js?rnd=9097422834
+            # 2.
+            # http://static.1tv.ru/player/eump1tv-config/config-main.js?rnd=9097422834
             if not path and len(formats) == 1:
                 path = self._search_regex(
                     r'//[^/]+/(.+?$)', formats[0]['url'],
@@ -119,7 +120,9 @@ class FirstTVIE(InfoExtractor):
                 if len(formats) == 1:
                     m3u8_path = ','
                 else:
-                    tbrs = [compat_str(t) for t in sorted(f['tbr'] for f in formats)]
+                    tbrs = [
+                        compat_str(t) for t in sorted(
+                            f['tbr'] for f in formats)]
                     m3u8_path = '_,%s,%s' % (','.join(tbrs), '.mp4')
                 formats.extend(self._extract_m3u8_formats(
                     'http://balancer-vod.1tv.ru/%s%s.urlset/master.m3u8'
@@ -128,9 +131,14 @@ class FirstTVIE(InfoExtractor):
                     entry_protocol='m3u8_native', m3u8_id='hls', fatal=False))
             self._sort_formats(formats)
 
-            thumbnail = item.get('poster') or self._og_search_thumbnail(webpage)
-            duration = int_or_none(item.get('duration') or self._html_search_meta(
-                'video:duration', webpage, 'video duration', fatal=False))
+            thumbnail = item.get(
+                'poster') or self._og_search_thumbnail(webpage)
+            duration = int_or_none(
+                item.get('duration') or self._html_search_meta(
+                    'video:duration',
+                    webpage,
+                    'video duration',
+                    fatal=False))
             upload_date = unified_strdate(self._html_search_meta(
                 'ya:ovs:upload_date', webpage, 'upload date', default=None))
 

@@ -47,7 +47,8 @@ class CBCIE(InfoExtractor):
         },
         'skip': 'Geo-restricted to Canada',
     }, {
-        # with clipId, feed available via tpfeed.cbc.ca and feed.theplatform.com
+        # with clipId, feed available via tpfeed.cbc.ca and
+        # feed.theplatform.com
         'url': 'http://www.cbc.ca/22minutes/videos/22-minutes-update/22-minutes-update-episode-4',
         'md5': '162adfa070274b144f4fdc3c3b8207db',
         'info_dict': {
@@ -112,7 +113,8 @@ class CBCIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if CBCPlayerIE.suitable(url) else super(CBCIE, cls).suitable(url)
+        return False if CBCPlayerIE.suitable(
+            url) else super(CBCIE, cls).suitable(url)
 
     def _extract_player_init(self, player_init, display_id):
         player_info = self._parse_json(player_init, display_id, js_to_json)
@@ -120,25 +122,39 @@ class CBCIE(InfoExtractor):
         if not media_id:
             clip_id = player_info['clipId']
             feed = self._download_json(
-                'http://tpfeed.cbc.ca/f/ExhSPC/vms_5akSXx4Ng_Zn?byCustomValue={:mpsReleases}{%s}' % clip_id,
-                clip_id, fatal=False)
+                'http://tpfeed.cbc.ca/f/ExhSPC/vms_5akSXx4Ng_Zn?byCustomValue={:mpsReleases}{%s}' %
+                clip_id, clip_id, fatal=False)
             if feed:
-                media_id = try_get(feed, lambda x: x['entries'][0]['guid'], compat_str)
+                media_id = try_get(
+                    feed, lambda x: x['entries'][0]['guid'], compat_str)
             if not media_id:
                 media_id = self._download_json(
                     'http://feed.theplatform.com/f/h9dtGB/punlNGjMlc1F?fields=id&byContent=byReleases%3DbyId%253D' + clip_id,
                     clip_id)['entries'][0]['id'].split('/')[-1]
-        return self.url_result('cbcplayer:%s' % media_id, 'CBCPlayer', media_id)
+        return self.url_result(
+            'cbcplayer:%s' %
+            media_id, 'CBCPlayer', media_id)
 
     def _real_extract(self, url):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
-        title = self._og_search_title(webpage, default=None) or self._html_search_meta(
-            'twitter:title', webpage, 'title', default=None) or self._html_search_regex(
-                r'<title>([^<]+)</title>', webpage, 'title', fatal=False)
+        title = self._og_search_title(
+            webpage,
+            default=None) or self._html_search_meta(
+            'twitter:title',
+            webpage,
+            'title',
+            default=None) or self._html_search_regex(
+            r'<title>([^<]+)</title>',
+            webpage,
+            'title',
+            fatal=False)
         entries = [
-            self._extract_player_init(player_init, display_id)
-            for player_init in re.findall(r'CBC\.APP\.Caffeine\.initInstance\(({.+?})\);', webpage)]
+            self._extract_player_init(
+                player_init,
+                display_id) for player_init in re.findall(
+                r'CBC\.APP\.Caffeine\.initInstance\(({.+?})\);',
+                webpage)]
         media_ids = []
         for media_id_re in (
                 r'<iframe[^>]+src="[^"]+?mediaId=(\d+)"',
@@ -170,7 +186,8 @@ class CBCPlayerIE(InfoExtractor):
         },
         'skip': 'Geo-restricted to Canada',
     }, {
-        # Redirected from http://www.cbc.ca/player/AudioMobile/All%20in%20a%20Weekend%20Montreal/ID/2657632011/
+        # Redirected from
+        # http://www.cbc.ca/player/AudioMobile/All%20in%20a%20Weekend%20Montreal/ID/2657632011/
         'url': 'http://www.cbc.ca/player/play/2657631896',
         'md5': 'e5e708c34ae6fca156aafe17c43e8b75',
         'info_dict': {
@@ -199,14 +216,10 @@ class CBCPlayerIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         return {
-            '_type': 'url_transparent',
-            'ie_key': 'ThePlatform',
-            'url': smuggle_url(
-                'http://link.theplatform.com/s/ExhSPC/media/guid/2655402169/%s?mbr=true&formats=MPEG4,FLV,MP3' % video_id, {
-                    'force_smil_url': True
-                }),
-            'id': video_id,
-        }
+            '_type': 'url_transparent', 'ie_key': 'ThePlatform', 'url': smuggle_url(
+                'http://link.theplatform.com/s/ExhSPC/media/guid/2655402169/%s?mbr=true&formats=MPEG4,FLV,MP3' %
+                video_id, {
+                    'force_smil_url': True}), 'id': video_id, }
 
 
 class CBCWatchBaseIE(InfoExtractor):
@@ -230,7 +243,12 @@ class CBCWatchBaseIE(InfoExtractor):
         }).encode()
         headers = {'content-type': 'application/json'}
         query = {'apikey': self._API_KEY}
-        resp = self._download_json(self._LOGIN_URL, None, data=data, headers=headers, query=query)
+        resp = self._download_json(
+            self._LOGIN_URL,
+            None,
+            data=data,
+            headers=headers,
+            query=query)
         access_token = resp['access_token']
 
         # token
@@ -239,7 +257,11 @@ class CBCWatchBaseIE(InfoExtractor):
             'apikey': self._API_KEY,
             'jwtapp': 'jwt',
         }
-        resp = self._download_json(self._TOKEN_URL, None, headers=headers, query=query)
+        resp = self._download_json(
+            self._TOKEN_URL,
+            None,
+            headers=headers,
+            query=query)
         return resp['signature']
 
     def _call_api(self, path, video_id):
@@ -251,12 +273,15 @@ class CBCWatchBaseIE(InfoExtractor):
                     'X-Clearleap-DeviceToken': self._device_token,
                 })
             except ExtractorError as e:
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
+                if isinstance(e.cause,
+                              compat_HTTPError) and e.cause.code == 401:
                     # Device token has expired, re-acquiring device token
                     self._register_device()
                     continue
                 raise
-        error_message = xpath_text(result, 'userMessage') or xpath_text(result, 'systemMessage')
+        error_message = xpath_text(
+            result, 'userMessage') or xpath_text(
+            result, 'systemMessage')
         if error_message:
             raise ExtractorError('%s said: %s' % (self.IE_NAME, error_message))
         return result
@@ -266,7 +291,8 @@ class CBCWatchBaseIE(InfoExtractor):
             return
         device = self._downloader.cache.load(
             'cbcwatch', self._cache_device_key()) or {}
-        self._device_id, self._device_token = device.get('id'), device.get('token')
+        self._device_id, self._device_token = device.get(
+            'id'), device.get('token')
         if self._valid_device_token():
             return
         self._register_device()
@@ -276,7 +302,8 @@ class CBCWatchBaseIE(InfoExtractor):
 
     def _cache_device_key(self):
         email, _ = self._get_login_info()
-        return '%s_device' % hashlib.sha256(email.encode()).hexdigest() if email else 'device'
+        return '%s_device' % hashlib.sha256(
+            email.encode()).hexdigest() if email else 'device'
 
     def _register_device(self):
         result = self._download_xml(
@@ -313,8 +340,10 @@ class CBCWatchBaseIE(InfoExtractor):
             guid = xpath_text(item, 'guid', fatal=True)
             title = xpath_text(item, 'title', fatal=True)
 
-            media_group = xpath_element(item, _add_ns('media:group'), fatal=True)
-            content = xpath_element(media_group, _add_ns('media:content'), fatal=True)
+            media_group = xpath_element(
+                item, _add_ns('media:group'), fatal=True)
+            content = xpath_element(
+                media_group, _add_ns('media:content'), fatal=True)
             content_url = content.attrib['url']
 
             thumbnails = []
@@ -372,7 +401,14 @@ class CBCWatchVideoIE(CBCWatchBaseIE):
         result = self._call_api(url, video_id)
 
         m3u8_url = xpath_text(result, 'url', fatal=True)
-        formats = self._extract_m3u8_formats(re.sub(r'/([^/]+)/[^/?]+\.m3u8', r'/\1/\1.m3u8', m3u8_url), video_id, 'mp4', fatal=False)
+        formats = self._extract_m3u8_formats(
+            re.sub(
+                r'/([^/]+)/[^/?]+\.m3u8',
+                r'/\1/\1.m3u8',
+                m3u8_url),
+            video_id,
+            'mp4',
+            fatal=False)
         if len(formats) < 2:
             formats = self._extract_m3u8_formats(m3u8_url, video_id, 'mp4')
         for f in formats:
@@ -468,7 +504,8 @@ class CBCOlympicsIE(InfoExtractor):
                 }).encode(), headers={
                     'Content-Type': 'application/json',
                     'Referer': url,
-                    # d3.VideoPlayer._init in https://olympics.cbc.ca/components/script/base.js
+                    # d3.VideoPlayer._init in
+                    # https://olympics.cbc.ca/components/script/base.js
                     'Cookie': '_dvp=TK:C0ObxjerU',  # AKAMAI CDN cookie
                 }, fatal=False)
             if not tokenize:
@@ -476,8 +513,12 @@ class CBCOlympicsIE(InfoExtractor):
             content_url = tokenize['ContentUrl']
             video_source_format = video_source.get('format')
             if video_source_format == 'IIS':
-                formats.extend(self._extract_ism_formats(
-                    content_url, video_id, ism_id=video_source_format, fatal=False))
+                formats.extend(
+                    self._extract_ism_formats(
+                        content_url,
+                        video_id,
+                        ism_id=video_source_format,
+                        fatal=False))
             else:
                 formats.extend(self._extract_m3u8_formats(
                     content_url, video_id, 'mp4',

@@ -15,8 +15,7 @@ class Ro220IE(InfoExtractor):
             'ext': 'mp4',
             'title': 'Luati-le Banii sez 4 ep 1',
             'description': r're:^Iata-ne reveniti dupa o binemeritata vacanta\. +Va astept si pe Facebook cu pareri si comentarii.$',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

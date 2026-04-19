@@ -46,7 +46,8 @@ class PikselIE(InfoExtractor):
             }
         },
         {
-            # Original source: http://www.uscourts.gov/cameras-courts/state-washington-vs-donald-j-trump-et-al
+            # Original source:
+            # http://www.uscourts.gov/cameras-courts/state-washington-vs-donald-j-trump-et-al
             'url': 'https://player.piksel.com/v/v80kqp41',
             'md5': '753ddcd8cc8e4fa2dda4b7be0e77744d',
             'info_dict': {
@@ -74,9 +75,14 @@ class PikselIE(InfoExtractor):
             return mobj.group('url')
 
     def _call_api(self, app_token, resource, display_id, query, fatal=True):
-        response = (self._download_json(
-            'http://player.piksel.com/ws/ws_%s/api/%s/mode/json/apiv/5' % (resource, app_token),
-            display_id, query=query, fatal=fatal) or {}).get('response')
+        response = (
+            self._download_json(
+                'http://player.piksel.com/ws/ws_%s/api/%s/mode/json/apiv/5' %
+                (resource,
+                 app_token),
+                display_id,
+                query=query,
+                fatal=fatal) or {}).get('response')
         failure = try_get(response, lambda x: x['failure']['reason'])
         if failure:
             if fatal:
@@ -91,9 +97,12 @@ class PikselIE(InfoExtractor):
             r'clientAPI\s*:\s*"([^"]+)"',
             r'data-de-api-key\s*=\s*"([^"]+)"'
         ], webpage, 'app token')
-        query = {'refid': ref_id, 'prefid': display_id} if ref_id else {'v': display_id}
-        program = self._call_api(
-            app_token, 'program', display_id, query)['WsProgramResponse']['program']
+        query = {
+            'refid': ref_id,
+            'prefid': display_id} if ref_id else {
+            'v': display_id}
+        program = self._call_api(app_token, 'program', display_id, query)[
+            'WsProgramResponse']['program']
         video_id = program['uuid']
         video_data = program['asset']
         title = video_data['title']
@@ -162,7 +171,8 @@ class PikselIE(InfoExtractor):
             if ref_id == 'nhkworld':
                 # TODO: figure out if this is something to be fixed in urljoin,
                 # _parse_smil_formats or keep it here
-                transform_source = lambda x: x.replace('src="/', 'src="').replace('/media"', '/media/"')
+                def transform_source(x): return x.replace(
+                    'src="/', 'src="').replace('/media"', '/media/"')
             formats.extend(self._extract_smil_formats(
                 re.sub(r'/od/[^/]+/', '/od/http/', smil_url), video_id,
                 transform_source=transform_source, fatal=False))

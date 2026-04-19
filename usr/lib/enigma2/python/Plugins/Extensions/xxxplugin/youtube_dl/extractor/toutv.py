@@ -59,7 +59,8 @@ class TouTvIE(RadioCanadaIE):
                 })['access_token']
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
-                error = self._parse_json(e.cause.read().decode(), None)['Message']
+                error = self._parse_json(
+                    e.cause.read().decode(), None)['Message']
                 raise ExtractorError(error, expected=True)
             raise
         self._claims = self._call_api('validation/v2/getClaims')['claims']
@@ -67,7 +68,10 @@ class TouTvIE(RadioCanadaIE):
     def _real_extract(self, url):
         path = self._match_id(url)
         metadata = self._download_json(
-            'https://services.radio-canada.ca/toutv/presentation/%s' % path, path, query={
+            'https://services.radio-canada.ca/toutv/presentation/%s' %
+            path,
+            path,
+            query={
                 'client_key': self._CLIENT_KEY,
                 'device': 'web',
                 'version': 4,

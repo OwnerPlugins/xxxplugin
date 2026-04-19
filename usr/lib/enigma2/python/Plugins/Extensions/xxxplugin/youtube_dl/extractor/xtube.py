@@ -90,9 +90,15 @@ class XTubeIE(InfoExtractor):
 
         title, thumbnail, duration, sources, media_definition = [None] * 5
 
-        config = self._parse_json(self._search_regex(
-            r'playerConf\s*=\s*({.+?})\s*,\s*(?:\n|loaderConf|playerWrapper)', webpage, 'config',
-            default='{}'), video_id, transform_source=js_to_json, fatal=False)
+        config = self._parse_json(
+            self._search_regex(
+                r'playerConf\s*=\s*({.+?})\s*,\s*(?:\n|loaderConf|playerWrapper)',
+                webpage,
+                'config',
+                default='{}'),
+            video_id,
+            transform_source=js_to_json,
+            fatal=False)
         if config:
             config = config.get('mainRoll')
             if isinstance(config, dict):
@@ -135,9 +141,14 @@ class XTubeIE(InfoExtractor):
                 format_urls.add(video_url)
                 format_id = media.get('format')
                 if format_id == 'hls':
-                    formats.extend(self._extract_m3u8_formats(
-                        video_url, video_id, 'mp4', entry_protocol='m3u8_native',
-                        m3u8_id='hls', fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            video_url,
+                            video_id,
+                            'mp4',
+                            entry_protocol='m3u8_native',
+                            m3u8_id='hls',
+                            fatal=False))
                 elif format_id == 'mp4':
                     height = int_or_none(media.get('quality'))
                     formats.append({
@@ -151,8 +162,11 @@ class XTubeIE(InfoExtractor):
 
         if not title:
             title = self._search_regex(
-                (r'<h1>\s*(?P<title>[^<]+?)\s*</h1>', r'videoTitle\s*:\s*(["\'])(?P<title>.+?)\1'),
-                webpage, 'title', group='title')
+                (r'<h1>\s*(?P<title>[^<]+?)\s*</h1>',
+                 r'videoTitle\s*:\s*(["\'])(?P<title>.+?)\1'),
+                webpage,
+                'title',
+                group='title')
         description = self._og_search_description(
             webpage, default=None) or self._html_search_meta(
             'twitter:description', webpage, default=None) or self._search_regex(
@@ -222,7 +236,10 @@ class XTubeUserIE(InfoExtractor):
 
             for video_id in orderedSet([video_id for _, video_id in re.findall(
                     r'data-plid=(["\'])(.+?)\1', html)]):
-                entries.append(self.url_result('xtube:%s' % video_id, XTubeIE.ie_key()))
+                entries.append(
+                    self.url_result(
+                        'xtube:%s' %
+                        video_id, XTubeIE.ie_key()))
 
             page_count = int_or_none(page.get('pageCount'))
             if not page_count or pagenum == page_count:

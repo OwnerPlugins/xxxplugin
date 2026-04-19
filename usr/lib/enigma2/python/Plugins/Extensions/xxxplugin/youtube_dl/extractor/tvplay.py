@@ -241,7 +241,8 @@ class TVPlayIE(InfoExtractor):
         if geo_country:
             self._initialize_geo_bypass({'countries': [geo_country.upper()]})
         video = self._download_json(
-            'http://playapi.mtgx.tv/v3/videos/%s' % video_id, video_id, 'Downloading video JSON')
+            'http://playapi.mtgx.tv/v3/videos/%s' %
+            video_id, video_id, 'Downloading video JSON')
 
         title = video['title']
 
@@ -251,7 +252,8 @@ class TVPlayIE(InfoExtractor):
                 video_id, 'Downloading streams JSON')
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
-                msg = self._parse_json(e.cause.read().decode('utf-8'), video_id)
+                msg = self._parse_json(
+                    e.cause.read().decode('utf-8'), video_id)
                 raise ExtractorError(msg['msg'], expected=True)
             raise
 
@@ -280,7 +282,8 @@ class TVPlayIE(InfoExtractor):
                 }
                 if video_url.startswith('rtmp'):
                     m = re.search(
-                        r'^(?P<url>rtmp://[^/]+/(?P<app>[^/]+))/(?P<playpath>.+)$', video_url)
+                        r'^(?P<url>rtmp://[^/]+/(?P<app>[^/]+))/(?P<playpath>.+)$',
+                        video_url)
                     if not m:
                         continue
                     fmt.update({
@@ -314,9 +317,15 @@ class TVPlayIE(InfoExtractor):
             }]
 
         series = video.get('format_title')
-        episode_number = int_or_none(video.get('format_position', {}).get('episode'))
+        episode_number = int_or_none(
+            video.get(
+                'format_position',
+                {}).get('episode'))
         season = video.get('_embedded', {}).get('season', {}).get('title')
-        season_number = int_or_none(video.get('format_position', {}).get('season'))
+        season_number = int_or_none(
+            video.get(
+                'format_position',
+                {}).get('season'))
 
         return {
             'id': video_id,
@@ -377,12 +386,14 @@ class ViafreeIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if TVPlayIE.suitable(url) else super(ViafreeIE, cls).suitable(url)
+        return False if TVPlayIE.suitable(
+            url) else super(ViafreeIE, cls).suitable(url)
 
     def _real_extract(self, url):
         country, path = re.match(self._VALID_URL, url).groups()
         content = self._download_json(
-            'https://viafree-content.mtg-api.com/viafree-content/v1/%s/path/%s' % (country, path), path)
+            'https://viafree-content.mtg-api.com/viafree-content/v1/%s/path/%s' %
+            (country, path), path)
         program = content['_embedded']['viafreeBlocks'][0]['_embedded']['program']
         guid = program['guid']
         meta = content['meta']
@@ -407,50 +418,56 @@ class ViafreeIE(InfoExtractor):
             'thumbnail': meta.get('image'),
             'description': meta.get('description'),
             'series': episode.get('seriesTitle'),
-            'episode_number': int_or_none(episode.get('episodeNumber')),
-            'season_number': int_or_none(episode.get('seasonNumber')),
-            'duration': int_or_none(try_get(program, lambda x: x['video']['duration']['milliseconds']), 1000),
-            'timestamp': parse_iso8601(try_get(program, lambda x: x['availability']['start'])),
+            'episode_number': int_or_none(
+                episode.get('episodeNumber')),
+            'season_number': int_or_none(
+                episode.get('seasonNumber')),
+            'duration': int_or_none(
+                try_get(
+                    program,
+                    lambda x: x['video']['duration']['milliseconds']),
+                1000),
+            'timestamp': parse_iso8601(
+                try_get(
+                    program,
+                    lambda x: x['availability']['start'])),
             'formats': formats,
         }
 
 
 class TVPlayHomeIE(InfoExtractor):
     _VALID_URL = r'https?://(?:tv3?)?play\.(?:tv3\.lt|skaties\.lv|tv3\.ee)/(?:[^/]+/)*[^/?#&]+-(?P<id>\d+)'
-    _TESTS = [{
-        'url': 'https://tvplay.tv3.lt/aferistai-n-7/aferistai-10047125/',
-        'info_dict': {
-            'id': '366367',
-            'ext': 'mp4',
-            'title': 'Aferistai',
-            'description': 'Aferistai. Kalėdinė pasaka.',
-            'series': 'Aferistai [N-7]',
-            'season': '1 sezonas',
-            'season_number': 1,
-            'duration': 464,
-            'timestamp': 1394209658,
-            'upload_date': '20140307',
-            'age_limit': 18,
-        },
-        'params': {
-            'skip_download': True,
-        },
-    }, {
-        'url': 'https://tvplay.skaties.lv/vinas-melo-labak/vinas-melo-labak-10280317/',
-        'only_matching': True,
-    }, {
-        'url': 'https://tvplay.tv3.ee/cool-d-ga-mehhikosse/cool-d-ga-mehhikosse-10044354/',
-        'only_matching': True,
-    }, {
-        'url': 'https://play.tv3.lt/aferistai-10047125',
-        'only_matching': True,
-    }, {
-        'url': 'https://tv3play.skaties.lv/vinas-melo-labak-10280317',
-        'only_matching': True,
-    }, {
-        'url': 'https://play.tv3.ee/cool-d-ga-mehhikosse-10044354',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://tvplay.tv3.lt/aferistai-n-7/aferistai-10047125/',
+               'info_dict': {'id': '366367',
+                             'ext': 'mp4',
+                             'title': 'Aferistai',
+                             'description': 'Aferistai. Kalėdinė pasaka.',
+                             'series': 'Aferistai [N-7]',
+                             'season': '1 sezonas',
+                             'season_number': 1,
+                             'duration': 464,
+                             'timestamp': 1394209658,
+                             'upload_date': '20140307',
+                             'age_limit': 18,
+                             },
+               'params': {'skip_download': True,
+                          },
+               },
+              {'url': 'https://tvplay.skaties.lv/vinas-melo-labak/vinas-melo-labak-10280317/',
+               'only_matching': True,
+               },
+              {'url': 'https://tvplay.tv3.ee/cool-d-ga-mehhikosse/cool-d-ga-mehhikosse-10044354/',
+               'only_matching': True,
+               },
+              {'url': 'https://play.tv3.lt/aferistai-10047125',
+               'only_matching': True,
+               },
+              {'url': 'https://tv3play.skaties.lv/vinas-melo-labak-10280317',
+               'only_matching': True,
+               },
+              {'url': 'https://play.tv3.ee/cool-d-ga-mehhikosse-10044354',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -482,11 +499,14 @@ class TVPlayHomeIE(InfoExtractor):
             'title': title,
             'description': asset_title.get('summaryLong') or asset_title.get('summaryShort'),
             'thumbnails': thumbnails,
-            'duration': parse_duration(asset_title.get('runTime')),
+            'duration': parse_duration(
+                asset_title.get('runTime')),
             'series': asset.get('tvSeriesTitle'),
             'season': asset.get('tvSeasonTitle'),
-            'season_number': int_or_none(metadata.get('seasonNumber')),
+            'season_number': int_or_none(
+                metadata.get('seasonNumber')),
             'episode': asset_title.get('titleBrief'),
-            'episode_number': int_or_none(metadata.get('episodeNumber')),
+            'episode_number': int_or_none(
+                metadata.get('episodeNumber')),
             'formats': formats,
         }

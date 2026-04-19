@@ -41,7 +41,8 @@ class AparatIE(InfoExtractor):
 
         if not webpage:
             webpage = self._download_webpage(
-                'http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/' + video_id,
+                'http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/' +
+                video_id,
                 video_id)
 
         options = self._parse_json(self._search_regex(
@@ -78,8 +79,8 @@ class AparatIE(InfoExtractor):
         info = self._search_json_ld(webpage, video_id, default={})
 
         if not info.get('title'):
-            info['title'] = get_element_by_id('videoTitle', webpage) or \
-                self._html_search_meta(['og:title', 'twitter:title', 'DC.Title', 'title'], webpage, fatal=True)
+            info['title'] = get_element_by_id('videoTitle', webpage) or self._html_search_meta(
+                ['og:title', 'twitter:title', 'DC.Title', 'title'], webpage, fatal=True)
 
         return merge_dicts(info, {
             'id': video_id,

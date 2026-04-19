@@ -49,7 +49,8 @@ class WatIE(InfoExtractor):
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
-        video_id = video_id if video_id.isdigit() and len(video_id) > 6 else compat_str(int(video_id, 36))
+        video_id = video_id if video_id.isdigit() and len(
+            video_id) > 6 else compat_str(int(video_id, 36))
 
         # 'contentv4' is used in the website, but it also returns the related
         # videos, we don't need them
@@ -63,7 +64,8 @@ class WatIE(InfoExtractor):
         error_desc = video_info.get('error_desc')
         if error_desc:
             if video_info.get('error_code') == 'GEOBLOCKED':
-                self.raise_geo_restricted(error_desc, video_info.get('geoList'))
+                self.raise_geo_restricted(
+                    error_desc, video_info.get('geoList'))
             raise ExtractorError(error_desc, expected=True)
 
         title = video_info['title']
@@ -75,9 +77,14 @@ class WatIE(InfoExtractor):
                 if not f_url:
                     continue
                 if f in ('dash', 'mpd'):
-                    formats.extend(self._extract_mpd_formats(
-                        f_url.replace('://das-q1.tf1.fr/', '://das-q1-ssl.tf1.fr/'),
-                        video_id, mpd_id='dash', fatal=False))
+                    formats.extend(
+                        self._extract_mpd_formats(
+                            f_url.replace(
+                                '://das-q1.tf1.fr/',
+                                '://das-q1-ssl.tf1.fr/'),
+                            video_id,
+                            mpd_id='dash',
+                            fatal=False))
                 elif f == 'hls':
                     formats.extend(self._extract_m3u8_formats(
                         f_url, video_id, 'mp4',
@@ -87,7 +94,8 @@ class WatIE(InfoExtractor):
         extract_formats({delivery.get('format'): delivery.get('url')})
         if not formats:
             if delivery.get('drm'):
-                raise ExtractorError('This video is DRM protected.', expected=True)
+                raise ExtractorError(
+                    'This video is DRM protected.', expected=True)
             manifest_urls = self._download_json(
                 'http://www.wat.tv/get/webhtml/' + video_id, video_id, fatal=False)
             if manifest_urls:
@@ -99,8 +107,11 @@ class WatIE(InfoExtractor):
             'id': video_id,
             'title': title,
             'thumbnail': video_info.get('preview'),
-            'upload_date': unified_strdate(try_get(
-                video_data, lambda x: x['mediametrie']['chapters'][0]['estatS4'])),
-            'duration': int_or_none(video_info.get('duration')),
+            'upload_date': unified_strdate(
+                try_get(
+                    video_data,
+                    lambda x: x['mediametrie']['chapters'][0]['estatS4'])),
+            'duration': int_or_none(
+                video_info.get('duration')),
             'formats': formats,
         }

@@ -74,7 +74,8 @@ class FOXIE(AdobePassIE):
                         raise ExtractorError(
                             'This video is only available via cable service provider '
                             'subscription. You may want to use --cookies.', expected=True)
-                messages = ', '.join([e['message'] for e in entitlement_issues])
+                messages = ', '.join([e['message']
+                                     for e in entitlement_issues])
                 raise ExtractorError(messages, expected=True)
             raise
 
@@ -82,8 +83,12 @@ class FOXIE(AdobePassIE):
         if not self._access_token:
             mvpd_auth = self._get_cookies(self._HOME_PAGE_URL).get('mvpd-auth')
             if mvpd_auth:
-                self._access_token = (self._parse_json(compat_urllib_parse_unquote(
-                    mvpd_auth.value), None, fatal=False) or {}).get('accessToken')
+                self._access_token = (
+                    self._parse_json(
+                        compat_urllib_parse_unquote(
+                            mvpd_auth.value),
+                        None,
+                        fatal=False) or {}).get('accessToken')
             if not self._access_token:
                 self._access_token = self._call_api(
                     'login', None, json.dumps({
@@ -117,7 +122,8 @@ class FOXIE(AdobePassIE):
         duration = int_or_none(video.get('durationInSeconds')) or int_or_none(
             video.get('duration')) or parse_duration(video.get('duration'))
         timestamp = unified_timestamp(video.get('datePublished'))
-        creator = data.get('brand') or data.get('network') or video.get('network')
+        creator = data.get('brand') or data.get(
+            'network') or video.get('network')
         series = video.get('seriesName') or data.get(
             'seriesName') or data.get('show')
 

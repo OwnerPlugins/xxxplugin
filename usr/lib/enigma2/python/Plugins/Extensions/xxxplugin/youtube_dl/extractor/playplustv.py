@@ -35,9 +35,13 @@ class PlayPlusTVIE(InfoExtractor):
     _profile_id = None
 
     def _call_api(self, resource, video_id=None, query=None):
-        return self._download_json('https://api.playplus.tv/api/media/v2/get' + resource, video_id, headers={
-            'Authorization': 'Bearer ' + self._token,
-        }, query=query)
+        return self._download_json(
+            'https://api.playplus.tv/api/media/v2/get' + resource,
+            video_id,
+            headers={
+                'Authorization': 'Bearer ' + self._token,
+            },
+            query=query)
 
     def _real_initialize(self):
         email, password = self._get_login_info()
@@ -101,9 +105,14 @@ class PlayPlusTVIE(InfoExtractor):
             'title': title,
             'formats': formats,
             'thumbnails': thumbnails,
-            'description': clean_html(media.get('description')) or media.get('shortDescription'),
-            'timestamp': int_or_none(media.get('publishDate'), 1000),
-            'view_count': int_or_none(media.get('numberOfViews')),
-            'comment_count': int_or_none(media.get('numberOfComments')),
+            'description': clean_html(
+                media.get('description')) or media.get('shortDescription'),
+            'timestamp': int_or_none(
+                media.get('publishDate'),
+                1000),
+            'view_count': int_or_none(
+                media.get('numberOfViews')),
+            'comment_count': int_or_none(
+                media.get('numberOfComments')),
             'tags': media.get('tags'),
         }

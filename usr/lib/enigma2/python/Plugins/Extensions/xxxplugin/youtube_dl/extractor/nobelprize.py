@@ -56,7 +56,11 @@ class NobelPrizeIE(InfoExtractor):
         return {
             'id': video_id,
             'title': title,
-            'description': get_element_by_attribute('itemprop', 'description', webpage),
-            'duration': int_or_none(media.get('duration')),
+            'description': get_element_by_attribute(
+                'itemprop',
+                'description',
+                webpage),
+            'duration': int_or_none(
+                media.get('duration')),
             'formats': formats,
         }

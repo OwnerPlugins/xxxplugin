@@ -25,16 +25,30 @@ class CartoonNetworkIE(TurnerBaseIE):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
 
-        def find_field(global_re, name, content_re=None, value_re='[^"]+', fatal=False):
+        def find_field(
+                global_re,
+                name,
+                content_re=None,
+                value_re='[^"]+',
+                fatal=False):
             metadata_re = ''
             if content_re:
                 metadata_re = r'|video_metadata\.content_' + content_re
             return self._search_regex(
-                r'(?:_cnglobal\.currentVideo\.%s%s)\s*=\s*"(%s)";' % (global_re, metadata_re, value_re),
-                webpage, name, fatal=fatal)
+                r'(?:_cnglobal\.currentVideo\.%s%s)\s*=\s*"(%s)";' %
+                (global_re, metadata_re, value_re), webpage, name, fatal=fatal)
 
-        media_id = find_field('mediaId', 'media id', 'id', '[0-9a-f]{40}', True)
-        title = find_field('episodeTitle', 'title', '(?:episodeName|name)', fatal=True)
+        media_id = find_field(
+            'mediaId',
+            'media id',
+            'id',
+            '[0-9a-f]{40}',
+            True)
+        title = find_field(
+            'episodeTitle',
+            'title',
+            '(?:episodeName|name)',
+            fatal=True)
 
         info = self._extract_ngtv_info(
             media_id, {'networkId': 'cartoonnetwork'}, {
@@ -44,7 +58,11 @@ class CartoonNetworkIE(TurnerBaseIE):
             })
 
         series = find_field(
-            'propertyName', 'series', 'showName') or self._html_search_meta('partOfSeries', webpage)
+            'propertyName',
+            'series',
+            'showName') or self._html_search_meta(
+            'partOfSeries',
+            webpage)
         info.update({
             'id': media_id,
             'display_id': display_id,
@@ -56,7 +74,8 @@ class CartoonNetworkIE(TurnerBaseIE):
 
         for field in ('season', 'episode'):
             field_name = field + 'Number'
-            info[field + '_number'] = int_or_none(find_field(
-                field_name, field + ' number', value_re=r'\d+') or self._html_search_meta(field_name, webpage))
+            info[field +
+                 '_number'] = int_or_none(find_field(field_name, field +
+                                                     ' number', value_re=r'\d+') or self._html_search_meta(field_name, webpage))
 
         return info

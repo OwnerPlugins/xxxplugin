@@ -40,7 +40,9 @@ class OdaTVIE(InfoExtractor):
             default=None if no_video else NO_DEFAULT, group='url')
 
         if no_video:
-            raise ExtractorError('Video %s does not exist' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s does not exist' %
+                video_id, expected=True)
 
         return {
             'id': video_id,

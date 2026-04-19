@@ -88,13 +88,25 @@ class VzaarIE(InfoExtractor):
 
         video_guid = video_data.get('guid')
         usp = video_data.get('usp')
-        if video_data.get('uspEnabled') and isinstance(video_guid, compat_str) and isinstance(usp, dict):
+        if video_data.get('uspEnabled') and isinstance(
+                video_guid,
+                compat_str) and isinstance(
+                usp,
+                dict):
             hls_aes = video_data.get('hlsAes')
             qs = '&'.join('%s=%s' % (k, v) for k, v in usp.items())
-            url_templ = 'http://%%s.vzaar.com/v5/usp%s/%s/%s.ism%%s?' % ('aes' if hls_aes else '', video_guid, video_id)
+            url_templ = 'http://%%s.vzaar.com/v5/usp%s/%s/%s.ism%%s?' % (
+                'aes' if hls_aes else '', video_guid, video_id)
             m3u8_formats = self._extract_m3u8_formats(
-                url_templ % ('fable', '/.m3u8') + qs, video_id, 'mp4', 'm3u8_native',
-                m3u8_id='hls', fatal=False)
+                url_templ %
+                ('fable',
+                 '/.m3u8') +
+                qs,
+                video_id,
+                'mp4',
+                'm3u8_native',
+                m3u8_id='hls',
+                fatal=False)
             if hls_aes:
                 for f in m3u8_formats:
                     f['_decryption_key_url'] = url_templ % ('goose', '') + qs

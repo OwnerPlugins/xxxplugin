@@ -128,7 +128,9 @@ class TeamcocoIE(TurnerBaseIE):
   }
 }''' % self._RECORD_TEMPL, 'Slug', display_id)
         if response.get('status'):
-            raise ExtractorError('This video is no longer available.', expected=True)
+            raise ExtractorError(
+                'This video is no longer available.',
+                expected=True)
 
         child = response.get('child')
         if child:
@@ -183,8 +185,13 @@ class TeamcocoIE(TurnerBaseIE):
                     # compat_urllib_parse.urljoin does not work here
                     if src_url.startswith('/'):
                         src_url = 'http://ht.cdn.turner.com/tbs/big/teamcoco' + src_url
-                    formats.extend(self._extract_m3u8_formats(
-                        src_url, video_id, 'mp4', m3u8_id=format_id, fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            src_url,
+                            video_id,
+                            'mp4',
+                            m3u8_id=format_id,
+                            fatal=False))
                 else:
                     if src_url.startswith('/mp4:protected/'):
                         # TODO Correct extraction for these files

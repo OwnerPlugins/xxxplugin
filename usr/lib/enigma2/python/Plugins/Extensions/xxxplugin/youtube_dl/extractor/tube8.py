@@ -45,7 +45,10 @@ class Tube8IE(KeezMoviesIE):
                 r'videoTitle\s*=\s*"([^"]+)', webpage, 'title')
 
         description = self._html_search_regex(
-            r'(?s)Description:</dt>\s*<dd>(.+?)</dd>', webpage, 'description', fatal=False)
+            r'(?s)Description:</dt>\s*<dd>(.+?)</dd>',
+            webpage,
+            'description',
+            fatal=False)
         uploader = self._html_search_regex(
             r'<span class="username">\s*(.+?)\s*<',
             webpage, 'uploader', fatal=False)

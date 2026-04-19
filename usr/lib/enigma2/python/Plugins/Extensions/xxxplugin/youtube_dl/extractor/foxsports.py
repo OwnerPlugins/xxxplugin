@@ -30,4 +30,6 @@ class FoxSportsIE(InfoExtractor):
         video_id = self._match_id(url)
 
         return self.url_result(
-            'https://feed.theplatform.com/f/BKQ29B/foxsports-all?byId=' + video_id, 'ThePlatformFeed')
+            'https://feed.theplatform.com/f/BKQ29B/foxsports-all?byId=' +
+            video_id,
+            'ThePlatformFeed')

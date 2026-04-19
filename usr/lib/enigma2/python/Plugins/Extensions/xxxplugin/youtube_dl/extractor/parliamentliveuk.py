@@ -33,7 +33,8 @@ class ParliamentLiveUKIE(InfoExtractor):
         kaltura_url = 'kaltura:%s:%s' % (
             widget_config['wid'][1:], widget_config['entry_id'])
         event_title = self._download_json(
-            'http://parliamentlive.tv/Event/GetShareVideo/' + video_id, video_id)['event']['title']
+            'http://parliamentlive.tv/Event/GetShareVideo/' + video_id,
+            video_id)['event']['title']
         return {
             '_type': 'url_transparent',
             'title': event_title,

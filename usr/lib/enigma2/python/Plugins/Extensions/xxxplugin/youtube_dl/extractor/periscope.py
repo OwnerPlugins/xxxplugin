@@ -23,29 +23,33 @@ class PeriscopeBaseIE(InfoExtractor):
 
     def _parse_broadcast_data(self, broadcast, video_id):
         title = broadcast.get('status') or 'Periscope Broadcast'
-        uploader = broadcast.get('user_display_name') or broadcast.get('username')
+        uploader = broadcast.get(
+            'user_display_name') or broadcast.get('username')
         title = '%s - %s' % (uploader, title) if uploader else title
         is_live = broadcast.get('state').lower() == 'running'
 
-        thumbnails = [{
-            'url': broadcast[image],
-        } for image in ('image_url', 'image_url_small') if broadcast.get(image)]
+        thumbnails = [{'url': broadcast[image], } for image in (
+            'image_url', 'image_url_small') if broadcast.get(image)]
 
         return {
             'id': broadcast.get('id') or video_id,
             'title': self._live_title(title) if is_live else title,
-            'timestamp': parse_iso8601(broadcast.get('created_at')),
+            'timestamp': parse_iso8601(
+                broadcast.get('created_at')),
             'uploader': uploader,
             'uploader_id': broadcast.get('user_id') or broadcast.get('username'),
             'thumbnails': thumbnails,
-            'view_count': int_or_none(broadcast.get('total_watched')),
+            'view_count': int_or_none(
+                broadcast.get('total_watched')),
             'tags': broadcast.get('tags'),
             'is_live': is_live,
         }
 
     @staticmethod
     def _extract_common_format_info(broadcast):
-        return broadcast.get('state').lower(), int_or_none(broadcast.get('width')), int_or_none(broadcast.get('height'))
+        return broadcast.get('state').lower(), int_or_none(
+            broadcast.get('width')), int_or_none(
+            broadcast.get('height'))
 
     @staticmethod
     def _add_width_and_height(f, width, height):
@@ -53,7 +57,15 @@ class PeriscopeBaseIE(InfoExtractor):
             if not f.get(key):
                 f[key] = val
 
-    def _extract_pscp_m3u8_formats(self, m3u8_url, video_id, format_id, state, width, height, fatal=True):
+    def _extract_pscp_m3u8_formats(
+            self,
+            m3u8_url,
+            video_id,
+            format_id,
+            state,
+            width,
+            height,
+            fatal=True):
         m3u8_formats = self._extract_m3u8_formats(
             m3u8_url, video_id, 'mp4',
             entry_protocol='m3u8_native'
@@ -98,7 +110,8 @@ class PeriscopeIE(PeriscopeBaseIE):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+src=([\'"])(?P<url>(?:https?:)?//(?:www\.)?(?:periscope|pscp)\.tv/(?:(?!\1).)+)\1', webpage)
+            r'<iframe[^>]+src=([\'"])(?P<url>(?:https?:)?//(?:www\.)?(?:periscope|pscp)\.tv/(?:(?!\1).)+)\1',
+            webpage)
         if mobj:
             return mobj.group('url')
 
@@ -122,7 +135,13 @@ class PeriscopeIE(PeriscopeBaseIE):
 
         video_urls = set()
         formats = []
-        for format_id in ('replay', 'rtmp', 'hls', 'https_hls', 'lhls', 'lhlsweb'):
+        for format_id in (
+            'replay',
+            'rtmp',
+            'hls',
+            'https_hls',
+            'lhls',
+                'lhlsweb'):
             video_url = stream.get(format_id + '_url')
             if not video_url or video_url in video_urls:
                 continue

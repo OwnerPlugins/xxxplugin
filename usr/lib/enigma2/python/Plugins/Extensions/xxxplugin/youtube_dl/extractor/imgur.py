@@ -30,8 +30,8 @@ class ImgurBaseIE(InfoExtractor):
 
     def _call_api(self, endpoint, video_id, **kwargs):
         return self._download_json(
-            'https://api.imgur.com/post/v1/%s/%s?client_id=%s&include=media,account' % (endpoint, video_id, self._CLIENT_ID),
-            video_id, **kwargs)
+            'https://api.imgur.com/post/v1/%s/%s?client_id=%s&include=media,account' %
+            (endpoint, video_id, self._CLIENT_ID), video_id, **kwargs)
 
     @staticmethod
     def get_description(s):
@@ -77,13 +77,14 @@ class ImgurIE(ImgurBaseIE):
 
     def _extract_twitter_formats(self, html, tw_id='twitter', **kwargs):
         fatal = kwargs.pop('fatal', False)
-        tw_stream = self._html_search_meta('twitter:player:stream', html, fatal=fatal, **kwargs)
+        tw_stream = self._html_search_meta(
+            'twitter:player:stream', html, fatal=fatal, **kwargs)
         if not tw_stream:
             return []
         ext = mimetype2ext(self._html_search_meta(
             'twitter:player:stream:content_type', html, default=None))
-        width, height = (int_or_none(self._html_search_meta('twitter:player:' + v, html, default=None))
-                         for v in ('width', 'height'))
+        width, height = (int_or_none(self._html_search_meta(
+            'twitter:player:' + v, html, default=None)) for v in ('width', 'height'))
         return [{
             'format_id': tw_id,
             'url': tw_stream,
@@ -94,7 +95,11 @@ class ImgurIE(ImgurBaseIE):
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
-        data = self._call_api('media', video_id, fatal=False, expected_status=404)
+        data = self._call_api(
+            'media',
+            video_id,
+            fatal=False,
+            expected_status=404)
         webpage = self._download_webpage(
             'https://i.imgur.com/{id}.gifv'.format(id=video_id), video_id, fatal=not data) or ''
 
@@ -105,14 +110,15 @@ class ImgurIE(ImgurBaseIE):
                 '%s is not a video or animated image' % video_id,
                 expected=True)
 
-        media_fmt = traverse_obj(data, ('media', 0, {
-            'url': ('url', T(url_or_none)),
-            'ext': 'ext',
-            'width': ('width', T(int_or_none)),
-            'height': ('height', T(int_or_none)),
-            'filesize': ('size', T(int_or_none)),
-            'acodec': ('metadata', 'has_sound', T(lambda b: None if b else 'none')),
-        }))
+        media_fmt = traverse_obj(
+            data, ('media', 0, {
+                'url': (
+                    'url', T(url_or_none)), 'ext': 'ext', 'width': (
+                    'width', T(int_or_none)), 'height': (
+                    'height', T(int_or_none)), 'filesize': (
+                        'size', T(int_or_none)), 'acodec': (
+                            'metadata', 'has_sound', T(
+                                lambda b: None if b else 'none')), }))
 
         media_url = traverse_obj(media_fmt, 'url')
         if media_url:
@@ -135,8 +141,8 @@ class ImgurIE(ImgurBaseIE):
             webpage, 'video elements', default=None)
         if not (video_elements or tw_formats or media_url):
             raise ExtractorError(
-                'No sources found for video %s. Maybe a plain image?' % video_id,
-                expected=True)
+                'No sources found for video %s. Maybe a plain image?' %
+                video_id, expected=True)
 
         def mung_format(fmt, *extra):
             fmt.update({
@@ -187,10 +193,12 @@ class ImgurIE(ImgurBaseIE):
             formats = []
 
         # maybe add formats from JSON or page Twitter metadata
-        if not any((u == media_url) for u in traverse_obj(formats, (Ellipsis, 'url'))):
+        if not any((u == media_url)
+                   for u in traverse_obj(formats, (Ellipsis, 'url'))):
             formats.append(mung_format(media_fmt))
         tw_url = traverse_obj(tw_formats, (0, 'url'))
-        if not any((u == tw_url) for u in traverse_obj(formats, (Ellipsis, 'url'))):
+        if not any((u == tw_url)
+                   for u in traverse_obj(formats, (Ellipsis, 'url'))):
             formats.extend(mung_format(f) for f in tw_formats)
 
         self._sort_formats(formats)
@@ -227,7 +235,11 @@ class ImgurGalleryBaseIE(ImgurBaseIE):
     def _real_extract(self, url):
         gallery_id = self._match_id(url)
 
-        data = self._call_api('albums', gallery_id, fatal=False, expected_status=404)
+        data = self._call_api(
+            'albums',
+            gallery_id,
+            fatal=False,
+            expected_status=404)
 
         info = traverse_obj(data, {
             'title': ('title', T(txt_or_none)),
@@ -237,12 +249,17 @@ class ImgurGalleryBaseIE(ImgurBaseIE):
         if traverse_obj(data, 'is_album'):
 
             def yield_media_ids():
-                for m_id in traverse_obj(data, (
-                        'media', lambda _, v: v.get('type') == 'video' or v['metadata']['is_animated'],
-                        'id', T(txt_or_none))):
+                for m_id in traverse_obj(
+                    data,
+                    ('media',
+                     lambda _,
+                     v: v.get('type') == 'video' or v['metadata']['is_animated'],
+                        'id',
+                        T(txt_or_none))):
                     yield m_id
 
-            # if a gallery with exactly one video, apply album metadata to video
+            # if a gallery with exactly one video, apply album metadata to
+            # video
             media_id = (
                 self._GALLERY
                 and traverse_obj(data, ('image_count', T(lambda c: c == 1)))

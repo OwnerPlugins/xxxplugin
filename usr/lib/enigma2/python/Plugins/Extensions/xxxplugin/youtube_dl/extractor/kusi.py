@@ -66,7 +66,8 @@ class KUSIIE(InfoExtractor):
         thumbnail = xpath_text(doc, './THUMBNAILIMAGE/FILENAME')
         creation_time = timeconvert(xpath_text(doc, 'rfc822creationdate'))
 
-        quality_options = doc.find('{http://search.yahoo.com/mrss/}group').findall('{http://search.yahoo.com/mrss/}content')
+        quality_options = doc.find(
+            '{http://search.yahoo.com/mrss/}group').findall('{http://search.yahoo.com/mrss/}content')
         formats = []
         for quality in quality_options:
             formats.append({

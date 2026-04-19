@@ -170,21 +170,31 @@ class VevoIE(VevoBaseIE):
                 'Content-Type': 'application/json',
             })
 
-        if re.search(r'(?i)THIS PAGE IS CURRENTLY UNAVAILABLE IN YOUR REGION', webpage):
+        if re.search(
+            r'(?i)THIS PAGE IS CURRENTLY UNAVAILABLE IN YOUR REGION',
+                webpage):
             self.raise_geo_restricted(
-                '%s said: This page is currently unavailable in your region' % self.IE_NAME)
+                '%s said: This page is currently unavailable in your region' %
+                self.IE_NAME)
 
         auth_info = self._parse_json(webpage, video_id)
-        self._api_url_template = self.http_scheme() + '//apiv2.vevo.com/%s?token=' + auth_info['legacy_token']
+        self._api_url_template = self.http_scheme() + '//apiv2.vevo.com/%s?token=' + \
+            auth_info['legacy_token']
 
     def _call_api(self, path, *args, **kwargs):
         try:
-            data = self._download_json(self._api_url_template % path, *args, **kwargs)
+            data = self._download_json(
+                self._api_url_template %
+                path, *args, **kwargs)
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError):
-                errors = self._parse_json(e.cause.read().decode(), None)['errors']
-                error_message = ', '.join([error['message'] for error in errors])
-                raise ExtractorError('%s said: %s' % (self.IE_NAME, error_message), expected=True)
+                errors = self._parse_json(
+                    e.cause.read().decode(), None)['errors']
+                error_message = ', '.join(
+                    [error['message'] for error in errors])
+                raise ExtractorError(
+                    '%s said: %s' %
+                    (self.IE_NAME, error_message), expected=True)
             raise
         return data
 
@@ -228,7 +238,8 @@ class VevoIE(VevoBaseIE):
 
         formats = []
         for video_version in video_versions:
-            version = self._VERSIONS.get(video_version.get('version'), 'generic')
+            version = self._VERSIONS.get(
+                video_version.get('version'), 'generic')
             version_url = video_version.get('url')
             if not version_url:
                 continue
@@ -295,10 +306,15 @@ class VevoIE(VevoBaseIE):
             'title': title,
             'formats': formats,
             'thumbnail': video_info.get('imageUrl') or video_info.get('thumbnailUrl'),
-            'timestamp': parse_iso8601(video_info.get('releaseDate')),
+            'timestamp': parse_iso8601(
+                video_info.get('releaseDate')),
             'uploader': uploader,
-            'duration': int_or_none(video_info.get('duration')),
-            'view_count': int_or_none(video_info.get('views', {}).get('total')),
+            'duration': int_or_none(
+                video_info.get('duration')),
+            'view_count': int_or_none(
+                video_info.get(
+                    'views',
+                    {}).get('total')),
             'age_limit': age_limit,
             'track': track,
             'artist': uploader,
@@ -309,39 +325,35 @@ class VevoIE(VevoBaseIE):
 class VevoPlaylistIE(VevoBaseIE):
     _VALID_URL = r'https?://(?:www\.)?vevo\.com/watch/(?P<kind>playlist|genre)/(?P<id>[^/?#&]+)'
 
-    _TESTS = [{
-        'url': 'http://www.vevo.com/watch/playlist/dadbf4e7-b99f-4184-9670-6f0e547b6a29',
-        'info_dict': {
-            'id': 'dadbf4e7-b99f-4184-9670-6f0e547b6a29',
-            'title': 'Best-Of: Birdman',
-        },
-        'playlist_count': 10,
-    }, {
-        'url': 'http://www.vevo.com/watch/genre/rock',
-        'info_dict': {
-            'id': 'rock',
-            'title': 'Rock',
-        },
-        'playlist_count': 20,
-    }, {
-        'url': 'http://www.vevo.com/watch/playlist/dadbf4e7-b99f-4184-9670-6f0e547b6a29?index=0',
-        'md5': '32dcdfddddf9ec6917fc88ca26d36282',
-        'info_dict': {
-            'id': 'USCMV1100073',
-            'ext': 'mp4',
-            'title': 'Birdman - Y.U. MAD',
-            'timestamp': 1323417600,
-            'upload_date': '20111209',
-            'uploader': 'Birdman',
-            'track': 'Y.U. MAD',
-            'artist': 'Birdman',
-            'genre': 'Rap/Hip-Hop',
-        },
-        'expected_warnings': ['Unable to download SMIL file'],
-    }, {
-        'url': 'http://www.vevo.com/watch/genre/rock?index=0',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.vevo.com/watch/playlist/dadbf4e7-b99f-4184-9670-6f0e547b6a29',
+               'info_dict': {'id': 'dadbf4e7-b99f-4184-9670-6f0e547b6a29',
+                             'title': 'Best-Of: Birdman',
+                             },
+               'playlist_count': 10,
+               },
+              {'url': 'http://www.vevo.com/watch/genre/rock',
+               'info_dict': {'id': 'rock',
+                             'title': 'Rock',
+                             },
+               'playlist_count': 20,
+               },
+              {'url': 'http://www.vevo.com/watch/playlist/dadbf4e7-b99f-4184-9670-6f0e547b6a29?index=0',
+               'md5': '32dcdfddddf9ec6917fc88ca26d36282',
+               'info_dict': {'id': 'USCMV1100073',
+                             'ext': 'mp4',
+                             'title': 'Birdman - Y.U. MAD',
+                             'timestamp': 1323417600,
+                             'upload_date': '20111209',
+                             'uploader': 'Birdman',
+                             'track': 'Y.U. MAD',
+                             'artist': 'Birdman',
+                             'genre': 'Rap/Hip-Hop',
+                             },
+               'expected_warnings': ['Unable to download SMIL file'],
+               },
+              {'url': 'http://www.vevo.com/watch/genre/rock?index=0',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -360,7 +372,8 @@ class VevoPlaylistIE(VevoBaseIE):
             if video_id:
                 return self.url_result('vevo:%s' % video_id, VevoIE.ie_key())
 
-        playlists = self._extract_json(webpage, playlist_id)['default']['%ss' % playlist_kind]
+        playlists = self._extract_json(webpage, playlist_id)[
+            'default']['%ss' % playlist_kind]
 
         playlist = (list(playlists.values())[0]
                     if playlist_kind == 'playlist' else playlists[playlist_id])

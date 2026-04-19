@@ -31,7 +31,8 @@ class HlsFD(FragmentFD):
     def can_download(manifest, info_dict):
         UNSUPPORTED_FEATURES = (
             r'#EXT-X-KEY:METHOD=(?!NONE|AES-128)',  # encrypted streams [1]
-            # r'#EXT-X-BYTERANGE',  # playlists composed of byte ranges of media files [2]
+            # r'#EXT-X-BYTERANGE',  # playlists composed of byte ranges of
+            # media files [2]
 
             # Live streams heuristic does not always work (e.g. geo restricted to Germany
             # http://hls-geo.daserste.de/i/videoportal/Film/c_620000/622873/format,716451,716457,716450,716458,716459,.mp4.csmil/index_4_av.m3u8?null=0)
@@ -50,10 +51,12 @@ class HlsFD(FragmentFD):
             # 4. https://tools.ietf.org/html/draft-pantos-http-live-streaming-17#section-4.3.3.5
             # 5. https://tools.ietf.org/html/draft-pantos-http-live-streaming-17#section-4.3.2.5
         )
-        check_results = [not re.search(feature, manifest) for feature in UNSUPPORTED_FEATURES]
+        check_results = [not re.search(feature, manifest)
+                         for feature in UNSUPPORTED_FEATURES]
         is_aes128_enc = '#EXT-X-KEY:METHOD=AES-128' in manifest
         check_results.append(can_decrypt_frag or not is_aes128_enc)
-        check_results.append(not (is_aes128_enc and r'#EXT-X-BYTERANGE' in manifest))
+        check_results.append(
+            not (is_aes128_enc and r'#EXT-X-BYTERANGE' in manifest))
         check_results.append(not info_dict.get('is_live'))
         return all(check_results)
 
@@ -66,7 +69,8 @@ class HlsFD(FragmentFD):
         s = urlh.read().decode('utf-8', 'ignore')
 
         if not self.can_download(s, info_dict):
-            if info_dict.get('extra_param_to_segment_url') or info_dict.get('_decryption_key_url'):
+            if info_dict.get('extra_param_to_segment_url') or info_dict.get(
+                    '_decryption_key_url'):
                 self.report_error('pycrypto not found. Please install it.')
                 return False
             self.report_warning(
@@ -112,11 +116,13 @@ class HlsFD(FragmentFD):
         self._prepare_and_start_frag_download(ctx)
 
         fragment_retries = self.params.get('fragment_retries', 0)
-        skip_unavailable_fragments = self.params.get('skip_unavailable_fragments', True)
+        skip_unavailable_fragments = self.params.get(
+            'skip_unavailable_fragments', True)
         test = self.params.get('test', False)
 
         extra_query = None
-        extra_param_to_segment_url = info_dict.get('extra_param_to_segment_url')
+        extra_param_to_segment_url = info_dict.get(
+            'extra_param_to_segment_url')
         if extra_param_to_segment_url:
             extra_query = compat_urlparse.parse_qs(extra_param_to_segment_url)
         i = 0
@@ -143,7 +149,8 @@ class HlsFD(FragmentFD):
                     count = 0
                     headers = info_dict.get('http_headers', {})
                     if byte_range:
-                        headers['Range'] = 'bytes=%d-%d' % (byte_range['start'], byte_range['end'] - 1)
+                        headers['Range'] = 'bytes=%d-%d' % (
+                            byte_range['start'], byte_range['end'] - 1)
                     while count <= fragment_retries:
                         try:
                             success, frag_content = self._download_fragment(
@@ -158,7 +165,8 @@ class HlsFD(FragmentFD):
                             # https://github.com/ytdl-org/youtube-dl/issues/10448).
                             count += 1
                             if count <= fragment_retries:
-                                self.report_retry_fragment(err, frag_index, count, fragment_retries)
+                                self.report_retry_fragment(
+                                    err, frag_index, count, fragment_retries)
                     if count > fragment_retries:
                         if skip_unavailable_fragments:
                             i += 1
@@ -166,12 +174,14 @@ class HlsFD(FragmentFD):
                             self.report_skip_fragment(frag_index)
                             continue
                         self.report_error(
-                            'giving up after %s fragment retries' % fragment_retries)
+                            'giving up after %s fragment retries' %
+                            fragment_retries)
                         return False
                     if decrypt_info['METHOD'] == 'AES-128':
-                        iv = decrypt_info.get('IV') or compat_struct_pack('>8xq', media_sequence)
-                        decrypt_info['KEY'] = decrypt_info.get('KEY') or self.ydl.urlopen(
-                            self._prepare_url(info_dict, info_dict.get('_decryption_key_url') or decrypt_info['URI'])).read()
+                        iv = decrypt_info.get('IV') or compat_struct_pack(
+                            '>8xq', media_sequence)
+                        decrypt_info['KEY'] = decrypt_info.get('KEY') or self.ydl.urlopen(self._prepare_url(
+                            info_dict, info_dict.get('_decryption_key_url') or decrypt_info['URI'])).read()
                         # Don't decrypt the content in tests since the data is explicitly truncated and it's not to a valid block
                         # size (see https://github.com/ytdl-org/youtube-dl/pull/27660). Tests only care that the correct data downloaded,
                         # not what it decrypts to.
@@ -189,19 +199,22 @@ class HlsFD(FragmentFD):
                     decrypt_info = parse_m3u8_attributes(line[11:])
                     if decrypt_info['METHOD'] == 'AES-128':
                         if 'IV' in decrypt_info:
-                            decrypt_info['IV'] = binascii.unhexlify(decrypt_info['IV'][2:].zfill(32))
+                            decrypt_info['IV'] = binascii.unhexlify(
+                                decrypt_info['IV'][2:].zfill(32))
                         if not re.match(r'^https?://', decrypt_info['URI']):
                             decrypt_info['URI'] = compat_urlparse.urljoin(
                                 man_url, decrypt_info['URI'])
                         if extra_query:
-                            decrypt_info['URI'] = update_url_query(decrypt_info['URI'], extra_query)
+                            decrypt_info['URI'] = update_url_query(
+                                decrypt_info['URI'], extra_query)
                         if decrypt_url != decrypt_info['URI']:
                             decrypt_info['KEY'] = None
                 elif line.startswith('#EXT-X-MEDIA-SEQUENCE'):
                     media_sequence = int(line[22:])
                 elif line.startswith('#EXT-X-BYTERANGE'):
                     splitted_byte_range = line[17:].split('@')
-                    sub_range_start = int(splitted_byte_range[1]) if len(splitted_byte_range) == 2 else byte_range['end']
+                    sub_range_start = int(splitted_byte_range[1]) if len(
+                        splitted_byte_range) == 2 else byte_range['end']
                     byte_range = {
                         'start': sub_range_start,
                         'end': sub_range_start + int(splitted_byte_range[0]),

@@ -12,7 +12,8 @@ from ..utils import (
     xpath_with_ns,
 )
 
-_x = lambda p: xpath_with_ns(p, {'xspf': 'http://xspf.org/ns/0/'})
+
+def _x(p): return xpath_with_ns(p, {'xspf': 'http://xspf.org/ns/0/'})
 
 
 class NosVideoIE(InfoExtractor):

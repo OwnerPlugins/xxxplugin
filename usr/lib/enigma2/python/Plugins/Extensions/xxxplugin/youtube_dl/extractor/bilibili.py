@@ -114,9 +114,13 @@ class BiliBiliIE(InfoExtractor):
 
     def _report_error(self, result):
         if 'message' in result:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, result['message']), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, result['message']), expected=True)
         elif 'code' in result:
-            raise ExtractorError('%s returns error %d' % (self.IE_NAME, result['code']), expected=True)
+            raise ExtractorError(
+                '%s returns error %d' %
+                (self.IE_NAME, result['code']), expected=True)
         else:
             raise ExtractorError('Can\'t extract Bangumi episode ID')
 
@@ -139,12 +143,14 @@ class BiliBiliIE(InfoExtractor):
                 webpage, 'player parameters'))['cid'][0]
         else:
             if 'no_bangumi_tip' not in smuggled_data:
-                self.to_screen('Downloading episode %s. To download all videos in anime %s, re-run youtube-dl with %s' % (
-                    video_id, anime_id, compat_urlparse.urljoin(url, '//bangumi.bilibili.com/anime/%s' % anime_id)))
+                self.to_screen(
+                    'Downloading episode %s. To download all videos in anime %s, re-run youtube-dl with %s' %
+                    (video_id, anime_id, compat_urlparse.urljoin(
+                        url, '//bangumi.bilibili.com/anime/%s' %
+                        anime_id)))
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Referer': url
-            }
+                'Referer': url}
             headers.update(self.geo_verification_headers())
 
             js = self._download_json(
@@ -165,8 +171,10 @@ class BiliBiliIE(InfoExtractor):
 
         RENDITIONS = ('qn=80&quality=80&type=', 'quality=2&type=mp4')
         for num, rendition in enumerate(RENDITIONS, start=1):
-            payload = 'appkey=%s&cid=%s&otype=json&%s' % (self._APP_KEY, cid, rendition)
-            sign = hashlib.md5((payload + self._BILIBILI_KEY).encode('utf-8')).hexdigest()
+            payload = 'appkey=%s&cid=%s&otype=json&%s' % (
+                self._APP_KEY, cid, rendition)
+            sign = hashlib.md5(
+                (payload + self._BILIBILI_KEY).encode('utf-8')).hexdigest()
 
             video_info = self._download_json(
                 'http://interface.bilibili.com/v2/playurl?%s&sign=%s' % (payload, sign),
@@ -216,7 +224,8 @@ class BiliBiliIE(InfoExtractor):
             r'<time[^>]+datetime="([^"]+)"', webpage, 'upload time',
             default=None) or self._html_search_meta(
             'uploadDate', webpage, 'timestamp', default=None))
-        thumbnail = self._html_search_meta(['og:image', 'thumbnailUrl'], webpage)
+        thumbnail = self._html_search_meta(
+            ['og:image', 'thumbnailUrl'], webpage)
 
         # TODO 'view_count' requires deobfuscating Javascript
         info = {
@@ -225,7 +234,9 @@ class BiliBiliIE(InfoExtractor):
             'description': description,
             'timestamp': timestamp,
             'thumbnail': thumbnail,
-            'duration': float_or_none(video_info.get('timelength'), scale=1000),
+            'duration': float_or_none(
+                video_info.get('timelength'),
+                scale=1000),
         }
 
         uploader_mobj = re.search(
@@ -299,7 +310,8 @@ class BiliBiliBangumiIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if BiliBiliIE.suitable(url) else super(BiliBiliBangumiIE, cls).suitable(url)
+        return False if BiliBiliIE.suitable(url) else super(
+            BiliBiliBangumiIE, cls).suitable(url)
 
     def _real_extract(self, url):
         bangumi_id = self._match_id(url)
@@ -318,7 +330,9 @@ class BiliBiliBangumiIE(InfoExtractor):
             'episode_number': int_or_none(episode.get('index')),
         } for episode in season_info['episodes']]
 
-        entries = sorted(entries, key=lambda entry: entry.get('episode_number'))
+        entries = sorted(
+            entries,
+            key=lambda entry: entry.get('episode_number'))
 
         return self.playlist_result(
             entries, bangumi_id,

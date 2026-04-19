@@ -61,15 +61,21 @@ class LnkGoIE(InfoExtractor):
         display_id, video_id = re.match(self._VALID_URL, url).groups()
 
         video_info = self._download_json(
-            'https://lnk.lt/api/main/video-page/%s/%s/false' % (display_id, video_id or '0'),
-            display_id)['videoConfig']['videoInfo']
+            'https://lnk.lt/api/main/video-page/%s/%s/false' %
+            (display_id, video_id or '0'), display_id)['videoConfig']['videoInfo']
 
         video_id = compat_str(video_info['id'])
         title = video_info['title']
-        prefix = 'smil' if video_info.get('isQualityChangeAvailable') else 'mp4'
+        prefix = 'smil' if video_info.get(
+            'isQualityChangeAvailable') else 'mp4'
         formats = self._extract_m3u8_formats(
-            self._M3U8_TEMPL % (prefix, video_info['videoUrl'], video_info.get('secureTokenParams') or ''),
-            video_id, 'mp4', 'm3u8_native')
+            self._M3U8_TEMPL %
+            (prefix,
+             video_info['videoUrl'],
+             video_info.get('secureTokenParams') or ''),
+            video_id,
+            'mp4',
+            'm3u8_native')
         self._sort_formats(formats)
 
         poster_image = video_info.get('posterImage')
@@ -80,9 +86,15 @@ class LnkGoIE(InfoExtractor):
             'title': title,
             'formats': formats,
             'thumbnail': 'https://lnk.lt/all-images/' + poster_image if poster_image else None,
-            'duration': int_or_none(video_info.get('duration')),
-            'description': clean_html(video_info.get('htmlDescription')),
-            'age_limit': self._AGE_LIMITS.get(video_info.get('pgRating'), 0),
-            'timestamp': parse_iso8601(video_info.get('airDate')),
-            'view_count': int_or_none(video_info.get('viewsCount')),
+            'duration': int_or_none(
+                video_info.get('duration')),
+            'description': clean_html(
+                video_info.get('htmlDescription')),
+            'age_limit': self._AGE_LIMITS.get(
+                video_info.get('pgRating'),
+                0),
+            'timestamp': parse_iso8601(
+                video_info.get('airDate')),
+            'view_count': int_or_none(
+                video_info.get('viewsCount')),
         }

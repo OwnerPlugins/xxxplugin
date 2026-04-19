@@ -33,7 +33,8 @@ class TheWeatherChannelIE(ThePlatformIE):
     }]
 
     def _real_extract(self, url):
-        asset_name, locale, display_id = re.match(self._VALID_URL, url).groups()
+        asset_name, locale, display_id = re.match(
+            self._VALID_URL, url).groups()
         if not locale:
             locale = 'en-US'
         video_data = list(self._download_json(
@@ -69,7 +70,8 @@ class TheWeatherChannelIE(ThePlatformIE):
                     'id': variant_id,
                 })
             elif ThePlatformIE.suitable(variant_url):
-                tp_formats, _ = self._extract_theplatform_smil(variant_url, video_id)
+                tp_formats, _ = self._extract_theplatform_smil(
+                    variant_url, video_id)
                 formats.extend(tp_formats)
             elif ext == 'm3u8':
                 formats.extend(self._extract_m3u8_formats(

@@ -74,15 +74,23 @@ class ADNIE(InfoExtractor):
 
     @staticmethod
     def _ass_subtitles_timecode(seconds):
-        return '%01d:%02d:%02d.%02d' % (seconds / 3600, (seconds % 3600) / 60, seconds % 60, (seconds % 1) * 100)
+        return '%01d:%02d:%02d.%02d' % (
+            seconds / 3600, (seconds % 3600) / 60, seconds % 60, (seconds % 1) * 100)
 
     def _get_subtitles(self, sub_url, video_id):
         if not sub_url:
             return None
 
         enc_subtitles = self._download_webpage(
-            sub_url, video_id, 'Downloading subtitles location', fatal=False) or '{}'
-        subtitle_location = (self._parse_json(enc_subtitles, video_id, fatal=False) or {}).get('location')
+            sub_url,
+            video_id,
+            'Downloading subtitles location',
+            fatal=False) or '{}'
+        subtitle_location = (
+            self._parse_json(
+                enc_subtitles,
+                video_id,
+                fatal=False) or {}).get('location')
         if subtitle_location:
             enc_subtitles = self._download_webpage(
                 subtitle_location, video_id, 'Downloading subtitles data',
@@ -119,7 +127,8 @@ Format: Marked,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text'''
                     current.get('positionAlign'))
                 if start is None or end is None or text is None:
                     continue
-                alignment = self._POS_ALIGN_MAP.get(position_align, 2) + self._LINE_ALIGN_MAP.get(line_align, 0)
+                alignment = self._POS_ALIGN_MAP.get(
+                    position_align, 2) + self._LINE_ALIGN_MAP.get(line_align, 0)
                 ssa += os.linesep + 'Dialogue: Marked=0,%s,%s,Default,,0,0,0,,%s%s' % (
                     self._ass_subtitles_timecode(start),
                     self._ass_subtitles_timecode(end),
@@ -176,13 +185,20 @@ Format: Marked,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text'''
             self.raise_login_required()
 
         token = self._download_json(
-            user.get('refreshTokenUrl') or (self._PLAYER_BASE_URL + 'refresh/token'),
-            video_id, 'Downloading access token', headers={
-                'x-player-refresh-token': user['refreshToken']
-            }, data=b'')['token']
+            user.get('refreshTokenUrl') or (
+                self._PLAYER_BASE_URL +
+                'refresh/token'),
+            video_id,
+            'Downloading access token',
+            headers={
+                'x-player-refresh-token': user['refreshToken']},
+            data=b'')['token']
 
-        links_url = try_get(options, lambda x: x['video']['url']) or (video_base_url + 'link')
-        self._K = ''.join([random.choice('0123456789abcdef') for _ in range(16)])
+        links_url = try_get(
+            options, lambda x: x['video']['url']) or (
+            video_base_url + 'link')
+        self._K = ''.join([random.choice('0123456789abcdef')
+                          for _ in range(16)])
         message = bytes_to_intlist(json.dumps({
             'k': self._K,
             't': token,
@@ -194,7 +210,8 @@ Format: Marked,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text'''
         for _ in range(3):
             padded_message = intlist_to_bytes(pkcs1pad(message, 128))
             n, e = self._RSA_KEY
-            encrypted_message = long_to_bytes(pow(bytes_to_long(padded_message), e, n))
+            encrypted_message = long_to_bytes(
+                pow(bytes_to_long(padded_message), e, n))
             authorization = base64.b64encode(encrypted_message).decode()
 
             try:
@@ -213,14 +230,16 @@ Format: Marked,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text'''
                     raise e
 
                 if e.cause.code == 401:
-                    # This usually goes away with a different random pkcs1pad, so retry
+                    # This usually goes away with a different random pkcs1pad,
+                    # so retry
                     continue
 
                 error = self._parse_json(
                     self._webpage_read_content(e.cause, links_url, video_id),
                     video_id, fatal=False) or {}
                 message = error.get('message')
-                if e.cause.code == 403 and error.get('code') == 'player-bad-geolocation-country':
+                if e.cause.code == 403 and error.get(
+                        'code') == 'player-bad-geolocation-country':
                     self.raise_geo_restricted(msg=message)
                 raise ExtractorError(message)
         else:
@@ -253,24 +272,38 @@ Format: Marked,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text'''
                 formats.extend(m3u8_formats)
         self._sort_formats(formats)
 
-        video = (self._download_json(
-            self._API_BASE_URL + 'video/%s' % video_id, video_id,
-            'Downloading additional video metadata', fatal=False) or {}).get('video') or {}
+        video = (
+            self._download_json(
+                self._API_BASE_URL +
+                'video/%s' %
+                video_id,
+                video_id,
+                'Downloading additional video metadata',
+                fatal=False) or {}).get('video') or {}
         show = video.get('show') or {}
 
         return {
             'id': video_id,
             'title': title,
-            'description': strip_or_none(metas.get('summary') or video.get('summary')),
+            'description': strip_or_none(
+                metas.get('summary') or video.get('summary')),
             'thumbnail': video_info.get('image') or player.get('image'),
             'formats': formats,
-            'subtitles': self.extract_subtitles(sub_url, video_id),
+            'subtitles': self.extract_subtitles(
+                sub_url,
+                video_id),
             'episode': metas.get('subtitle') or video.get('name'),
-            'episode_number': int_or_none(video.get('shortNumber')),
+            'episode_number': int_or_none(
+                video.get('shortNumber')),
             'series': show.get('title'),
-            'season_number': int_or_none(video.get('season')),
-            'duration': int_or_none(video_info.get('duration') or video.get('duration')),
-            'release_date': unified_strdate(video.get('releaseDate')),
-            'average_rating': float_or_none(video.get('rating') or metas.get('rating')),
-            'comment_count': int_or_none(video.get('commentsCount')),
+            'season_number': int_or_none(
+                video.get('season')),
+            'duration': int_or_none(
+                video_info.get('duration') or video.get('duration')),
+            'release_date': unified_strdate(
+                video.get('releaseDate')),
+            'average_rating': float_or_none(
+                video.get('rating') or metas.get('rating')),
+            'comment_count': int_or_none(
+                video.get('commentsCount')),
         }

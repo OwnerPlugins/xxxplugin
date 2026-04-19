@@ -27,7 +27,9 @@ class FczenitIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         msi_id = self._search_regex(
-            r"(?s)config\s*=\s*{.+?video_id\s*:\s*'([^']+)'", webpage, 'msi id')
+            r"(?s)config\s*=\s*{.+?video_id\s*:\s*'([^']+)'",
+            webpage,
+            'msi id')
 
         msi_data = self._download_json(
             'http://player.fc-zenit.ru/msi/video', msi_id, query={
@@ -43,7 +45,8 @@ class FczenitIE(InfoExtractor):
 
         self._sort_formats(formats)
 
-        tags = [tag['label'] for tag in msi_data.get('tags', []) if tag.get('label')]
+        tags = [tag['label']
+                for tag in msi_data.get('tags', []) if tag.get('label')]
 
         return {
             'id': video_id,

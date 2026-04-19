@@ -44,8 +44,10 @@ class FranceCultureIE(InfoExtractor):
             ''',
             webpage, 'video data'))
 
-        video_url = video_data.get('data-url') or video_data['data-asset-source']
-        title = video_data.get('data-asset-title') or video_data.get('data-diffusion-title') or self._og_search_title(webpage)
+        video_url = video_data.get(
+            'data-url') or video_data['data-asset-source']
+        title = video_data.get('data-asset-title') or video_data.get(
+            'data-diffusion-title') or self._og_search_title(webpage)
 
         description = self._html_search_regex(
             r'(?s)<div[^>]+class="intro"[^>]*>.*?<h2>(.+?)</h2>',
@@ -68,6 +70,9 @@ class FranceCultureIE(InfoExtractor):
             'ext': ext,
             'vcodec': 'none' if ext == 'mp3' else None,
             'uploader': uploader,
-            'timestamp': int_or_none(video_data.get('data-start-time')) or int_or_none(video_data.get('data-asset-created-date')),
-            'duration': int_or_none(video_data.get('data-duration')),
+            'timestamp': int_or_none(
+                video_data.get('data-start-time')) or int_or_none(
+                video_data.get('data-asset-created-date')),
+            'duration': int_or_none(
+                video_data.get('data-duration')),
         }

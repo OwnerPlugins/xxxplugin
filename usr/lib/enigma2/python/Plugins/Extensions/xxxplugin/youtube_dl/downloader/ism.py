@@ -82,13 +82,18 @@ def write_piff_header(stream, params):
     tkhd_payload += unity_matrix
     tkhd_payload += u1616.pack(width)
     tkhd_payload += u1616.pack(height)
-    trak_payload = full_box(b'tkhd', 1, TRACK_ENABLED | TRACK_IN_MOVIE | TRACK_IN_PREVIEW, tkhd_payload)  # Track Header Box
+    trak_payload = full_box(
+        b'tkhd',
+        1,
+        TRACK_ENABLED | TRACK_IN_MOVIE | TRACK_IN_PREVIEW,
+        tkhd_payload)  # Track Header Box
 
     mdhd_payload = u64.pack(creation_time)
     mdhd_payload += u64.pack(modification_time)
     mdhd_payload += u32.pack(timescale)
     mdhd_payload += u64.pack(duration)
-    mdhd_payload += u16.pack(((ord(language[0]) - 0x60) << 10) | ((ord(language[1]) - 0x60) << 5) | (ord(language[2]) - 0x60))
+    mdhd_payload += u16.pack(((ord(language[0]) - 0x60) << 10) | (
+        (ord(language[1]) - 0x60) << 5) | (ord(language[2]) - 0x60))
     mdhd_payload += u16.pack(0)  # pre defined
     mdia_payload = full_box(b'mdhd', 1, 0, mdhd_payload)  # Media Header Box
 
@@ -96,20 +101,24 @@ def write_piff_header(stream, params):
     hdlr_payload += b'soun' if is_audio else b'vide'  # handler type
     hdlr_payload += u32.pack(0) * 3  # reserved
     hdlr_payload += (b'Sound' if is_audio else b'Video') + b'Handler\0'  # name
-    mdia_payload += full_box(b'hdlr', 0, 0, hdlr_payload)  # Handler Reference Box
+    # Handler Reference Box
+    mdia_payload += full_box(b'hdlr', 0, 0, hdlr_payload)
 
     if is_audio:
         smhd_payload = s88.pack(0)  # balance
         smhd_payload += u16.pack(0)  # reserved
-        media_header_box = full_box(b'smhd', 0, 0, smhd_payload)  # Sound Media Header
+        media_header_box = full_box(
+            b'smhd', 0, 0, smhd_payload)  # Sound Media Header
     else:
         vmhd_payload = u16.pack(0)  # graphics mode
         vmhd_payload += u16.pack(0) * 3  # opcolor
-        media_header_box = full_box(b'vmhd', 0, 1, vmhd_payload)  # Video Media Header
+        media_header_box = full_box(
+            b'vmhd', 0, 1, vmhd_payload)  # Video Media Header
     minf_payload = media_header_box
 
     dref_payload = u32.pack(1)  # entry count
-    dref_payload += full_box(b'url ', 0, SELF_CONTAINED, b'')  # Data Entry URL Box
+    dref_payload += full_box(b'url ', 0, SELF_CONTAINED,
+                             b'')  # Data Entry URL Box
     dinf_payload = full_box(b'dref', 0, 0, dref_payload)  # Data Reference Box
     minf_payload += box(b'dinf', dinf_payload)  # Data Information Box
 
@@ -141,29 +150,41 @@ def write_piff_header(stream, params):
         sample_entry_payload += u16.pack(0x18)  # depth
         sample_entry_payload += s16.pack(-1)  # pre defined
 
-        codec_private_data = binascii.unhexlify(params['codec_private_data'].encode('utf-8'))
+        codec_private_data = binascii.unhexlify(
+            params['codec_private_data'].encode('utf-8'))
         if fourcc in ('H264', 'AVC1'):
             sps, pps = codec_private_data.split(u32.pack(1))[1:]
             avcc_payload = u8.pack(1)  # configuration version
-            avcc_payload += sps[1:4]  # avc profile indication + profile compatibility + avc level indication
-            avcc_payload += u8.pack(0xfc | (params.get('nal_unit_length_field', 4) - 1))  # complete representation (1) + reserved (11111) + length size minus one
-            avcc_payload += u8.pack(1)  # reserved (0) + number of sps (0000001)
+            # avc profile indication + profile compatibility + avc level
+            # indication
+            avcc_payload += sps[1:4]
+            # complete representation (1) + reserved (11111) + length size
+            # minus one
+            avcc_payload += u8.pack(0xfc |
+                                    (params.get('nal_unit_length_field', 4) - 1))
+            # reserved (0) + number of sps (0000001)
+            avcc_payload += u8.pack(1)
             avcc_payload += u16.pack(len(sps))
             avcc_payload += sps
             avcc_payload += u8.pack(1)  # number of pps
             avcc_payload += u16.pack(len(pps))
             avcc_payload += pps
-            sample_entry_payload += box(b'avcC', avcc_payload)  # AVC Decoder Configuration Record
-            sample_entry_box = box(b'avc1', sample_entry_payload)  # AVC Simple Entry
+            # AVC Decoder Configuration Record
+            sample_entry_payload += box(b'avcC', avcc_payload)
+            sample_entry_box = box(
+                b'avc1', sample_entry_payload)  # AVC Simple Entry
     stsd_payload += sample_entry_box
 
-    stbl_payload = full_box(b'stsd', 0, 0, stsd_payload)  # Sample Description Box
+    # Sample Description Box
+    stbl_payload = full_box(b'stsd', 0, 0, stsd_payload)
 
     stts_payload = u32.pack(0)  # entry count
-    stbl_payload += full_box(b'stts', 0, 0, stts_payload)  # Decoding Time to Sample Box
+    # Decoding Time to Sample Box
+    stbl_payload += full_box(b'stts', 0, 0, stts_payload)
 
     stsc_payload = u32.pack(0)  # entry count
-    stbl_payload += full_box(b'stsc', 0, 0, stsc_payload)  # Sample To Chunk Box
+    # Sample To Chunk Box
+    stbl_payload += full_box(b'stsc', 0, 0, stsc_payload)
 
     stco_payload = u32.pack(0)  # entry count
     stbl_payload += full_box(b'stco', 0, 0, stco_payload)  # Chunk Offset Box
@@ -177,7 +198,8 @@ def write_piff_header(stream, params):
     moov_payload += box(b'trak', trak_payload)  # Track Box
 
     mehd_payload = u64.pack(duration)
-    mvex_payload = full_box(b'mehd', 1, 0, mehd_payload)  # Movie Extends Header Box
+    # Movie Extends Header Box
+    mvex_payload = full_box(b'mehd', 1, 0, mehd_payload)
 
     trex_payload = u32.pack(track_id)  # track id
     trex_payload += u32.pack(1)  # default sample description index
@@ -222,7 +244,8 @@ class IsmFD(FragmentFD):
         self._prepare_and_start_frag_download(ctx)
 
         fragment_retries = self.params.get('fragment_retries', 0)
-        skip_unavailable_fragments = self.params.get('skip_unavailable_fragments', True)
+        skip_unavailable_fragments = self.params.get(
+            'skip_unavailable_fragments', True)
 
         track_written = False
         frag_index = 0
@@ -233,25 +256,32 @@ class IsmFD(FragmentFD):
             count = 0
             while count <= fragment_retries:
                 try:
-                    success, frag_content = self._download_fragment(ctx, segment['url'], info_dict)
+                    success, frag_content = self._download_fragment(
+                        ctx, segment['url'], info_dict)
                     if not success:
                         return False
                     if not track_written:
-                        tfhd_data = extract_box_data(frag_content, [b'moof', b'traf', b'tfhd'])
-                        info_dict['_download_params']['track_id'] = u32.unpack(tfhd_data[4:8])[0]
-                        write_piff_header(ctx['dest_stream'], info_dict['_download_params'])
+                        tfhd_data = extract_box_data(
+                            frag_content, [b'moof', b'traf', b'tfhd'])
+                        info_dict['_download_params']['track_id'] = u32.unpack(tfhd_data[4:8])[
+                            0]
+                        write_piff_header(
+                            ctx['dest_stream'], info_dict['_download_params'])
                         track_written = True
                     self._append_fragment(ctx, frag_content)
                     break
                 except compat_urllib_error.HTTPError as err:
                     count += 1
                     if count <= fragment_retries:
-                        self.report_retry_fragment(err, frag_index, count, fragment_retries)
+                        self.report_retry_fragment(
+                            err, frag_index, count, fragment_retries)
             if count > fragment_retries:
                 if skip_unavailable_fragments:
                     self.report_skip_fragment(frag_index)
                     continue
-                self.report_error('giving up after %s fragment retries' % fragment_retries)
+                self.report_error(
+                    'giving up after %s fragment retries' %
+                    fragment_retries)
                 return False
 
         self._finish_frag_download(ctx)

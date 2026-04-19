@@ -43,7 +43,8 @@ class BrightcoveLegacyIE(InfoExtractor):
 
     _TESTS = [
         {
-            # From http://www.8tv.cat/8aldia/videos/xavier-sala-i-martin-aquesta-tarda-a-8-al-dia/
+            # From
+            # http://www.8tv.cat/8aldia/videos/xavier-sala-i-martin-aquesta-tarda-a-8-al-dia/
             'url': 'http://c.brightcove.com/services/viewer/htmlFederated?playerID=1654948606001&flashID=myExperience&%40videoPlayer=2371591881001',
             'md5': '5423e113865d26e40624dce2e4b45d95',
             'note': 'Test Brightcove downloads and detection in GenericIE',
@@ -75,7 +76,8 @@ class BrightcoveLegacyIE(InfoExtractor):
             'skip': 'video not playable',
         },
         {
-            # From http://mashable.com/2013/10/26/thermoelectric-bracelet-lets-you-control-your-body-temperature/
+            # From
+            # http://mashable.com/2013/10/26/thermoelectric-bracelet-lets-you-control-your-body-temperature/
             'url': 'http://c.brightcove.com/services/viewer/federated_f9?&playerID=1265504713001&publisherID=AQ%7E%7E%2CAAABBzUwv1E%7E%2CxP-xFHVUstiMFlNYfvF4G9yFnNaqCw_9&videoID=2750934548001',
             'info_dict': {
                 'id': '2750934548001',
@@ -103,7 +105,8 @@ class BrightcoveLegacyIE(InfoExtractor):
         },
         {
             # test flv videos served by akamaihd.net
-            # From http://www.redbull.com/en/bike/stories/1331655643987/replay-uci-dh-world-cup-2014-from-fort-william
+            # From
+            # http://www.redbull.com/en/bike/stories/1331655643987/replay-uci-dh-world-cup-2014-from-fort-william
             'url': 'http://c.brightcove.com/services/viewer/htmlFederated?%40videoPlayer=ref%3Aevent-stream-356&linkBaseURL=http%3A%2F%2Fwww.redbull.com%2Fen%2Fbike%2Fvideos%2F1331655630249%2Freplay-uci-fort-william-2014-dh&playerKey=AQ%7E%7E%2CAAAApYJ7UqE%7E%2Cxqr_zXk0I-zzNndy8NlHogrCb5QdyZRf&playerID=1398061561001#__youtubedl_smuggle=%7B%22Referer%22%3A+%22http%3A%2F%2Fwww.redbull.com%2Fen%2Fbike%2Fstories%2F1331655643987%2Freplay-uci-dh-world-cup-2014-from-fort-william%22%7D',
             # The md5 checksum changes on each download
             'info_dict': {
@@ -120,7 +123,8 @@ class BrightcoveLegacyIE(InfoExtractor):
         },
         {
             # playlist with 'videoList'
-            # from http://support.brightcove.com/en/video-cloud/docs/playlist-support-single-video-players
+            # from
+            # http://support.brightcove.com/en/video-cloud/docs/playlist-support-single-video-players
             'url': 'http://c.brightcove.com/services/viewer/htmlFederated?playerID=3550052898001&playerKey=AQ%7E%7E%2CAAABmA9XpXk%7E%2C-Kp7jNgisre1fG5OdqpAFUTcs0lP_ZoL',
             'info_dict': {
                 'title': 'Sealife',
@@ -130,7 +134,8 @@ class BrightcoveLegacyIE(InfoExtractor):
             'skip': 'Unsupported URL',
         },
         {
-            # playlist with 'playlistTab' (https://github.com/ytdl-org/youtube-dl/issues/9965)
+            # playlist with 'playlistTab'
+            # (https://github.com/ytdl-org/youtube-dl/issues/9965)
             'url': 'http://c.brightcove.com/services/json/experience/runtime/?command=get_programming_for_experience&playerKey=AQ%7E%7E,AAABXlLMdok%7E,NJ4EoMlZ4rZdx9eU1rkMVd8EaYPBBUlg',
             'info_dict': {
                 'id': '1522758701001',
@@ -154,10 +159,12 @@ class BrightcoveLegacyIE(InfoExtractor):
         <object class="BrightcoveExperience">{params}</object>
         """
 
-        # Fix up some stupid HTML, see https://github.com/ytdl-org/youtube-dl/issues/1553
+        # Fix up some stupid HTML, see
+        # https://github.com/ytdl-org/youtube-dl/issues/1553
         object_str = re.sub(r'(<param(?:\s+[a-zA-Z0-9_]+="[^"]*")*)>',
                             lambda m: m.group(1) + '/>', object_str)
-        # Fix up some stupid XML, see https://github.com/ytdl-org/youtube-dl/issues/1608
+        # Fix up some stupid XML, see
+        # https://github.com/ytdl-org/youtube-dl/issues/1608
         object_str = object_str.replace('<--', '<!--')
         # remove namespace to simplify extraction
         object_str = re.sub(r'(<object[^>]*)(xmlns=".*?")', r'\1', object_str)
@@ -177,7 +184,8 @@ class BrightcoveLegacyIE(InfoExtractor):
             flashvars = {}
 
         data_url = object_doc.attrib.get('data', '')
-        data_url_params = compat_parse_qs(compat_urllib_parse_urlparse(data_url).query)
+        data_url_params = compat_parse_qs(
+            compat_urllib_parse_urlparse(data_url).query)
 
         def find_param(name):
             if name in flashvars:
@@ -199,7 +207,8 @@ class BrightcoveLegacyIE(InfoExtractor):
         if playerKey is not None:
             params['playerKey'] = playerKey
         # These fields hold the id of the video
-        videoPlayer = find_param('@videoPlayer') or find_param('videoId') or find_param('videoID') or find_param('@videoList')
+        videoPlayer = find_param('@videoPlayer') or find_param(
+            'videoId') or find_param('videoID') or find_param('@videoList')
         if videoPlayer is not None:
             if isinstance(videoPlayer, list):
                 videoPlayer = videoPlayer[0]
@@ -207,7 +216,8 @@ class BrightcoveLegacyIE(InfoExtractor):
             # UUID is also possible for videoPlayer (e.g.
             # http://www.popcornflix.com/hoodies-vs-hooligans/7f2d2b87-bbf2-4623-acfb-ea942b4f01dd
             # or http://www8.hp.com/cn/zh/home.html)
-            if not (re.match(
+            if not (
+                re.match(
                     r'^(?:\d+|[\da-fA-F]{8}-?[\da-fA-F]{4}-?[\da-fA-F]{4}-?[\da-fA-F]{4}-?[\da-fA-F]{12})$',
                     videoPlayer) or videoPlayer.startswith('ref:')):
                 return None
@@ -273,21 +283,30 @@ class BrightcoveLegacyIE(InfoExtractor):
             ).+?>\s*</object>''',
             webpage)
         if matches:
-            return list(filter(None, [cls._build_brightcove_url(m) for m in matches]))
+            return list(
+                filter(
+                    None, [
+                        cls._build_brightcove_url(m) for m in matches]))
 
         matches = re.findall(r'(customBC\.createVideo\(.+?\);)', webpage)
         if matches:
             return list(filter(None, [
                 cls._build_brightcove_url_from_js(custom_bc)
                 for custom_bc in matches]))
-        return [src for _, src in re.findall(
-            r'<iframe[^>]+src=([\'"])((?:https?:)?//link\.brightcove\.com/services/player/(?!\1).+)\1', webpage)]
+        return [
+            src for _,
+            src in re.findall(
+                r'<iframe[^>]+src=([\'"])((?:https?:)?//link\.brightcove\.com/services/player/(?!\1).+)\1',
+                webpage)]
 
     def _real_extract(self, url):
         url, smuggled_data = unsmuggle_url(url, {})
 
         # Change the 'videoId' and others field to '@videoPlayer'
-        url = re.sub(r'(?<=[?&])(videoI(d|D)|idVideo|bctid)', '%40videoPlayer', url)
+        url = re.sub(
+            r'(?<=[?&])(videoI(d|D)|idVideo|bctid)',
+            '%40videoPlayer',
+            url)
         # Change bckey (used by bcove.me urls) to playerKey
         url = re.sub(r'(?<=[?&])bckey', 'playerKey', url)
         mobj = re.match(self._VALID_URL, url)
@@ -297,7 +316,11 @@ class BrightcoveLegacyIE(InfoExtractor):
         videoPlayer = query.get('@videoPlayer')
         if videoPlayer:
             # We set the original url as the default 'Referer' header
-            referer = query.get('linkBaseURL', [None])[0] or smuggled_data.get('Referer', url)
+            referer = query.get(
+                'linkBaseURL',
+                [None])[0] or smuggled_data.get(
+                'Referer',
+                url)
             video_id = videoPlayer[0]
             if 'playerID' not in query:
                 mobj = re.search(r'/bcpid(\d+)', url)
@@ -325,12 +348,16 @@ class BrightcoveLegacyIE(InfoExtractor):
                                 player_page, 'player key', fatal=False)
                 if player_key:
                     enc_pub_id = player_key.split(',')[1].replace('~', '=')
-                    publisher_id = struct.unpack('>Q', base64.urlsafe_b64decode(enc_pub_id))[0]
+                    publisher_id = struct.unpack(
+                        '>Q', base64.urlsafe_b64decode(enc_pub_id))[0]
             if publisher_id:
-                brightcove_new_url = 'http://players.brightcove.net/%s/default_default/index.html?videoId=%s' % (publisher_id, video_id)
+                brightcove_new_url = 'http://players.brightcove.net/%s/default_default/index.html?videoId=%s' % (
+                    publisher_id, video_id)
                 if referer:
-                    brightcove_new_url = smuggle_url(brightcove_new_url, {'referrer': referer})
-                return self.url_result(brightcove_new_url, BrightcoveNewIE.ie_key(), video_id)
+                    brightcove_new_url = smuggle_url(
+                        brightcove_new_url, {'referrer': referer})
+                return self.url_result(
+                    brightcove_new_url, BrightcoveNewIE.ie_key(), video_id)
         # TODO: figure out if it's possible to extract playlistId from playerKey
         # elif 'playerKey' in query:
         #     player_key = query['playerKey']
@@ -414,7 +441,8 @@ class BrightcoveNewIE(AdobePassIE):
         # 2. http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/publish-video.html#tag
         # 3. http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/publish-video.html#setvideousingjavascript
         # 4. http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/in-page-embed-player-implementation.html
-        # 5. https://support.brightcove.com/en/video-cloud/docs/dynamically-assigning-videos-player
+        # 5.
+        # https://support.brightcove.com/en/video-cloud/docs/dynamically-assigning-videos-player
 
         entries = []
 
@@ -487,16 +515,26 @@ class BrightcoveNewIE(AdobePassIE):
             elif ext == 'm3u8' or container == 'M2TS':
                 if not src:
                     continue
-                formats.extend(self._extract_m3u8_formats(
-                    src, video_id, 'mp4', 'm3u8_native', m3u8_id='hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        src,
+                        video_id,
+                        'mp4',
+                        'm3u8_native',
+                        m3u8_id='hls',
+                        fatal=False))
             elif ext == 'mpd':
                 if not src:
                     continue
-                formats.extend(self._extract_mpd_formats(src, video_id, 'dash', fatal=False))
+                formats.extend(
+                    self._extract_mpd_formats(
+                        src, video_id, 'dash', fatal=False))
             else:
                 streaming_src = source.get('streaming_src')
-                stream_name, app_name = source.get('stream_name'), source.get('app_name')
-                if not src and not streaming_src and (not stream_name or not app_name):
+                stream_name, app_name = source.get(
+                    'stream_name'), source.get('app_name')
+                if not src and not streaming_src and (
+                        not stream_name or not app_name):
                     continue
                 tbr = float_or_none(source.get('avg_bitrate'), 1000)
                 height = int_or_none(source.get('height'))
@@ -544,10 +582,11 @@ class BrightcoveNewIE(AdobePassIE):
             errors = json_data.get('errors')
             if errors:
                 error = errors[0]
-                raise ExtractorError(
-                    error.get('message') or error.get('error_subcode') or error['error_code'], expected=True)
+                raise ExtractorError(error.get('message') or error.get(
+                    'error_subcode') or error['error_code'], expected=True)
             if sources and num_drm_sources == len(sources):
-                raise ExtractorError('This video is DRM protected.', expected=True)
+                raise ExtractorError(
+                    'This video is DRM protected.', expected=True)
 
         self._sort_formats(formats)
 
@@ -593,15 +632,19 @@ class BrightcoveNewIE(AdobePassIE):
             'ip_blocks': smuggled_data.get('geo_ip_blocks'),
         })
 
-        account_id, player_id, embed, content_type, video_id = re.match(self._VALID_URL, url).groups()
+        account_id, player_id, embed, content_type, video_id = re.match(
+            self._VALID_URL, url).groups()
 
         policy_key_id = '%s_%s' % (account_id, player_id)
         policy_key = self._downloader.cache.load('brightcove', policy_key_id)
         policy_key_extracted = False
-        store_pk = lambda x: self._downloader.cache.store('brightcove', policy_key_id, x)
+
+        def store_pk(x): return self._downloader.cache.store(
+            'brightcove', policy_key_id, x)
 
         def extract_policy_key():
-            base_url = 'http://players.brightcove.net/%s/%s_%s/' % (account_id, player_id, embed)
+            base_url = 'http://players.brightcove.net/%s/%s_%s/' % (
+                account_id, player_id, embed)
             config = self._download_json(
                 base_url + 'config.json', video_id, fatal=False) or {}
             policy_key = try_get(
@@ -626,7 +669,8 @@ class BrightcoveNewIE(AdobePassIE):
             store_pk(policy_key)
             return policy_key
 
-        api_url = 'https://edge.api.brightcove.com/playback/v1/accounts/%s/%ss/%s' % (account_id, content_type, video_id)
+        api_url = 'https://edge.api.brightcove.com/playback/v1/accounts/%s/%ss/%s' % (
+            account_id, content_type, video_id)
         headers = {}
         referrer = smuggled_data.get('referrer')
         if referrer:
@@ -641,12 +685,19 @@ class BrightcoveNewIE(AdobePassIE):
                 policy_key_extracted = True
             headers['Accept'] = 'application/json;pk=%s' % policy_key
             try:
-                json_data = self._download_json(api_url, video_id, headers=headers)
+                json_data = self._download_json(
+                    api_url, video_id, headers=headers)
                 break
             except ExtractorError as e:
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code in (401, 403):
-                    json_data = self._parse_json(e.cause.read().decode(), video_id)[0]
-                    message = json_data.get('message') or json_data['error_code']
+                if isinstance(
+                        e.cause,
+                        compat_HTTPError) and e.cause.code in (
+                        401,
+                        403):
+                    json_data = self._parse_json(
+                        e.cause.read().decode(), video_id)[0]
+                    message = json_data.get(
+                        'message') or json_data['error_code']
                     if json_data.get('error_subcode') == 'CLIENT_GEO':
                         self.raise_geo_restricted(msg=message)
                     elif json_data.get('error_code') == 'INVALID_POLICY_KEY' and not policy_key_extracted:

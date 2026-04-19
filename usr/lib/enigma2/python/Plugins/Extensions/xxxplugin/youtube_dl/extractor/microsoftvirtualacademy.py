@@ -18,14 +18,15 @@ from ..utils import (
 class MicrosoftVirtualAcademyBaseIE(InfoExtractor):
     def _extract_base_url(self, course_id, display_id):
         return self._download_json(
-            'https://api-mlxprod.microsoft.com/services/products/anonymous/%s' % course_id,
-            display_id, 'Downloading course base URL')
+            'https://api-mlxprod.microsoft.com/services/products/anonymous/%s' %
+            course_id, display_id, 'Downloading course base URL')
 
     def _extract_chapter_and_title(self, title):
         if not title:
             return None, None
         m = re.search(r'(?P<chapter>\d+)\s*\|\s*(?P<title>.+)', title)
-        return (int(m.group('chapter')), m.group('title')) if m else (None, title)
+        return (int(m.group('chapter')), m.group(
+            'title')) if m else (None, title)
 
 
 class MicrosoftVirtualAcademyIE(MicrosoftVirtualAcademyBaseIE):
@@ -59,11 +60,12 @@ class MicrosoftVirtualAcademyIE(MicrosoftVirtualAcademyBaseIE):
         course_id = mobj.group('course_id')
         video_id = mobj.group('id')
 
-        base_url = smuggled_data.get('base_url') or self._extract_base_url(course_id, video_id)
+        base_url = smuggled_data.get(
+            'base_url') or self._extract_base_url(course_id, video_id)
 
         settings = self._download_xml(
-            '%s/content/content_%s/videosettings.xml?v=1' % (base_url, video_id),
-            video_id, 'Downloading video settings XML')
+            '%s/content/content_%s/videosettings.xml?v=1' %
+            (base_url, video_id), video_id, 'Downloading video settings XML')
 
         _, title = self._extract_chapter_and_title(xpath_text(
             settings, './/Title', 'title', fatal=True))
@@ -101,7 +103,8 @@ class MicrosoftVirtualAcademyIE(MicrosoftVirtualAcademyBaseIE):
         self._sort_formats(formats)
 
         subtitles = {}
-        for source in settings.findall(compat_xpath('.//MarkerResourceSource')):
+        for source in settings.findall(
+                compat_xpath('.//MarkerResourceSource')):
             subtitle_url = source.text
             if not subtitle_url:
                 continue
@@ -166,7 +169,8 @@ class MicrosoftVirtualAcademyCourseIE(MicrosoftVirtualAcademyBaseIE):
 
         entries = []
         for chapter in organization['item']:
-            chapter_number, chapter_title = self._extract_chapter_and_title(chapter.get('title'))
+            chapter_number, chapter_title = self._extract_chapter_and_title(
+                chapter.get('title'))
             chapter_id = chapter.get('@identifier')
             for item in chapter.get('item', []):
                 item_id = item.get('@identifier')
@@ -190,6 +194,7 @@ class MicrosoftVirtualAcademyCourseIE(MicrosoftVirtualAcademyBaseIE):
                     'chapter_id': chapter_id,
                 })
 
-        title = organization.get('title') or manifest.get('metadata', {}).get('title')
+        title = organization.get('title') or manifest.get(
+            'metadata', {}).get('title')
 
         return self.playlist_result(entries, course_id, title)

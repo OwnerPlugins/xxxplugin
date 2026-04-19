@@ -34,8 +34,13 @@ class YnetIE(InfoExtractor):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
 
-        content = compat_urllib_parse_unquote_plus(self._og_search_video_url(webpage))
-        config = json.loads(self._search_regex(r'config=({.+?})$', content, 'video config'))
+        content = compat_urllib_parse_unquote_plus(
+            self._og_search_video_url(webpage))
+        config = json.loads(
+            self._search_regex(
+                r'config=({.+?})$',
+                content,
+                'video config'))
         f4m_url = config['clip']['url']
         title = self._og_search_title(webpage)
         m = re.search(r'ynet - HOT -- (["\']+)(?P<title>.+?)\1', title)

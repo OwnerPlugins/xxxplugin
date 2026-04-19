@@ -21,8 +21,7 @@ class ExpoTVIE(InfoExtractor):
             'uploader': 'Stephanie S.',
             'upload_date': '20150520',
             'view_count': int,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -31,8 +30,8 @@ class ExpoTVIE(InfoExtractor):
         player_key = self._search_regex(
             r'<param name="playerKey" value="([^"]+)"', webpage, 'player key')
         config = self._download_json(
-            'http://client.expotv.com/video/config/%s/%s' % (video_id, player_key),
-            video_id, 'Downloading video configuration')
+            'http://client.expotv.com/video/config/%s/%s' %
+            (video_id, player_key), video_id, 'Downloading video configuration')
 
         formats = []
         for fcfg in config['sources']:
@@ -40,8 +39,13 @@ class ExpoTVIE(InfoExtractor):
             if not media_url:
                 continue
             if fcfg.get('type') == 'm3u8':
-                formats.extend(self._extract_m3u8_formats(
-                    media_url, video_id, 'mp4', entry_protocol='m3u8_native', m3u8_id='hls'))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        media_url,
+                        video_id,
+                        'mp4',
+                        entry_protocol='m3u8_native',
+                        m3u8_id='hls'))
             else:
                 formats.append({
                     'url': media_url,
@@ -59,7 +63,9 @@ class ExpoTVIE(InfoExtractor):
         view_count = int_or_none(self._search_regex(
             r'<h5>Plays: ([0-9]+)</h5>', webpage, 'view counts'))
         uploader = self._search_regex(
-            r'<div class="reviewer">\s*<img alt="([^"]+)"', webpage, 'uploader',
+            r'<div class="reviewer">\s*<img alt="([^"]+)"',
+            webpage,
+            'uploader',
             fatal=False)
         upload_date = unified_strdate(self._search_regex(
             r'<h5>Reviewed on ([0-9/.]+)</h5>', webpage, 'upload date',

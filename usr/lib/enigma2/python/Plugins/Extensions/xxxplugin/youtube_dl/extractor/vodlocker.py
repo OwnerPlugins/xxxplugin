@@ -28,17 +28,21 @@ class VodlockerIE(InfoExtractor):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
 
-        if any(p in webpage for p in (
+        if any(
+            p in webpage for p in (
                 '>THIS FILE WAS DELETED<',
                 '>File Not Found<',
                 'The file you were looking for could not be found, sorry for any inconvenience.<',
                 '>The file was removed')):
-            raise ExtractorError('Video %s does not exist' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s does not exist' %
+                video_id, expected=True)
 
         fields = self._hidden_inputs(webpage)
 
         if fields['op'] == 'download1':
-            self._sleep(3, video_id)  # they do detect when requests happen too fast!
+            # they do detect when requests happen too fast!
+            self._sleep(3, video_id)
             post = urlencode_postdata(fields)
             req = sanitized_Request(url, post)
             req.add_header('Content-type', 'application/x-www-form-urlencoded')
@@ -65,7 +69,10 @@ class VodlockerIE(InfoExtractor):
         title = self._search_regex(
             r'id="file_title".*?>\s*(.*?)\s*<(?:br|span)', webpage, 'title')
         thumbnail = self._search_regex(
-            r'image:\s*"(http[^\"]+)",', thumbnail_webpage, 'thumbnail', fatal=False)
+            r'image:\s*"(http[^\"]+)",',
+            thumbnail_webpage,
+            'thumbnail',
+            fatal=False)
 
         formats = [{
             'format_id': 'sd',

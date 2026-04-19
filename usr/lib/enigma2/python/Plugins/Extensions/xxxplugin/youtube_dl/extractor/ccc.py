@@ -38,7 +38,9 @@ class CCCIE(InfoExtractor):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
         event_id = self._search_regex(r"data-id='(\d+)'", webpage, 'event id')
-        event_data = self._download_json('https://media.ccc.de/public/events/%s' % event_id, event_id)
+        event_data = self._download_json(
+            'https://media.ccc.de/public/events/%s' %
+            event_id, event_id)
 
         formats = []
         for recording in event_data.get('recordings', []):

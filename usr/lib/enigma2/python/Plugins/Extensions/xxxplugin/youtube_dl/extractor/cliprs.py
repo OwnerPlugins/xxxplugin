@@ -17,8 +17,7 @@ class ClipRsIE(OnetBaseIE):
             'duration': 229,
             'timestamp': 1459850243,
             'upload_date': '20160405',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         display_id = self._match_id(url)

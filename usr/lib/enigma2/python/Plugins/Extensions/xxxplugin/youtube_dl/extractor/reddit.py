@@ -16,7 +16,8 @@ from ..utils import (
 class RedditIE(InfoExtractor):
     _VALID_URL = r'https?://v\.redd\.it/(?P<id>[^/?#&]+)'
     _TEST = {
-        # from https://www.reddit.com/r/videos/comments/6rrwyj/that_small_heart_attack/
+        # from
+        # https://www.reddit.com/r/videos/comments/6rrwyj/that_small_heart_attack/
         'url': 'https://v.redd.it/zv89llsvexdz',
         'md5': '0a070c53eba7ec4534d95a5a1259e253',
         'info_dict': {

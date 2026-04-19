@@ -27,7 +27,14 @@ from ..utils import (
 
 
 class ViceBaseIE(InfoExtractor):
-    def _call_api(self, resource, resource_key, resource_id, locale, fields, args=''):
+    def _call_api(
+            self,
+            resource,
+            resource_key,
+            resource_id,
+            locale,
+            fields,
+            args=''):
         return self._download_json(
             'https://video.vice.com/api/v1/graphql', resource_id, query={
                 'query': '''{
@@ -138,7 +145,8 @@ class ViceIE(ViceBaseIE, AdobePassIE):
         # signature generation algorithm is reverse engineered from signatureGenerator in
         # webpack:///../shared/~/vice-player/dist/js/vice-player.js in
         # https://www.viceland.com/assets/common/js/web.vendor.bundle.js
-        # new JS is located here https://vice-web-statics-cdn.vice.com/vice-player/player-embed.js
+        # new JS is located here
+        # https://vice-web-statics-cdn.vice.com/vice-player/player-embed.js
         exp = int(time.time()) + 1440
 
         query.update({
@@ -151,12 +159,17 @@ class ViceIE(ViceBaseIE, AdobePassIE):
 
         try:
             preplay = self._download_json(
-                'https://vms.vice.com/%s/video/preplay/%s' % (locale, video_id),
-                video_id, query=query)
+                'https://vms.vice.com/%s/video/preplay/%s' %
+                (locale, video_id), video_id, query=query)
         except ExtractorError as e:
-            if isinstance(e.cause, compat_HTTPError) and e.cause.code in (400, 401):
+            if isinstance(
+                    e.cause,
+                    compat_HTTPError) and e.cause.code in (
+                    400,
+                    401):
                 error = json.loads(e.cause.read().decode())
-                error_message = error.get('error_description') or error['details']
+                error_message = error.get(
+                    'error_description') or error['details']
                 raise ExtractorError('%s said: %s' % (
                     self.IE_NAME, error_message), expected=True)
             raise
@@ -174,7 +187,10 @@ class ViceIE(ViceBaseIE, AdobePassIE):
             cc_url = subtitle.get('url')
             if not cc_url:
                 continue
-            language_code = try_get(subtitle, lambda x: x['languages'][0]['language_code'], compat_str) or 'en'
+            language_code = try_get(
+                subtitle,
+                lambda x: x['languages'][0]['language_code'],
+                compat_str) or 'en'
             subtitles.setdefault(language_code, []).append({
                 'url': cc_url,
             })
@@ -304,7 +320,12 @@ class ViceArticleIE(ViceBaseIE):
     def _real_extract(self, url):
         locale, display_id = re.match(self._VALID_URL, url).groups()
 
-        article = self._call_api('articles', 'slug', display_id, locale, '''body
+        article = self._call_api(
+            'articles',
+            'slug',
+            display_id,
+            locale,
+            '''body
     embed_code''')[0]
         body = article['body']
 

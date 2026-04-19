@@ -26,8 +26,7 @@ class BoxIE(InfoExtractor):
             'timestamp': 1566320259,
             'upload_date': '20190820',
             'uploader_id': '235196876',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         shared_name, file_id = re.match(self._VALID_URL, url).groups()

@@ -112,8 +112,7 @@ class WSJArticleIE(InfoExtractor):
             'upload_date': '20170221',
             'uploader_id': 'ralcaraz',
             'title': 'Bao Bao the Panda Leaves for China',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         article_id = self._match_id(url)

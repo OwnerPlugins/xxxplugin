@@ -47,7 +47,9 @@ class SevenPlusIE(BrightcoveNewIE):
 
         try:
             media = self._download_json(
-                'https://videoservice.swm.digital/playback', episode_id, query={
+                'https://videoservice.swm.digital/playback',
+                episode_id,
+                query={
                     'appId': '7plus',
                     'deviceType': 'web',
                     'platformType': 'web',
@@ -58,8 +60,11 @@ class SevenPlusIE(BrightcoveNewIE):
                 })['media']
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
-                raise ExtractorError(self._parse_json(
-                    e.cause.read().decode(), episode_id)[0]['error_code'], expected=True)
+                raise ExtractorError(
+                    self._parse_json(
+                        e.cause.read().decode(),
+                        episode_id)[0]['error_code'],
+                    expected=True)
             raise
 
         for source in media.get('sources', {}):
@@ -76,14 +81,18 @@ class SevenPlusIE(BrightcoveNewIE):
                 'market-id': 4,
             }, fatal=False) or {}
         for item in content.get('items', {}):
-            if item.get('componentData', {}).get('componentType') == 'infoPanel':
-                for src_key, dst_key in [('title', 'title'), ('shortSynopsis', 'description')]:
+            if item.get('componentData', {}).get(
+                    'componentType') == 'infoPanel':
+                for src_key, dst_key in [
+                        ('title', 'title'), ('shortSynopsis', 'description')]:
                     value = item.get(src_key)
                     if value:
                         info[dst_key] = value
                 info['series'] = try_get(
                     item, lambda x: x['seriesLogo']['name'], compat_str)
-                mobj = re.search(r'^S(\d+)\s+E(\d+)\s+-\s+(.+)$', info['title'])
+                mobj = re.search(
+                    r'^S(\d+)\s+E(\d+)\s+-\s+(.+)$',
+                    info['title'])
                 if mobj:
                     info.update({
                         'season_number': int(mobj.group(1)),

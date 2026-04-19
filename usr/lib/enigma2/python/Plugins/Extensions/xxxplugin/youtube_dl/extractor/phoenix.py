@@ -19,7 +19,8 @@ class PhoenixIE(ZDFBaseIE):
     IE_NAME = 'phoenix.de'
     _VALID_URL = r'https?://(?:www\.)?phoenix\.de/(?:[^/]+/)*[^/?#&]*-a-(?P<id>\d+)\.html'
     _TESTS = [{
-        # Same as https://www.zdf.de/politik/phoenix-sendungen/wohin-fuehrt-der-protest-in-der-pandemie-100.html
+        # Same as
+        # https://www.zdf.de/politik/phoenix-sendungen/wohin-fuehrt-der-protest-in-der-pandemie-100.html
         'url': 'https://www.phoenix.de/sendungen/ereignisse/corona-nachgehakt/wohin-fuehrt-der-protest-in-der-pandemie-a-2050630.html',
         'md5': '34ec321e7eb34231fd88616c65c92db0',
         'info_dict': {
@@ -58,7 +59,8 @@ class PhoenixIE(ZDFBaseIE):
         'url': 'https://www.phoenix.de/sendungen/dokumentationen/mit-dem-jumbo-durch-die-nacht-a-89625.html',
         'only_matching': True,
     }, {
-        # Same as https://www.zdf.de/politik/phoenix-sendungen/die-gesten-der-maechtigen-100.html
+        # Same as
+        # https://www.zdf.de/politik/phoenix-sendungen/die-gesten-der-maechtigen-100.html
         'url': 'https://www.phoenix.de/sendungen/dokumentationen/gesten-der-maechtigen-i-a-89468.html?ref=suche',
         'only_matching': True,
     }]
@@ -94,8 +96,8 @@ class PhoenixIE(ZDFBaseIE):
         content_id = details['tracking']['nielsen']['content']['assetid']
 
         info = self._extract_ptmd(
-            'https://tmd.phoenix.de/tmd/2/ngplayer_2_3/vod/ptmd/phoenix/%s' % content_id,
-            content_id, None, url)
+            'https://tmd.phoenix.de/tmd/2/ngplayer_2_3/vod/ptmd/phoenix/%s' %
+            content_id, content_id, None, url)
 
         duration = int_or_none(try_get(
             details, lambda x: x['tracking']['nielsen']['content']['length']))
@@ -106,7 +108,10 @@ class PhoenixIE(ZDFBaseIE):
         episode = title if details.get('contentType') == 'episode' else None
 
         thumbnails = []
-        teaser_images = try_get(details, lambda x: x['teaserImageRef']['layouts'], dict) or {}
+        teaser_images = try_get(
+            details,
+            lambda x: x['teaserImageRef']['layouts'],
+            dict) or {}
         for thumbnail_key, thumbnail_url in teaser_images.items():
             thumbnail_url = urljoin(url, thumbnail_url)
             if not thumbnail_url:

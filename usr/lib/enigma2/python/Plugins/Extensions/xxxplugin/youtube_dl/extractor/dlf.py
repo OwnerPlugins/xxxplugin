@@ -27,8 +27,12 @@ class DLFBaseIE(InfoExtractor):
         audio_id = audio_id or attrs['data-audio-diraid']
 
         url = traverse_obj(
-            attrs, 'data-audio-download-src', 'data-audio', 'data-audioreference',
-            'data-audio-src', expected_type=url_or_none)
+            attrs,
+            'data-audio-download-src',
+            'data-audio',
+            'data-audioreference',
+            'data-audio-src',
+            expected_type=url_or_none)
         ext = determine_ext(url)
         formats = (self._extract_m3u8_formats(url, audio_id, fatal=False)
                    if ext == 'm3u8' else [{'url': url, 'ext': ext, 'vcodec': 'none'}])
@@ -60,7 +64,8 @@ class DLFBaseIE(InfoExtractor):
 
 class DLFIE(DLFBaseIE):
     IE_NAME = 'dlf'
-    _VALID_URL = DLFBaseIE._VALID_URL_BASE + r'[\w-]+-dlf-(?P<id>[\da-f]{8})-100\.html'
+    _VALID_URL = DLFBaseIE._VALID_URL_BASE + \
+        r'[\w-]+-dlf-(?P<id>[\da-f]{8})-100\.html'
     _TESTS = [
         # Audio as an HLS stream
         {
@@ -99,13 +104,18 @@ class DLFIE(DLFBaseIE):
         webpage = self._download_webpage(url, audio_id)
 
         return self._parse_button_attrs(
-            self._search_regex(self._BUTTON_REGEX, webpage, 'button'), audio_id)
+            self._search_regex(
+                self._BUTTON_REGEX,
+                webpage,
+                'button'),
+            audio_id)
 
 
 class DLFCorpusIE(DLFBaseIE):
     IE_NAME = 'dlf:corpus'
     IE_DESC = 'DLF Multi-feed Archives'
-    _VALID_URL = DLFBaseIE._VALID_URL_BASE + r'(?P<id>(?![\w-]+-dlf-[\da-f]{8})[\w-]+-\d+)\.html'
+    _VALID_URL = DLFBaseIE._VALID_URL_BASE + \
+        r'(?P<id>(?![\w-]+-dlf-[\da-f]{8})[\w-]+-\d+)\.html'
     _TESTS = [
         # Recorded news broadcast with referrals to related broadcasts
         {

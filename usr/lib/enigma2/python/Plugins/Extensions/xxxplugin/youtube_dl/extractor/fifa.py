@@ -69,23 +69,30 @@ class FifaIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         preconnect_link = self._search_regex(
-            r'<link\b[^>]+\brel\s*=\s*"preconnect"[^>]+href\s*=\s*"([^"]+)"', webpage, 'Preconnect Link')
+            r'<link\b[^>]+\brel\s*=\s*"preconnect"[^>]+href\s*=\s*"([^"]+)"',
+            webpage,
+            'Preconnect Link')
 
         video_details = self._download_json(
-            '{preconnect_link}/sections/videoDetails/{video_id}'.format(**locals()), video_id, 'Downloading Video Details', fatal=False)
+            '{preconnect_link}/sections/videoDetails/{video_id}'.format(
+                **locals()), video_id, 'Downloading Video Details', fatal=False)
 
         preplay_parameters = self._download_json(
-            '{preconnect_link}/videoPlayerData/{video_id}'.format(**locals()), video_id, 'Downloading Preplay Parameters')['preplayParameters']
+            '{preconnect_link}/videoPlayerData/{video_id}'.format(
+                **locals()), video_id, 'Downloading Preplay Parameters')['preplayParameters']
 
         content_data = self._download_json(
             # 1. query string is expected to be sent as-is
             # 2. `sig` must be appended
-            # 3. if absent, the call appears to work but the manifest is bad (404)
-            'https://content.uplynk.com/preplay/{contentId}/multiple.json?{queryStr}&sig={signature}'.format(**preplay_parameters),
+            # 3. if absent, the call appears to work but the manifest is bad
+            # (404)
+            'https://content.uplynk.com/preplay/{contentId}/multiple.json?{queryStr}&sig={signature}'.format(
+                **preplay_parameters),
             video_id, 'Downloading Content Data')
 
         # formats, subtitles = self._extract_m3u8_formats_and_subtitles(content_data['playURL'], video_id)
-        formats, subtitles = self._extract_m3u8_formats(content_data['playURL'], video_id, ext='mp4', entry_protocol='m3u8_native'), None
+        formats, subtitles = self._extract_m3u8_formats(
+            content_data['playURL'], video_id, ext='mp4', entry_protocol='m3u8_native'), None
         self._sort_formats(formats)
 
         return {

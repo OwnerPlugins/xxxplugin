@@ -53,7 +53,9 @@ class BongaCamsIE(InfoExtractor):
         server_url = amf['localData']['videoServerUrl']
 
         uploader_id = try_get(
-            amf, lambda x: x['performerData']['username'], compat_str) or channel_id
+            amf,
+            lambda x: x['performerData']['username'],
+            compat_str) or channel_id
         uploader = try_get(
             amf, lambda x: x['performerData']['displayName'], compat_str)
         like_count = int_or_none(try_get(

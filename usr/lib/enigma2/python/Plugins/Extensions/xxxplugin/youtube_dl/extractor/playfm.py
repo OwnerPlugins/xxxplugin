@@ -58,7 +58,8 @@ class PlayFMIE(InfoExtractor):
         uploader_id = compat_str(recordings.get('page', {}).get('id'))
         view_count = int_or_none(recordings.get('playCount'))
         comment_count = int_or_none(recordings.get('commentCount'))
-        categories = [tag['name'] for tag in recordings.get('tags', []) if tag.get('name')]
+        categories = [tag['name']
+                      for tag in recordings.get('tags', []) if tag.get('name')]
 
         return {
             'id': video_id,

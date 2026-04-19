@@ -88,10 +88,12 @@ class AolIE(YahooIE):
             return self._extract_yahoo_video(video_id, 'us')
 
         response = self._download_json(
-            'https://feedapi.b2c.on.aol.com/v1.0/app/videos/aolon/%s/details' % video_id,
-            video_id)['response']
+            'https://feedapi.b2c.on.aol.com/v1.0/app/videos/aolon/%s/details' %
+            video_id, video_id)['response']
         if response['statusText'] != 'Ok':
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, response['statusText']), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, response['statusText']), expected=True)
 
         video_data = response['data']
         formats = []
@@ -119,7 +121,8 @@ class AolIE(YahooIE):
                         'height': int(mobj.group(2)),
                     })
                 else:
-                    qs = compat_parse_qs(compat_urllib_parse_urlparse(video_url).query)
+                    qs = compat_parse_qs(
+                        compat_urllib_parse_urlparse(video_url).query)
                     f.update({
                         'width': int_or_none(qs.get('w', [None])[0]),
                         'height': int_or_none(qs.get('h', [None])[0]),

@@ -13,4 +13,6 @@ class EmbedlyIE(InfoExtractor):
     }]
 
     def _real_extract(self, url):
-        return self.url_result(compat_urllib_parse_unquote(self._match_id(url)))
+        return self.url_result(
+            compat_urllib_parse_unquote(
+                self._match_id(url)))

@@ -47,21 +47,26 @@ class KarriereVideosIE(InfoExtractor):
 
         webpage = self._download_webpage(url, video_id)
 
-        title = (self._html_search_meta('title', webpage, default=None)
-                 or self._search_regex(r'<h1 class="title">([^<]+)</h1>', webpage, 'video title'))
+        title = (
+            self._html_search_meta(
+                'title',
+                webpage,
+                default=None) or self._search_regex(
+                r'<h1 class="title">([^<]+)</h1>',
+                webpage,
+                'video title'))
 
         video_id = self._search_regex(
             r'/config/video/(.+?)\.xml', webpage, 'video id')
         # Server returns malformed headers
         # Force Accept-Encoding: * to prevent gzipped results
         playlist = self._download_xml(
-            'http://www.karrierevideos.at/player-playlist.xml.php?p=%s' % video_id,
-            video_id, transform_source=fix_xml_ampersands,
-            headers={'Accept-Encoding': '*'})
+            'http://www.karrierevideos.at/player-playlist.xml.php?p=%s' %
+            video_id, video_id, transform_source=fix_xml_ampersands, headers={
+                'Accept-Encoding': '*'})
 
         NS_MAP = {
-            'jwplayer': 'http://developer.longtailvideo.com/trac/wiki/FlashFormats'
-        }
+            'jwplayer': 'http://developer.longtailvideo.com/trac/wiki/FlashFormats'}
 
         def ns(path):
             return xpath_with_ns(path, NS_MAP)

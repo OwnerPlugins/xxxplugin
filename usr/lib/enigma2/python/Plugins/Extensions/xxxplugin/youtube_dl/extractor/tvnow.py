@@ -18,10 +18,23 @@ from ..utils import (
 
 class TVNowBaseIE(InfoExtractor):
     _VIDEO_FIELDS = (
-        'id', 'title', 'free', 'geoblocked', 'articleLong', 'articleShort',
-        'broadcastStartDate', 'isDrm', 'duration', 'season', 'episode',
-        'manifest.dashclear', 'manifest.hlsclear', 'manifest.smoothclear',
-        'format.title', 'format.defaultImage169Format', 'format.defaultImage169Logo')
+        'id',
+        'title',
+        'free',
+        'geoblocked',
+        'articleLong',
+        'articleShort',
+        'broadcastStartDate',
+        'isDrm',
+        'duration',
+        'season',
+        'episode',
+        'manifest.dashclear',
+        'manifest.hlsclear',
+        'manifest.smoothclear',
+        'format.title',
+        'format.defaultImage169Format',
+        'format.defaultImage169Logo')
 
     def _call_api(self, path, video_id, query):
         return self._download_json(
@@ -36,7 +49,8 @@ class TVNowBaseIE(InfoExtractor):
             if not manifest_url:
                 continue
             manifest_url = update_url_query(manifest_url, {'filter': ''})
-            path = self._search_regex(r'https?://[^/]+/(.+?)\.ism/', manifest_url, 'path')
+            path = self._search_regex(
+                r'https?://[^/]+/(.+?)\.ism/', manifest_url, 'path')
             if path in paths:
                 continue
             paths.append(path)
@@ -74,7 +88,8 @@ class TVNowBaseIE(InfoExtractor):
                 raise self.raise_geo_restricted()
             if not info.get('free', True):
                 raise ExtractorError(
-                    'Video %s is not available for free' % video_id, expected=True)
+                    'Video %s is not available for free' %
+                    video_id, expected=True)
         self._sort_formats(formats)
 
         description = info.get('articleLong') or info.get('articleShort')
@@ -86,7 +101,8 @@ class TVNowBaseIE(InfoExtractor):
         thumbnails = [{
             'url': 'https://aistvnow-a.akamaihd.net/tvnow/movie/%s' % video_id,
         }]
-        thumbnail = f.get('defaultImage169Format') or f.get('defaultImage169Logo')
+        thumbnail = f.get('defaultImage169Format') or f.get(
+            'defaultImage169Logo')
         if thumbnail:
             thumbnails.append({
                 'url': thumbnail,
@@ -118,8 +134,8 @@ class TVNowIE(TVNowBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return (False if TVNowNewIE.suitable(url) or TVNowSeasonIE.suitable(url) or TVNowAnnualIE.suitable(url) or TVNowShowIE.suitable(url)
-                else super(TVNowIE, cls).suitable(url))
+        return (False if TVNowNewIE.suitable(url) or TVNowSeasonIE.suitable(url) or TVNowAnnualIE.suitable(
+            url) or TVNowShowIE.suitable(url) else super(TVNowIE, cls).suitable(url))
 
     _TESTS = [{
         'url': 'https://www.tvnow.de/rtl2/grip-das-motormagazin/der-neue-porsche-911-gt-3/player',
@@ -199,7 +215,8 @@ class TVNowNewIE(InfoExtractor):
         show, episode = mobj.group('show', 'episode')
         return self.url_result(
             # Rewrite new URLs to the old format and use extraction via old API
-            # at api.tvnow.de as a loophole for bypassing premium content checks
+            # at api.tvnow.de as a loophole for bypassing premium content
+            # checks
             '%s/%s/%s' % (base_url, show, episode),
             ie=TVNowIE.ie_key(), video_id=mobj.group('id'))
 
@@ -438,8 +455,8 @@ class TVNowShowIE(TVNowListBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return (False if TVNowNewIE.suitable(url) or TVNowSeasonIE.suitable(url) or TVNowAnnualIE.suitable(url)
-                else super(TVNowShowIE, cls).suitable(url))
+        return (False if TVNowNewIE.suitable(url) or TVNowSeasonIE.suitable(
+            url) or TVNowAnnualIE.suitable(url) else super(TVNowShowIE, cls).suitable(url))
 
     def _real_extract(self, url):
         base_url, show_id = re.match(self._VALID_URL, url).groups()

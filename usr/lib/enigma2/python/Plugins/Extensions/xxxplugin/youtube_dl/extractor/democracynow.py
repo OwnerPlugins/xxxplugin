@@ -42,8 +42,11 @@ class DemocracynowIE(InfoExtractor):
 
         webpage = self._download_webpage(url, display_id)
 
-        json_data = self._parse_json(self._search_regex(
-            r'<script[^>]+type="text/json"[^>]*>\s*({[^>]+})', webpage, 'json'),
+        json_data = self._parse_json(
+            self._search_regex(
+                r'<script[^>]+type="text/json"[^>]*>\s*({[^>]+})',
+                webpage,
+                'json'),
             display_id)
 
         title = json_data['title']
@@ -55,8 +58,14 @@ class DemocracynowIE(InfoExtractor):
             media_url = json_data.get(key, '')
             if not media_url:
                 continue
-            media_url = re.sub(r'\?.*', '', compat_urlparse.urljoin(url, media_url))
-            video_id = video_id or remove_start(os.path.splitext(url_basename(media_url))[0], 'dn')
+            media_url = re.sub(
+                r'\?.*',
+                '',
+                compat_urlparse.urljoin(
+                    url,
+                    media_url))
+            video_id = video_id or remove_start(
+                os.path.splitext(url_basename(media_url))[0], 'dn')
             formats.append({
                 'url': media_url,
                 'vcodec': 'none' if key == 'audio' else None,

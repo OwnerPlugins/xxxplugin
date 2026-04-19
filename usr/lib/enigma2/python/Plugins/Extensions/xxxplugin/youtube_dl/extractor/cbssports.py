@@ -27,7 +27,8 @@ class CBSSportsEmbedIE(InfoExtractor):
     }]
 
     # def _extract_video_info(self, filter_query, video_id):
-    #     return self._extract_feed_info('dJ5BDC', 'VxxJg8Ymh8sE', filter_query, video_id)
+    # return self._extract_feed_info('dJ5BDC', 'VxxJg8Ymh8sE', filter_query,
+    # video_id)
 
     def _real_extract(self, url):
         uuid, pcid = re.match(self._VALID_URL, url).groups()
@@ -39,7 +40,8 @@ class CBSSportsEmbedIE(InfoExtractor):
         title = video['title']
         metadata = video.get('metaData') or {}
         # return self._extract_video_info('byId=%d' % metadata['mpxOutletId'], video_id)
-        # return self._extract_video_info('byGuid=' + metadata['mpxRefId'], video_id)
+        # return self._extract_video_info('byGuid=' + metadata['mpxRefId'],
+        # video_id)
 
         formats = self._extract_m3u8_formats(
             metadata['files'][0]['url'], video_id, 'mp4',
@@ -64,8 +66,12 @@ class CBSSportsEmbedIE(InfoExtractor):
             'formats': formats,
             'thumbnails': thumbnails,
             'description': video.get('description'),
-            'timestamp': int_or_none(try_get(video, lambda x: x['dateCreated']['epoch'])),
-            'duration': int_or_none(metadata.get('duration')),
+            'timestamp': int_or_none(
+                try_get(
+                    video,
+                    lambda x: x['dateCreated']['epoch'])),
+            'duration': int_or_none(
+                metadata.get('duration')),
         }
 
 

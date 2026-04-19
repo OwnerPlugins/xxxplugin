@@ -33,7 +33,9 @@ class Porn91IE(InfoExtractor):
             'http://91porn.com/view_video.php?viewkey=%s' % video_id, video_id)
 
         if '作为游客，你每天只可观看10个视频' in webpage:
-            raise ExtractorError('91 Porn says: Daily limit 10 videos exceeded', expected=True)
+            raise ExtractorError(
+                '91 Porn says: Daily limit 10 videos exceeded',
+                expected=True)
 
         title = self._search_regex(
             r'<div id="viewvideo-title">([^<]+)</div>', webpage, 'title')
@@ -44,7 +46,8 @@ class Porn91IE(InfoExtractor):
             webpage, 'video link')
         videopage = self._download_webpage(video_link_url, video_id)
 
-        info_dict = self._parse_html5_media_entries(url, videopage, video_id)[0]
+        info_dict = self._parse_html5_media_entries(
+            url, videopage, video_id)[0]
 
         duration = parse_duration(self._search_regex(
             r'时长:\s*</span>\s*(\d+:\d+)', webpage, 'duration', fatal=False))

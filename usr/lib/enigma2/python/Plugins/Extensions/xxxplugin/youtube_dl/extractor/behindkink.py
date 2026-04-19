@@ -20,8 +20,7 @@ class BehindKinkIE(InfoExtractor):
             'upload_date': '20141205',
             'thumbnail': 'http://www.behindkink.com/wp-content/uploads/2014/12/blaze-1.jpg',
             'age_limit': 18,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -32,7 +31,8 @@ class BehindKinkIE(InfoExtractor):
         video_url = self._search_regex(
             r'<source src="([^"]+)"', webpage, 'video URL')
         video_id = url_basename(video_url).split('_')[0]
-        upload_date = mobj.group('year') + mobj.group('month') + mobj.group('day')
+        upload_date = mobj.group(
+            'year') + mobj.group('month') + mobj.group('day')
 
         return {
             'id': video_id,

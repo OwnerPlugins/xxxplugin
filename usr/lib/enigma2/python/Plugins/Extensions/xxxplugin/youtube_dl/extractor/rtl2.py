@@ -81,8 +81,15 @@ class RTL2IE(InfoExtractor):
         rtmp_url = video_info.get('streamurl')
         if rtmp_url:
             rtmp_url = rtmp_url.replace('\\', '')
-            stream_url = 'mp4:' + self._html_search_regex(r'/ondemand/(.+)', rtmp_url, 'stream URL')
-            rtmp_conn = ['S:connect', 'O:1', 'NS:pageUrl:' + url, 'NB:fpad:0', 'NN:videoFunction:1', 'O:0']
+            stream_url = 'mp4:' + \
+                self._html_search_regex(r'/ondemand/(.+)', rtmp_url, 'stream URL')
+            rtmp_conn = [
+                'S:connect',
+                'O:1',
+                'NS:pageUrl:' + url,
+                'NB:fpad:0',
+                'NN:videoFunction:1',
+                'O:0']
 
             formats.append({
                 'format_id': 'rtmp',
@@ -141,7 +148,8 @@ class RTL2YouIE(RTL2YouBaseIE):
         stream_data = self._download_json(
             self._BACKWERK_BASE_URL + 'stream/video/' + video_id, video_id)
 
-        data, iv = compat_b64decode(stream_data['streamUrl']).decode().split(':')
+        data, iv = compat_b64decode(
+            stream_data['streamUrl']).decode().split(':')
         stream_url = intlist_to_bytes(aes_cbc_decrypt(
             bytes_to_intlist(compat_b64decode(data)),
             bytes_to_intlist(self._AES_KEY),
@@ -167,12 +175,16 @@ class RTL2YouIE(RTL2YouBaseIE):
             'id': video_id,
             'title': title,
             'formats': formats,
-            'description': strip_or_none(video_data.get('description')),
+            'description': strip_or_none(
+                video_data.get('description')),
             'thumbnail': video_data.get('image'),
-            'duration': int_or_none(stream_data.get('duration') or video_data.get('duration'), 1000),
+            'duration': int_or_none(
+                stream_data.get('duration') or video_data.get('duration'),
+                1000),
             'series': series,
             'episode': episode,
-            'age_limit': int_or_none(video_data.get('minimumAge')),
+            'age_limit': int_or_none(
+                video_data.get('minimumAge')),
         }
 
 

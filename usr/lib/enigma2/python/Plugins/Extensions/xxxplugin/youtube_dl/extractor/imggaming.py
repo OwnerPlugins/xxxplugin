@@ -57,24 +57,32 @@ class ImgGamingBaseIE(InfoExtractor):
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
                 raise ExtractorError(
-                    self._parse_json(e.cause.read().decode(), media_id)['messages'][0],
+                    self._parse_json(
+                        e.cause.read().decode(),
+                        media_id)['messages'][0],
                     expected=True)
             raise
 
     def _real_extract(self, url):
-        domain, media_type, media_id, playlist_id = re.match(self._VALID_URL, url).groups()
+        domain, media_type, media_id, playlist_id = re.match(
+            self._VALID_URL, url).groups()
 
         if playlist_id:
             if self._downloader.params.get('noplaylist'):
-                self.to_screen('Downloading just video %s because of --no-playlist' % media_id)
+                self.to_screen(
+                    'Downloading just video %s because of --no-playlist' %
+                    media_id)
             else:
-                self.to_screen('Downloading playlist %s - add --no-playlist to just download video' % playlist_id)
+                self.to_screen(
+                    'Downloading playlist %s - add --no-playlist to just download video' %
+                    playlist_id)
                 media_type, media_id = 'playlist', playlist_id
 
         if media_type == 'playlist':
             playlist = self._call_api('vod/playlist/', media_id)
             entries = []
-            for video in try_get(playlist, lambda x: x['videos']['vods']) or []:
+            for video in try_get(playlist,
+                                 lambda x: x['videos']['vods']) or []:
                 video_id = str_or_none(video.get('id'))
                 if not video_id:
                     continue
@@ -89,13 +97,20 @@ class ImgGamingBaseIE(InfoExtractor):
         video_data = self._download_json(dve_api_url, media_id)
         is_live = media_type == 'live'
         if is_live:
-            title = self._live_title(self._call_api('event/', media_id)['title'])
+            title = self._live_title(
+                self._call_api(
+                    'event/',
+                    media_id)['title'])
         else:
             title = video_data['name']
 
         formats = []
         for proto in ('hls', 'dash'):
-            media_url = video_data.get(proto + 'Url') or try_get(video_data, lambda x: x[proto]['url'])
+            media_url = video_data.get(
+                proto +
+                'Url') or try_get(
+                video_data,
+                lambda x: x[proto]['url'])
             if not media_url:
                 continue
             if proto == 'hls':
@@ -103,7 +118,10 @@ class ImgGamingBaseIE(InfoExtractor):
                     media_url, media_id, 'mp4', 'm3u8' if is_live else 'm3u8_native',
                     m3u8_id='hls', fatal=False, headers=self._MANIFEST_HEADERS)
                 for f in m3u8_formats:
-                    f.setdefault('http_headers', {}).update(self._MANIFEST_HEADERS)
+                    f.setdefault(
+                        'http_headers',
+                        {}).update(
+                        self._MANIFEST_HEADERS)
                     formats.append(f)
             else:
                 formats.extend(self._extract_mpd_formats(

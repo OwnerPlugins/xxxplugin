@@ -13,9 +13,7 @@ class DefenseGouvFrIE(InfoExtractor):
         'info_dict': {
             'id': '11213',
             'ext': 'mp4',
-            'title': 'attaque-chimique-syrienne-du-21-aout-2013-1'
-        }
-    }
+            'title': 'attaque-chimique-syrienne-du-21-aout-2013-1'}}
 
     def _real_extract(self, url):
         title = self._match_id(url)

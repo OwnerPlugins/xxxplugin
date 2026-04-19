@@ -12,26 +12,23 @@ from ..utils import (
 
 class ChaturbateIE(InfoExtractor):
     _VALID_URL = r'https?://(?:[^/]+\.)?chaturbate\.com/(?:fullvideo/?\?.*?\bb=)?(?P<id>[^/?&#]+)'
-    _TESTS = [{
-        'url': 'https://www.chaturbate.com/siswet19/',
-        'info_dict': {
-            'id': 'siswet19',
-            'ext': 'mp4',
-            'title': 're:^siswet19 [0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$',
-            'age_limit': 18,
-            'is_live': True,
-        },
-        'params': {
-            'skip_download': True,
-        },
-        'skip': 'Room is offline',
-    }, {
-        'url': 'https://chaturbate.com/fullvideo/?b=caylin',
-        'only_matching': True,
-    }, {
-        'url': 'https://en.chaturbate.com/siswet19/',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.chaturbate.com/siswet19/',
+               'info_dict': {'id': 'siswet19',
+                             'ext': 'mp4',
+                             'title': 're:^siswet19 [0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$',
+                             'age_limit': 18,
+                             'is_live': True,
+                             },
+               'params': {'skip_download': True,
+                          },
+               'skip': 'Room is offline',
+               },
+              {'url': 'https://chaturbate.com/fullvideo/?b=caylin',
+               'only_matching': True,
+               },
+              {'url': 'https://en.chaturbate.com/siswet19/',
+               'only_matching': True,
+               }]
 
     _ROOM_OFFLINE = 'Room is currently offline'
 
@@ -66,7 +63,8 @@ class ChaturbateIE(InfoExtractor):
 
         m3u8_urls = []
         for found_m3u8_url in found_m3u8_urls:
-            m3u8_fast_url, m3u8_no_fast_url = found_m3u8_url, found_m3u8_url.replace('_fast', '')
+            m3u8_fast_url, m3u8_no_fast_url = found_m3u8_url, found_m3u8_url.replace(
+                '_fast', '')
             for m3u8_url in (m3u8_fast_url, m3u8_no_fast_url):
                 if m3u8_url not in m3u8_urls:
                     m3u8_urls.append(m3u8_url)

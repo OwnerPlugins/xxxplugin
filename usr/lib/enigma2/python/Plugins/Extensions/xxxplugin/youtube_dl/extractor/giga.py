@@ -52,8 +52,8 @@ class GigaIE(InfoExtractor):
             webpage, 'video id')
 
         playlist = self._download_json(
-            'http://www.giga.de/api/syndication/video/video_id/%s/playlist.json?content=syndication/key/368b5f151da4ae05ced7fa296bdff65a/'
-            % video_id, video_id)[0]
+            'http://www.giga.de/api/syndication/video/video_id/%s/playlist.json?content=syndication/key/368b5f151da4ae05ced7fa296bdff65a/' %
+            video_id, video_id)[0]
 
         quality = qualities(['normal', 'hd720'])
 
@@ -75,9 +75,12 @@ class GigaIE(InfoExtractor):
             'description', webpage, 'description')
         thumbnail = self._og_search_thumbnail(webpage)
 
-        duration = parse_duration(self._search_regex(
-            r'(?s)(?:data-video-id="{0}"|data-video="[^"]*/api/video/jwplayer/#v={0}[^"]*")[^>]*>.+?<span class="duration">([^<]+)</span>'.format(video_id),
-            webpage, 'duration', fatal=False))
+        duration = parse_duration(
+            self._search_regex(
+                r'(?s)(?:data-video-id="{0}"|data-video="[^"]*/api/video/jwplayer/#v={0}[^"]*")[^>]*>.+?<span class="duration">([^<]+)</span>'.format(video_id),
+                webpage,
+                'duration',
+                fatal=False))
 
         timestamp = parse_iso8601(self._search_regex(
             r'datetime="([^"]+)"', webpage, 'upload date', fatal=False))

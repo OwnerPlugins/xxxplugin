@@ -21,10 +21,18 @@ from ..utils import (
 class OoyalaBaseIE(InfoExtractor):
     _PLAYER_BASE = 'http://player.ooyala.com/'
     _CONTENT_TREE_BASE = _PLAYER_BASE + 'player_api/v1/content_tree/'
-    _AUTHORIZATION_URL_TEMPLATE = _PLAYER_BASE + 'sas/player_api/v2/authorization/embed_code/%s/%s'
+    _AUTHORIZATION_URL_TEMPLATE = _PLAYER_BASE + \
+        'sas/player_api/v2/authorization/embed_code/%s/%s'
 
-    def _extract(self, content_tree_url, video_id, domain=None, supportedformats=None, embed_token=None):
-        content_tree = self._download_json(content_tree_url, video_id)['content_tree']
+    def _extract(
+            self,
+            content_tree_url,
+            video_id,
+            domain=None,
+            supportedformats=None,
+            embed_token=None):
+        content_tree = self._download_json(
+            content_tree_url, video_id)['content_tree']
         metadata = content_tree[list(content_tree)[0]]
         embed_code = metadata['embed_code']
         pcode = metadata.get('asset_pcode') or embed_code
@@ -40,12 +48,12 @@ class OoyalaBaseIE(InfoExtractor):
 
         urls = []
         formats = []
-        streams = auth_data.get('streams') or [{
-            'delivery_type': 'hls',
-            'url': {
-                'data': base64.b64encode(('http://player.ooyala.com/hls/player/all/%s.m3u8' % embed_code).encode()).decode(),
-            }
-        }]
+        streams = auth_data.get('streams') or [
+            {
+                'delivery_type': 'hls', 'url': {
+                    'data': base64.b64encode(
+                        ('http://player.ooyala.com/hls/player/all/%s.m3u8' %
+                         embed_code).encode()).decode(), }}]
         for stream in streams:
             url_data = try_get(stream, lambda x: x['url']['data'], compat_str)
             if not url_data:
@@ -57,12 +65,24 @@ class OoyalaBaseIE(InfoExtractor):
             ext = determine_ext(s_url, None)
             delivery_type = stream.get('delivery_type')
             if delivery_type == 'hls' or ext == 'm3u8':
-                formats.extend(self._extract_m3u8_formats(
-                    re.sub(r'/ip(?:ad|hone)/', '/all/', s_url), embed_code, 'mp4', 'm3u8_native',
-                    m3u8_id='hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        re.sub(
+                            r'/ip(?:ad|hone)/',
+                            '/all/',
+                            s_url),
+                        embed_code,
+                        'mp4',
+                        'm3u8_native',
+                        m3u8_id='hls',
+                        fatal=False))
             elif delivery_type == 'hds' or ext == 'f4m':
-                formats.extend(self._extract_f4m_formats(
-                    s_url + '?hdcore=3.7.0', embed_code, f4m_id='hds', fatal=False))
+                formats.extend(
+                    self._extract_f4m_formats(
+                        s_url + '?hdcore=3.7.0',
+                        embed_code,
+                        f4m_id='hds',
+                        fatal=False))
             elif delivery_type == 'dash' or ext == 'mpd':
                 formats.extend(self._extract_mpd_formats(
                     s_url, embed_code, mpd_id='dash', fatal=False))
@@ -90,7 +110,9 @@ class OoyalaBaseIE(InfoExtractor):
         self._sort_formats(formats)
 
         subtitles = {}
-        for lang, sub in metadata.get('closed_captions_vtt', {}).get('captions', {}).items():
+        for lang, sub in metadata.get(
+                'closed_captions_vtt', {}).get(
+                'captions', {}).items():
             sub_url = sub.get('url')
             if not sub_url:
                 continue
@@ -103,7 +125,9 @@ class OoyalaBaseIE(InfoExtractor):
             'title': title,
             'description': metadata.get('description'),
             'thumbnail': metadata.get('thumbnail_image') or metadata.get('promo_image'),
-            'duration': float_or_none(metadata.get('duration'), 1000),
+            'duration': float_or_none(
+                metadata.get('duration'),
+                1000),
             'subtitles': subtitles,
             'formats': formats,
         }
@@ -114,7 +138,8 @@ class OoyalaIE(OoyalaBaseIE):
 
     _TESTS = [
         {
-            # From http://it.slashdot.org/story/13/04/25/178216/recovering-data-from-broken-hard-drives-and-ssds-video
+            # From
+            # http://it.slashdot.org/story/13/04/25/178216/recovering-data-from-broken-hard-drives-and-ssds-video
             'url': 'http://player.ooyala.com/player.js?embedCode=pxczE2YjpfHfn1f3M-ykG_AmJRRn0PD8',
             'info_dict': {
                 'id': 'pxczE2YjpfHfn1f3M-ykG_AmJRRn0PD8',
@@ -137,7 +162,8 @@ class OoyalaIE(OoyalaBaseIE):
         },
         {
             # Information available only through SAS api
-            # From http://community.plm.automation.siemens.com/t5/News-NX-Manufacturing/Tool-Path-Divide/ba-p/4187
+            # From
+            # http://community.plm.automation.siemens.com/t5/News-NX-Manufacturing/Tool-Path-Divide/ba-p/4187
             'url': 'http://player.ooyala.com/player.js?embedCode=FiOG81ZTrvckcchQxmalf4aQj590qTEx',
             'md5': 'a84001441b35ea492bc03736e59e7935',
             'info_dict': {
@@ -169,8 +195,14 @@ class OoyalaIE(OoyalaBaseIE):
         domain = smuggled_data.get('domain')
         supportedformats = smuggled_data.get('supportedformats')
         embed_token = smuggled_data.get('embed_token')
-        content_tree_url = self._CONTENT_TREE_BASE + 'embed_code/%s/%s' % (embed_code, embed_code)
-        return self._extract(content_tree_url, embed_code, domain, supportedformats, embed_token)
+        content_tree_url = self._CONTENT_TREE_BASE + \
+            'embed_code/%s/%s' % (embed_code, embed_code)
+        return self._extract(
+            content_tree_url,
+            embed_code,
+            domain,
+            supportedformats,
+            embed_token)
 
 
 class OoyalaExternalIE(OoyalaBaseIE):
@@ -206,5 +238,6 @@ class OoyalaExternalIE(OoyalaBaseIE):
 
     def _real_extract(self, url):
         partner_id, video_id, pcode = re.match(self._VALID_URL, url).groups()
-        content_tree_url = self._CONTENT_TREE_BASE + 'external_id/%s/%s:%s' % (pcode, partner_id, video_id)
+        content_tree_url = self._CONTENT_TREE_BASE + \
+            'external_id/%s/%s:%s' % (pcode, partner_id, video_id)
         return self._extract(content_tree_url, video_id)

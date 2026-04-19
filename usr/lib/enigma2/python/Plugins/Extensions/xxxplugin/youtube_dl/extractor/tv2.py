@@ -53,14 +53,17 @@ class TV2IE(InfoExtractor):
         for protocol in self._PROTOCOLS:
             try:
                 data = self._download_json(
-                    api_base + '/play.json?protocol=%s&videoFormat=SMIL+ISMUSP' % protocol,
-                    video_id, 'Downloading play JSON')['playback']
+                    api_base + '/play.json?protocol=%s&videoFormat=SMIL+ISMUSP' %
+                    protocol, video_id, 'Downloading play JSON')['playback']
             except ExtractorError as e:
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
-                    error = self._parse_json(e.cause.read().decode(), video_id)['error']
+                if isinstance(e.cause,
+                              compat_HTTPError) and e.cause.code == 401:
+                    error = self._parse_json(
+                        e.cause.read().decode(), video_id)['error']
                     error_code = error.get('code')
                     if error_code == 'ASSET_PLAYBACK_INVALID_GEO_LOCATION':
-                        self.raise_geo_restricted(countries=self._GEO_COUNTRIES)
+                        self.raise_geo_restricted(
+                            countries=self._GEO_COUNTRIES)
                     elif error_code == 'SESSION_NOT_AUTHENTICATED':
                         self.raise_login_required()
                     raise ExtractorError(error['description'])
@@ -76,7 +79,8 @@ class TV2IE(InfoExtractor):
                 video_url = item.get('url')
                 if not video_url or video_url in format_urls:
                     continue
-                format_id = '%s-%s' % (protocol.lower(), item.get('mediaFormat'))
+                format_id = '%s-%s' % (protocol.lower(),
+                                       item.get('mediaFormat'))
                 if not self._is_valid_url(video_url, video_id, format_id):
                     continue
                 format_urls.append(video_url)
@@ -115,12 +119,18 @@ class TV2IE(InfoExtractor):
             'id': video_id,
             'url': video_url,
             'title': self._live_title(title) if is_live else title,
-            'description': strip_or_none(asset.get('description')),
+            'description': strip_or_none(
+                asset.get('description')),
             'thumbnails': thumbnails,
-            'timestamp': parse_iso8601(asset.get('createTime')),
-            'duration': float_or_none(asset.get('accurateDuration') or asset.get('duration')),
-            'view_count': int_or_none(asset.get('views')),
-            'categories': asset.get('keywords', '').split(','),
+            'timestamp': parse_iso8601(
+                asset.get('createTime')),
+            'duration': float_or_none(
+                asset.get('accurateDuration') or asset.get('duration')),
+            'view_count': int_or_none(
+                asset.get('views')),
+            'categories': asset.get(
+                'keywords',
+                '').split(','),
             'formats': formats,
             'is_live': is_live,
         }
@@ -165,7 +175,9 @@ class TV2ArticleIE(InfoExtractor):
             for asset_id in assets]
 
         title = remove_end(self._og_search_title(webpage), ' - TV2.no')
-        description = remove_end(self._og_search_description(webpage), ' - TV2.no')
+        description = remove_end(
+            self._og_search_description(webpage),
+            ' - TV2.no')
 
         return self.playlist_result(entries, playlist_id, title, description)
 
@@ -245,4 +257,7 @@ class MTVUutisetArticleIE(InfoExtractor):
                     video_url, video_type.capitalize(), video.get('video_id'))
 
         return self.playlist_result(
-            entries(), article_id, article.get('title'), article.get('description'))
+            entries(),
+            article_id,
+            article.get('title'),
+            article.get('description'))

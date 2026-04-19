@@ -27,17 +27,22 @@ class EyedoTVIE(InfoExtractor):
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
-        video_data = self._download_xml('http://eyedo.tv/api/live/GetLive/%s' % video_id, video_id)
+        video_data = self._download_xml(
+            'http://eyedo.tv/api/live/GetLive/%s' %
+            video_id, video_id)
 
         def _add_ns(path):
-            return self._xpath_ns(path, 'http://schemas.datacontract.org/2004/07/EyeDo.Core.Implementation.Web.ViewModels.Api')
+            return self._xpath_ns(
+                path,
+                'http://schemas.datacontract.org/2004/07/EyeDo.Core.Implementation.Web.ViewModels.Api')
 
         title = xpath_text(video_data, _add_ns('Titre'), 'title', True)
-        state_live_code = xpath_text(video_data, _add_ns('StateLiveCode'), 'title', True)
+        state_live_code = xpath_text(
+            video_data, _add_ns('StateLiveCode'), 'title', True)
         if state_live_code == 'avenir':
             raise ExtractorError(
-                '%s said: We\'re sorry, but this video is not yet available.' % self.IE_NAME,
-                expected=True)
+                '%s said: We\'re sorry, but this video is not yet available.' %
+                self.IE_NAME, expected=True)
 
         is_live = state_live_code == 'live'
         m3u8_url = None
@@ -48,7 +53,8 @@ class EyedoTVIE(InfoExtractor):
             else:
                 m3u8_url = self._ROOT_URL + 'w/%s/eyedo_720p/playlist.m3u8' % video_id
         else:
-            m3u8_url = self._ROOT_URL + 'replay-w/%s/mp4:%s.mp4/playlist.m3u8' % (video_id, video_id)
+            m3u8_url = self._ROOT_URL + \
+                'replay-w/%s/mp4:%s.mp4/playlist.m3u8' % (video_id, video_id)
 
         return {
             'id': video_id,

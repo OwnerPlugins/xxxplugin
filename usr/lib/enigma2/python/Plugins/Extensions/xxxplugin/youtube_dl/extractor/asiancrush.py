@@ -26,8 +26,16 @@ class AsianCrushBaseIE(InfoExtractor):
 
     def _call_api(self, host, endpoint, video_id, query, resource):
         return self._download_json(
-            'https://api%s.%s/%s' % (self._API_SUFFIX.get(host, ''), host, endpoint), video_id,
-            'Downloading %s JSON metadata' % resource, query=query,
+            'https://api%s.%s/%s' %
+            (self._API_SUFFIX.get(
+                host,
+                ''),
+                host,
+                endpoint),
+            video_id,
+            'Downloading %s JSON metadata' %
+            resource,
+            query=query,
             headers=self.geo_verification_headers())['objects']
 
     def _download_object_data(self, host, object_id, resource):
@@ -35,7 +43,8 @@ class AsianCrushBaseIE(InfoExtractor):
             host, 'search', object_id, {'id': object_id}, resource)[0]
 
     def _get_object_description(self, obj):
-        return strip_or_none(obj.get('long_description') or obj.get('short_description'))
+        return strip_or_none(obj.get('long_description')
+                             or obj.get('short_description'))
 
     def _parse_video_data(self, video):
         title = video['name']
@@ -49,66 +58,70 @@ class AsianCrushBaseIE(InfoExtractor):
                     partner_id, entry_id = mobj.groups()
                     break
 
-        meta_categories = try_get(video, lambda x: x['meta']['categories'], list) or []
-        categories = list(filter(None, [c.get('name') for c in meta_categories]))
+        meta_categories = try_get(
+            video, lambda x: x['meta']['categories'], list) or []
+        categories = list(filter(None, [c.get('name')
+                          for c in meta_categories]))
 
         show_info = video.get('show_info') or {}
 
         return {
             '_type': 'url_transparent',
-            'url': 'kaltura:%s:%s' % (partner_id, entry_id),
+            'url': 'kaltura:%s:%s' % (partner_id,
+                                      entry_id),
             'ie_key': KalturaIE.ie_key(),
             'id': entry_id,
             'title': title,
             'description': self._get_object_description(video),
-            'age_limit': parse_age_limit(video.get('mpaa_rating') or video.get('tv_rating')),
+            'age_limit': parse_age_limit(
+                video.get('mpaa_rating') or video.get('tv_rating')),
             'categories': categories,
             'series': show_info.get('show_name'),
-            'season_number': int_or_none(show_info.get('season_num')),
+            'season_number': int_or_none(
+                show_info.get('season_num')),
             'season_id': show_info.get('season_id'),
-            'episode_number': int_or_none(show_info.get('episode_num')),
+            'episode_number': int_or_none(
+                show_info.get('episode_num')),
         }
 
 
 class AsianCrushIE(AsianCrushBaseIE):
     _VALID_URL = r'%s/video/(?:[^/]+/)?0+(?P<id>\d+)v\b' % AsianCrushBaseIE._VALID_URL_BASE
-    _TESTS = [{
-        'url': 'https://www.asiancrush.com/video/004289v/women-who-flirt',
-        'md5': 'c3b740e48d0ba002a42c0b72857beae6',
-        'info_dict': {
-            'id': '1_y4tmjm5r',
-            'ext': 'mp4',
-            'title': 'Women Who Flirt',
-            'description': 'md5:b65c7e0ae03a85585476a62a186f924c',
-            'timestamp': 1496936429,
-            'upload_date': '20170608',
-            'uploader_id': 'craig@crifkin.com',
-            'age_limit': 13,
-            'categories': 'count:5',
-            'duration': 5812,
-        },
-    }, {
-        'url': 'https://www.asiancrush.com/video/she-was-pretty/011886v-pretty-episode-3/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.yuyutv.com/video/013886v/the-act-of-killing/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.yuyutv.com/video/peep-show/013922v-warring-factions/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.midnightpulp.com/video/010400v/drifters/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.midnightpulp.com/video/mononoke/016378v-zashikiwarashi-part-1/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.cocoro.tv/video/the-wonderful-wizard-of-oz/008878v-the-wonderful-wizard-of-oz-ep01/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.retrocrush.tv/video/true-tears/012328v-i...gave-away-my-tears',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.asiancrush.com/video/004289v/women-who-flirt',
+               'md5': 'c3b740e48d0ba002a42c0b72857beae6',
+               'info_dict': {'id': '1_y4tmjm5r',
+                             'ext': 'mp4',
+                             'title': 'Women Who Flirt',
+                             'description': 'md5:b65c7e0ae03a85585476a62a186f924c',
+                             'timestamp': 1496936429,
+                             'upload_date': '20170608',
+                             'uploader_id': 'craig@crifkin.com',
+                             'age_limit': 13,
+                             'categories': 'count:5',
+                             'duration': 5812,
+                             },
+               },
+              {'url': 'https://www.asiancrush.com/video/she-was-pretty/011886v-pretty-episode-3/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.yuyutv.com/video/013886v/the-act-of-killing/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.yuyutv.com/video/peep-show/013922v-warring-factions/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.midnightpulp.com/video/010400v/drifters/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.midnightpulp.com/video/mononoke/016378v-zashikiwarashi-part-1/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.cocoro.tv/video/the-wonderful-wizard-of-oz/008878v-the-wonderful-wizard-of-oz-ep01/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.retrocrush.tv/video/true-tears/012328v-i...gave-away-my-tears',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         host, video_id = re.match(self._VALID_URL, url).groups()
@@ -126,27 +139,25 @@ class AsianCrushIE(AsianCrushBaseIE):
 
 class AsianCrushPlaylistIE(AsianCrushBaseIE):
     _VALID_URL = r'%s/series/0+(?P<id>\d+)s\b' % AsianCrushBaseIE._VALID_URL_BASE
-    _TESTS = [{
-        'url': 'https://www.asiancrush.com/series/006447s/fruity-samurai',
-        'info_dict': {
-            'id': '6447',
-            'title': 'Fruity Samurai',
-            'description': 'md5:7535174487e4a202d3872a7fc8f2f154',
-        },
-        'playlist_count': 13,
-    }, {
-        'url': 'https://www.yuyutv.com/series/013920s/peep-show/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.midnightpulp.com/series/016375s/mononoke/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.cocoro.tv/series/008549s/the-wonderful-wizard-of-oz/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.retrocrush.tv/series/012355s/true-tears',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.asiancrush.com/series/006447s/fruity-samurai',
+               'info_dict': {'id': '6447',
+                             'title': 'Fruity Samurai',
+                             'description': 'md5:7535174487e4a202d3872a7fc8f2f154',
+                             },
+               'playlist_count': 13,
+               },
+              {'url': 'https://www.yuyutv.com/series/013920s/peep-show/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.midnightpulp.com/series/016375s/mononoke/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.cocoro.tv/series/008549s/the-wonderful-wizard-of-oz/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.retrocrush.tv/series/012355s/true-tears',
+               'only_matching': True,
+               }]
     _PAGE_SIZE = 1000000000
 
     def _fetch_page(self, domain, parent_id, page):
@@ -169,8 +180,8 @@ class AsianCrushPlaylistIE(AsianCrushBaseIE):
             entries = []
 
             for mobj in re.finditer(
-                    r'<a[^>]+href=(["\'])(?P<url>%s.*?)\1[^>]*>' % AsianCrushIE._VALID_URL,
-                    webpage):
+                r'<a[^>]+href=(["\'])(?P<url>%s.*?)\1[^>]*>' %
+                    AsianCrushIE._VALID_URL, webpage):
                 attrs = extract_attributes(mobj.group(0))
                 if attrs.get('class') == 'clearfix':
                     entries.append(self.url_result(

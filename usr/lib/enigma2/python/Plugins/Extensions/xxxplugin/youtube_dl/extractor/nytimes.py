@@ -24,11 +24,20 @@ class NYTimesBaseIE(InfoExtractor):
         # Authorization generation algorithm is reverse engineered from `signer` in
         # http://graphics8.nytimes.com/video/vhs/vhs-2.x.min.js
         path = '/svc/video/api/v3/video/' + video_id
-        hm = hmac.new(self._SECRET, (path + ':vhs').encode(), hashlib.sha512).hexdigest()
-        video_data = self._download_json('http://www.nytimes.com' + path, video_id, 'Downloading video JSON', headers={
-            'Authorization': 'NYTV ' + base64.b64encode(hm.encode()).decode(),
-            'X-NYTV': 'vhs',
-        }, fatal=False)
+        hm = hmac.new(
+            self._SECRET,
+            (path + ':vhs').encode(),
+            hashlib.sha512).hexdigest()
+        video_data = self._download_json(
+            'http://www.nytimes.com' + path,
+            video_id,
+            'Downloading video JSON',
+            headers={
+                'Authorization': 'NYTV ' + base64.b64encode(
+                    hm.encode()).decode(),
+                'X-NYTV': 'vhs',
+            },
+            fatal=False)
         if not video_data:
             video_data = self._download_json(
                 'http://www.nytimes.com/svc/video/api/v2/video/' + video_id,
@@ -52,7 +61,8 @@ class NYTimesBaseIE(InfoExtractor):
             if not video_url or format_id == 'thumbs' or video_url in urls:
                 continue
             urls.append(video_url)
-            ext = mimetype2ext(video.get('mimetype')) or determine_ext(video_url)
+            ext = mimetype2ext(
+                video.get('mimetype')) or determine_ext(video_url)
             if ext == 'm3u8':
                 formats.extend(self._extract_m3u8_formats(
                     video_url, video_id, 'mp4', 'm3u8_native',
@@ -72,7 +82,14 @@ class NYTimesBaseIE(InfoExtractor):
                     'tbr': int_or_none(video.get('bitrate'), 1000) or None,
                     'ext': ext,
                 })
-        self._sort_formats(formats, ('height', 'width', 'filesize', 'tbr', 'fps', 'format_id'))
+        self._sort_formats(
+            formats,
+            ('height',
+             'width',
+             'filesize',
+             'tbr',
+             'fps',
+             'format_id'))
 
         thumbnails = []
         for image in video_data.get('images', []):
@@ -86,7 +103,8 @@ class NYTimesBaseIE(InfoExtractor):
             })
 
         publication_date = video_data.get('publication_date')
-        timestamp = parse_iso8601(publication_date[:-8]) if publication_date else None
+        timestamp = parse_iso8601(
+            publication_date[:-8]) if publication_date else None
 
         return {
             'id': video_id,
@@ -129,48 +147,41 @@ class NYTimesIE(NYTimesBaseIE):
 
 class NYTimesArticleIE(NYTimesBaseIE):
     _VALID_URL = r'https?://(?:www\.)?nytimes\.com/(.(?<!video))*?/(?:[^/]+/)*(?P<id>[^.]+)(?:\.html)?'
-    _TESTS = [{
-        'url': 'http://www.nytimes.com/2015/04/14/business/owner-of-gravity-payments-a-credit-card-processor-is-setting-a-new-minimum-wage-70000-a-year.html?_r=0',
-        'md5': 'e2076d58b4da18e6a001d53fd56db3c9',
-        'info_dict': {
-            'id': '100000003628438',
-            'ext': 'mov',
-            'title': 'New Minimum Wage: $70,000 a Year',
-            'description': 'Dan Price, C.E.O. of Gravity Payments, surprised his 120-person staff by announcing that he planned over the next three years to raise the salary of every employee to $70,000 a year.',
-            'timestamp': 1429033037,
-            'upload_date': '20150414',
-            'uploader': 'Matthew Williams',
-        }
-    }, {
-        'url': 'http://www.nytimes.com/2016/10/14/podcasts/revelations-from-the-final-weeks.html',
-        'md5': 'e0d52040cafb07662acf3c9132db3575',
-        'info_dict': {
-            'id': '100000004709062',
-            'title': 'The Run-Up: ‘He Was Like an Octopus’',
-            'ext': 'mp3',
-            'description': 'md5:fb5c6b93b12efc51649b4847fe066ee4',
-            'series': 'The Run-Up',
-            'episode': '‘He Was Like an Octopus’',
-            'episode_number': 20,
-            'duration': 2130,
-        }
-    }, {
-        'url': 'http://www.nytimes.com/2016/10/16/books/review/inside-the-new-york-times-book-review-the-rise-of-hitler.html',
-        'info_dict': {
-            'id': '100000004709479',
-            'title': 'The Rise of Hitler',
-            'ext': 'mp3',
-            'description': 'md5:bce877fd9e3444990cb141875fab0028',
-            'creator': 'Pamela Paul',
-            'duration': 3475,
-        },
-        'params': {
-            'skip_download': True,
-        },
-    }, {
-        'url': 'http://www.nytimes.com/news/minute/2014/03/17/times-minute-whats-next-in-crimea/?_php=true&_type=blogs&_php=true&_type=blogs&_r=1',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.nytimes.com/2015/04/14/business/owner-of-gravity-payments-a-credit-card-processor-is-setting-a-new-minimum-wage-70000-a-year.html?_r=0',
+               'md5': 'e2076d58b4da18e6a001d53fd56db3c9',
+               'info_dict': {'id': '100000003628438',
+                             'ext': 'mov',
+                             'title': 'New Minimum Wage: $70,000 a Year',
+                             'description': 'Dan Price, C.E.O. of Gravity Payments, surprised his 120-person staff by announcing that he planned over the next three years to raise the salary of every employee to $70,000 a year.',
+                             'timestamp': 1429033037,
+                             'upload_date': '20150414',
+                             'uploader': 'Matthew Williams',
+                             }},
+              {'url': 'http://www.nytimes.com/2016/10/14/podcasts/revelations-from-the-final-weeks.html',
+               'md5': 'e0d52040cafb07662acf3c9132db3575',
+               'info_dict': {'id': '100000004709062',
+                             'title': 'The Run-Up: ‘He Was Like an Octopus’',
+                             'ext': 'mp3',
+                             'description': 'md5:fb5c6b93b12efc51649b4847fe066ee4',
+                             'series': 'The Run-Up',
+                             'episode': '‘He Was Like an Octopus’',
+                             'episode_number': 20,
+                             'duration': 2130,
+                             }},
+              {'url': 'http://www.nytimes.com/2016/10/16/books/review/inside-the-new-york-times-book-review-the-rise-of-hitler.html',
+               'info_dict': {'id': '100000004709479',
+                             'title': 'The Rise of Hitler',
+                             'ext': 'mp3',
+                             'description': 'md5:bce877fd9e3444990cb141875fab0028',
+                             'creator': 'Pamela Paul',
+                             'duration': 3475,
+                             },
+               'params': {'skip_download': True,
+                          },
+               },
+              {'url': 'http://www.nytimes.com/news/minute/2014/03/17/times-minute-whats-next-in-crimea/?_php=true&_type=blogs&_php=true&_type=blogs&_r=1',
+               'only_matching': True,
+               }]
 
     def _extract_podcast_from_json(self, json, page_id, webpage):
         podcast_audio = self._parse_json(

@@ -162,10 +162,16 @@ class DPlayIE(InfoExtractor):
             self.raise_geo_restricted(countries=geo_countries)
         elif error_code in ('access.denied.missingpackage', 'invalid.token'):
             raise ExtractorError(
-                'This video is only available for registered users. You may want to use --cookies.', expected=True)
+                'This video is only available for registered users. You may want to use --cookies.',
+                expected=True)
         raise ExtractorError(info['errors'][0]['detail'], expected=True)
 
-    def _update_disco_api_headers(self, headers, disco_base, display_id, realm):
+    def _update_disco_api_headers(
+            self,
+            headers,
+            disco_base,
+            display_id,
+            realm):
         headers['Authorization'] = 'Bearer ' + self._download_json(
             disco_base + 'token', display_id, 'Downloading token',
             query={
@@ -196,15 +202,16 @@ class DPlayIE(InfoExtractor):
         self._update_disco_api_headers(headers, disco_base, display_id, realm)
         try:
             video = self._download_json(
-                disco_base + 'content/videos/' + display_id, display_id,
-                headers=headers, query={
+                disco_base + 'content/videos/' + display_id,
+                display_id,
+                headers=headers,
+                query={
                     'fields[channel]': 'name',
                     'fields[image]': 'height,src,width',
                     'fields[show]': 'name',
                     'fields[tag]': 'name',
                     'fields[video]': 'description,episodeNumber,name,publishStart,seasonNumber,videoDuration',
-                    'include': 'images,primaryChannel,show,tags'
-                })
+                    'include': 'images,primaryChannel,show,tags'})
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 400:
                 self._process_errors(e, geo_countries)
@@ -290,14 +297,17 @@ class DPlayIE(InfoExtractor):
         mobj = re.match(self._VALID_URL, url)
         display_id = mobj.group('id')
         domain = mobj.group('domain').lstrip('www.')
-        country = mobj.group('country') or mobj.group('subdomain_country') or mobj.group('plus_country')
-        host = 'disco-api.' + domain if domain[0] == 'd' else 'eu2-prod.disco-api.com'
+        country = mobj.group('country') or mobj.group(
+            'subdomain_country') or mobj.group('plus_country')
+        host = 'disco-api.' + \
+            domain if domain[0] == 'd' else 'eu2-prod.disco-api.com'
         return self._get_disco_api_info(
             url, display_id, host, 'dplay' + country, country)
 
 
 class DiscoveryPlusIE(DPlayIE):
-    _VALID_URL = r'https?://(?:www\.)?discoveryplus\.com/video' + DPlayIE._PATH_REGEX
+    _VALID_URL = r'https?://(?:www\.)?discoveryplus\.com/video' + \
+        DPlayIE._PATH_REGEX
     _TESTS = [{
         'url': 'https://www.discoveryplus.com/video/property-brothers-forever-home/food-and-family',
         'info_dict': {
@@ -317,7 +327,12 @@ class DiscoveryPlusIE(DPlayIE):
         'skip': 'Available for Premium users',
     }]
 
-    def _update_disco_api_headers(self, headers, disco_base, display_id, realm):
+    def _update_disco_api_headers(
+            self,
+            headers,
+            disco_base,
+            display_id,
+            realm):
         headers['x-disco-client'] = 'WEB:UNKNOWN:dplus_us:15.0.0'
 
     def _download_video_playback_info(self, disco_base, video_id, headers):

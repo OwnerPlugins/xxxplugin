@@ -29,13 +29,10 @@ class CNBCIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         return {
-            '_type': 'url_transparent',
-            'ie_key': 'ThePlatform',
-            'url': smuggle_url(
-                'http://link.theplatform.com/s/gZWlPC/media/guid/2408950221/%s?mbr=true&manifest=m3u' % video_id,
-                {'force_smil_url': True}),
-            'id': video_id,
-        }
+            '_type': 'url_transparent', 'ie_key': 'ThePlatform', 'url': smuggle_url(
+                'http://link.theplatform.com/s/gZWlPC/media/guid/2408950221/%s?mbr=true&manifest=m3u' %
+                video_id, {
+                    'force_smil_url': True}), 'id': video_id, }
 
 
 class CNBCVideoIE(InfoExtractor):

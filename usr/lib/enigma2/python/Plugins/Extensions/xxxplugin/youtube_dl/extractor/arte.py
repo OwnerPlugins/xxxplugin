@@ -61,16 +61,20 @@ class ArteTVIE(ArteTVBaseIE):
         vsr = try_get(player_info, lambda x: x['VSR'], dict)
         if not vsr:
             error = None
-            if try_get(player_info, lambda x: x['custom_msg']['type']) == 'error':
+            if try_get(
+                    player_info,
+                    lambda x: x['custom_msg']['type']) == 'error':
                 error = try_get(
                     player_info, lambda x: x['custom_msg']['msg'], compat_str)
             if not error:
-                error = 'Video %s is not available' % player_info.get('VID') or video_id
+                error = 'Video %s is not available' % player_info.get(
+                    'VID') or video_id
             raise ExtractorError(error, expected=True)
 
         upload_date_str = player_info.get('shootingDate')
         if not upload_date_str:
-            upload_date_str = (player_info.get('VRA') or player_info.get('VDA') or '').split(' ')[0]
+            upload_date_str = (player_info.get(
+                'VRA') or player_info.get('VDA') or '').split(' ')[0]
 
         title = (player_info.get('VTI') or player_info['VID']).strip()
         subtitle = player_info.get('VSU', '').strip()
@@ -106,29 +110,41 @@ class ArteTVIE(ArteTVBaseIE):
             PREFERENCES = (
                 # original version in requested language, without subtitles
                 r'VO{0}$'.format(l),
-                # original version in requested language, with partial subtitles in requested language
+                # original version in requested language, with partial
+                # subtitles in requested language
                 r'VO{0}-ST{0}$'.format(l),
-                # original version in requested language, with subtitles for the deaf and hard-of-hearing in requested language
+                # original version in requested language, with subtitles for
+                # the deaf and hard-of-hearing in requested language
                 r'VO{0}-STM{0}$'.format(l),
-                # non-original (dubbed) version in requested language, without subtitles
+                # non-original (dubbed) version in requested language, without
+                # subtitles
                 r'V{0}$'.format(l),
-                # non-original (dubbed) version in requested language, with subtitles partial subtitles in requested language
+                # non-original (dubbed) version in requested language, with
+                # subtitles partial subtitles in requested language
                 r'V{0}-ST{0}$'.format(l),
-                # non-original (dubbed) version in requested language, with subtitles for the deaf and hard-of-hearing in requested language
+                # non-original (dubbed) version in requested language, with
+                # subtitles for the deaf and hard-of-hearing in requested
+                # language
                 r'V{0}-STM{0}$'.format(l),
-                # original version in requested language, with partial subtitles in different language
+                # original version in requested language, with partial
+                # subtitles in different language
                 r'VO{0}-ST(?!{0}).+?$'.format(l),
-                # original version in requested language, with subtitles for the deaf and hard-of-hearing in different language
+                # original version in requested language, with subtitles for
+                # the deaf and hard-of-hearing in different language
                 r'VO{0}-STM(?!{0}).+?$'.format(l),
-                # original version in different language, with partial subtitles in requested language
+                # original version in different language, with partial
+                # subtitles in requested language
                 r'VO(?:(?!{0}).+?)?-ST{0}$'.format(l),
-                # original version in different language, with subtitles for the deaf and hard-of-hearing in requested language
+                # original version in different language, with subtitles for
+                # the deaf and hard-of-hearing in requested language
                 r'VO(?:(?!{0}).+?)?-STM{0}$'.format(l),
                 # original version in different language, without subtitles
                 r'VO(?:(?!{0}))?$'.format(l),
-                # original version in different language, with partial subtitles in different language
+                # original version in different language, with partial
+                # subtitles in different language
                 r'VO(?:(?!{0}).+?)?-ST(?!{0}).+?$'.format(l),
-                # original version in different language, with subtitles for the deaf and hard-of-hearing in different language
+                # original version in different language, with subtitles for
+                # the deaf and hard-of-hearing in different language
                 r'VO(?:(?!{0}).+?)?-STM(?!{0}).+?$'.format(l),
             )
 
@@ -176,7 +192,9 @@ class ArteTVIE(ArteTVBaseIE):
             'title': title,
             'description': player_info.get('VDE'),
             'upload_date': unified_strdate(upload_date_str),
-            'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),
+            'thumbnail': player_info.get('programImage') or player_info.get(
+                'VTU',
+                {}).get('IUR'),
             'formats': formats,
         }
 
@@ -199,9 +217,11 @@ class ArteTVEmbedIE(InfoExtractor):
 
     @staticmethod
     def _extract_urls(webpage):
-        return [url for _, url in re.findall(
-            r'<(?:iframe|script)[^>]+src=(["\'])(?P<url>(?:https?:)?//(?:www\.)?arte\.tv/player/v\d+/index\.php\?.*?\bjson_url=.+?)\1',
-            webpage)]
+        return [
+            url for _,
+            url in re.findall(
+                r'<(?:iframe|script)[^>]+src=(["\'])(?P<url>(?:https?:)?//(?:www\.)?arte\.tv/player/v\d+/index\.php\?.*?\bjson_url=.+?)\1',
+                webpage)]
 
     def _real_extract(self, url):
         qs = compat_urlparse.parse_qs(compat_urlparse.urlparse(url).query)
@@ -235,7 +255,9 @@ class ArteTVPlaylistIE(ArteTVBaseIE):
         for video in collection['videos']:
             if not isinstance(video, dict):
                 continue
-            video_url = url_or_none(video.get('url')) or url_or_none(video.get('jsonUrl'))
+            video_url = url_or_none(
+                video.get('url')) or url_or_none(
+                video.get('jsonUrl'))
             if not video_url:
                 continue
             video_id = video.get('programId')
@@ -251,7 +273,8 @@ class ArteTVPlaylistIE(ArteTVBaseIE):
                 'ie_key': ArteTVIE.ie_key(),
             })
         title = collection.get('title')
-        description = collection.get('shortDescription') or collection.get('teaserText')
+        description = collection.get(
+            'shortDescription') or collection.get('teaserText')
         return self.playlist_result(entries, playlist_id, title, description)
 
 
@@ -280,22 +303,32 @@ class ArteTVCategoryIE(ArteTVBaseIE):
 
         items = []
         for video in re.finditer(
-                r'<a\b[^>]*?href\s*=\s*(?P<q>"|\'|\b)(?P<url>https?://www\.arte\.tv/%s/videos/[\w/-]+)(?P=q)' % lang,
+            r'<a\b[^>]*?href\s*=\s*(?P<q>"|\'|\b)(?P<url>https?://www\.arte\.tv/%s/videos/[\w/-]+)(?P=q)' %
+            lang,
                 webpage):
             video = video.group('url')
             if video == url:
                 continue
-            if any(ie.suitable(video) for ie in (ArteTVIE, ArteTVPlaylistIE, )):
+            if any(ie.suitable(video)
+                   for ie in (ArteTVIE, ArteTVPlaylistIE, )):
                 items.append(video)
 
         if items:
-            title = (self._og_search_title(webpage, default=None)
-                     or self._html_search_regex(r'<title\b[^>]*>([^<]+)</title>', default=None))
-            title = strip_or_none(title.rsplit('|', 1)[0]) or self._generic_title(url)
+            title = (
+                self._og_search_title(
+                    webpage,
+                    default=None) or self._html_search_regex(
+                    r'<title\b[^>]*>([^<]+)</title>',
+                    default=None))
+            title = strip_or_none(
+                title.rsplit(
+                    '|', 1)[0]) or self._generic_title(url)
 
-            result = self.playlist_from_matches(items, playlist_id=playlist_id, playlist_title=title)
+            result = self.playlist_from_matches(
+                items, playlist_id=playlist_id, playlist_title=title)
             if result:
-                description = self._og_search_description(webpage, default=None)
+                description = self._og_search_description(
+                    webpage, default=None)
                 if description:
                     result['description'] = description
                 return result

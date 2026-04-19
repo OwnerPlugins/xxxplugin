@@ -47,14 +47,18 @@ class TriluliluIE(InfoExtractor):
 
     def _real_extract(self, url):
         display_id = self._match_id(url)
-        media_info = self._download_json('http://m.trilulilu.ro/%s?format=json' % display_id, display_id)
+        media_info = self._download_json(
+            'http://m.trilulilu.ro/%s?format=json' %
+            display_id, display_id)
 
         age_limit = 0
         errors = media_info.get('errors', {})
         if errors.get('friends'):
             raise ExtractorError('This video is private.', expected=True)
         elif errors.get('geoblock'):
-            raise ExtractorError('This video is not available in your country.', expected=True)
+            raise ExtractorError(
+                'This video is not available in your country.',
+                expected=True)
         elif errors.get('xxx_unlogged'):
             age_limit = 18
 

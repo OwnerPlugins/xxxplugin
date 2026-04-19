@@ -31,8 +31,11 @@ class FileMoonIE(InfoExtractor):
         unpacked = decode_packed_codes(packed)
         jwplayer_sources = self._parse_json(
             self._search_regex(
-                r'(?s)player\s*\.\s*setup\s*\(\s*\{\s*sources\s*:\s*(.*?])', unpacked, 'jwplayer sources'),
-            video_id, transform_source=js_to_json)
+                r'(?s)player\s*\.\s*setup\s*\(\s*\{\s*sources\s*:\s*(.*?])',
+                unpacked,
+                'jwplayer sources'),
+            video_id,
+            transform_source=js_to_json)
 
         formats = self._parse_jwplayer_formats(jwplayer_sources, video_id)
 

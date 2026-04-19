@@ -21,8 +21,7 @@ class StanfordOpenClassroomIE(InfoExtractor):
             'id': 'PracticalUnix_intro-environment',
             'ext': 'mp4',
             'title': 'Intro Environment',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -66,10 +65,14 @@ class StanfordOpenClassroomIE(InfoExtractor):
                 r'(?s)<description>([^<]+)</description>',
                 coursepage, 'description', fatal=False)
 
-            links = orderedSet(re.findall(r'<a href="(VideoPage\.php\?[^"]+)">', coursepage))
-            info['entries'] = [self.url_result(
-                'http://openclassroom.stanford.edu/MainFolder/%s' % unescapeHTML(l)
-            ) for l in links]
+            links = orderedSet(
+                re.findall(
+                    r'<a href="(VideoPage\.php\?[^"]+)">',
+                    coursepage))
+            info['entries'] = [
+                self.url_result(
+                    'http://openclassroom.stanford.edu/MainFolder/%s' %
+                    unescapeHTML(l)) for l in links]
             return info
         else:  # Root page
             info = {
@@ -81,11 +84,15 @@ class StanfordOpenClassroomIE(InfoExtractor):
             info['title'] = info['id']
 
             rootURL = 'http://openclassroom.stanford.edu/MainFolder/HomePage.php'
-            rootpage = self._download_webpage(rootURL, info['id'],
-                                              errnote='Unable to download course info page')
+            rootpage = self._download_webpage(
+                rootURL, info['id'], errnote='Unable to download course info page')
 
-            links = orderedSet(re.findall(r'<a href="(CoursePage\.php\?[^"]+)">', rootpage))
-            info['entries'] = [self.url_result(
-                'http://openclassroom.stanford.edu/MainFolder/%s' % unescapeHTML(l)
-            ) for l in links]
+            links = orderedSet(
+                re.findall(
+                    r'<a href="(CoursePage\.php\?[^"]+)">',
+                    rootpage))
+            info['entries'] = [
+                self.url_result(
+                    'http://openclassroom.stanford.edu/MainFolder/%s' %
+                    unescapeHTML(l)) for l in links]
             return info

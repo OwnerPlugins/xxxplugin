@@ -59,7 +59,8 @@ class WebOfStoriesIE(InfoExtractor):
 
         webpage = self._download_webpage(url, video_id)
         # Sometimes og:title meta is malformed
-        title = self._og_search_title(webpage, default=None) or self._html_search_regex(
+        title = self._og_search_title(
+            webpage, default=None) or self._html_search_regex(
             r'(?s)<strong>Title:\s*</strong>(.+?)<', webpage, 'title')
         description = self._html_search_meta('description', webpage)
         thumbnail = self._og_search_thumbnail(webpage)
@@ -137,10 +138,13 @@ class WebOfStoriesPlaylistIE(InfoExtractor):
 
         entries = [
             self.url_result(
-                'http://www.webofstories.com/play/%s' % video_id,
-                'WebOfStories', video_id=video_id)
-            for video_id in orderedSet(re.findall(r'\bid=["\']td_(\d+)', webpage))
-        ]
+                'http://www.webofstories.com/play/%s' %
+                video_id,
+                'WebOfStories',
+                video_id=video_id) for video_id in orderedSet(
+                re.findall(
+                    r'\bid=["\']td_(\d+)',
+                    webpage))]
 
         title = self._search_regex(
             r'<div id="speakerName">\s*<span>([^<]+)</span>',

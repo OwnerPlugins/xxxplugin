@@ -92,7 +92,9 @@ class FranceTVIE(InfoExtractor):
         # it if available.
         info = self._download_json(
             'https://sivideo.webservices.francetelevisions.fr/tools/getInfosOeuvre/v2/',
-            video_id, 'Downloading video JSON', query={
+            video_id,
+            'Downloading video JSON',
+            query={
                 'idDiffusion': video_id,
                 'catalogue': catalogue or '',
             })
@@ -141,11 +143,10 @@ class FranceTVIE(InfoExtractor):
         if not videos:
             for device_type in ['desktop', 'mobile']:
                 fallback_info = self._download_json(
-                    'https://player.webservices.francetelevisions.fr/v1/videos/%s' % video_id,
-                    video_id, 'Downloading fallback %s video JSON' % device_type, query={
-                        'device_type': device_type,
-                        'browser': 'chrome',
-                    }, fatal=False)
+                    'https://player.webservices.francetelevisions.fr/v1/videos/%s' %
+                    video_id, video_id, 'Downloading fallback %s video JSON' %
+                    device_type, query={
+                        'device_type': device_type, 'browser': 'chrome', }, fatal=False)
 
                 if fallback_info and fallback_info.get('video'):
                     videos.append(fallback_info['video'])
@@ -167,17 +168,29 @@ class FranceTVIE(InfoExtractor):
                     # See https://github.com/ytdl-org/youtube-dl/issues/3963
                     # m3u8 urls work fine
                     continue
-                formats.extend(self._extract_f4m_formats(
-                    sign(video_url, format_id) + '&hdcore=3.7.0&plugin=aasp-3.7.0.39.44',
-                    video_id, f4m_id=format_id, fatal=False))
+                formats.extend(
+                    self._extract_f4m_formats(
+                        sign(
+                            video_url,
+                            format_id) +
+                        '&hdcore=3.7.0&plugin=aasp-3.7.0.39.44',
+                        video_id,
+                        f4m_id=format_id,
+                        fatal=False))
             elif ext == 'm3u8':
                 formats.extend(self._extract_m3u8_formats(
                     sign(video_url, format_id), video_id, 'mp4',
                     entry_protocol='m3u8_native', m3u8_id=format_id,
                     fatal=False))
             elif ext == 'mpd':
-                formats.extend(self._extract_mpd_formats(
-                    sign(video_url, format_id), video_id, mpd_id=format_id, fatal=False))
+                formats.extend(
+                    self._extract_mpd_formats(
+                        sign(
+                            video_url,
+                            format_id),
+                        video_id,
+                        mpd_id=format_id,
+                        fatal=False))
             elif video_url.startswith('rtmp'):
                 formats.append({
                     'url': video_url,
@@ -210,10 +223,18 @@ class FranceTVIE(InfoExtractor):
         return {
             'id': video_id,
             'title': self._live_title(title) if is_live else title,
-            'description': clean_html(info.get('synopsis')),
-            'thumbnail': urljoin('https://sivideo.webservices.francetelevisions.fr', info.get('image')),
-            'duration': int_or_none(info.get('real_duration')) or parse_duration(info.get('duree')),
-            'timestamp': int_or_none(try_get(info, lambda x: x['diffusion']['timestamp'])),
+            'description': clean_html(
+                info.get('synopsis')),
+            'thumbnail': urljoin(
+                'https://sivideo.webservices.francetelevisions.fr',
+                info.get('image')),
+            'duration': int_or_none(
+                info.get('real_duration')) or parse_duration(
+                    info.get('duree')),
+            'timestamp': int_or_none(
+                try_get(
+                    info,
+                    lambda x: x['diffusion']['timestamp'])),
             'is_live': is_live,
             'formats': formats,
             'subtitles': subtitles,
@@ -330,8 +351,8 @@ class FranceTVEmbedIE(FranceTVBaseInfoExtractor):
         video_id = self._match_id(url)
 
         video = self._download_json(
-            'http://api-embed.webservices.francetelevisions.fr/key/%s' % video_id,
-            video_id)
+            'http://api-embed.webservices.francetelevisions.fr/key/%s' %
+            video_id, video_id)
 
         return self._make_url_result(video['video_id'], video.get('catalog'))
 
@@ -431,7 +452,8 @@ class FranceTVInfoSportIE(FranceTVBaseInfoExtractor):
     def _real_extract(self, url):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
-        video_id = self._search_regex(r'data-video="([^"]+)"', webpage, 'video_id')
+        video_id = self._search_regex(
+            r'data-video="([^"]+)"', webpage, 'video_id')
         return self._make_url_result(video_id, 'Sport-web')
 
 

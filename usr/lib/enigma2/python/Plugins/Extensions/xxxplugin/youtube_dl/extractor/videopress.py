@@ -45,8 +45,8 @@ class VideoPressIE(InfoExtractor):
     @staticmethod
     def _extract_urls(webpage):
         return re.findall(
-            r'<iframe[^>]+src=["\']((?:https?://)?%s%s)' % (VideoPressIE._PATH_REGEX, VideoPressIE._ID_REGEX),
-            webpage)
+            r'<iframe[^>]+src=["\']((?:https?://)?%s%s)' %
+            (VideoPressIE._PATH_REGEX, VideoPressIE._ID_REGEX), webpage)
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

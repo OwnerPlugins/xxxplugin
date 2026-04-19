@@ -66,15 +66,16 @@ class AMCNetworksIE(ThePlatformIE):
         site, display_id = re.match(self._VALID_URL, url).groups()
         requestor_id = self._REQUESTOR_ID_MAP[site]
         properties = self._download_json(
-            'https://content-delivery-gw.svc.ds.amcn.com/api/v2/content/amcn/%s/url/%s' % (requestor_id.lower(), display_id),
-            display_id)['data']['properties']
+            'https://content-delivery-gw.svc.ds.amcn.com/api/v2/content/amcn/%s/url/%s' %
+            (requestor_id.lower(), display_id), display_id)['data']['properties']
         query = {
             'mbr': 'true',
             'manifest': 'm3u',
         }
         tp_path = 'M_UwQC/media/' + properties['videoPid']
         media_url = 'https://link.theplatform.com/s/' + tp_path
-        theplatform_metadata = self._download_theplatform_metadata(tp_path, display_id)
+        theplatform_metadata = self._download_theplatform_metadata(
+            tp_path, display_id)
         info = self._parse_theplatform_metadata(theplatform_metadata)
         video_id = theplatform_metadata['pid']
         title = theplatform_metadata['title']

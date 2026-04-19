@@ -155,10 +155,11 @@ class NewgroundsPlaylistIE(InfoExtractor):
 
         entries = []
         for a, path, media_id in re.findall(
-                r'(<a[^>]+\bhref=["\']/?((?:portal/view|audio/listen)/(\d+))[^>]+>)',
-                webpage):
+                r'(<a[^>]+\bhref=["\']/?((?:portal/view|audio/listen)/(\d+))[^>]+>)', webpage):
             a_class = extract_attributes(a).get('class')
-            if a_class not in ('item-portalsubmission', 'item-audiosubmission'):
+            if a_class not in (
+                'item-portalsubmission',
+                    'item-audiosubmission'):
                 continue
             entries.append(
                 self.url_result(

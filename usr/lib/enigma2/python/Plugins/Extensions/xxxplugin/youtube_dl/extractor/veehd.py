@@ -59,7 +59,9 @@ class VeeHDIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         if 'This video has been removed<' in webpage:
-            raise ExtractorError('Video %s has been removed' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s has been removed' %
+                video_id, expected=True)
 
         player_path = self._search_regex(
             r'\$\("#playeriframe"\).attr\({src : "(.+?)"',
@@ -73,7 +75,10 @@ class VeeHDIE(InfoExtractor):
         video_url = None
 
         config_json = self._search_regex(
-            r'value=\'config=({.+?})\'', player_page, 'config json', default=None)
+            r'value=\'config=({.+?})\'',
+            player_page,
+            'config json',
+            default=None)
 
         if config_json:
             config = json.loads(config_json)
@@ -89,14 +94,18 @@ class VeeHDIE(InfoExtractor):
                 r'<iframe[^>]+src="/?([^"]+)"', player_page, 'iframe url')
             iframe_url = 'http://veehd.com/%s' % iframe_src
 
-            self._download_webpage(iframe_url, video_id, 'Requesting iframe page')
+            self._download_webpage(
+                iframe_url, video_id, 'Requesting iframe page')
             iframe_page = self._download_webpage(
                 iframe_url, video_id, 'Downloading iframe page')
 
             video_url = self._search_regex(
                 r"file\s*:\s*'([^']+)'", iframe_page, 'video url')
 
-        title = clean_html(get_element_by_id('videoName', webpage).rpartition('|')[0])
+        title = clean_html(
+            get_element_by_id(
+                'videoName',
+                webpage).rpartition('|')[0])
         uploader_id = self._html_search_regex(
             r'<a href="/profile/\d+">(.+?)</a>',
             webpage, 'uploader')

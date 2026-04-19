@@ -34,8 +34,8 @@ class PyvideoIE(InfoExtractor):
         entries = []
 
         data = self._download_json(
-            'https://raw.githubusercontent.com/pyvideo/data/master/%s/videos/%s.json'
-            % (category, video_id), video_id, fatal=False)
+            'https://raw.githubusercontent.com/pyvideo/data/master/%s/videos/%s.json' %
+            (category, video_id), video_id, fatal=False)
 
         if data:
             for video in data['videos']:
@@ -60,7 +60,9 @@ class PyvideoIE(InfoExtractor):
             for m in re.finditer(
                     r'<a[^>]+href=(["\'])(?P<url>http.+?)\1', media_urls):
                 media_url = m.group('url')
-                if re.match(r'https?://www\.youtube\.com/watch\?v=.*', media_url):
+                if re.match(
+                    r'https?://www\.youtube\.com/watch\?v=.*',
+                        media_url):
                     entries.append(self.url_result(media_url, 'Youtube'))
                 else:
                     entries.append({

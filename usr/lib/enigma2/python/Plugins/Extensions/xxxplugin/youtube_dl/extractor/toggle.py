@@ -111,13 +111,16 @@ class ToggleIE(InfoExtractor):
 
         info = self._download_json(
             'http://tvpapi.as.tvinci.com/v2_9/gateways/jsonpostgw.aspx?m=GetMediaInfo',
-            video_id, 'Downloading video info json', data=json.dumps(params).encode('utf-8'))
+            video_id,
+            'Downloading video info json',
+            data=json.dumps(params).encode('utf-8'))
 
         title = info['MediaName']
 
         formats = []
         for video_file in info.get('Files', []):
-            video_url, vid_format = video_file.get('URL'), video_file.get('Format')
+            video_url, vid_format = video_file.get(
+                'URL'), video_file.get('Format')
             if not video_url or video_url == 'NA' or not vid_format:
                 continue
             ext = determine_ext(video_url)
@@ -125,9 +128,14 @@ class ToggleIE(InfoExtractor):
             # if geo-restricted, m3u8 is inaccessible, but mp4 is okay
             if ext == 'm3u8':
                 m3u8_formats = self._extract_m3u8_formats(
-                    video_url, video_id, ext='mp4', m3u8_id=vid_format,
-                    note='Downloading %s m3u8 information' % vid_format,
-                    errnote='Failed to download %s m3u8 information' % vid_format,
+                    video_url,
+                    video_id,
+                    ext='mp4',
+                    m3u8_id=vid_format,
+                    note='Downloading %s m3u8 information' %
+                    vid_format,
+                    errnote='Failed to download %s m3u8 information' %
+                    vid_format,
                     fatal=False)
                 for f in m3u8_formats:
                     # Apple FairPlay Streaming
@@ -154,7 +162,8 @@ class ToggleIE(InfoExtractor):
                 })
         if not formats:
             for meta in (info.get('Metas') or []):
-                if meta.get('Key') == 'Encryption' and meta.get('Value') == '1':
+                if meta.get('Key') == 'Encryption' and meta.get(
+                        'Value') == '1':
                     raise ExtractorError(
                         'This video is DRM protected.', expected=True)
             # Most likely because geo-blocked
@@ -182,7 +191,11 @@ class ToggleIE(InfoExtractor):
 
         def counter(prefix):
             return int_or_none(
-                info.get(prefix + 'Counter') or info.get(prefix.lower() + '_counter'))
+                info.get(
+                    prefix +
+                    'Counter') or info.get(
+                    prefix.lower() +
+                    '_counter'))
 
         return {
             'id': video_id,
@@ -201,29 +214,26 @@ class ToggleIE(InfoExtractor):
 class MeWatchIE(InfoExtractor):
     IE_NAME = 'mewatch'
     _VALID_URL = r'https?://(?:(?:www|live)\.)?mewatch\.sg/watch/[^/?#&]+-(?P<id>[0-9]+)'
-    _TESTS = [{
-        'url': 'https://www.mewatch.sg/watch/Recipe-Of-Life-E1-179371',
-        'info_dict': {
-            'id': '1008625',
-            'ext': 'mp4',
-            'title': 'Recipe Of Life 味之道',
-            'timestamp': 1603306526,
-            'description': 'md5:6e88cde8af2068444fc8e1bc3ebf257c',
-            'upload_date': '20201021',
-        },
-        'params': {
-            'skip_download': 'm3u8 download',
-        },
-    }, {
-        'url': 'https://www.mewatch.sg/watch/Little-Red-Dot-Detectives-S2-搜密。打卡。小红点-S2-E1-176232',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.mewatch.sg/watch/Little-Red-Dot-Detectives-S2-%E6%90%9C%E5%AF%86%E3%80%82%E6%89%93%E5%8D%A1%E3%80%82%E5%B0%8F%E7%BA%A2%E7%82%B9-S2-E1-176232',
-        'only_matching': True,
-    }, {
-        'url': 'https://live.mewatch.sg/watch/Recipe-Of-Life-E41-189759',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.mewatch.sg/watch/Recipe-Of-Life-E1-179371',
+               'info_dict': {'id': '1008625',
+                             'ext': 'mp4',
+                             'title': 'Recipe Of Life 味之道',
+                             'timestamp': 1603306526,
+                             'description': 'md5:6e88cde8af2068444fc8e1bc3ebf257c',
+                             'upload_date': '20201021',
+                             },
+               'params': {'skip_download': 'm3u8 download',
+                          },
+               },
+              {'url': 'https://www.mewatch.sg/watch/Little-Red-Dot-Detectives-S2-搜密。打卡。小红点-S2-E1-176232',
+               'only_matching': True,
+               },
+              {'url': 'https://www.mewatch.sg/watch/Little-Red-Dot-Detectives-S2-%E6%90%9C%E5%AF%86%E3%80%82%E6%89%93%E5%8D%A1%E3%80%82%E5%B0%8F%E7%BA%A2%E7%82%B9-S2-E1-176232',
+               'only_matching': True,
+               },
+              {'url': 'https://live.mewatch.sg/watch/Recipe-Of-Life-E41-189759',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         item_id = self._match_id(url)

@@ -86,8 +86,8 @@ class ViewLiftEmbedIE(ViewLiftBaseIE):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//(?:embed\.)?(?:%s)/embed/player.+?)\1' % ViewLiftBaseIE._DOMAINS_REGEX,
-            webpage)
+            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//(?:embed\.)?(?:%s)/embed/player.+?)\1' %
+            ViewLiftBaseIE._DOMAINS_REGEX, webpage)
         if mobj:
             return mobj.group('url')
 
@@ -103,7 +103,8 @@ class ViewLiftEmbedIE(ViewLiftBaseIE):
                 })['video']
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
-                error_message = self._parse_json(e.cause.read().decode(), film_id).get('errorMessage')
+                error_message = self._parse_json(
+                    e.cause.read().decode(), film_id).get('errorMessage')
                 if error_message == 'User does not have a valid subscription or has not purchased this content.':
                     self.raise_login_required()
                 raise ExtractorError(error_message, expected=True)
@@ -132,8 +133,14 @@ class ViewLiftEmbedIE(ViewLiftBaseIE):
 
         hls_url = video_assets.get('hls')
         if hls_url:
-            formats.extend(self._extract_m3u8_formats(
-                hls_url, film_id, 'mp4', 'm3u8_native', m3u8_id='hls', fatal=False))
+            formats.extend(
+                self._extract_m3u8_formats(
+                    hls_url,
+                    film_id,
+                    'mp4',
+                    'm3u8_native',
+                    m3u8_id='hls',
+                    fatal=False))
         self._sort_formats(formats, ('height', 'tbr', 'format_id'))
 
         info = {
@@ -147,7 +154,8 @@ class ViewLiftEmbedIE(ViewLiftBaseIE):
             'formats': formats,
         }
         for k in ('categories', 'tags'):
-            info[k] = [v['title'] for v in content_data.get(k, []) if v.get('title')]
+            info[k] = [v['title']
+                       for v in content_data.get(k, []) if v.get('title')]
         return info
 
 
@@ -226,7 +234,8 @@ class ViewLiftIE(ViewLiftBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if ViewLiftEmbedIE.suitable(url) else super(ViewLiftIE, cls).suitable(url)
+        return False if ViewLiftEmbedIE.suitable(
+            url) else super(ViewLiftIE, cls).suitable(url)
 
     def _real_extract(self, url):
         domain, path, display_id = re.match(self._VALID_URL, url).groups()
@@ -240,7 +249,8 @@ class ViewLiftIE(ViewLiftBaseIE):
                 'path': path,
                 'site': site,
             })['modules']
-        film_id = next(m['contentData'][0]['gist']['id'] for m in modules if m.get('moduleType') == 'VideoDetailModule')
+        film_id = next(m['contentData'][0]['gist']['id']
+                       for m in modules if m.get('moduleType') == 'VideoDetailModule')
         return {
             '_type': 'url_transparent',
             'url': 'http://%s/embed/player?filmId=%s' % (domain, film_id),

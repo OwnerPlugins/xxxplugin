@@ -58,7 +58,8 @@ class IqiyiSDK(object):
 
     def mod(self, modulus):
         chunks, ip = self.preprocess(32)
-        self.target = chunks[0] + ''.join(map(lambda p: compat_str(p % modulus), ip))
+        self.target = chunks[0] + \
+            ''.join(map(lambda p: compat_str(p % modulus), ip))
 
     def split(self, chunksize):
         modulus_map = {
@@ -70,7 +71,8 @@ class IqiyiSDK(object):
         chunks, ip = self.preprocess(chunksize)
         ret = ''
         for i in range(len(chunks)):
-            ip_part = compat_str(ip[i] % modulus_map[chunksize]) if i < 4 else ''
+            ip_part = compat_str(ip[i] %
+                                 modulus_map[chunksize]) if i < 4 else ''
             if chunksize == 8:
                 ret += ip_part + chunks[i]
             else:
@@ -79,7 +81,8 @@ class IqiyiSDK(object):
 
     def handle_input16(self):
         self.target = md5_text(self.target)
-        self.target = self.split_sum(self.target[:16]) + self.target + self.split_sum(self.target[16:])
+        self.target = self.split_sum(
+            self.target[:16]) + self.target + self.split_sum(self.target[16:])
 
     def handle_input8(self):
         self.target = md5_text(self.target)
@@ -113,11 +116,13 @@ class IqiyiSDK(object):
 
     def split_ip_time_sum(self):
         chunks, ip = self.preprocess(32)
-        self.target = compat_str(sum(ip)) + chunks[0] + self.digit_sum(self.timestamp)
+        self.target = compat_str(sum(ip)) + \
+            chunks[0] + self.digit_sum(self.timestamp)
 
     def split_time_ip_sum(self):
         chunks, ip = self.preprocess(32)
-        self.target = self.digit_sum(self.timestamp) + chunks[0] + compat_str(sum(ip))
+        self.target = self.digit_sum(
+            self.timestamp) + chunks[0] + compat_str(sum(ip))
 
 
 class IqiyiSDKInterpreter(object):
@@ -232,7 +237,8 @@ class IqiyiIE(InfoExtractor):
 
     @staticmethod
     def _rsa_fun(data):
-        # public key extracted from http://static.iqiyi.com/js/qiyiV2/20160129180840/jobs/i18n/i18nIndex.js
+        # public key extracted from
+        # http://static.iqiyi.com/js/qiyiV2/20160129180840/jobs/i18n/i18nIndex.js
         N = 0xab86b6371b5318aaa1d3c9e612a9f1264f372323c8c0f19875b5fc3b3fd3afcc1e5bec527aa94bfa85bffc157e4245aebda05389a5357b75115ac94f074aefcd
         e = 65537
 
@@ -246,8 +252,10 @@ class IqiyiIE(InfoExtractor):
             return True
 
         data = self._download_json(
-            'http://kylin.iqiyi.com/get_token', None,
-            note='Get token for logging', errnote='Unable to get token for logging')
+            'http://kylin.iqiyi.com/get_token',
+            None,
+            note='Get token for logging',
+            errnote='Unable to get token for logging')
         sdk = data['sdk']
         timestamp = int(time.time())
         target = '/apis/reglogin/login.action?lang=zh_TW&area_code=null&email=%s&passwd=%s&agenttype=1&from=undefined&keeplogin=0&piccode=&fromurl=&_pos=1' % (
@@ -265,8 +273,11 @@ class IqiyiIE(InfoExtractor):
             'bird_t': timestamp,
         }
         validation_result = self._download_json(
-            'http://kylin.iqiyi.com/validate?' + compat_urllib_parse_urlencode(validation_params), None,
-            note='Validate credentials', errnote='Unable to validate credentials')
+            'http://kylin.iqiyi.com/validate?' +
+            compat_urllib_parse_urlencode(validation_params),
+            None,
+            note='Validate credentials',
+            errnote='Unable to validate credentials')
 
         MSG_MAP = {
             'P00107': 'please login via the web interface and enter the CAPTCHA code',
@@ -322,10 +333,10 @@ class IqiyiIE(InfoExtractor):
         # Start from 2 because links in the first page are already on webpage
         for page_num in itertools.count(2):
             pagelist_page = self._download_webpage(
-                'http://cache.video.qiyi.com/jp/avlist/%s/%d/%d/' % (album_id, page_num, PAGE_SIZE),
-                album_id,
-                note='Download playlist page %d' % page_num,
-                errnote='Failed to download playlist page %d' % page_num)
+                'http://cache.video.qiyi.com/jp/avlist/%s/%d/%d/' %
+                (album_id, page_num, PAGE_SIZE), album_id, note='Download playlist page %d' %
+                page_num, errnote='Failed to download playlist page %d' %
+                page_num)
             pagelist = self._parse_json(
                 remove_start(pagelist_page, 'var tvInfoJs='), album_id)
             vlist = pagelist['data']['vlist']
@@ -344,7 +355,10 @@ class IqiyiIE(InfoExtractor):
         # Sometimes there are playlist links in individual videos, so treat it
         # as a single video first
         tvid = self._search_regex(
-            r'data-(?:player|shareplattrigger)-tvid\s*=\s*[\'"](\d+)', webpage, 'tvid', default=None)
+            r'data-(?:player|shareplattrigger)-tvid\s*=\s*[\'"](\d+)',
+            webpage,
+            'tvid',
+            default=None)
         if tvid is None:
             playlist_result = self._extract_playlist(webpage)
             if playlist_result:
@@ -352,7 +366,9 @@ class IqiyiIE(InfoExtractor):
             raise ExtractorError('Can\'t find any video')
 
         video_id = self._search_regex(
-            r'data-(?:player|shareplattrigger)-videoid\s*=\s*[\'"]([a-f\d]+)', webpage, 'video_id')
+            r'data-(?:player|shareplattrigger)-videoid\s*=\s*[\'"]([a-f\d]+)',
+            webpage,
+            'video_id')
 
         formats = []
         for _ in range(5):
@@ -361,7 +377,9 @@ class IqiyiIE(InfoExtractor):
             if raw_data['code'] != 'A00000':
                 if raw_data['code'] == 'A00111':
                     self.raise_geo_restricted()
-                raise ExtractorError('Unable to load data. Error code: ' + raw_data['code'])
+                raise ExtractorError(
+                    'Unable to load data. Error code: ' +
+                    raw_data['code'])
 
             data = raw_data['data']
 
@@ -383,9 +401,17 @@ class IqiyiIE(InfoExtractor):
             self._sleep(5, video_id)
 
         self._sort_formats(formats)
-        title = (get_element_by_id('widget-videotitle', webpage)
-                 or clean_html(get_element_by_attribute('class', 'mod-play-tit', webpage))
-                 or self._html_search_regex(r'<span[^>]+data-videochanged-title="word"[^>]*>([^<]+)</span>', webpage, 'title'))
+        title = (
+            get_element_by_id(
+                'widget-videotitle',
+                webpage) or clean_html(
+                get_element_by_attribute(
+                    'class',
+                    'mod-play-tit',
+                    webpage)) or self._html_search_regex(
+                    r'<span[^>]+data-videochanged-title="word"[^>]*>([^<]+)</span>',
+                    webpage,
+                'title'))
 
         return {
             'id': video_id,

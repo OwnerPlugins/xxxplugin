@@ -164,11 +164,13 @@ class XHamsterIE(InfoExtractor):
             for format_id, formats_dict in sources.items():
                 if not isinstance(formats_dict, dict):
                     continue
-                download_sources = try_get(sources, lambda x: x['download'], dict) or {}
+                download_sources = try_get(
+                    sources, lambda x: x['download'], dict) or {}
                 for quality, format_dict in download_sources.items():
                     if not isinstance(format_dict, dict):
                         continue
-                    format_sizes[quality] = float_or_none(format_dict.get('size'))
+                    format_sizes[quality] = float_or_none(
+                        format_dict.get('size'))
                 for quality, format_item in formats_dict.items():
                     if format_id == 'download':
                         # Download link takes some time to be generated,
@@ -202,9 +204,14 @@ class XHamsterIE(InfoExtractor):
                         if not hls_url or hls_url in format_urls:
                             continue
                         format_urls.add(hls_url)
-                        formats.extend(self._extract_m3u8_formats(
-                            hls_url, video_id, 'mp4', entry_protocol='m3u8_native',
-                            m3u8_id='hls', fatal=False))
+                        formats.extend(
+                            self._extract_m3u8_formats(
+                                hls_url,
+                                video_id,
+                                'mp4',
+                                entry_protocol='m3u8_native',
+                                m3u8_id='hls',
+                                fatal=False))
                 standard_sources = xplayer_sources.get('standard')
                 if isinstance(standard_sources, dict):
                     for format_id, formats_list in standard_sources.items():
@@ -214,7 +221,8 @@ class XHamsterIE(InfoExtractor):
                             if not isinstance(standard_format, dict):
                                 continue
                             for standard_format_key in ('url', 'fallback'):
-                                standard_url = standard_format.get(standard_format_key)
+                                standard_url = standard_format.get(
+                                    standard_format_key)
                                 if not standard_url:
                                     continue
                                 standard_url = urljoin(url, standard_url)
@@ -223,13 +231,19 @@ class XHamsterIE(InfoExtractor):
                                 format_urls.add(standard_url)
                                 ext = determine_ext(standard_url, 'mp4')
                                 if ext == 'm3u8':
-                                    formats.extend(self._extract_m3u8_formats(
-                                        standard_url, video_id, 'mp4', entry_protocol='m3u8_native',
-                                        m3u8_id='hls', fatal=False))
+                                    formats.extend(
+                                        self._extract_m3u8_formats(
+                                            standard_url,
+                                            video_id,
+                                            'mp4',
+                                            entry_protocol='m3u8_native',
+                                            m3u8_id='hls',
+                                            fatal=False))
                                     continue
-                                quality = (str_or_none(standard_format.get('quality'))
-                                           or str_or_none(standard_format.get('label'))
-                                           or '')
+                                quality = (
+                                    str_or_none(
+                                        standard_format.get('quality')) or str_or_none(
+                                        standard_format.get('label')) or '')
                                 formats.append({
                                     'format_id': '%s-%s' % (format_id, quality),
                                     'url': standard_url,
@@ -240,7 +254,9 @@ class XHamsterIE(InfoExtractor):
                                         'Referer': standard_url,
                                     },
                                 })
-            self._sort_formats(formats, field_preference=('height', 'width', 'tbr', 'format_id'))
+            self._sort_formats(
+                formats, field_preference=(
+                    'height', 'width', 'tbr', 'format_id'))
 
             categories_list = video.get('categories')
             if isinstance(categories_list, list):
@@ -254,7 +270,8 @@ class XHamsterIE(InfoExtractor):
             else:
                 categories = None
 
-            uploader_url = url_or_none(try_get(video, lambda x: x['author']['pageURL']))
+            uploader_url = url_or_none(
+                try_get(video, lambda x: x['author']['pageURL']))
             return {
                 'id': video_id,
                 'display_id': display_id,
@@ -345,10 +362,15 @@ class XHamsterIE(InfoExtractor):
             r'content=["\']User(?:View|Play)s:(\d+)',
             webpage, 'view count', fatal=False))
 
-        mobj = re.search(r'hint=[\'"](?P<likecount>\d+) Likes / (?P<dislikecount>\d+) Dislikes', webpage)
-        (like_count, dislike_count) = (mobj.group('likecount'), mobj.group('dislikecount')) if mobj else (None, None)
+        mobj = re.search(
+            r'hint=[\'"](?P<likecount>\d+) Likes / (?P<dislikecount>\d+) Dislikes',
+            webpage)
+        (like_count, dislike_count) = (mobj.group('likecount'),
+                                       mobj.group('dislikecount')) if mobj else (None, None)
 
-        mobj = re.search(r'</label>Comments \((?P<commentcount>\d+)\)</div>', webpage)
+        mobj = re.search(
+            r'</label>Comments \((?P<commentcount>\d+)\)</div>',
+            webpage)
         comment_count = mobj.group('commentcount') if mobj else 0
 
         categories_html = self._search_regex(
@@ -395,9 +417,11 @@ class XHamsterEmbedIE(InfoExtractor):
 
     @staticmethod
     def _extract_urls(webpage):
-        return [url for _, url in re.findall(
-            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//(?:www\.)?xhamster\.com/xembed\.php\?video=\d+)\1',
-            webpage)]
+        return [
+            url for _,
+            url in re.findall(
+                r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//(?:www\.)?xhamster\.com/xembed\.php\?video=\d+)\1',
+                webpage)]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -410,9 +434,17 @@ class XHamsterEmbedIE(InfoExtractor):
 
         if not video_url:
             vars = self._parse_json(
-                self._search_regex(r'vars\s*:\s*({.+?})\s*,\s*\n', webpage, 'vars'),
+                self._search_regex(
+                    r'vars\s*:\s*({.+?})\s*,\s*\n',
+                    webpage,
+                    'vars'),
                 video_id)
-            video_url = dict_get(vars, ('downloadLink', 'homepageLink', 'commentsLink', 'shareUrl'))
+            video_url = dict_get(
+                vars,
+                ('downloadLink',
+                 'homepageLink',
+                 'commentsLink',
+                 'shareUrl'))
 
         return self.url_result(video_url, 'XHamster')
 
@@ -447,8 +479,7 @@ class XHamsterUserIE(InfoExtractor):
             page = self._download_webpage(
                 next_page_url, user_id, 'Downloading page %s' % pagenum)
             for video_tag in re.findall(
-                    r'(<a[^>]+class=["\'].*?\bvideo-thumb__image-container[^>]+>)',
-                    page):
+                    r'(<a[^>]+class=["\'].*?\bvideo-thumb__image-container[^>]+>)', page):
                 video = extract_attributes(video_tag)
                 video_url = url_or_none(video.get('href'))
                 if not video_url or not XHamsterIE.suitable(video_url):

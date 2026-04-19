@@ -160,8 +160,10 @@ class SeznamZpravyArticleIE(InfoExtractor):
 
         info = self._search_json_ld(webpage, article_id, default={})
 
-        title = info.get('title') or self._og_search_title(webpage, fatal=False)
-        description = info.get('description') or self._og_search_description(webpage)
+        title = info.get('title') or self._og_search_title(
+            webpage, fatal=False)
+        description = info.get(
+            'description') or self._og_search_description(webpage)
 
         return self.playlist_result([
             self.url_result(entry_url, ie=SeznamZpravyIE.ie_key())

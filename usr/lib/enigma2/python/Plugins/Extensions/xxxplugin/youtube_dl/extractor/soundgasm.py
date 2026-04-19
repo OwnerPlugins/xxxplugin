@@ -71,7 +71,11 @@ class SoundgasmProfileIE(InfoExtractor):
         webpage = self._download_webpage(url, profile_id)
 
         entries = [
-            self.url_result(audio_url, 'Soundgasm')
-            for audio_url in re.findall(r'href="([^"]+/u/%s/[^"]+)' % profile_id, webpage)]
+            self.url_result(
+                audio_url,
+                'Soundgasm') for audio_url in re.findall(
+                r'href="([^"]+/u/%s/[^"]+)' %
+                profile_id,
+                webpage)]
 
         return self.playlist_result(entries, profile_id)

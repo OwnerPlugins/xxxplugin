@@ -14,52 +14,48 @@ from ..utils import (
 
 class VineIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?vine\.co/(?:v|oembed)/(?P<id>\w+)'
-    _TESTS = [{
-        'url': 'https://vine.co/v/b9KOOWX7HUx',
-        'md5': '2f36fed6235b16da96ce9b4dc890940d',
-        'info_dict': {
-            'id': 'b9KOOWX7HUx',
-            'ext': 'mp4',
-            'title': 'Chicken.',
-            'alt_title': 'Vine by Jack',
-            'timestamp': 1368997951,
-            'upload_date': '20130519',
-            'uploader': 'Jack',
-            'uploader_id': '76',
-            'view_count': int,
-            'like_count': int,
-            'comment_count': int,
-            'repost_count': int,
-        },
-    }, {
-        'url': 'https://vine.co/v/e192BnZnZ9V',
-        'info_dict': {
-            'id': 'e192BnZnZ9V',
-            'ext': 'mp4',
-            'title': 'ยิ้ม~ เขิน~ อาย~ น่าร้ากอ้ะ >//< @n_whitewo @orlameena #lovesicktheseries  #lovesickseason2',
-            'alt_title': 'Vine by Pimry_zaa',
-            'timestamp': 1436057405,
-            'upload_date': '20150705',
-            'uploader': 'Pimry_zaa',
-            'uploader_id': '1135760698325307392',
-            'view_count': int,
-            'like_count': int,
-            'comment_count': int,
-            'repost_count': int,
-        },
-        'params': {
-            'skip_download': True,
-        },
-    }, {
-        'url': 'https://vine.co/v/MYxVapFvz2z',
-        'only_matching': True,
-    }, {
-        'url': 'https://vine.co/v/bxVjBbZlPUH',
-        'only_matching': True,
-    }, {
-        'url': 'https://vine.co/oembed/MYxVapFvz2z.json',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://vine.co/v/b9KOOWX7HUx',
+               'md5': '2f36fed6235b16da96ce9b4dc890940d',
+               'info_dict': {'id': 'b9KOOWX7HUx',
+                             'ext': 'mp4',
+                             'title': 'Chicken.',
+                             'alt_title': 'Vine by Jack',
+                             'timestamp': 1368997951,
+                             'upload_date': '20130519',
+                             'uploader': 'Jack',
+                             'uploader_id': '76',
+                             'view_count': int,
+                             'like_count': int,
+                             'comment_count': int,
+                             'repost_count': int,
+                             },
+               },
+              {'url': 'https://vine.co/v/e192BnZnZ9V',
+               'info_dict': {'id': 'e192BnZnZ9V',
+                             'ext': 'mp4',
+                             'title': 'ยิ้ม~ เขิน~ อาย~ น่าร้ากอ้ะ >//< @n_whitewo @orlameena #lovesicktheseries  #lovesickseason2',
+                             'alt_title': 'Vine by Pimry_zaa',
+                             'timestamp': 1436057405,
+                             'upload_date': '20150705',
+                             'uploader': 'Pimry_zaa',
+                             'uploader_id': '1135760698325307392',
+                             'view_count': int,
+                             'like_count': int,
+                             'comment_count': int,
+                             'repost_count': int,
+                             },
+               'params': {'skip_download': True,
+                          },
+               },
+              {'url': 'https://vine.co/v/MYxVapFvz2z',
+               'only_matching': True,
+               },
+              {'url': 'https://vine.co/v/bxVjBbZlPUH',
+               'only_matching': True,
+               },
+              {'url': 'https://vine.co/oembed/MYxVapFvz2z.json',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -129,7 +125,8 @@ class VineUserIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if VineIE.suitable(url) else super(VineUserIE, cls).suitable(url)
+        return False if VineIE.suitable(url) else super(
+            VineUserIE, cls).suitable(url)
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

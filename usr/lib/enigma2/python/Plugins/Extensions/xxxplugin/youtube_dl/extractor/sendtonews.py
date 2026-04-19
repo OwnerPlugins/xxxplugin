@@ -18,7 +18,8 @@ class SendtoNewsIE(InfoExtractor):
     _VALID_URL = r'https?://embed\.sendtonews\.com/player2/embedplayer\.php\?.*\bSC=(?P<id>[0-9A-Za-z-]+)'
 
     _TEST = {
-        # From http://cleveland.cbslocal.com/2016/05/16/indians-score-season-high-15-runs-in-blowout-win-over-reds-rapid-reaction/
+        # From
+        # http://cleveland.cbslocal.com/2016/05/16/indians-score-season-high-15-runs-in-blowout-win-over-reds-rapid-reaction/
         'url': 'http://embed.sendtonews.com/player2/embedplayer.php?SC=GxfCe0Zo7D-175909-5588&type=single&autoplay=on&sound=YES',
         'info_dict': {
             'id': 'GxfCe0Zo7D-175909-5588'
@@ -67,7 +68,10 @@ class SendtoNewsIE(InfoExtractor):
         for video in playlist_data['playlistData'][0]:
             info_dict = self._parse_jwplayer_data(
                 video['jwconfiguration'],
-                require_title=False, m3u8_id='hls', rtmp_params={'no_resume': True})
+                require_title=False,
+                m3u8_id='hls',
+                rtmp_params={
+                    'no_resume': True})
 
             for f in info_dict['formats']:
                 if f.get('tbr'):
@@ -80,7 +84,8 @@ class SendtoNewsIE(InfoExtractor):
                     'format_id': '%s-%d' % (determine_protocol(f), tbr),
                     'tbr': tbr,
                 })
-            self._sort_formats(info_dict['formats'], ('tbr', 'height', 'width', 'format_id'))
+            self._sort_formats(
+                info_dict['formats'], ('tbr', 'height', 'width', 'format_id'))
 
             thumbnails = []
             if video.get('thumbnailUrl'):

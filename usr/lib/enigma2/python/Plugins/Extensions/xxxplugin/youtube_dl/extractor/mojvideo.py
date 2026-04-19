@@ -22,8 +22,7 @@ class MojvideoIE(InfoExtractor):
             'title': 'V avtu pred mano rdečelaska - Alfi Nipič',
             'thumbnail': r're:^http://.*\.jpg$',
             'duration': 242,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -32,12 +31,17 @@ class MojvideoIE(InfoExtractor):
 
         # XML is malformed
         playerapi = self._download_webpage(
-            'http://www.mojvideo.com/playerapi.php?v=%s&t=1' % video_id, display_id)
+            'http://www.mojvideo.com/playerapi.php?v=%s&t=1' %
+            video_id, display_id)
 
         if '<error>true</error>' in playerapi:
             error_desc = self._html_search_regex(
-                r'<errordesc>([^<]*)</errordesc>', playerapi, 'error description', fatal=False)
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, error_desc), expected=True)
+                r'<errordesc>([^<]*)</errordesc>',
+                playerapi,
+                'error description',
+                fatal=False)
+            raise ExtractorError('%s said: %s' %
+                                 (self.IE_NAME, error_desc), expected=True)
 
         title = self._html_search_regex(
             r'<title>([^<]+)</title>', playerapi, 'title')
@@ -45,8 +49,12 @@ class MojvideoIE(InfoExtractor):
             r'<file>([^<]+)</file>', playerapi, 'video URL')
         thumbnail = self._html_search_regex(
             r'<preview>([^<]+)</preview>', playerapi, 'thumbnail', fatal=False)
-        duration = parse_duration(self._html_search_regex(
-            r'<duration>([^<]+)</duration>', playerapi, 'duration', fatal=False))
+        duration = parse_duration(
+            self._html_search_regex(
+                r'<duration>([^<]+)</duration>',
+                playerapi,
+                'duration',
+                fatal=False))
 
         return {
             'id': video_id,

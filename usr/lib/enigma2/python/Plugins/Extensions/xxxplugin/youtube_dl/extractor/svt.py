@@ -53,7 +53,8 @@ class SVTBaseIE(InfoExtractor):
         self._sort_formats(formats)
 
         subtitles = {}
-        subtitle_references = dict_get(video_info, ('subtitles', 'subtitleReferences'))
+        subtitle_references = dict_get(
+            video_info, ('subtitles', 'subtitleReferences'))
         if isinstance(subtitle_references, list):
             for sr in subtitle_references:
                 subtitle_url = sr.get('url')
@@ -63,7 +64,8 @@ class SVTBaseIE(InfoExtractor):
                         # TODO(yan12125): handle WebVTT in m3u8 manifests
                         continue
 
-                    subtitles.setdefault(subtitle_lang, []).append({'url': subtitle_url})
+                    subtitles.setdefault(subtitle_lang, []).append(
+                        {'url': subtitle_url})
 
         title = video_info.get('title')
 
@@ -73,7 +75,11 @@ class SVTBaseIE(InfoExtractor):
         episode_number = int_or_none(video_info.get('episodeNumber'))
 
         timestamp = unified_timestamp(rights.get('validFrom'))
-        duration = int_or_none(dict_get(video_info, ('materialLength', 'contentDuration')))
+        duration = int_or_none(
+            dict_get(
+                video_info,
+                ('materialLength',
+                 'contentDuration')))
         age_limit = None
         adult = dict_get(
             video_info, ('inappropriateForChildren', 'blockedForChildren'),
@@ -114,7 +120,8 @@ class SVTIE(SVTBaseIE):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'(?:<iframe src|href)="(?P<url>%s[^"]*)"' % SVTIE._VALID_URL, webpage)
+            r'(?:<iframe src|href)="(?P<url>%s[^"]*)"' %
+            SVTIE._VALID_URL, webpage)
         if mobj:
             return mobj.group('url')
 
@@ -124,8 +131,8 @@ class SVTIE(SVTBaseIE):
         article_id = mobj.group('id')
 
         info = self._download_json(
-            'http://www.svt.se/wd?widgetId=%s&articleId=%s&format=json&type=embed&output=json' % (widget_id, article_id),
-            article_id)
+            'http://www.svt.se/wd?widgetId=%s&articleId=%s&format=json&type=embed&output=json' %
+            (widget_id, article_id), article_id)
 
         info_dict = self._extract_video(info['video'], article_id)
         info_dict['title'] = info['context']['title']
@@ -244,7 +251,8 @@ class SVTPlayIE(SVTPlayBaseIE):
 
         if data:
             video_info = try_get(
-                data, lambda x: x['context']['dispatcher']['stores']['VideoTitlePageStore']['data']['video'],
+                data,
+                lambda x: x['context']['dispatcher']['stores']['VideoTitlePageStore']['data']['video'],
                 dict)
             if video_info:
                 info_dict = self._extract_video(video_info, video_id)
@@ -262,13 +270,15 @@ class SVTPlayIE(SVTPlayBaseIE):
         if not svt_id:
             svt_id = self._search_regex(
                 (r'<video[^>]+data-video-id=["\']([\da-zA-Z-]+)',
-                 r'<[^>]+\bdata-rt=["\']top-area-play-button["\'][^>]+\bhref=["\'][^"\']*video/%s/[^"\']*\b(?:modalId|id)=([\da-zA-Z-]+)' % re.escape(video_id),
-                 r'["\']videoSvtId["\']\s*:\s*["\']([\da-zA-Z-]+)',
-                 r'["\']videoSvtId\\?["\']\s*:\s*\\?["\']([\da-zA-Z-]+)',
-                 r'"content"\s*:\s*{.*?"id"\s*:\s*"([\da-zA-Z-]+)"',
-                 r'["\']svtId["\']\s*:\s*["\']([\da-zA-Z-]+)',
-                 r'["\']svtId\\?["\']\s*:\s*\\?["\']([\da-zA-Z-]+)'),
-                webpage, 'video id')
+                 r'<[^>]+\bdata-rt=["\']top-area-play-button["\'][^>]+\bhref=["\'][^"\']*video/%s/[^"\']*\b(?:modalId|id)=([\da-zA-Z-]+)' %
+                 re.escape(video_id),
+                    r'["\']videoSvtId["\']\s*:\s*["\']([\da-zA-Z-]+)',
+                    r'["\']videoSvtId\\?["\']\s*:\s*\\?["\']([\da-zA-Z-]+)',
+                    r'"content"\s*:\s*{.*?"id"\s*:\s*"([\da-zA-Z-]+)"',
+                    r'["\']svtId["\']\s*:\s*["\']([\da-zA-Z-]+)',
+                    r'["\']svtId\\?["\']\s*:\s*\\?["\']([\da-zA-Z-]+)'),
+                webpage,
+                'video id')
 
         info_dict = self._extract_by_video_id(svt_id, webpage)
         info_dict['thumbnail'] = thumbnail
@@ -298,7 +308,8 @@ class SVTSeriesIE(SVTPlayBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if SVTIE.suitable(url) or SVTPlayIE.suitable(url) else super(SVTSeriesIE, cls).suitable(url)
+        return False if SVTIE.suitable(url) or SVTPlayIE.suitable(
+            url) else super(SVTSeriesIE, cls).suitable(url)
 
     def _real_extract(self, url):
         series_slug, season_id = re.match(self._VALID_URL, url).groups()
@@ -397,7 +408,8 @@ class SVTPageIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if SVTIE.suitable(url) or SVTPlayIE.suitable(url) else super(SVTPageIE, cls).suitable(url)
+        return False if SVTIE.suitable(url) or SVTPlayIE.suitable(
+            url) else super(SVTPageIE, cls).suitable(url)
 
     def _real_extract(self, url):
         path, display_id = re.match(self._VALID_URL, url).groups()

@@ -118,7 +118,8 @@ class TVPEmbedIE(InfoExtractor):
         video_id = self._match_id(url)
 
         webpage = self._download_webpage(
-            'http://www.tvp.pl/sess/tvplayer.php?object_id=%s' % video_id, video_id)
+            'http://www.tvp.pl/sess/tvplayer.php?object_id=%s' %
+            video_id, video_id)
 
         error = self._html_search_regex(
             r'(?s)<p[^>]+\bclass=["\']notAvailable__text["\'][^>]*>(.+?)</p>',
@@ -145,8 +146,8 @@ class TVPEmbedIE(InfoExtractor):
             'formats', group='url', default=None)
         if not video_url or 'material_niedostepny.mp4' in video_url:
             video_url = self._download_json(
-                'http://www.tvp.pl/pub/stat/videofileinfo?video_id=%s' % video_id,
-                video_id)['video_url']
+                'http://www.tvp.pl/pub/stat/videofileinfo?video_id=%s' %
+                video_id, video_id)['video_url']
 
         formats = []
         video_url_base = self._search_regex(
@@ -227,7 +228,8 @@ class TVPWebsiteIE(InfoExtractor):
     }]
 
     def _entries(self, display_id, playlist_id):
-        url = 'https://vod.tvp.pl/website/%s,%s/video' % (display_id, playlist_id)
+        url = 'https://vod.tvp.pl/website/%s,%s/video' % (
+            display_id, playlist_id)
         for page_num in itertools.count(1):
             page = self._download_webpage(
                 url, display_id, 'Downloading page %d' % page_num,

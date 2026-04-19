@@ -95,7 +95,9 @@ class PatreonIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         post = self._download_json(
-            'https://www.patreon.com/api/posts/' + video_id, video_id, query={
+            'https://www.patreon.com/api/posts/' + video_id,
+            video_id,
+            query={
                 'fields[media]': 'download_url,mimetype,size_bytes',
                 'fields[post]': 'comment_count,content,embed,image,like_count,post_file,published_at,title',
                 'fields[user]': 'full_name,url',
@@ -122,11 +124,8 @@ class PatreonIE(InfoExtractor):
                 download_url = media_attributes.get('download_url')
                 ext = mimetype2ext(media_attributes.get('mimetype'))
                 if download_url and ext in KNOWN_EXTENSIONS:
-                    info.update({
-                        'ext': ext,
-                        'filesize': int_or_none(media_attributes.get('size_bytes')),
-                        'url': download_url,
-                    })
+                    info.update({'ext': ext, 'filesize': int_or_none(
+                        media_attributes.get('size_bytes')), 'url': download_url, })
             elif i_type == 'user':
                 user_attributes = i.get('attributes')
                 if user_attributes:

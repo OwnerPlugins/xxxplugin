@@ -77,7 +77,8 @@ class NexxIE(InfoExtractor):
             'upload_date': '20180214',
         },
     }, {
-        # free cdn from http://www.spiegel.de/video/eifel-zoo-aufregung-um-ausgebrochene-raubtiere-video-99018031.html
+        # free cdn from
+        # http://www.spiegel.de/video/eifel-zoo-aufregung-um-ausgebrochene-raubtiere-video-99018031.html
         'url': 'nexx:747:1533779',
         'md5': '6bf6883912b82b7069fb86c2297e9893',
         'info_dict': {
@@ -229,7 +230,9 @@ class NexxIE(InfoExtractor):
 
         def get_cdn_shield_base(shield_type='', static=False):
             for secure in ('', 's'):
-                cdn_shield = stream_data.get('cdnShield%sHTTP%s' % (shield_type, secure.upper()))
+                cdn_shield = stream_data.get(
+                    'cdnShield%sHTTP%s' %
+                    (shield_type, secure.upper()))
                 if cdn_shield:
                     return 'http%s://%s' % (secure, cdn_shield)
             else:
@@ -237,7 +240,10 @@ class NexxIE(InfoExtractor):
                     prefix = 'df' if static else 'f'
                 else:
                     prefix = 'd' if static else 'p'
-                account = int(stream_data['azureAccount'].replace('nexxplayplus', '').replace('nexxplayfb', ''))
+                account = int(
+                    stream_data['azureAccount'].replace(
+                        'nexxplayplus', '').replace(
+                        'nexxplayfb', ''))
                 return 'http://nx-%s%02d.akamaized.net/' % (prefix, account)
 
         language = video['general'].get('language_raw') or ''
@@ -259,8 +265,14 @@ class NexxIE(InfoExtractor):
         formats.extend(self._extract_mpd_formats(
             azure_manifest_url % '(format=mpd-time-csf)',
             video_id, mpd_id='%s-dash' % cdn, fatal=False))
-        formats.extend(self._extract_ism_formats(
-            azure_manifest_url % '', video_id, ism_id='%s-mss' % cdn, fatal=False))
+        formats.extend(
+            self._extract_ism_formats(
+                azure_manifest_url %
+                '',
+                video_id,
+                ism_id='%s-mss' %
+                cdn,
+                fatal=False))
 
         azure_progressive_base = get_cdn_shield_base('Prog', True)
         azure_file_distribution = stream_data.get('azureFileDistribution')
@@ -273,9 +285,13 @@ class NexxIE(InfoExtractor):
                         tbr = int_or_none(ss[0])
                         if tbr:
                             f = {
-                                'url': '%s%s/%s_src_%s_%d.mp4' % (
-                                    azure_progressive_base, azure_locator, video_id, ss[1], tbr),
-                                'format_id': '%s-http-%d' % (cdn, tbr),
+                                'url': '%s%s/%s_src_%s_%d.mp4' % (azure_progressive_base,
+                                                                  azure_locator,
+                                                                  video_id,
+                                                                  ss[1],
+                                                                  tbr),
+                                'format_id': '%s-http-%d' % (cdn,
+                                                             tbr),
                                 'tbr': tbr,
                             }
                             width_height = ss[1].split('x')
@@ -347,7 +363,8 @@ class NexxIE(InfoExtractor):
             # as per [1]. Here is how this "secret" is generated (reversed
             # from _play.api.init function, search for clienttoken). So it's
             # actually not static and not that much of a secret.
-            # 1. https://nexxtvstorage.blob.core.windows.net/files/201610/27.pdf
+            # 1.
+            # https://nexxtvstorage.blob.core.windows.net/files/201610/27.pdf
             secret = result['device']['clienttoken'][int(device_id[0]):]
             secret = secret[0:len(secret) - int(device_id[-1])]
 
@@ -359,7 +376,12 @@ class NexxIE(InfoExtractor):
                 ''.join((op, domain_id, secret)).encode('utf-8')).hexdigest()
 
             result = self._call_api(
-                domain_id, 'videos/%s/%s' % (op, video_id), video_id, data={
+                domain_id,
+                'videos/%s/%s' %
+                (op,
+                 video_id),
+                video_id,
+                data={
                     'additionalfields': 'language,channel,actors,studio,licenseby,slug,subtitle,teaser,description',
                     'addInteractionOptions': '1',
                     'addStatusDetails': '1',
@@ -369,7 +391,8 @@ class NexxIE(InfoExtractor):
                     'addHotSpots': '1',
                     'addBumpers': '1',
                     'captionFormat': 'data',
-                }, headers={
+                },
+                headers={
                     'X-Request-CID': cid,
                     'X-Request-Token': request_token,
                 })
@@ -441,13 +464,16 @@ class NexxEmbedIE(InfoExtractor):
         # 1. https://nx-s.akamaized.net/files/201510/44.pdf
 
         # iFrame Embed Integration
-        return [mobj.group('url') for mobj in re.finditer(
-            r'<iframe[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//embed\.nexx(?:\.cloud|cdn\.com)/\d+/(?:(?!\1).)+)\1',
-            webpage)]
+        return [
+            mobj.group('url') for mobj in re.finditer(
+                r'<iframe[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//embed\.nexx(?:\.cloud|cdn\.com)/\d+/(?:(?!\1).)+)\1',
+                webpage)]
 
     def _real_extract(self, url):
         embed_id = self._match_id(url)
 
         webpage = self._download_webpage(url, embed_id)
 
-        return self.url_result(NexxIE._extract_url(webpage), ie=NexxIE.ie_key())
+        return self.url_result(
+            NexxIE._extract_url(webpage),
+            ie=NexxIE.ie_key())

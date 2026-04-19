@@ -42,9 +42,11 @@ class BIQLEIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
-        embed_url = self._proto_relative_url(self._search_regex(
-            r'<iframe.+?src="((?:https?:)?//(?:daxab\.com|dxb\.to|[^/]+/player)/[^"]+)".*?></iframe>',
-            webpage, 'embed url'))
+        embed_url = self._proto_relative_url(
+            self._search_regex(
+                r'<iframe.+?src="((?:https?:)?//(?:daxab\.com|dxb\.to|[^/]+/player)/[^"]+)".*?></iframe>',
+                webpage,
+                'embed url'))
         if VKIE.suitable(embed_url):
             return self.url_result(embed_url, VKIE.ie_key(), video_id)
 

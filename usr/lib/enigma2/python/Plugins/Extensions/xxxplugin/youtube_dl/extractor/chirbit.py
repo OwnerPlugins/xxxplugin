@@ -85,7 +85,12 @@ class ChirbitProfileIE(InfoExtractor):
         webpage = self._download_webpage(url, profile_id)
 
         entries = [
-            self.url_result(self._proto_relative_url('//chirb.it/' + video_id))
-            for _, video_id in re.findall(r'<input[^>]+id=([\'"])copy-btn-(?P<id>[0-9a-zA-Z]+)\1', webpage)]
+            self.url_result(
+                self._proto_relative_url(
+                    '//chirb.it/' +
+                    video_id)) for _,
+            video_id in re.findall(
+                r'<input[^>]+id=([\'"])copy-btn-(?P<id>[0-9a-zA-Z]+)\1',
+                webpage)]
 
         return self.playlist_result(entries, profile_id)

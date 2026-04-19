@@ -91,7 +91,8 @@ class SinaIE(InfoExtractor):
 
             preference = qualities(['cif', 'sd', 'hd', 'fhd', 'ffd'])
             formats = []
-            for quality_id, quality in video_data.get('videos', {}).get('mp4', {}).items():
+            for quality_id, quality in video_data.get(
+                    'videos', {}).get('mp4', {}).items():
                 file_api = quality.get('file_api')
                 file_id = quality.get('file_id')
                 if not file_api or not file_id:

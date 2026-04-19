@@ -34,16 +34,18 @@ from ..utils import (
 class SoundcloudEmbedIE(InfoExtractor):
     _VALID_URL = r'https?://(?:w|player|p)\.soundcloud\.com/player/?.*?\burl=(?P<id>.+)'
     _TEST = {
-        # from https://www.soundi.fi/uutiset/ennakkokuuntelussa-timo-kaukolammen-station-to-station-to-station-julkaisua-juhlitaan-tanaan-g-livelabissa/
+        # from
+        # https://www.soundi.fi/uutiset/ennakkokuuntelussa-timo-kaukolammen-station-to-station-to-station-julkaisua-juhlitaan-tanaan-g-livelabissa/
         'url': 'https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F922213810&show_artwork=true&maxwidth=640&maxheight=960&dnt=1&secret_token=s-ziYey',
         'only_matching': True,
     }
 
     @staticmethod
     def _extract_urls(webpage):
-        return [m.group('url') for m in re.finditer(
-            r'<iframe[^>]+src=(["\'])(?P<url>(?:https?://)?(?:w\.)?soundcloud\.com/player.+?)\1',
-            webpage)]
+        return [
+            m.group('url') for m in re.finditer(
+                r'<iframe[^>]+src=(["\'])(?P<url>(?:https?://)?(?:w\.)?soundcloud\.com/player.+?)\1',
+                webpage)]
 
     def _real_extract(self, url):
         query = compat_urlparse.parse_qs(
@@ -51,7 +53,8 @@ class SoundcloudEmbedIE(InfoExtractor):
         api_url = query['url'][0]
         secret_token = query.get('secret_token')
         if secret_token:
-            api_url = update_url_query(api_url, {'secret_token': secret_token[0]})
+            api_url = update_url_query(
+                api_url, {'secret_token': secret_token[0]})
         return self.url_result(api_url)
 
 
@@ -297,9 +300,14 @@ class SoundcloudIE(InfoExtractor):
             query['client_id'] = self._CLIENT_ID
             kwargs['query'] = query
             try:
-                return super(SoundcloudIE, self)._download_json(*args, **compat_kwargs(kwargs))
+                return super(
+                    SoundcloudIE,
+                    self)._download_json(
+                    *args,
+                    **compat_kwargs(kwargs))
             except ExtractorError as e:
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
+                if isinstance(e.cause,
+                              compat_HTTPError) and e.cause.code == 401:
                     self._store_client_id(None)
                     self._update_client_id()
                     continue
@@ -309,7 +317,8 @@ class SoundcloudIE(InfoExtractor):
                 raise
 
     def _real_initialize(self):
-        self._CLIENT_ID = self._downloader.cache.load('soundcloud', 'client_id') or 'YUKXoArFcqrlQn9tfNHvvyfnDISj04zk'
+        self._CLIENT_ID = self._downloader.cache.load(
+            'soundcloud', 'client_id') or 'YUKXoArFcqrlQn9tfNHvvyfnDISj04zk'
 
     @classmethod
     def _resolv_url(cls, url):
@@ -328,7 +337,11 @@ class SoundcloudIE(InfoExtractor):
         if info.get('downloadable') and info.get('has_downloads_left'):
             download_url = update_url_query(
                 self._API_V2_BASE + 'tracks/' + track_id + '/download', query)
-            redirect_url = (self._download_json(download_url, track_id, fatal=False) or {}).get('redirectUri')
+            redirect_url = (
+                self._download_json(
+                    download_url,
+                    track_id,
+                    fatal=False) or {}).get('redirectUri')
             if redirect_url:
                 urlh = self._request_webpage(
                     HEADRequest(redirect_url), track_id, fatal=False)
@@ -347,7 +360,9 @@ class SoundcloudIE(InfoExtractor):
             return not url or url in format_urls
 
         def add_format(f, protocol, is_preview=False):
-            mobj = re.search(r'\.(?P<abr>\d+)\.(?P<ext>[0-9a-z]{3,4})(?=[/?])', stream_url)
+            mobj = re.search(
+                r'\.(?P<abr>\d+)\.(?P<ext>[0-9a-z]{3,4})(?=[/?])',
+                stream_url)
             if mobj:
                 for k, v in mobj.groupdict().items():
                     if not f.get(k):
@@ -362,7 +377,8 @@ class SoundcloudIE(InfoExtractor):
                 v = f.get(k)
                 if v:
                     format_id_list.append(v)
-            preview = is_preview or re.search(r'/(?:preview|playlist)/0/30/', f['url'])
+            preview = is_preview or re.search(
+                r'/(?:preview|playlist)/0/30/', f['url'])
             if preview:
                 format_id_list.append('preview')
             abr = f.get('abr')
@@ -429,7 +445,11 @@ class SoundcloudIE(InfoExtractor):
                 for image_id, size in self._ARTWORK_MAP.items():
                     i = {
                         'id': image_id,
-                        'url': re.sub(self._IMAGE_REPL_RE, '-%s.jpg' % image_id, thumbnail),
+                        'url': re.sub(
+                            self._IMAGE_REPL_RE,
+                            '-%s.jpg' %
+                            image_id,
+                            thumbnail),
                     }
                     if image_id == 'tiny' and not artwork_url:
                         size = 18
@@ -480,7 +500,8 @@ class SoundcloudIE(InfoExtractor):
             if token:
                 query['secret_token'] = token
         else:
-            full_title = resolve_title = '%s/%s' % mobj.group('uploader', 'title')
+            full_title = resolve_title = '%s/%s' % mobj.group(
+                'uploader', 'title')
             token = mobj.group('token')
             if token:
                 resolve_title += '/%s' % token
@@ -551,7 +572,9 @@ class SoundcloudSetIE(SoundcloudPlaylistBaseIE):
 
         if 'errors' in info:
             msgs = (compat_str(err['error_message']) for err in info['errors'])
-            raise ExtractorError('unable to download video webpage: %s' % ','.join(msgs))
+            raise ExtractorError(
+                'unable to download video webpage: %s' %
+                ','.join(msgs))
 
         return self._extract_set(info, token)
 
@@ -594,7 +617,9 @@ class SoundcloudPagedPlaylistBaseIE(SoundcloudIE):
                     return self.url_result(
                         permalink_url,
                         SoundcloudIE.ie_key() if SoundcloudIE.suitable(permalink_url) else None,
-                        str_or_none(cand.get('id')), cand.get('title'))
+                        str_or_none(
+                            cand.get('id')),
+                        cand.get('title'))
 
             for e in collection:
                 entry = resolve_entry((e, e.get('track'), e.get('playlist')))

@@ -100,7 +100,8 @@ class BeegIE(InfoExtractor):
         timestamp = unified_timestamp(video.get('date'))
         duration = int_or_none(video.get('duration'))
 
-        tags = [tag.strip() for tag in video['tags'].split(',')] if video.get('tags') else None
+        tags = [tag.strip() for tag in video['tags'].split(',')
+                ] if video.get('tags') else None
 
         return {
             'id': video_id,

@@ -101,18 +101,25 @@ class CeskaTelevizeIE(InfoExtractor):
         return self._parse_json(
             self._search_regex(
                 r'(?s)<script[^>]+id=[\'"]__NEXT_DATA__[\'"][^>]*>([^<]+)</script>',
-                webpage, 'next.js data', **kw),
-            video_id, **kw)
+                webpage,
+                'next.js data',
+                **kw),
+            video_id,
+            **kw)
 
     def _real_extract(self, url):
         playlist_id = self._match_id(url)
         webpage, urlh = self._download_webpage_handle(url, playlist_id)
         parsed_url = compat_urllib_parse_urlparse(urlh.geturl())
-        site_name = self._og_search_property('site_name', webpage, fatal=False, default='Česká televize')
+        site_name = self._og_search_property(
+            'site_name', webpage, fatal=False, default='Česká televize')
         playlist_title = self._og_search_title(webpage, default=None)
         if site_name and playlist_title:
-            playlist_title = re.split(r'\s*[—|]\s*%s' % (site_name, ), playlist_title, 1)[0]
-        playlist_description = self._og_search_description(webpage, default=None)
+            playlist_title = re.split(
+                r'\s*[—|]\s*%s' %
+                (site_name, ), playlist_title, 1)[0]
+        playlist_description = self._og_search_description(
+            webpage, default=None)
         if playlist_description:
             playlist_description = playlist_description.replace('\xa0', ' ')
 
@@ -120,11 +127,34 @@ class CeskaTelevizeIE(InfoExtractor):
         if re.search(r'(^/porady|/zive)/', parsed_url.path):
             next_data = self._search_nextjs_data(webpage, playlist_id)
             if '/zive/' in parsed_url.path:
-                idec = traverse_obj(next_data, ('props', 'pageProps', 'data', 'liveBroadcast', 'current', 'idec'), get_all=False)
+                idec = traverse_obj(
+                    next_data,
+                    ('props',
+                     'pageProps',
+                     'data',
+                     'liveBroadcast',
+                     'current',
+                     'idec'),
+                    get_all=False)
             else:
-                idec = traverse_obj(next_data, ('props', 'pageProps', 'data', ('show', 'mediaMeta'), 'idec'), get_all=False)
+                idec = traverse_obj(
+                    next_data,
+                    ('props',
+                     'pageProps',
+                     'data',
+                     ('show',
+                      'mediaMeta'),
+                        'idec'),
+                    get_all=False)
                 if not idec:
-                    idec = traverse_obj(next_data, ('props', 'pageProps', 'data', 'videobonusDetail', 'bonusId'), get_all=False)
+                    idec = traverse_obj(
+                        next_data,
+                        ('props',
+                         'pageProps',
+                         'data',
+                         'videobonusDetail',
+                         'bonusId'),
+                        get_all=False)
                     if idec:
                         type_ = 'bonus'
             if not idec:
@@ -132,7 +162,12 @@ class CeskaTelevizeIE(InfoExtractor):
             iframe_hash = self._download_webpage(
                 'https://www.ceskatelevize.cz/v-api/iframe-hash/',
                 playlist_id, note='Getting IFRAME hash')
-            query = {'hash': iframe_hash, 'origin': 'iVysilani', 'autoStart': 'true', type_: idec, }
+            query = {
+                'hash': iframe_hash,
+                'origin': 'iVysilani',
+                'autoStart': 'true',
+                type_: idec,
+            }
             webpage = self._download_webpage(
                 'https://www.ceskatelevize.cz/ivysilani/embed/iFramePlayer.php',
                 playlist_id, note='Downloading player', query=query)
@@ -140,8 +175,15 @@ class CeskaTelevizeIE(InfoExtractor):
         NOT_AVAILABLE_STRING = 'This content is not available at your territory due to limited copyright.'
         if '%s</p>' % NOT_AVAILABLE_STRING in webpage:
             self.raise_geo_restricted(NOT_AVAILABLE_STRING)
-        if any(not_found in webpage for not_found in ('Neplatný parametr pro videopřehrávač', 'IDEC nebyl nalezen', )):
-            raise ExtractorError('no video with IDEC available', video_id=idec, expected=True)
+        if any(
+                not_found in webpage for not_found in (
+                    'Neplatný parametr pro videopřehrávač',
+                    'IDEC nebyl nalezen',
+                )):
+            raise ExtractorError(
+                'no video with IDEC available',
+                video_id=idec,
+                expected=True)
 
         type_ = None
         episode_id = None
@@ -209,7 +251,8 @@ class CeskaTelevizeIE(InfoExtractor):
             for num, item in enumerate(playlist):
                 is_live = item.get('type') == 'LIVE'
                 formats = []
-                for format_id, stream_url in item.get('streamUrls', {}).items():
+                for format_id, stream_url in item.get(
+                        'streamUrls', {}).items():
                     if 'drmOnly=true' in stream_url:
                         continue
                     if 'playerType=flash' in stream_url:
@@ -220,7 +263,8 @@ class CeskaTelevizeIE(InfoExtractor):
                         stream_formats = self._extract_mpd_formats(
                             stream_url, playlist_id,
                             mpd_id='dash-%s' % format_id, fatal=False)
-                    # See https://github.com/ytdl-org/youtube-dl/issues/12119#issuecomment-280037031
+                    # See
+                    # https://github.com/ytdl-org/youtube-dl/issues/12119#issuecomment-280037031
                     if format_id == 'audioDescription':
                         for f in stream_formats:
                             f['source_preference'] = -10
@@ -263,7 +307,11 @@ class CeskaTelevizeIE(InfoExtractor):
 
         if len(entries) == 1:
             return entries[0]
-        return self.playlist_result(entries, playlist_id, playlist_title, playlist_description)
+        return self.playlist_result(
+            entries,
+            playlist_id,
+            playlist_title,
+            playlist_description)
 
     def _get_subtitles(self, episode_id, subs):
         original_subtitles = self._download_webpage(
@@ -293,7 +341,8 @@ class CeskaTelevizeIE(InfoExtractor):
                 m = re.match(r'^\s*([0-9]+);\s*([0-9]+)\s+([0-9]+)\s*$', line)
                 if m:
                     yield m.group(1)
-                    start, stop = (_msectotimecode(int(t)) for t in m.groups()[1:])
+                    start, stop = (_msectotimecode(int(t))
+                                   for t in m.groups()[1:])
                     yield '{0} --> {1}'.format(start, stop)
                 else:
                     yield line

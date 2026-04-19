@@ -12,22 +12,17 @@ from ..utils import (
 
 class HowStuffWorksIE(InfoExtractor):
     _VALID_URL = r'https?://[\da-z-]+\.(?:howstuffworks|stuff(?:(?:youshould|theydontwantyouto)know|toblowyourmind|momnevertoldyou)|(?:brain|car)stuffshow|fwthinking|geniusstuff)\.com/(?:[^/]+/)*(?:\d+-)?(?P<id>.+?)-video\.htm'
-    _TESTS = [
-        {
-            'url': 'http://www.stufftoblowyourmind.com/videos/optical-illusions-video.htm',
-            'md5': '76646a5acc0c92bf7cd66751ca5db94d',
-            'info_dict': {
-                'id': '855410',
-                'ext': 'mp4',
-                'title': 'Your Trickster Brain: Optical Illusions -- Science on the Web',
-                'description': 'md5:e374ff9561f6833ad076a8cc0a5ab2fb',
-            },
-        },
-        {
-            'url': 'http://shows.howstuffworks.com/more-shows/why-does-balloon-stick-to-hair-video.htm',
-            'only_matching': True,
-        }
-    ]
+    _TESTS = [{'url': 'http://www.stufftoblowyourmind.com/videos/optical-illusions-video.htm',
+               'md5': '76646a5acc0c92bf7cd66751ca5db94d',
+               'info_dict': {'id': '855410',
+                             'ext': 'mp4',
+                             'title': 'Your Trickster Brain: Optical Illusions -- Science on the Web',
+                             'description': 'md5:e374ff9561f6833ad076a8cc0a5ab2fb',
+                             },
+               },
+              {'url': 'http://shows.howstuffworks.com/more-shows/why-does-balloon-stick-to-hair-video.htm',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         display_id = self._match_id(url)
@@ -41,7 +36,13 @@ class HowStuffWorksIE(InfoExtractor):
         formats = []
         m3u8_url = clip_info.get('m3u8')
         if m3u8_url and determine_ext(m3u8_url) == 'm3u8':
-            formats.extend(self._extract_m3u8_formats(m3u8_url, video_id, 'mp4', format_id='hls', fatal=True))
+            formats.extend(
+                self._extract_m3u8_formats(
+                    m3u8_url,
+                    video_id,
+                    'mp4',
+                    format_id='hls',
+                    fatal=True))
         flv_url = clip_info.get('flv_url')
         if flv_url:
             formats.append({
@@ -57,8 +58,8 @@ class HowStuffWorksIE(InfoExtractor):
 
         if not formats:
             smil = self._download_xml(
-                'http://services.media.howstuffworks.com/videos/%s/smil-service.smil' % video_id,
-                video_id, 'Downloading video SMIL')
+                'http://services.media.howstuffworks.com/videos/%s/smil-service.smil' %
+                video_id, video_id, 'Downloading video SMIL')
 
             http_base = find_xpath_attr(
                 smil,

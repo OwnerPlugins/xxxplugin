@@ -27,7 +27,8 @@ def rsa_verify(message, signature, key):
     asn1 += sha256(message).hexdigest().encode()
     if byte_size < len(asn1) // 2 + 11:
         return False
-    expected = b'0001' + (byte_size - len(asn1) // 2 - 3) * b'ff' + b'00' + asn1
+    expected = b'0001' + (byte_size - len(asn1) //
+                          2 - 3) * b'ff' + b'00' + asn1
     return expected == signature
 
 
@@ -39,7 +40,11 @@ def update_self(to_screen, verbose, opener):
     JSON_URL = UPDATE_URL + 'versions.json'
     UPDATES_RSA_KEY = (0x9d60ee4d8f805312fdb15a62f87b95bd66177b91df176765d13514a0f1754bcd2057295c5b6f1d35daa6742c3ffc9a82d3e118861c207995a8031e151d863c9927e304576bc80692bc8e094896fcf11b66f3e29e04e3a71e9a11558558acea1840aec37fc396fb6b65dc81a1c4144e03bd1c011de62e3f1357b327d08426fe93, 65537)
 
-    if not isinstance(globals().get('__loader__'), zipimporter) and not hasattr(sys, 'frozen'):
+    if not isinstance(
+            globals().get('__loader__'),
+            zipimporter) and not hasattr(
+            sys,
+            'frozen'):
         to_screen('It looks like you installed youtube-dl with a package manager, pip, setup.py or a tarball. Please use that to update.')
         return
 
@@ -69,7 +74,12 @@ def update_self(to_screen, verbose, opener):
         return
     signature = versions_info['signature']
     del versions_info['signature']
-    if not rsa_verify(json.dumps(versions_info, sort_keys=True).encode('utf-8'), signature, UPDATES_RSA_KEY):
+    if not rsa_verify(
+            json.dumps(
+                versions_info,
+                sort_keys=True).encode('utf-8'),
+            signature,
+            UPDATES_RSA_KEY):
         to_screen('ERROR: the versions file signature is invalid. Aborting.')
         return
 
@@ -89,7 +99,9 @@ def update_self(to_screen, verbose, opener):
     # sys.executable is set to the full pathname of the exe-file for py2exe
     # though symlinks are not followed so that we need to do this manually
     # with help of realpath
-    filename = compat_realpath(sys.executable if hasattr(sys, 'frozen') else sys.argv[0])
+    filename = compat_realpath(
+        sys.executable if hasattr(
+            sys, 'frozen') else sys.argv[0])
 
     if not os.access(filename, os.W_OK):
         to_screen('ERROR: no write permissions on %s' % filename)

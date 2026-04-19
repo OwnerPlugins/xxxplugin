@@ -52,7 +52,8 @@ class FoxNewsIE(AMPIE):
             'only_matching': True,
         },
         {
-            # From http://insider.foxnews.com/2016/08/25/univ-wisconsin-student-group-pushing-silence-certain-words
+            # From
+            # http://insider.foxnews.com/2016/08/25/univ-wisconsin-student-group-pushing-silence-certain-words
             'url': 'http://video.insider.foxnews.com/v/video-embed.html?video_id=5099377331001&autoplay=true&share_url=http://insider.foxnews.com/2016/08/25/univ-wisconsin-student-group-pushing-silence-certain-words&share_title=Student%20Group:%20Saying%20%27Politically%20Correct,%27%20%27Trash%27%20and%20%27Lame%27%20Is%20Offensive&share=true',
             'only_matching': True,
         },

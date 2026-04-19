@@ -22,8 +22,7 @@ class UMGDeIE(InfoExtractor):
             'title': 'Jedes Wort ist Gold wert',
             'timestamp': 1513591800,
             'upload_date': '20171218',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -50,7 +49,8 @@ class UMGDeIE(InfoExtractor):
 }''' % video_id})['data']['universalMusic']['video']
 
         title = video_data['headline']
-        hls_url_template = 'http://mediadelivery.universal-music-services.de/vod/mp4:autofill/storage/' + '/'.join(list(video_id)) + '/content/%s/file/playlist.m3u8'
+        hls_url_template = 'http://mediadelivery.universal-music-services.de/vod/mp4:autofill/storage/' + \
+            '/'.join(list(video_id)) + '/content/%s/file/playlist.m3u8'
 
         thumbnails = []
         formats = []

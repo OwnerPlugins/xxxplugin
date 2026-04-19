@@ -54,8 +54,14 @@ class TVerIE(InfoExtractor):
 
         return {
             '_type': 'url_transparent',
-            'description': try_get(main, lambda x: x['note'][0]['text'], compat_str),
-            'episode_number': int_or_none(try_get(main, lambda x: x['ext']['episode_number'])),
+            'description': try_get(
+                main,
+                lambda x: x['note'][0]['text'],
+                compat_str),
+            'episode_number': int_or_none(
+                try_get(
+                    main,
+                    lambda x: x['ext']['episode_number'])),
             'url': bc_url,
             'ie_key': 'BrightcoveNew',
         }

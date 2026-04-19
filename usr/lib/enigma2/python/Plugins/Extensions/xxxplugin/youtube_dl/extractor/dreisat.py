@@ -7,7 +7,8 @@ class DreiSatIE(ZDFIE):
     IE_NAME = '3sat'
     _VALID_URL = r'https?://(?:www\.)?3sat\.de/(?:[^/]+/)*(?P<id>[^/?#&]+)\.html'
     _TESTS = [{
-        # Same as https://www.zdf.de/dokumentation/ab-18/10-wochen-sommer-102.html
+        # Same as
+        # https://www.zdf.de/dokumentation/ab-18/10-wochen-sommer-102.html
         'url': 'https://www.3sat.de/film/ab-18/10-wochen-sommer-108.html',
         'md5': '0aff3e7bc72c8813f5e0fae333316a1d',
         'info_dict': {
@@ -33,11 +34,13 @@ class DreiSatIE(ZDFIE):
             'skip_download': True,
         }
     }, {
-        # Same as https://www.zdf.de/filme/filme-sonstige/der-hauptmann-112.html
+        # Same as
+        # https://www.zdf.de/filme/filme-sonstige/der-hauptmann-112.html
         'url': 'https://www.3sat.de/film/spielfilm/der-hauptmann-100.html',
         'only_matching': True,
     }, {
-        # Same as https://www.zdf.de/wissen/nano/nano-21-mai-2019-102.html, equal media ids
+        # Same as https://www.zdf.de/wissen/nano/nano-21-mai-2019-102.html,
+        # equal media ids
         'url': 'https://www.3sat.de/wissen/nano/nano-21-mai-2019-102.html',
         'only_matching': True,
     }]

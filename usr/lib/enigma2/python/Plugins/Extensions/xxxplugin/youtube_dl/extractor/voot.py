@@ -55,18 +55,24 @@ class VootIE(InfoExtractor):
 
         status_code = try_get(media_info, lambda x: x['status']['code'], int)
         if status_code != 0:
-            raise ExtractorError(media_info['status']['message'], expected=True)
+            raise ExtractorError(
+                media_info['status']['message'],
+                expected=True)
 
         media = media_info['assets']
 
         entry_id = media['EntryId']
         title = media['MediaName']
         formats = self._extract_m3u8_formats(
-            'https://cdnapisec.kaltura.com/p/1982551/playManifest/pt/https/f/applehttp/t/web/e/' + entry_id,
-            video_id, 'mp4', m3u8_id='hls')
+            'https://cdnapisec.kaltura.com/p/1982551/playManifest/pt/https/f/applehttp/t/web/e/' +
+            entry_id,
+            video_id,
+            'mp4',
+            m3u8_id='hls')
         self._sort_formats(formats)
 
-        description, series, season_number, episode, episode_number = [None] * 5
+        description, series, season_number, episode, episode_number = [
+            None] * 5
 
         for meta in try_get(media, lambda x: x['Metas'], list) or []:
             key, value = meta.get('Key'), meta.get('Value')

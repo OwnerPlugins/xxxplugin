@@ -33,11 +33,17 @@ class DTubeIE(InfoExtractor):
 
     def _real_extract(self, url):
         uploader_id, video_id = re.match(self._VALID_URL, url).groups()
-        result = self._download_json('https://api.steemit.com/', video_id, data=json.dumps({
-            'jsonrpc': '2.0',
-            'method': 'get_content',
-            'params': [uploader_id, video_id],
-        }).encode())['result']
+        result = self._download_json(
+            'https://api.steemit.com/',
+            video_id,
+            data=json.dumps(
+                {
+                    'jsonrpc': '2.0',
+                    'method': 'get_content',
+                    'params': [
+                        uploader_id,
+                        video_id],
+                }).encode())['result']
 
         metadata = json.loads(result['json_metadata'])
         video = metadata['video']
@@ -57,7 +63,9 @@ class DTubeIE(InfoExtractor):
                 continue
             format_id = (q + 'p') if q else 'Source'
             try:
-                self.to_screen('%s: Checking %s video format URL' % (video_id, format_id))
+                self.to_screen(
+                    '%s: Checking %s video format URL' %
+                    (video_id, format_id))
                 self._downloader._opener.open(video_url, timeout=5).close()
             except timeout:
                 self.to_screen(

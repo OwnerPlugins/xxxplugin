@@ -57,10 +57,17 @@ class SkyItPlayerIE(InfoExtractor):
             'id': video_id,
             'title': self._live_title(title) if is_live else title,
             'formats': formats,
-            'thumbnail': dict_get(video, ('video_still', 'video_still_medium', 'thumb')),
+            'thumbnail': dict_get(
+                video,
+                ('video_still',
+                 'video_still_medium',
+                 'thumb')),
             'description': video.get('short_desc') or None,
-            'timestamp': unified_timestamp(video.get('create_date')),
-            'duration': int_or_none(video.get('duration_sec')) or parse_duration(video.get('duration')),
+            'timestamp': unified_timestamp(
+                video.get('create_date')),
+            'duration': int_or_none(
+                video.get('duration_sec')) or parse_duration(
+                    video.get('duration')),
             'is_live': is_live,
         }
 
@@ -125,9 +132,13 @@ class SkyItVideoLiveIE(SkyItPlayerIE):
     def _real_extract(self, url):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
-        asset_id = compat_str(self._parse_json(self._search_regex(
-            r'<script[^>]+id="__NEXT_DATA__"[^>]*>({.+?})</script>',
-            webpage, 'next data'), display_id)['props']['initialState']['livePage']['content']['asset_id'])
+        asset_id = compat_str(
+            self._parse_json(
+                self._search_regex(
+                    r'<script[^>]+id="__NEXT_DATA__"[^>]*>({.+?})</script>',
+                    webpage,
+                    'next data'),
+                display_id)['props']['initialState']['livePage']['content']['asset_id'])
         livestream = self._download_json(
             'https://apid.sky.it/vdp/v1/getLivestream',
             asset_id, query={'id': asset_id})

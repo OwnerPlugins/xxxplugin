@@ -204,7 +204,8 @@ class DRTVIE(InfoExtractor):
             if kind == 'Image':
                 thumbnail = url_or_none(asset.get('Uri'))
             elif kind in ('VideoResource', 'AudioResource'):
-                duration = float_or_none(asset.get('DurationInMilliseconds'), 1000)
+                duration = float_or_none(
+                    asset.get('DurationInMilliseconds'), 1000)
                 restricted_to_denmark = asset.get('RestrictedToDenmark')
                 asset_target = asset.get('Target')
                 for link in asset.get('Links', []):
@@ -224,7 +225,10 @@ class DRTVIE(InfoExtractor):
                         continue
                     target = link.get('Target')
                     format_id = target or ''
-                    if asset_target in ('SpokenSubtitles', 'SignLanguage', 'VisuallyInterpreted'):
+                    if asset_target in (
+                        'SpokenSubtitles',
+                        'SignLanguage',
+                            'VisuallyInterpreted'):
                         preference = -1
                         format_id += '-%s' % asset_target
                     elif asset_target == 'Default':
@@ -256,7 +260,8 @@ class DRTVIE(InfoExtractor):
                             'vcodec': 'none' if kind == 'AudioResource' else None,
                             'preference': preference,
                         })
-            subtitles_list = asset.get('SubtitlesList') or asset.get('Subtitleslist')
+            subtitles_list = asset.get(
+                'SubtitlesList') or asset.get('Subtitleslist')
             if isinstance(subtitles_list, list):
                 LANGS = {
                     'Danish': 'da',
@@ -341,9 +346,12 @@ class DRTVLiveIE(InfoExtractor):
                             stream_url, channel_id, 'mp4',
                             m3u8_id=link_type, fatal=False, live=True))
                     elif link_type == 'HDS':
-                        formats.extend(self._extract_f4m_formats(update_url_query(
-                            '%s/%s' % (server, stream_path), {'hdcore': '3.7.0'}),
-                            channel_id, f4m_id=link_type, fatal=False))
+                        formats.extend(
+                            self._extract_f4m_formats(
+                                update_url_query(
+                                    '%s/%s' %
+                                    (server, stream_path), {
+                                        'hdcore': '3.7.0'}), channel_id, f4m_id=link_type, fatal=False))
         self._sort_formats(formats)
 
         return {

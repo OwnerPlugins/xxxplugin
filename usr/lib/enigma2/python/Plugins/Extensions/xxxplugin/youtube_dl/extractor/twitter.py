@@ -43,7 +43,12 @@ class TwitterBaseIE(InfoExtractor):
                 variant_url, video_id, 'mp4', 'm3u8_native',
                 m3u8_id='hls', fatal=False)
         else:
-            tbr = int_or_none(dict_get(variant, ('bitrate', 'bit_rate')), 1000) or None
+            tbr = int_or_none(
+                dict_get(
+                    variant,
+                    ('bitrate',
+                     'bit_rate')),
+                1000) or None
             f = {
                 'url': variant_url,
                 'format_id': 'http' + ('-%d' % tbr if tbr else ''),
@@ -59,7 +64,8 @@ class TwitterBaseIE(InfoExtractor):
         vmap_data = self._download_xml(vmap_url, video_id)
         formats = []
         urls = []
-        for video_variant in vmap_data.findall('.//{http://twitter.com/schema/videoVMapV2.xsd}videoVariant'):
+        for video_variant in vmap_data.findall(
+                './/{http://twitter.com/schema/videoVMapV2.xsd}videoVariant'):
             video_variant.attrib['url'] = compat_urllib_parse_unquote(
                 video_variant.attrib['url'])
             urls.append(video_variant.attrib['url'])
@@ -67,7 +73,8 @@ class TwitterBaseIE(InfoExtractor):
                 video_variant.attrib, video_id))
         video_url = strip_or_none(xpath_text(vmap_data, './/MediaFile'))
         if video_url not in urls:
-            formats.extend(self._extract_variant_formats({'url': video_url}, video_id))
+            formats.extend(self._extract_variant_formats(
+                {'url': video_url}, video_id))
         return formats
 
     @staticmethod
@@ -102,7 +109,8 @@ class TwitterBaseIE(InfoExtractor):
 
 class TwitterCardIE(InfoExtractor):
     IE_NAME = 'twitter:card'
-    _VALID_URL = TwitterBaseIE._BASE_REGEX + r'i/(?:cards/tfw/v1|videos(?:/tweet)?)/(?P<id>\d+)'
+    _VALID_URL = TwitterBaseIE._BASE_REGEX + \
+        r'i/(?:cards/tfw/v1|videos(?:/tweet)?)/(?P<id>\d+)'
     _TESTS = [
         {
             'url': 'https://twitter.com/i/cards/tfw/v1/560070183650213889',
@@ -190,7 +198,8 @@ class TwitterCardIE(InfoExtractor):
 
 class TwitterIE(TwitterBaseIE):
     IE_NAME = 'twitter'
-    _VALID_URL = TwitterBaseIE._BASE_REGEX + r'(?:(?:i/web|[^/]+)/status|statuses)/(?P<id>\d+)'
+    _VALID_URL = TwitterBaseIE._BASE_REGEX + \
+        r'(?:(?:i/web|[^/]+)/status|statuses)/(?P<id>\d+)'
 
     _TESTS = [{
         'url': 'https://twitter.com/freethenipple/status/643211948184596480',
@@ -450,7 +459,11 @@ class TwitterIE(TwitterBaseIE):
         uploader_id = user.get('screen_name')
 
         tags = []
-        for hashtag in (try_get(status, lambda x: x['entities']['hashtags'], list) or []):
+        for hashtag in (
+            try_get(
+                status,
+                lambda x: x['entities']['hashtags'],
+                list) or []):
             hashtag_text = hashtag.get('text')
             if not hashtag_text:
                 continue
@@ -461,12 +474,16 @@ class TwitterIE(TwitterBaseIE):
             'title': title,
             'description': description,
             'uploader': uploader,
-            'timestamp': unified_timestamp(status.get('created_at')),
+            'timestamp': unified_timestamp(
+                status.get('created_at')),
             'uploader_id': uploader_id,
             'uploader_url': 'https://twitter.com/' + uploader_id if uploader_id else None,
-            'like_count': int_or_none(status.get('favorite_count')),
-            'repost_count': int_or_none(status.get('retweet_count')),
-            'comment_count': int_or_none(status.get('reply_count')),
+            'like_count': int_or_none(
+                status.get('favorite_count')),
+            'repost_count': int_or_none(
+                status.get('retweet_count')),
+            'comment_count': int_or_none(
+                status.get('reply_count')),
             'age_limit': 18 if status.get('possibly_sensitive') else 0,
             'tags': tags,
         }
@@ -509,7 +526,8 @@ class TwitterIE(TwitterBaseIE):
 
                 def get_binding_value(k):
                     o = binding_values.get(k) or {}
-                    return try_get(o, lambda x: x[x['type'].lower() + '_value'])
+                    return try_get(o,
+                                   lambda x: x[x['type'].lower() + '_value'])
 
                 card_name = card['name'].split(':')[-1]
                 if card_name == 'player':
@@ -535,21 +553,33 @@ class TwitterIE(TwitterBaseIE):
                         'url': get_binding_value('card_url'),
                     })
                 elif card_name == 'unified_card':
-                    media_entities = self._parse_json(get_binding_value('unified_card'), twid)['media_entities']
-                    extract_from_video_info(next(iter(media_entities.values())))
+                    media_entities = self._parse_json(
+                        get_binding_value('unified_card'), twid)['media_entities']
+                    extract_from_video_info(
+                        next(iter(media_entities.values())))
                 # amplify, promo_video_website, promo_video_convo, appplayer,
                 # video_direct_message, poll2choice_video, poll3choice_video,
                 # poll4choice_video, ...
                 else:
                     is_amplify = card_name == 'amplify'
-                    vmap_url = get_binding_value('amplify_url_vmap') if is_amplify else get_binding_value('player_stream_url')
-                    content_id = get_binding_value('%s_content_id' % (card_name if is_amplify else 'player'))
-                    formats = self._extract_formats_from_vmap_url(vmap_url, content_id or twid)
+                    vmap_url = get_binding_value(
+                        'amplify_url_vmap') if is_amplify else get_binding_value('player_stream_url')
+                    content_id = get_binding_value(
+                        '%s_content_id' %
+                        (card_name if is_amplify else 'player'))
+                    formats = self._extract_formats_from_vmap_url(
+                        vmap_url, content_id or twid)
                     self._sort_formats(formats)
 
                     thumbnails = []
-                    for suffix in ('_small', '', '_large', '_x_large', '_original'):
-                        image = get_binding_value('player_image' + suffix) or {}
+                    for suffix in (
+                        '_small',
+                        '',
+                        '_large',
+                        '_x_large',
+                            '_original'):
+                        image = get_binding_value(
+                            'player_image' + suffix) or {}
                         image_url = image.get('url')
                         if not image_url or '/player-placeholder' in image_url:
                             continue
@@ -567,7 +597,8 @@ class TwitterIE(TwitterBaseIE):
                             'content_duration_seconds')),
                     })
             else:
-                expanded_url = try_get(status, lambda x: x['entities']['urls'][0]['expanded_url'])
+                expanded_url = try_get(
+                    status, lambda x: x['entities']['urls'][0]['expanded_url'])
                 if not expanded_url:
                     raise ExtractorError("There's no video in this tweet.")
                 info.update({
@@ -635,7 +666,8 @@ class TwitterAmplifyIE(TwitterBaseIE):
 
 class TwitterBroadcastIE(TwitterBaseIE, PeriscopeBaseIE):
     IE_NAME = 'twitter:broadcast'
-    _VALID_URL = TwitterBaseIE._BASE_REGEX + r'i/broadcasts/(?P<id>[0-9a-zA-Z]{13})'
+    _VALID_URL = TwitterBaseIE._BASE_REGEX + \
+        r'i/broadcasts/(?P<id>[0-9a-zA-Z]{13})'
 
     _TEST = {
         # untitled Periscope video

@@ -77,7 +77,8 @@ class CuriosityStreamIE(CuriosityStreamBaseIE):
             for encoding in media.get('encodings', []):
                 playlist_url = encoding.get('master_playlist_url')
                 if encoding_format == 'm3u8':
-                    # use `m3u8` entry_protocol until EXT-X-MAP is properly supported by `m3u8_native` entry_protocol
+                    # use `m3u8` entry_protocol until EXT-X-MAP is properly
+                    # supported by `m3u8_native` entry_protocol
                     formats.extend(self._extract_m3u8_formats(
                         playlist_url, video_id, 'mp4',
                         m3u8_id='hls', fatal=False))
@@ -102,7 +103,9 @@ class CuriosityStreamIE(CuriosityStreamBaseIE):
                     if not f_url:
                         continue
                     fmt = f.copy()
-                    rtmp = re.search(r'^(?P<url>rtmpe?://(?P<host>[^/]+)/(?P<app>.+))/(?P<playpath>mp[34]:.+)$', f_url)
+                    rtmp = re.search(
+                        r'^(?P<url>rtmpe?://(?P<host>[^/]+)/(?P<app>.+))/(?P<playpath>mp[34]:.+)$',
+                        f_url)
                     if rtmp:
                         fmt.update({
                             'url': rtmp.group('url'),
@@ -126,7 +129,8 @@ class CuriosityStreamIE(CuriosityStreamBaseIE):
             sub_url = closed_caption.get('file')
             if not sub_url:
                 continue
-            lang = closed_caption.get('code') or closed_caption.get('language') or 'en'
+            lang = closed_caption.get(
+                'code') or closed_caption.get('language') or 'en'
             subtitles.setdefault(lang, []).append({
                 'url': sub_url,
             })
@@ -137,7 +141,8 @@ class CuriosityStreamIE(CuriosityStreamBaseIE):
             'title': title,
             'description': media.get('description'),
             'thumbnail': media.get('image_large') or media.get('image_medium') or media.get('image_small'),
-            'duration': int_or_none(media.get('duration')),
+            'duration': int_or_none(
+                media.get('duration')),
             'tags': media.get('tags'),
             'subtitles': subtitles,
         }
@@ -146,21 +151,19 @@ class CuriosityStreamIE(CuriosityStreamBaseIE):
 class CuriosityStreamCollectionIE(CuriosityStreamBaseIE):
     IE_NAME = 'curiositystream:collection'
     _VALID_URL = r'https?://(?:app\.)?curiositystream\.com/(?:collections?|series)/(?P<id>\d+)'
-    _TESTS = [{
-        'url': 'https://app.curiositystream.com/collection/2',
-        'info_dict': {
-            'id': '2',
-            'title': 'Curious Minds: The Internet',
-            'description': 'How is the internet shaping our lives in the 21st Century?',
-        },
-        'playlist_mincount': 16,
-    }, {
-        'url': 'https://curiositystream.com/series/2',
-        'only_matching': True,
-    }, {
-        'url': 'https://curiositystream.com/collections/36',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://app.curiositystream.com/collection/2',
+               'info_dict': {'id': '2',
+                             'title': 'Curious Minds: The Internet',
+                             'description': 'How is the internet shaping our lives in the 21st Century?',
+                             },
+               'playlist_mincount': 16,
+               },
+              {'url': 'https://curiositystream.com/series/2',
+               'only_matching': True,
+               },
+              {'url': 'https://curiositystream.com/collections/36',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         collection_id = self._match_id(url)

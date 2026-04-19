@@ -55,10 +55,12 @@ class CanalplusIE(InfoExtractor):
         site_id = self._SITE_ID_MAP[site]
 
         info_url = self._VIDEO_INFO_TEMPLATE % (site_id, video_id)
-        video_data = self._download_json(info_url, video_id, 'Downloading video JSON')
+        video_data = self._download_json(
+            info_url, video_id, 'Downloading video JSON')
 
         if isinstance(video_data, list):
-            video_data = [video for video in video_data if video.get('ID') == video_id][0]
+            video_data = [
+                video for video in video_data if video.get('ID') == video_id][0]
         media = video_data['MEDIA']
         infos = video_data['INFOS']
 
@@ -79,14 +81,26 @@ class CanalplusIE(InfoExtractor):
             if not format_url:
                 continue
             if format_id == 'HLS':
-                formats.extend(self._extract_m3u8_formats(
-                    format_url, video_id, 'mp4', 'm3u8_native', m3u8_id=format_id, fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        format_url,
+                        video_id,
+                        'mp4',
+                        'm3u8_native',
+                        m3u8_id=format_id,
+                        fatal=False))
             elif format_id == 'HDS':
-                formats.extend(self._extract_f4m_formats(
-                    format_url + '?hdcore=2.11.3', video_id, f4m_id=format_id, fatal=False))
+                formats.extend(
+                    self._extract_f4m_formats(
+                        format_url +
+                        '?hdcore=2.11.3',
+                        video_id,
+                        f4m_id=format_id,
+                        fatal=False))
             else:
                 formats.append({
-                    # the secret extracted from ya function in http://player.canalplus.fr/common/js/canalPlayer.js
+                    # the secret extracted from ya function in
+                    # http://player.canalplus.fr/common/js/canalPlayer.js
                     'url': format_url + '?secret=pqzerjlsmdkjfoiuerhsdlfknaes',
                     'format_id': format_id,
                     'preference': preference(format_id),
@@ -105,12 +119,19 @@ class CanalplusIE(InfoExtractor):
             'display_id': display_id,
             'title': '%s - %s' % (titrage['TITRE'],
                                   titrage['SOUS_TITRE']),
-            'upload_date': unified_strdate(infos.get('PUBLICATION', {}).get('DATE')),
+            'upload_date': unified_strdate(
+                infos.get(
+                    'PUBLICATION',
+                    {}).get('DATE')),
             'thumbnails': thumbnails,
             'description': infos.get('DESCRIPTION'),
-            'duration': int_or_none(infos.get('DURATION')),
-            'view_count': int_or_none(infos.get('NB_VUES')),
-            'like_count': int_or_none(infos.get('NB_LIKES')),
-            'comment_count': int_or_none(infos.get('NB_COMMENTS')),
+            'duration': int_or_none(
+                infos.get('DURATION')),
+            'view_count': int_or_none(
+                infos.get('NB_VUES')),
+            'like_count': int_or_none(
+                infos.get('NB_LIKES')),
+            'comment_count': int_or_none(
+                infos.get('NB_COMMENTS')),
             'formats': formats,
         }

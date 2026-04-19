@@ -62,7 +62,9 @@ class ScrippsNetworksWatchIE(AWSIE):
             'IdentityId': '%s:7655847c-0ae7-4d9b-80d6-56c062927eb3' % self._AWS_REGION
         }).encode('utf-8')
         token = self._download_json(
-            'https://cognito-identity.%s.amazonaws.com/' % self._AWS_REGION, video_id,
+            'https://cognito-identity.%s.amazonaws.com/' %
+            self._AWS_REGION,
+            video_id,
             data=aws_identity_id_json,
             headers={
                 'Accept': '*/*',
@@ -100,41 +102,39 @@ class ScrippsNetworksWatchIE(AWSIE):
 
         return self.url_result(
             smuggle_url(
-                'anvato:anvato_scripps_app_web_prod_0837996dbe373629133857ae9eb72e740424d80a:%s' % mcp_id,
-                {'geo_countries': ['US']}),
-            AnvatoIE.ie_key(), video_id=mcp_id)
+                'anvato:anvato_scripps_app_web_prod_0837996dbe373629133857ae9eb72e740424d80a:%s' %
+                mcp_id, {
+                    'geo_countries': ['US']}), AnvatoIE.ie_key(), video_id=mcp_id)
 
 
 class ScrippsNetworksIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?(?P<site>cookingchanneltv|discovery|(?:diy|food)network|hgtv|travelchannel)\.com/videos/[0-9a-z-]+-(?P<id>\d+)'
-    _TESTS = [{
-        'url': 'https://www.cookingchanneltv.com/videos/the-best-of-the-best-0260338',
-        'info_dict': {
-            'id': '0260338',
-            'ext': 'mp4',
-            'title': 'The Best of the Best',
-            'description': 'Catch a new episode of MasterChef Canada Tuedsay at 9/8c.',
-            'timestamp': 1475678834,
-            'upload_date': '20161005',
-            'uploader': 'SCNI-SCND',
-        },
-        'add_ie': ['ThePlatform'],
-    }, {
-        'url': 'https://www.diynetwork.com/videos/diy-barnwood-tablet-stand-0265790',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.foodnetwork.com/videos/chocolate-strawberry-cake-roll-7524591',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.hgtv.com/videos/cookie-decorating-101-0301929',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.travelchannel.com/videos/two-climates-one-bag-5302184',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.discovery.com/videos/guardians-of-the-glades-cooking-with-tom-cobb-5578368',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.cookingchanneltv.com/videos/the-best-of-the-best-0260338',
+               'info_dict': {'id': '0260338',
+                             'ext': 'mp4',
+                             'title': 'The Best of the Best',
+                             'description': 'Catch a new episode of MasterChef Canada Tuedsay at 9/8c.',
+                             'timestamp': 1475678834,
+                             'upload_date': '20161005',
+                             'uploader': 'SCNI-SCND',
+                             },
+               'add_ie': ['ThePlatform'],
+               },
+              {'url': 'https://www.diynetwork.com/videos/diy-barnwood-tablet-stand-0265790',
+               'only_matching': True,
+               },
+              {'url': 'https://www.foodnetwork.com/videos/chocolate-strawberry-cake-roll-7524591',
+               'only_matching': True,
+               },
+              {'url': 'https://www.hgtv.com/videos/cookie-decorating-101-0301929',
+               'only_matching': True,
+               },
+              {'url': 'https://www.travelchannel.com/videos/two-climates-one-bag-5302184',
+               'only_matching': True,
+               },
+              {'url': 'https://www.discovery.com/videos/guardians-of-the-glades-cooking-with-tom-cobb-5578368',
+               'only_matching': True,
+               }]
     _ACCOUNT_MAP = {
         'cookingchanneltv': 2433005105,
         'discovery': 2706091867,

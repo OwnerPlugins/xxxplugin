@@ -120,7 +120,11 @@ class IviIE(InfoExtractor):
 
                 query = {
                     'ts': timestamp,
-                    'sign': CMAC.new(self._LIGHT_KEY, timestamp.encode() + content_data, Blowfish).hexdigest(),
+                    'sign': CMAC.new(
+                        self._LIGHT_KEY,
+                        timestamp.encode() +
+                        content_data,
+                        Blowfish).hexdigest(),
                 }
             else:
                 query = {}
@@ -176,7 +180,8 @@ class IviIE(InfoExtractor):
         compilation = result.get('compilation')
         episode = title if compilation else None
 
-        title = '%s - %s' % (compilation, title) if compilation is not None else title
+        title = '%s - %s' % (compilation,
+                             title) if compilation is not None else title
 
         thumbnails = [{
             'url': preview['url'],
@@ -188,15 +193,22 @@ class IviIE(InfoExtractor):
         season = self._search_regex(
             r'<li[^>]+class="season active"[^>]*><a[^>]+>([^<]+)',
             webpage, 'season', default=None)
-        season_number = int_or_none(self._search_regex(
-            r'<li[^>]+class="season active"[^>]*><a[^>]+data-season(?:-index)?="(\d+)"',
-            webpage, 'season number', default=None))
+        season_number = int_or_none(
+            self._search_regex(
+                r'<li[^>]+class="season active"[^>]*><a[^>]+data-season(?:-index)?="(\d+)"',
+                webpage,
+                'season number',
+                default=None))
 
-        episode_number = int_or_none(self._search_regex(
-            r'[^>]+itemprop="episode"[^>]*>\s*<meta[^>]+itemprop="episodeNumber"[^>]+content="(\d+)',
-            webpage, 'episode number', default=None))
+        episode_number = int_or_none(
+            self._search_regex(
+                r'[^>]+itemprop="episode"[^>]*>\s*<meta[^>]+itemprop="episodeNumber"[^>]+content="(\d+)',
+                webpage,
+                'episode number',
+                default=None))
 
-        description = self._og_search_description(webpage, default=None) or self._html_search_meta(
+        description = self._og_search_description(
+            webpage, default=None) or self._html_search_meta(
             'description', webpage, 'description', default=None)
 
         return {
@@ -237,9 +249,13 @@ class IviCompilationIE(InfoExtractor):
     def _extract_entries(self, html, compilation_id):
         return [
             self.url_result(
-                'http://www.ivi.ru/watch/%s/%s' % (compilation_id, serie), IviIE.ie_key())
-            for serie in re.findall(
-                r'<a\b[^>]+\bhref=["\']/watch/%s/(\d+)["\']' % compilation_id, html)]
+                'http://www.ivi.ru/watch/%s/%s' %
+                (compilation_id,
+                 serie),
+                IviIE.ie_key()) for serie in re.findall(
+                r'<a\b[^>]+\bhref=["\']/watch/%s/(\d+)["\']' %
+                compilation_id,
+                html)]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -248,24 +264,35 @@ class IviCompilationIE(InfoExtractor):
 
         if season_id is not None:  # Season link
             season_page = self._download_webpage(
-                url, compilation_id, 'Downloading season %s web page' % season_id)
+                url,
+                compilation_id,
+                'Downloading season %s web page' %
+                season_id)
             playlist_id = '%s/season%s' % (compilation_id, season_id)
-            playlist_title = self._html_search_meta('title', season_page, 'title')
+            playlist_title = self._html_search_meta(
+                'title', season_page, 'title')
             entries = self._extract_entries(season_page, compilation_id)
         else:  # Compilation link
-            compilation_page = self._download_webpage(url, compilation_id, 'Downloading compilation web page')
+            compilation_page = self._download_webpage(
+                url, compilation_id, 'Downloading compilation web page')
             playlist_id = compilation_id
-            playlist_title = self._html_search_meta('title', compilation_page, 'title')
+            playlist_title = self._html_search_meta(
+                'title', compilation_page, 'title')
             seasons = re.findall(
-                r'<a href="/watch/%s/season(\d+)' % compilation_id, compilation_page)
+                r'<a href="/watch/%s/season(\d+)' %
+                compilation_id, compilation_page)
             if not seasons:  # No seasons in this compilation
-                entries = self._extract_entries(compilation_page, compilation_id)
+                entries = self._extract_entries(
+                    compilation_page, compilation_id)
             else:
                 entries = []
                 for season_id in seasons:
                     season_page = self._download_webpage(
-                        'http://www.ivi.ru/watch/%s/season%s' % (compilation_id, season_id),
-                        compilation_id, 'Downloading season %s web page' % season_id)
-                    entries.extend(self._extract_entries(season_page, compilation_id))
+                        'http://www.ivi.ru/watch/%s/season%s' %
+                        (compilation_id, season_id), compilation_id, 'Downloading season %s web page' %
+                        season_id)
+                    entries.extend(
+                        self._extract_entries(
+                            season_page, compilation_id))
 
         return self.playlist_result(entries, playlist_id, playlist_title)

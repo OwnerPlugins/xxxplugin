@@ -52,22 +52,31 @@ class TeacherTubeIE(InfoExtractor):
             r'<div\b[^>]+\bclass=["\']msgBox error[^>]+>([^<]+)', webpage,
             'error', default=None)
         if error:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, error), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, error), expected=True)
 
         title = self._html_search_meta('title', webpage, 'title', fatal=True)
         TITLE_SUFFIX = ' - TeacherTube'
         if title.endswith(TITLE_SUFFIX):
             title = title[:-len(TITLE_SUFFIX)].strip()
 
-        description = self._html_search_meta('description', webpage, 'description')
+        description = self._html_search_meta(
+            'description', webpage, 'description')
         if description:
             description = description.strip()
 
         quality = qualities(['mp3', 'flv', 'mp4'])
 
         media_urls = re.findall(r'data-contenturl="([^"]+)"', webpage)
-        media_urls.extend(re.findall(r'var\s+filePath\s*=\s*"([^"]+)"', webpage))
-        media_urls.extend(re.findall(r'\'file\'\s*:\s*["\']([^"\']+)["\'],', webpage))
+        media_urls.extend(
+            re.findall(
+                r'var\s+filePath\s*=\s*"([^"]+)"',
+                webpage))
+        media_urls.extend(
+            re.findall(
+                r'\'file\'\s*:\s*["\']([^"\']+)["\'],',
+                webpage))
 
         formats = [
             {
@@ -118,10 +127,16 @@ class TeacherTubeUserIE(InfoExtractor):
         webpage = self._download_webpage(url, user_id)
         urls.extend(re.findall(self._MEDIA_RE, webpage))
 
-        pages = re.findall(r'/ajax-user/user-videos/%s\?page=([0-9]+)' % user_id, webpage)[:-1]
+        pages = re.findall(
+            r'/ajax-user/user-videos/%s\?page=([0-9]+)' %
+            user_id, webpage)[
+            :-1]
         for p in pages:
-            more = 'http://www.teachertube.com/ajax-user/user-videos/%s?page=%s' % (user_id, p)
-            webpage = self._download_webpage(more, user_id, 'Downloading page %s/%s' % (p, len(pages)))
+            more = 'http://www.teachertube.com/ajax-user/user-videos/%s?page=%s' % (
+                user_id, p)
+            webpage = self._download_webpage(
+                more, user_id, 'Downloading page %s/%s' %
+                (p, len(pages)))
             video_urls = re.findall(self._MEDIA_RE, webpage)
             urls.extend(video_urls)
 

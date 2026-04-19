@@ -39,8 +39,8 @@ class WallaIE(InfoExtractor):
         display_id = mobj.group('display_id')
 
         video = self._download_xml(
-            'http://video2.walla.co.il/?w=null/null/%s/@@/video/flv_pl' % video_id,
-            display_id)
+            'http://video2.walla.co.il/?w=null/null/%s/@@/video/flv_pl' %
+            video_id, display_id)
 
         item = video.find('./items/item')
 
@@ -62,11 +62,15 @@ class WallaIE(InfoExtractor):
             format_id = xpath_text(quality, './title')
             fmt = {
                 'url': 'rtmp://wafla.walla.co.il/vod',
-                'play_path': xpath_text(quality, './src'),
+                'play_path': xpath_text(
+                    quality,
+                    './src'),
                 'player_url': 'http://isc.walla.co.il/w9/swf/video_swf/vod/WallaMediaPlayerAvod.swf',
                 'page_url': url,
                 'ext': 'flv',
-                'format_id': xpath_text(quality, './title'),
+                'format_id': xpath_text(
+                    quality,
+                    './title'),
             }
             m = re.search(r'^(?P<height>\d+)[Pp]', format_id)
             if m:

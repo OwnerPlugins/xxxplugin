@@ -36,7 +36,8 @@ class KalturaIE(InfoExtractor):
                 '''
     _SERVICE_URL = 'http://cdnapi.kaltura.com'
     _SERVICE_BASE = '/api_v3/index.php'
-    # See https://github.com/kaltura/server/blob/master/plugins/content/caption/base/lib/model/enums/CaptionType.php
+    # See
+    # https://github.com/kaltura/server/blob/master/plugins/content/caption/base/lib/model/enums/CaptionType.php
     _CAPTION_TYPES = {
         1: 'srt',
         2: 'ttml',
@@ -118,7 +119,8 @@ class KalturaIE(InfoExtractor):
 
     @staticmethod
     def _extract_urls(webpage):
-        # Embed codes: https://knowledge.kaltura.com/embedding-kaltura-media-players-your-site
+        # Embed codes:
+        # https://knowledge.kaltura.com/embedding-kaltura-media-players-your-site
         finditer = (
             list(re.finditer(
                 r"""(?xs)
@@ -162,14 +164,21 @@ class KalturaIE(InfoExtractor):
             url = 'kaltura:%(partner_id)s:%(id)s' % embed_info
             escaped_pid = re.escape(embed_info['partner_id'])
             service_mobj = re.search(
-                r'<script[^>]+src=(["\'])(?P<id>(?:https?:)?//(?:(?!\1).)+)/p/%s/sp/%s00/embedIframeJs' % (escaped_pid, escaped_pid),
-                webpage)
+                r'<script[^>]+src=(["\'])(?P<id>(?:https?:)?//(?:(?!\1).)+)/p/%s/sp/%s00/embedIframeJs' %
+                (escaped_pid, escaped_pid), webpage)
             if service_mobj:
-                url = smuggle_url(url, {'service_url': service_mobj.group('id')})
+                url = smuggle_url(url,
+                                  {'service_url': service_mobj.group('id')})
             urls.append(url)
         return urls
 
-    def _kaltura_api_call(self, video_id, actions, service_url=None, *args, **kwargs):
+    def _kaltura_api_call(
+            self,
+            video_id,
+            actions,
+            service_url=None,
+            *args,
+            **kwargs):
         params = actions[0]
         if len(actions) > 1:
             for i, a in enumerate(actions[1:], start=1):
@@ -234,7 +243,8 @@ class KalturaIE(InfoExtractor):
         ks = None
         captions = None
         if partner_id and entry_id:
-            _, info, flavor_assets, captions = self._get_video_info(entry_id, partner_id, smuggled_data.get('service_url'))
+            _, info, flavor_assets, captions = self._get_video_info(
+                entry_id, partner_id, smuggled_data.get('service_url'))
         else:
             path, query = mobj.group('path', 'query')
             if not path and not query:
@@ -244,7 +254,8 @@ class KalturaIE(InfoExtractor):
                 params = compat_parse_qs(query)
             if path:
                 splitted_path = path.split('/')
-                params.update(dict((zip(splitted_path[::2], [[v] for v in splitted_path[1::2]]))))
+                params.update(
+                    dict((zip(splitted_path[::2], [[v] for v in splitted_path[1::2]]))))
             if 'wid' in params:
                 partner_id = params['wid'][0][1:]
             elif 'p' in params:
@@ -255,7 +266,8 @@ class KalturaIE(InfoExtractor):
                 raise ExtractorError('Invalid URL', expected=True)
             if 'entry_id' in params:
                 entry_id = params['entry_id'][0]
-                _, info, flavor_assets, captions = self._get_video_info(entry_id, partner_id)
+                _, info, flavor_assets, captions = self._get_video_info(
+                    entry_id, partner_id)
             elif 'uiconf_id' in params and 'flashvars[referenceId]' in params:
                 reference_id = params['flashvars[referenceId]'][0]
                 webpage = self._download_webpage(url, reference_id)
@@ -320,7 +332,8 @@ class KalturaIE(InfoExtractor):
             video_url = sign_url(
                 '%s/flavorId/%s' % (data_url, f['id']))
             format_id = '%(fileExt)s-%(bitrate)s' % f
-            # Source format may not be available (e.g. kaltura:513551:1_66x4rg7o)
+            # Source format may not be available (e.g.
+            # kaltura:513551:1_66x4rg7o)
             if f.get('isOriginal') is True and not self._is_valid_url(
                     video_url, entry_id, format_id):
                 continue
@@ -368,10 +381,12 @@ class KalturaIE(InfoExtractor):
             'title': info['name'],
             'formats': formats,
             'subtitles': subtitles,
-            'description': clean_html(info.get('description')),
+            'description': clean_html(
+                info.get('description')),
             'thumbnail': info.get('thumbnailUrl'),
             'duration': info.get('duration'),
             'timestamp': info.get('createdAt'),
             'uploader_id': info.get('userId') if info.get('userId') != 'None' else None,
-            'view_count': int_or_none(info.get('plays')),
+            'view_count': int_or_none(
+                info.get('plays')),
         }

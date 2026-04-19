@@ -178,12 +178,14 @@ class InstagramIE(InfoExtractor):
             height = int_or_none(media.get('dimensions', {}).get('height'))
             width = int_or_none(media.get('dimensions', {}).get('width'))
             description = try_get(
-                media, lambda x: x['edge_media_to_caption']['edges'][0]['node']['text'],
+                media,
+                lambda x: x['edge_media_to_caption']['edges'][0]['node']['text'],
                 compat_str) or media.get('caption')
             title = media.get('title')
             thumbnail = media.get('display_src') or media.get('display_url')
             duration = float_or_none(media.get('video_duration'))
-            timestamp = int_or_none(media.get('taken_at_timestamp') or media.get('date'))
+            timestamp = int_or_none(
+                media.get('taken_at_timestamp') or media.get('date'))
             uploader = media.get('owner', {}).get('full_name')
             uploader_id = media.get('owner', {}).get('username')
 
@@ -312,11 +314,10 @@ class InstagramPlaylistIE(InfoExtractor):
                 gis_tmpls = [self._gis_tmpl]
             else:
                 gis_tmpls = [
-                    '%s' % rhx_gis,
-                    '',
-                    '%s:%s' % (rhx_gis, csrf_token),
-                    '%s:%s:%s' % (rhx_gis, csrf_token, std_headers['User-Agent']),
-                ]
+                    '%s' %
+                    rhx_gis, '', '%s:%s' %
+                    (rhx_gis, csrf_token), '%s:%s:%s' %
+                    (rhx_gis, csrf_token, std_headers['User-Agent']), ]
 
             # try all of the ways to generate a GIS query, and not only use the
             # first one that works, but cache it for future requests
@@ -338,7 +339,8 @@ class InstagramPlaylistIE(InfoExtractor):
                 except ExtractorError as e:
                     # if it's an error caused by a bad query, and there are
                     # more GIS templates to try, ignore it and keep trying
-                    if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
+                    if isinstance(e.cause,
+                                  compat_HTTPError) and e.cause.code == 403:
                         if gis_tmpl != gis_tmpls[-1]:
                             continue
                     raise
@@ -351,7 +353,8 @@ class InstagramPlaylistIE(InfoExtractor):
                 node = edge.get('node')
                 if not node or not isinstance(node, dict):
                     continue
-                if node.get('__typename') != 'GraphVideo' and node.get('is_video') is not True:
+                if node.get('__typename') != 'GraphVideo' and node.get(
+                        'is_video') is not True:
                     continue
                 video_id = node.get('shortcode')
                 if not video_id:
@@ -362,9 +365,11 @@ class InstagramPlaylistIE(InfoExtractor):
                     ie=InstagramIE.ie_key(), video_id=video_id)
 
                 description = try_get(
-                    node, lambda x: x['edge_media_to_caption']['edges'][0]['node']['text'],
+                    node,
+                    lambda x: x['edge_media_to_caption']['edges'][0]['node']['text'],
                     compat_str)
-                thumbnail = node.get('thumbnail_src') or node.get('display_src')
+                thumbnail = node.get(
+                    'thumbnail_src') or node.get('display_src')
                 timestamp = int_or_none(node.get('taken_at_timestamp'))
 
                 comment_count = get_count('to_comment')

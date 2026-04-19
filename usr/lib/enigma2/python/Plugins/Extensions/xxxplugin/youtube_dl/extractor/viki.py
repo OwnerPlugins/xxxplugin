@@ -55,7 +55,8 @@ class VikiBaseIE(InfoExtractor):
         query = '/v{version}/{path}app={app}'.format(**locals())
         if self._token:
             query += '&token=%s' % self._token
-        return query + ''.join('&{name}={val}.format(**locals())' for name, val in kwargs.items())
+        return query + \
+            ''.join('&{name}={val}.format(**locals())' for name, val in kwargs.items())
 
     def _sign_query(self, path):
         timestamp = int(time.time())
@@ -67,7 +68,13 @@ class VikiBaseIE(InfoExtractor):
         return timestamp, sig, self._API_URL_TEMPLATE % query
 
     def _call_api(
-            self, path, video_id, note='Downloading JSON metadata', data=None, query=None, fatal=True):
+            self,
+            path,
+            video_id,
+            note='Downloading JSON metadata',
+            data=None,
+            query=None,
+            fatal=True):
         if query is None:
             timestamp, sig, url = self._sign_query(path)
         else:
@@ -99,7 +106,8 @@ class VikiBaseIE(InfoExtractor):
                     self.raise_geo_restricted(msg=message)
                 elif reason == 'paywall':
                     if try_get(data, lambda x: x['paywallable']['tvod']):
-                        self._raise_error('This video is for rent only or TVOD (Transactional Video On demand)')
+                        self._raise_error(
+                            'This video is for rent only or TVOD (Transactional Video On demand)')
                     self.raise_login_required(message)
                 self._raise_error(message)
 
@@ -257,15 +265,21 @@ class VikiIE(VikiBaseIE):
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
-        video = self._call_api('videos/{0}.json'.format(video_id), video_id, 'Downloading video JSON', query={})
+        video = self._call_api(
+            'videos/{0}.json'.format(video_id),
+            video_id,
+            'Downloading video JSON',
+            query={})
 
         self._check_errors(video)
 
         title = try_get(video, lambda x: x['titles']['en'], str)
         episode_number = int_or_none(video.get('number'))
         if not title:
-            title = 'Episode %d' % episode_number if video.get('type') == 'episode' else video.get('id') or video_id
-            container_titles = try_get(video, lambda x: x['container']['titles'], dict) or {}
+            title = 'Episode %d' % episode_number if video.get(
+                'type') == 'episode' else video.get('id') or video_id
+            container_titles = try_get(
+                video, lambda x: x['container']['titles'], dict) or {}
             container_title = self.dict_selection(container_titles, 'en')
             if container_title and title == video_id:
                 title = container_title
@@ -273,14 +287,22 @@ class VikiIE(VikiBaseIE):
                 title = '%s - %s' % (container_title, title)
 
         resp = self._call_api(
-            'playback_streams/%s.json?drms=dt3&device_id=%s' % (video_id, self._DEVICE_ID),
-            video_id, 'Downloading video streams JSON')['main'][0]
+            'playback_streams/%s.json?drms=dt3&device_id=%s' %
+            (video_id,
+             self._DEVICE_ID),
+            video_id,
+            'Downloading video streams JSON')['main'][0]
 
         mpd_url = resp['url']
-        # 720p is hidden in another MPD which can be found in the current manifest content
-        mpd_content = self._download_webpage(mpd_url, video_id, note='Downloading initial MPD manifest')
+        # 720p is hidden in another MPD which can be found in the current
+        # manifest content
+        mpd_content = self._download_webpage(
+            mpd_url, video_id, note='Downloading initial MPD manifest')
         mpd_url = self._search_regex(
-            r'(?mi)<BaseURL>(http.+.mpd)', mpd_content, 'new manifest', default=mpd_url)
+            r'(?mi)<BaseURL>(http.+.mpd)',
+            mpd_content,
+            'new manifest',
+            default=mpd_url)
         if 'mpdhd_high' not in mpd_url:
             # Modify the URL to get 1080p
             mpd_url = mpd_url.replace('mpdhd', 'mpdhd_high')
@@ -294,7 +316,8 @@ class VikiIE(VikiBaseIE):
         } for thumbnail_id, thumbnail in (video.get('images') or {}).items() if thumbnail.get('url')]
         like_count = int_or_none(try_get(video, lambda x: x['likes']['count']))
 
-        stream_id = try_get(resp, lambda x: x['properties']['track']['stream_id'])
+        stream_id = try_get(
+            resp, lambda x: x['properties']['track']['stream_id'])
         subtitles = dict((lang, [{
             'ext': ext,
             'url': self._API_URL_TEMPLATE % self._api_query(
@@ -365,8 +388,14 @@ class VikiChannelIE(VikiBaseIE):
                 page_num += 1
                 params['page'] = page_num
                 res = self._call_api(
-                    'containers/{channel_id}/{video_type}.json'.format(**locals()), channel_id, query=params, fatal=False,
-                    note='Downloading %s JSON page %d' % (video_type.title(), page_num))
+                    'containers/{channel_id}/{video_type}.json'.format(
+                        **locals()),
+                    channel_id,
+                    query=params,
+                    fatal=False,
+                    note='Downloading %s JSON page %d' %
+                    (video_type.title(),
+                     page_num))
 
                 for video_id in res.get('response') or []:
                     yield self.url_result('https://www.viki.com/videos/' + video_id, VikiIE.ie_key(), video_id)
@@ -376,7 +405,11 @@ class VikiChannelIE(VikiBaseIE):
     def _real_extract(self, url):
         channel_id = self._match_id(url)
 
-        channel = self._call_api('containers/%s.json' % channel_id, channel_id, 'Downloading channel JSON')
+        channel = self._call_api(
+            'containers/%s.json' %
+            channel_id,
+            channel_id,
+            'Downloading channel JSON')
 
         self._check_errors(channel)
 

@@ -35,9 +35,12 @@ class NormalbootsIE(InfoExtractor):
         video_uploader = self._html_search_regex(
             r'Posted\sby\s<a\shref="[A-Za-z0-9/]*">(?P<uploader>[A-Za-z]*)\s</a>',
             webpage, 'uploader', fatal=False)
-        video_upload_date = unified_strdate(self._html_search_regex(
-            r'<span style="text-transform:uppercase; font-size:inherit;">[A-Za-z]+, (?P<date>.*)</span>',
-            webpage, 'date', fatal=False))
+        video_upload_date = unified_strdate(
+            self._html_search_regex(
+                r'<span style="text-transform:uppercase; font-size:inherit;">[A-Za-z]+, (?P<date>.*)</span>',
+                webpage,
+                'date',
+                fatal=False))
 
         jwplatform_url = JWPlatformIE._extract_url(webpage)
 

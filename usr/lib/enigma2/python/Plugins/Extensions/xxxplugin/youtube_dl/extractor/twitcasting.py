@@ -81,11 +81,13 @@ class TwitCastingIE(InfoExtractor):
                 webpage, 'movie playlist'), video_id)[0]
             m3u8_url = video_js_data['source']['url']
 
-        # use `m3u8` entry_protocol until EXT-X-MAP is properly supported by `m3u8_native` entry_protocol
+        # use `m3u8` entry_protocol until EXT-X-MAP is properly supported by
+        # `m3u8_native` entry_protocol
         formats = self._extract_m3u8_formats(
             m3u8_url, video_id, 'mp4', m3u8_id='hls')
 
-        thumbnail = video_js_data.get('thumbnailUrl') or self._og_search_thumbnail(webpage)
+        thumbnail = video_js_data.get(
+            'thumbnailUrl') or self._og_search_thumbnail(webpage)
         description = clean_html(get_element_by_id(
             'authorcomment', webpage)) or self._html_search_meta(
             ['description', 'og:description', 'twitter:description'], webpage)

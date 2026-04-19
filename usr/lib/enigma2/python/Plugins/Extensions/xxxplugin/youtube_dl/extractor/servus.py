@@ -121,7 +121,8 @@ class ServusIE(InfoExtractor):
 
         title = attrs.get('title_stv') or video_id
         alt_title = attrs.get('title')
-        description = attrs.get('long_description') or attrs.get('short_description')
+        description = attrs.get(
+            'long_description') or attrs.get('short_description')
         series = attrs.get('label')
         season = attrs.get('season')
         episode = attrs.get('chapter')

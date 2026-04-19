@@ -57,7 +57,8 @@ def aa_decode(aa_code):
 class XFileShareIE(InfoExtractor):
     _SITES = (
         # status check 2024-02: site availability, G site: search
-        (r'aparat\.cam', 'Aparat'),  # Cloudflare says host error 522, apparently changed to wolfstreeam.tv
+        # Cloudflare says host error 522, apparently changed to wolfstreeam.tv
+        (r'aparat\.cam', 'Aparat'),
         (r'filemoon\.sx/.', 'FileMoon'),
         (r'gounlimited\.to', 'GoUnlimited'),  # no media pages listed
         (r'govid\.me', 'GoVid'),  # no media pages listed
@@ -76,9 +77,20 @@ class XFileShareIE(InfoExtractor):
     )
 
     IE_DESC = 'XFileShare-based sites: %s' % ', '.join(list(zip(*_SITES))[1])
-    _VALID_URL = (r'https?://(?:www\.)?(?P<host>%s)/(?:embed-)?(?P<id>[0-9a-zA-Z]+)'
-                  % '|'.join(site for site in list(zip(*_SITES))[0]))
-    _EMBED_REGEX = [r'<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//(?:%s)/embed-[0-9a-zA-Z]+.*?)\1' % '|'.join(site for site in list(zip(*_SITES))[0])]
+    _VALID_URL = (
+        r'https?://(?:www\.)?(?P<host>%s)/(?:embed-)?(?P<id>[0-9a-zA-Z]+)' %
+        '|'.join(
+            site for site in list(
+                zip(
+                    *
+                    _SITES))[0]))
+    _EMBED_REGEX = [
+        r'<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//(?:%s)/embed-[0-9a-zA-Z]+.*?)\1' %
+        '|'.join(
+            site for site in list(
+                zip(
+                    *
+                    _SITES))[0])]
 
     _FILE_NOT_FOUND_REGEXES = (
         r'>(?:404 - )?File Not Found<',
@@ -90,7 +102,8 @@ class XFileShareIE(InfoExtractor):
         r'h4-fine[^>]*>([^<]+)<',
         r'>Watch (.+)[ <]',
         r'<h2 class="video-page-head">([^<]+)</h2>',
-        r'<h2 style="[^"]*color:#403f3d[^"]*"[^>]*>([^<]+)<',  # streamin.to (dead)
+        # streamin.to (dead)
+        r'<h2 style="[^"]*color:#403f3d[^"]*"[^>]*>([^<]+)<',
         r'title\s*:\s*"([^"]+)"',  # govid.me
     )
     _SOURCE_URL_REGEXES = (
@@ -104,84 +117,70 @@ class XFileShareIE(InfoExtractor):
         r'(?:image|poster)\s*:\s*["\'](http[^"\']+)["\'],',
     )
 
-    _TESTS = [{
-        'note': 'link in `sources`',
-        'url': 'https://uqload.to/dcsu06gdb45o',
-        'md5': '7f8db187b254379440bf4fcad094ae86',
-        'info_dict': {
-            'id': 'dcsu06gdb45o',
-            'ext': 'mp4',
-            'title': 'f2e31015957e74c8c8427982e161c3fc mp4',
-            'thumbnail': r're:https://.*\.jpg'
-        },
-        'params': {
-            'nocheckcertificate': True,
-        },
-        'expected_warnings': ['Unable to extract JWPlayer data'],
-    }, {
-        'note': 'link in decoded `sources`',
-        'url': 'https://xvideosharing.com/1tlg6agrrdgc',
-        'md5': '2608ce41932c1657ae56258a64e647d9',
-        'info_dict': {
-            'id': '1tlg6agrrdgc',
-            'ext': 'mp4',
-            'title': '0121',
-            'thumbnail': r're:https?://.*\.jpg',
-        },
-        'skip': 'This server is in maintenance mode.',
-    }, {
-        'note': 'JWPlayer link in un-p,a,c,k,e,d JS',
-        'url': 'https://filemoon.sx/e/dw40rxrzruqz',
-        'md5': '5a713742f57ac4aef29b74733e8dda01',
-        'info_dict': {
-            'id': 'dw40rxrzruqz',
-            'title': 'dw40rxrzruqz',
-            'ext': 'mp4'
-        },
-    }, {
-        'note': 'JWPlayer link in un-p,a,c,k,e,d JS',
-        'url': 'https://vadbam.net/6lnbkci96wly.html',
-        'md5': 'a1616800076177e2ac769203957c54bc',
-        'info_dict': {
-            'id': '6lnbkci96wly',
-            'title': 'Heart Crime S01 E03 weciima autos',
-            'ext': 'mp4'
-        },
-    }, {
-        'note': 'JWPlayer link in clear',
-        'url': 'https://w1.viidshar.com/nnibe0xf0h79.html',
-        'md5': 'f0a580ce9df06cc61b4a5c979d672367',
-        'info_dict': {
-            'id': 'nnibe0xf0h79',
-            'title': 'JaGa 68ar',
-            'ext': 'mp4'
-        },
-        'params': {
-            'skip_download': 'ffmpeg',
-        },
-        'expected_warnings': ['hlsnative has detected features it does not support'],
-    }, {
-        'note': 'JWPlayer link in clear',
-        'url': 'https://wolfstream.tv/a3drtehyrg52.html',
-        'md5': '1901d86a79c5e0c6a51bdc9a4cfd3769',
-        'info_dict': {
-            'id': 'a3drtehyrg52',
-            'title': 'NFL 2023 W04 DET@GB',
-            'ext': 'mp4'
-        },
-    }, {
-        'url': 'https://aparat.cam/n4d6dh0wvlpr',
-        'only_matching': True,
-    }, {
-        'url': 'https://uqload.to/ug5somm0ctnk.html',
-        'only_matching': True,
-    }, {
-        'url': 'https://highstream.tv/2owiyz3sjoux',
-        'only_matching': True,
-    }, {
-        'url': 'https://vedbam.xyz/6lnbkci96wly.html',
-        'only_matching': True,
-    }]
+    _TESTS = [{'note': 'link in `sources`',
+               'url': 'https://uqload.to/dcsu06gdb45o',
+               'md5': '7f8db187b254379440bf4fcad094ae86',
+               'info_dict': {'id': 'dcsu06gdb45o',
+                             'ext': 'mp4',
+                             'title': 'f2e31015957e74c8c8427982e161c3fc mp4',
+                             'thumbnail': r're:https://.*\.jpg'},
+               'params': {'nocheckcertificate': True,
+                          },
+               'expected_warnings': ['Unable to extract JWPlayer data'],
+               },
+              {'note': 'link in decoded `sources`',
+               'url': 'https://xvideosharing.com/1tlg6agrrdgc',
+               'md5': '2608ce41932c1657ae56258a64e647d9',
+               'info_dict': {'id': '1tlg6agrrdgc',
+                             'ext': 'mp4',
+                             'title': '0121',
+                             'thumbnail': r're:https?://.*\.jpg',
+                             },
+               'skip': 'This server is in maintenance mode.',
+               },
+              {'note': 'JWPlayer link in un-p,a,c,k,e,d JS',
+               'url': 'https://filemoon.sx/e/dw40rxrzruqz',
+               'md5': '5a713742f57ac4aef29b74733e8dda01',
+               'info_dict': {'id': 'dw40rxrzruqz',
+                             'title': 'dw40rxrzruqz',
+                             'ext': 'mp4'},
+               },
+              {'note': 'JWPlayer link in un-p,a,c,k,e,d JS',
+               'url': 'https://vadbam.net/6lnbkci96wly.html',
+               'md5': 'a1616800076177e2ac769203957c54bc',
+               'info_dict': {'id': '6lnbkci96wly',
+                             'title': 'Heart Crime S01 E03 weciima autos',
+                             'ext': 'mp4'},
+               },
+              {'note': 'JWPlayer link in clear',
+               'url': 'https://w1.viidshar.com/nnibe0xf0h79.html',
+               'md5': 'f0a580ce9df06cc61b4a5c979d672367',
+               'info_dict': {'id': 'nnibe0xf0h79',
+                             'title': 'JaGa 68ar',
+                             'ext': 'mp4'},
+               'params': {'skip_download': 'ffmpeg',
+                          },
+               'expected_warnings': ['hlsnative has detected features it does not support'],
+               },
+              {'note': 'JWPlayer link in clear',
+               'url': 'https://wolfstream.tv/a3drtehyrg52.html',
+               'md5': '1901d86a79c5e0c6a51bdc9a4cfd3769',
+               'info_dict': {'id': 'a3drtehyrg52',
+                             'title': 'NFL 2023 W04 DET@GB',
+                             'ext': 'mp4'},
+               },
+              {'url': 'https://aparat.cam/n4d6dh0wvlpr',
+               'only_matching': True,
+               },
+              {'url': 'https://uqload.to/ug5somm0ctnk.html',
+               'only_matching': True,
+               },
+              {'url': 'https://highstream.tv/2owiyz3sjoux',
+               'only_matching': True,
+               },
+              {'url': 'https://vedbam.xyz/6lnbkci96wly.html',
+               'only_matching': True,
+               }]
 
     @classmethod
     def _extract_urls(cls, webpage):
@@ -196,9 +195,9 @@ class XFileShareIE(InfoExtractor):
     def _real_extract(self, url):
         host, video_id = self._match_valid_url(url).group('host', 'id')
 
-        url = 'https://%s/%s' % (
-            host,
-            'embed-%s.html' % video_id if host in ('govid.me', 'vidlo.us') else video_id)
+        url = 'https://%s/%s' % (host,
+                                 'embed-%s.html' % video_id if host in ('govid.me',
+                                                                        'vidlo.us') else video_id)
         webpage = self._download_webpage(url, video_id)
         container_div = get_element_by_id('container', webpage) or webpage
         if self._search_regex(
@@ -208,14 +207,19 @@ class XFileShareIE(InfoExtractor):
         if self._search_regex(
                 self._FILE_NOT_FOUND_REGEXES, container_div,
                 'missing video error', group=0, default=None):
-            raise ExtractorError('Video %s does not exist' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s does not exist' %
+                video_id, expected=True)
 
         fields = self._hidden_inputs(webpage)
 
         if fields.get('op') == 'download1':
-            countdown = int_or_none(self._search_regex(
-                r'<span id="countdown_str">(?:[Ww]ait)?\s*<span id="cxc">(\d+)</span>\s*(?:seconds?)?</span>',
-                webpage, 'countdown', default=None))
+            countdown = int_or_none(
+                self._search_regex(
+                    r'<span id="countdown_str">(?:[Ww]ait)?\s*<span id="cxc">(\d+)</span>\s*(?:seconds?)?</span>',
+                    webpage,
+                    'countdown',
+                    default=None))
             if countdown:
                 self._sleep(countdown, video_id)
 
@@ -227,9 +231,13 @@ class XFileShareIE(InfoExtractor):
                 })
 
         title = (
-            self._search_regex(self._TITLE_REGEXES, webpage, 'title', default=None)
-            or self._og_search_title(webpage, default=None)
-            or video_id).strip()
+            self._search_regex(
+                self._TITLE_REGEXES,
+                webpage,
+                'title',
+                default=None) or self._og_search_title(
+                webpage,
+                default=None) or video_id).strip()
 
         obf_code = True
         while obf_code:
@@ -237,7 +245,8 @@ class XFileShareIE(InfoExtractor):
                     (r'(?s)(?<!-)\b(eval\(function\(p,a,c,k,e,d\)\{(?:(?!</script>).)+\)\))',
                      decode_packed_codes),
                     (r'(ﾟ.+)', aa_decode)):
-                obf_code = self._search_regex(regex, webpage, 'obfuscated code', default=None)
+                obf_code = self._search_regex(
+                    regex, webpage, 'obfuscated code', default=None)
                 if obf_code:
                     webpage = webpage.replace(obf_code, func(obf_code))
                     break
@@ -258,8 +267,15 @@ class XFileShareIE(InfoExtractor):
                     urls.add(mobj.group('url'))
 
             sources = self._search_regex(
-                r'sources\s*:\s*(\[(?!{)[^\]]+\])', webpage, 'sources', default=None)
-            urls.update(traverse_obj(sources, (T(lambda s: self._parse_json(s, video_id)), Ellipsis)))
+                r'sources\s*:\s*(\[(?!{)[^\]]+\])',
+                webpage,
+                'sources',
+                default=None)
+            urls.update(
+                traverse_obj(
+                    sources, (T(
+                        lambda s: self._parse_json(
+                            s, video_id)), Ellipsis)))
 
             formats = []
             for video_url in traverse_obj(urls, (Ellipsis, T(url_or_none))):

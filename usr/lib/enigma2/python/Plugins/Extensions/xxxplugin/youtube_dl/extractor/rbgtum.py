@@ -45,11 +45,15 @@ class RbgTumIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         m3u8 = self._html_search_regex(r'(https://.+?\.m3u8)', webpage, 'm3u8')
-        lecture_title = self._html_search_regex(r'(?si)<h1.*?>(.*)</h1>', webpage, 'title')
+        lecture_title = self._html_search_regex(
+            r'(?si)<h1.*?>(.*)</h1>', webpage, 'title')
         lecture_series_title = self._html_search_regex(
-            r'(?s)<title\b[^>]*>\s*(?:TUM-Live\s\|\s?)?([^:]+):?.*?</title>', webpage, 'series')
+            r'(?s)<title\b[^>]*>\s*(?:TUM-Live\s\|\s?)?([^:]+):?.*?</title>',
+            webpage,
+            'series')
 
-        formats = self._extract_m3u8_formats(m3u8, video_id, 'mp4', entry_protocol='m3u8_native', m3u8_id='hls')
+        formats = self._extract_m3u8_formats(
+            m3u8, video_id, 'mp4', entry_protocol='m3u8_native', m3u8_id='hls')
         self._sort_formats(formats)
 
         return {
@@ -88,10 +92,18 @@ class RbgTumCourseIE(InfoExtractor):
         course_id = self._match_id(url)
         webpage = self._download_webpage(url, course_id)
 
-        lecture_series_title = self._html_search_regex(r'(?si)<h1.*?>(.*)</h1>', webpage, 'title')
+        lecture_series_title = self._html_search_regex(
+            r'(?si)<h1.*?>(.*)</h1>', webpage, 'title')
 
         lecture_urls = []
-        for lecture_url in re.findall(r'(?i)href="/w/(.+)(?<!/cam)(?<!/pres)(?<!/chat)"', webpage):
-            lecture_urls.append(self.url_result('https://live.rbg.tum.de/w/' + lecture_url, ie=RbgTumIE.ie_key()))
+        for lecture_url in re.findall(
+            r'(?i)href="/w/(.+)(?<!/cam)(?<!/pres)(?<!/chat)"',
+                webpage):
+            lecture_urls.append(
+                self.url_result(
+                    'https://live.rbg.tum.de/w/' +
+                    lecture_url,
+                    ie=RbgTumIE.ie_key()))
 
-        return self.playlist_result(lecture_urls, course_id, lecture_series_title)
+        return self.playlist_result(
+            lecture_urls, course_id, lecture_series_title)

@@ -41,10 +41,21 @@ class ITVBaseIE(InfoExtractor):
         return self._parse_json(
             self._search_regex(
                 r'''<script\b[^>]+\bid=('|")__NEXT_DATA__\1[^>]*>(?P<js>[^<]+)</script>''',
-                webpage, 'next.js data', group='js', fatal=fatal, **kw),
-            video_id, transform_source=transform_source, fatal=fatal)
+                webpage,
+                'next.js data',
+                group='js',
+                fatal=fatal,
+                **kw),
+            video_id,
+            transform_source=transform_source,
+            fatal=fatal)
 
-    def __handle_request_webpage_error(self, err, video_id=None, errnote=None, fatal=True):
+    def __handle_request_webpage_error(
+            self,
+            err,
+            video_id=None,
+            errnote=None,
+            fatal=True):
         if errnote is False:
             return False
         if errnote is None:
@@ -52,7 +63,11 @@ class ITVBaseIE(InfoExtractor):
 
         errmsg = '%s: %s' % (errnote, error_to_compat_str(err))
         if fatal:
-            raise ExtractorError(errmsg, sys.exc_info()[2], cause=err, video_id=video_id)
+            raise ExtractorError(
+                errmsg,
+                sys.exc_info()[2],
+                cause=err,
+                video_id=video_id)
         else:
             self._downloader.report_warning(errmsg)
             return False
@@ -89,7 +104,13 @@ class ITVBaseIE(InfoExtractor):
         if nkwargs:
             kwargs = compat_kwargs(kwargs)
 
-        ret = super(ITVBaseIE, self)._download_webpage_handle(url, video_id, *args, **kwargs)
+        ret = super(
+            ITVBaseIE,
+            self)._download_webpage_handle(
+            url,
+            video_id,
+            *args,
+            **kwargs)
         if ret is False:
             return ret
         webpage, urlh = ret
@@ -101,7 +122,12 @@ class ITVBaseIE(InfoExtractor):
             if '"Request Originated Outside Of Allowed Geographic Region"' in webpage:
                 self.raise_geo_restricted(countries=['GB'])
             ret = self.__handle_request_webpage_error(
-                compat_HTTPError(urlh.geturl(), 403, 'HTTP Error 403: Forbidden', urlh.headers, urlh),
+                compat_HTTPError(
+                    urlh.geturl(),
+                    403,
+                    'HTTP Error 403: Forbidden',
+                    urlh.headers,
+                    urlh),
                 fatal=kwargs.get('fatal'))
 
         return ret
@@ -178,11 +204,11 @@ class ITVIE(ITVBaseIE):
 
     def _og_extract(self, webpage, require_title=False):
         return {
-            'title': self._og_search_title(webpage, fatal=require_title),
-            'description': self._og_search_description(webpage, default=None),
-            'thumbnail': self._og_search_thumbnail(webpage, default=None),
-            'uploader': self._og_search_property('site_name', webpage, default=None),
-        }
+            'title': self._og_search_title(
+                webpage, fatal=require_title), 'description': self._og_search_description(
+                webpage, default=None), 'thumbnail': self._og_search_thumbnail(
+                webpage, default=None), 'uploader': self._og_search_property(
+                    'site_name', webpage, default=None), }
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -190,9 +216,11 @@ class ITVIE(ITVBaseIE):
         webpage = self._download_webpage(url, video_id)
 
         # now quite different params!
-        params = extract_attributes(self._search_regex(
-            r'''(<[^>]+\b(?:class|data-testid)\s*=\s*("|')genie-container\2[^>]*>)''',
-            webpage, 'params'))
+        params = extract_attributes(
+            self._search_regex(
+                r'''(<[^>]+\b(?:class|data-testid)\s*=\s*("|')genie-container\2[^>]*>)''',
+                webpage,
+                'params'))
 
         ios_playlist_url = traverse_obj(
             params, 'data-video-id', 'data-video-playlist',
@@ -234,14 +262,18 @@ class ITVIE(ITVBaseIE):
                 }
             }).encode(), headers=headers)
         video_data = ios_playlist['Playlist']['Video']
-        ios_base_url = traverse_obj(video_data, 'Base', expected_type=url_or_none)
+        ios_base_url = traverse_obj(
+            video_data, 'Base', expected_type=url_or_none)
 
         media_url = (
             (lambda u: url_or_none(urljoin(ios_base_url, u)))
             if ios_base_url else url_or_none)
 
         formats = []
-        for media_file in traverse_obj(video_data, 'MediaFiles', expected_type=list) or []:
+        for media_file in traverse_obj(
+            video_data,
+            'MediaFiles',
+                expected_type=list) or []:
             href = traverse_obj(media_file, 'Href', expected_type=media_url)
             if not href:
                 continue
@@ -261,7 +293,10 @@ class ITVIE(ITVBaseIE):
             f['http_headers'].update(self._vanilla_ua_header())
 
         subtitles = {}
-        for sub in traverse_obj(video_data, 'Subtitles', expected_type=list) or []:
+        for sub in traverse_obj(
+            video_data,
+            'Subtitles',
+                expected_type=list) or []:
             href = traverse_obj(sub, 'Href', expected_type=url_or_none)
             if not href:
                 continue
@@ -270,8 +305,16 @@ class ITVIE(ITVBaseIE):
                 'ext': determine_ext(href, 'vtt'),
             })
 
-        next_data = self._search_nextjs_data(webpage, video_id, fatal=False, default='{}')
-        video_data.update(traverse_obj(next_data, ('props', 'pageProps', ('title', 'episode')), expected_type=dict)[0] or {})
+        next_data = self._search_nextjs_data(
+            webpage, video_id, fatal=False, default='{}')
+        video_data.update(
+            traverse_obj(
+                next_data,
+                ('props',
+                 'pageProps',
+                 ('title',
+                  'episode')),
+                expected_type=dict)[0] or {})
         title = traverse_obj(video_data, 'headerTitle', 'episodeTitle')
         info = self._og_extract(webpage, require_title=not title)
         tn = info.pop('thumbnail', None)
@@ -281,7 +324,11 @@ class ITVIE(ITVBaseIE):
         # num. episode title
         num_ep_title = video_data.get('numberedEpisodeTitle')
         if not num_ep_title:
-            num_ep_title = clean_html(get_element_by_attribute('data-testid', 'episode-hero-description-strong', webpage))
+            num_ep_title = clean_html(
+                get_element_by_attribute(
+                    'data-testid',
+                    'episode-hero-description-strong',
+                    webpage))
             num_ep_title = num_ep_title and num_ep_title.rstrip(' -')
         ep_title = strip_or_none(
             video_data.get('episodeTitle')
@@ -292,7 +339,8 @@ class ITVIE(ITVBaseIE):
 
         def get_thumbnails():
             tns = []
-            for w, x in (traverse_obj(video_data, ('imagePresets'), expected_type=dict) or {}).items():
+            for w, x in (traverse_obj(video_data, ('imagePresets'),
+                         expected_type=dict) or {}).items():
                 if isinstance(x, dict):
                     for y, z in x.items():
                         tns.append({'id': w + '_' + y, 'url': z})
@@ -357,8 +405,10 @@ class ITVBTCCIE(ITVBaseIE):
         webpage, urlh = self._download_webpage_handle(url, playlist_id)
         link = compat_urlparse.urlparse(urlh.geturl()).path.strip('/')
 
-        next_data = self._search_nextjs_data(webpage, playlist_id, fatal=False, default='{}')
-        path_prefix = compat_urlparse.urlparse(next_data.get('assetPrefix') or '').path.strip('/')
+        next_data = self._search_nextjs_data(
+            webpage, playlist_id, fatal=False, default='{}')
+        path_prefix = compat_urlparse.urlparse(
+            next_data.get('assetPrefix') or '').path.strip('/')
         link = remove_start(link, path_prefix).strip('/')
 
         content = traverse_obj(
@@ -391,7 +441,8 @@ class ITVBTCCIE(ITVBaseIE):
                     ie=BrightcoveNewIE.ie_key(), video_id=video_id)
 
             # obsolete ?
-            for video_id in re.findall(r'''data-video-id=["'](\d+)''', webpage):
+            for video_id in re.findall(
+                    r'''data-video-id=["'](\d+)''', webpage):
                 yield self.url_result(
                     smuggle_url(self.BRIGHTCOVE_URL_TEMPLATE % (self.BRIGHTCOVE_ACCOUNT, self.BRIGHTCOVE_PLAYER, video_id), contraband),
                     ie=BrightcoveNewIE.ie_key(), video_id=video_id)

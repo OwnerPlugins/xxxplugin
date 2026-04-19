@@ -112,7 +112,8 @@ class MailRuIE(InfoExtractor):
                 r'(?s)<script[^>]+class="sp-video__page-config"[^>]*>(.+?)</script>',
                 webpage, 'page config', default='{}'), video_id, fatal=False)
             if page_config:
-                meta_url = page_config.get('metaUrl') or page_config.get('video', {}).get('metaUrl')
+                meta_url = page_config.get('metaUrl') or page_config.get(
+                    'video', {}).get('metaUrl')
             else:
                 meta_url = None
 
@@ -140,8 +141,12 @@ class MailRuIE(InfoExtractor):
             if not video_url:
                 continue
             format_id = f.get('key')
-            height = int_or_none(self._search_regex(
-                r'^(\d+)[pP]$', format_id, 'height', default=None)) if format_id else None
+            height = int_or_none(
+                self._search_regex(
+                    r'^(\d+)[pP]$',
+                    format_id,
+                    'height',
+                    default=None)) if format_id else None
             formats.append({
                 'url': video_url,
                 'format_id': format_id,
@@ -156,11 +161,13 @@ class MailRuIE(InfoExtractor):
         author = video_data.get('author')
         uploader = author.get('name')
         uploader_id = author.get('id') or author.get('email')
-        view_count = int_or_none(video_data.get('viewsCount') or video_data.get('views_count'))
+        view_count = int_or_none(video_data.get(
+            'viewsCount') or video_data.get('views_count'))
 
         acc_id = meta_data.get('accId')
         item_id = meta_data.get('itemId')
-        content_id = '%s_%s' % (acc_id, item_id) if acc_id and item_id else video_id
+        content_id = '%s_%s' % (acc_id,
+                                item_id) if acc_id and item_id else video_id
 
         thumbnail = meta_data.get('poster')
         duration = int_or_none(meta_data.get('duration'))

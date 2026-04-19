@@ -53,6 +53,10 @@ class SeekerIE(InfoExtractor):
             entries.append(self.url_result(
                 'jwplatform:' + jwp_id, 'JWPlatform', jwp_id))
         return self.playlist_result(
-            entries, article_id,
+            entries,
+            article_id,
             self._og_search_title(webpage),
-            strip_or_none(get_element_by_class('subtitle__text', webpage)) or self._og_search_description(webpage))
+            strip_or_none(
+                get_element_by_class(
+                    'subtitle__text',
+                    webpage)) or self._og_search_description(webpage))

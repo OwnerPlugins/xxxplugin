@@ -208,7 +208,8 @@ class LecturioCourseIE(LecturioBaseIE):
             if lecture_url:
                 lecture_url = urljoin(url, lecture_url)
             else:
-                lecture_url = 'https://app.lecturio.com/#/lecture/c/%s/%s' % (course_id, lecture_id)
+                lecture_url = 'https://app.lecturio.com/#/lecture/c/%s/%s' % (
+                    course_id, lecture_id)
             entries.append(self.url_result(
                 lecture_url, ie=LecturioIE.ie_key(), video_id=lecture_id))
         return self.playlist_result(

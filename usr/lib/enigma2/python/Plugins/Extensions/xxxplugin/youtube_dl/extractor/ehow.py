@@ -16,8 +16,7 @@ class EHowIE(InfoExtractor):
             'title': 'Hardwood Flooring Basics',
             'description': 'Hardwood flooring may be time consuming, but its ultimately a pretty straightforward concept. Learn about hardwood flooring basics with help from a hardware flooring business owner in this free video...',
             'uploader': 'Erick Nathan',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

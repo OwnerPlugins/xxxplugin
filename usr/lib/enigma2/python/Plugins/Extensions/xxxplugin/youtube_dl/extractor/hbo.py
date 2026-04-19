@@ -76,7 +76,8 @@ class HBOBaseIE(InfoExtractor):
                     'width': format_info.get('width'),
                     'height': height,
                 }
-                rtmp = re.search(r'^(?P<url>rtmpe?://[^/]+/(?P<app>.+))/(?P<playpath>mp4:.+)$', path)
+                rtmp = re.search(
+                    r'^(?P<url>rtmpe?://[^/]+/(?P<app>.+))/(?P<playpath>mp4:.+)$', path)
                 if rtmp:
                     fmt.update({
                         'url': rtmp.group('url'),
@@ -91,9 +92,16 @@ class HBOBaseIE(InfoExtractor):
                 if not video_url:
                     continue
                 if source.tag == 'tarball':
-                    formats.extend(self._extract_m3u8_formats(
-                        video_url.replace('.tar', '/base_index_w8.m3u8'),
-                        video_id, 'mp4', 'm3u8_native', m3u8_id='hls', fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            video_url.replace(
+                                '.tar',
+                                '/base_index_w8.m3u8'),
+                            video_id,
+                            'mp4',
+                            'm3u8_native',
+                            m3u8_id='hls',
+                            fatal=False))
                 elif source.tag == 'hls':
                     m3u8_formats = self._extract_m3u8_formats(
                         video_url.replace('.tar', '/base_index.m3u8'),
@@ -144,7 +152,10 @@ class HBOBaseIE(InfoExtractor):
         return {
             'id': video_id,
             'title': title,
-            'duration': parse_duration(xpath_text(video_data, 'duration/tv14')),
+            'duration': parse_duration(
+                xpath_text(
+                    video_data,
+                    'duration/tv14')),
             'series': series,
             'episode': episode_title,
             'formats': formats,
@@ -170,6 +181,10 @@ class HBOIE(HBOBaseIE):
     def _real_extract(self, url):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
-        location_path = self._parse_json(self._html_search_regex(
-            r'data-state="({.+?})"', webpage, 'state'), display_id)['video']['locationUrl']
+        location_path = self._parse_json(
+            self._html_search_regex(
+                r'data-state="({.+?})"',
+                webpage,
+                'state'),
+            display_id)['video']['locationUrl']
         return self._extract_info(urljoin(url, location_path), display_id)

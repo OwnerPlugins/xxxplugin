@@ -13,7 +13,8 @@ from ..utils import (
 class GameInformerIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?gameinformer\.com/(?:[^/]+/)*(?P<id>[^.?&#]+)'
     _TESTS = [{
-        # normal Brightcove embed code extracted with BrightcoveNewIE._extract_url
+        # normal Brightcove embed code extracted with
+        # BrightcoveNewIE._extract_url
         'url': 'http://www.gameinformer.com/b/features/archive/2015/09/26/replay-animal-crossing.aspx',
         'md5': '292f26da1ab4beb4c9099f1304d2b071',
         'info_dict': {
@@ -26,7 +27,8 @@ class GameInformerIE(InfoExtractor):
             'uploader_id': '694940074001',
         },
     }, {
-        # Brightcove id inside unique element with field--name-field-brightcove-video-id class
+        # Brightcove id inside unique element with
+        # field--name-field-brightcove-video-id class
         'url': 'https://www.gameinformer.com/video-feature/new-gameplay-today/2019/07/09/new-gameplay-today-streets-of-rogue',
         'info_dict': {
             'id': '6057111913001',
@@ -44,6 +46,12 @@ class GameInformerIE(InfoExtractor):
         display_id = self._match_id(url)
         webpage = self._download_webpage(
             url, display_id, headers=self.geo_verification_headers())
-        brightcove_id = clean_html(get_element_by_class('field--name-field-brightcove-video-id', webpage) or get_element_by_id('video-source-content', webpage))
-        brightcove_url = self.BRIGHTCOVE_URL_TEMPLATE % brightcove_id if brightcove_id else BrightcoveNewIE._extract_url(self, webpage)
+        brightcove_id = clean_html(
+            get_element_by_class(
+                'field--name-field-brightcove-video-id',
+                webpage) or get_element_by_id(
+                'video-source-content',
+                webpage))
+        brightcove_url = self.BRIGHTCOVE_URL_TEMPLATE % brightcove_id if brightcove_id else BrightcoveNewIE._extract_url(
+            self, webpage)
         return self.url_result(brightcove_url, 'BrightcoveNew', brightcove_id)

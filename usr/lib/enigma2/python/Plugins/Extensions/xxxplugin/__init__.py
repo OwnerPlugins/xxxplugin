@@ -24,33 +24,38 @@ isDreamOS = False
 
 
 if os.path.exists("/usr/bin/apt-get"):
-	isDreamOS = True
+    isDreamOS = True
 if screenwidth.width() == 2560:
-	skin_path = THISPLUG + 'res/skins/uhd/'
+    skin_path = THISPLUG + 'res/skins/uhd/'
 elif screenwidth.width() == 1920:
-	skin_path = THISPLUG + 'res/skins/fhd/'
+    skin_path = THISPLUG + 'res/skins/fhd/'
 else:
-	skin_path = THISPLUG + 'res/skins/hd/'
+    skin_path = THISPLUG + 'res/skins/hd/'
 
 
 def localeInit():
-	if isDreamOS:
-		lang = language.getLanguage()[:2]
-		os.environ["LANGUAGE"] = lang
-	gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
+    if isDreamOS:
+        lang = language.getLanguage()[:2]
+        os.environ["LANGUAGE"] = lang
+    gettext.bindtextdomain(
+        PluginLanguageDomain,
+        resolveFilename(
+            SCOPE_PLUGINS,
+            PluginLanguagePath))
 
 
 if isDreamOS:
-	def _(txt):
-		return gettext.dgettext(PluginLanguageDomain, txt) if txt else ""
+    def _(txt):
+        return gettext.dgettext(PluginLanguageDomain, txt) if txt else ""
 else:
-	def _(txt):
-		translated = gettext.dgettext(PluginLanguageDomain, txt)
-		if translated:
-			return translated
-		else:
-			print(("[%s] fallback to default translation for %s" % (PluginLanguageDomain, txt)))
-			return gettext.gettext(txt)
+    def _(txt):
+        translated = gettext.dgettext(PluginLanguageDomain, txt)
+        if translated:
+            return translated
+        else:
+            print(("[%s] fallback to default translation for %s" %
+                  (PluginLanguageDomain, txt)))
+            return gettext.gettext(txt)
 
 localeInit()
 language.addCallback(localeInit)

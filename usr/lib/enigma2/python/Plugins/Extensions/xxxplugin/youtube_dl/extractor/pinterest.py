@@ -29,7 +29,8 @@ class PinterestBaseIE(InfoExtractor):
     def _extract_video(self, data, extract_formats=True):
         video_id = data['id']
 
-        title = (data.get('title') or data.get('grid_title') or video_id).strip()
+        title = (data.get('title') or data.get(
+            'grid_title') or video_id).strip()
 
         urls = []
         formats = []
@@ -42,12 +43,18 @@ class PinterestBaseIE(InfoExtractor):
                 if not format_url or format_url in urls:
                     continue
                 urls.append(format_url)
-                duration = float_or_none(format_dict.get('duration'), scale=1000)
+                duration = float_or_none(
+                    format_dict.get('duration'), scale=1000)
                 ext = determine_ext(format_url)
                 if 'hls' in format_id.lower() or ext == 'm3u8':
-                    formats.extend(self._extract_m3u8_formats(
-                        format_url, video_id, 'mp4', entry_protocol='m3u8_native',
-                        m3u8_id=format_id, fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            format_url,
+                            video_id,
+                            'mp4',
+                            entry_protocol='m3u8_native',
+                            m3u8_id=format_id,
+                            fatal=False))
                 else:
                     formats.append({
                         'url': format_url,
@@ -57,20 +64,26 @@ class PinterestBaseIE(InfoExtractor):
                         'duration': duration,
                     })
             self._sort_formats(
-                formats, field_preference=('height', 'width', 'tbr', 'format_id'))
+                formats, field_preference=(
+                    'height', 'width', 'tbr', 'format_id'))
 
-        description = data.get('description') or data.get('description_html') or data.get('seo_description')
+        description = data.get('description') or data.get(
+            'description_html') or data.get('seo_description')
         timestamp = unified_timestamp(data.get('created_at'))
 
         def _u(field):
-            return try_get(data, lambda x: x['closeup_attribution'][field], compat_str)
+            return try_get(
+                data,
+                lambda x: x['closeup_attribution'][field],
+                compat_str)
 
         uploader = _u('full_name')
         uploader_id = _u('id')
 
         repost_count = int_or_none(data.get('repin_count'))
         comment_count = int_or_none(data.get('comment_count'))
-        categories = try_get(data, lambda x: x['pin_join']['visual_annotation'], list)
+        categories = try_get(
+            data, lambda x: x['pin_join']['visual_annotation'], list)
         tags = data.get('hashtags')
 
         thumbnails = []

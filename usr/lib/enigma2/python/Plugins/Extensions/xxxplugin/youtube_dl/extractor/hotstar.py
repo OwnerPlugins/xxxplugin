@@ -30,7 +30,8 @@ class HotStarBaseIE(InfoExtractor):
         st = int(time.time())
         exp = st + 6000
         auth = 'st=%d~exp=%d~acl=/*' % (st, exp)
-        auth += '~hmac=' + hmac.new(self._AKAMAI_ENCRYPTION_KEY, auth.encode(), hashlib.sha256).hexdigest()
+        auth += '~hmac=' + \
+            hmac.new(self._AKAMAI_ENCRYPTION_KEY, auth.encode(), hashlib.sha256).hexdigest()
         h = {'hotstarauth': auth}
         h.update(headers)
         return self._download_json(
@@ -60,8 +61,11 @@ class HotStarBaseIE(InfoExtractor):
             if isinstance(e.cause, compat_HTTPError):
                 if e.cause.code == 402:
                     self.raise_login_required()
-                message = self._parse_json(e.cause.read().decode(), video_id)['message']
-                if message in ('Content not available in region', 'Country is not supported'):
+                message = self._parse_json(
+                    e.cause.read().decode(), video_id)['message']
+                if message in (
+                    'Content not available in region',
+                        'Country is not supported'):
                     raise self.raise_geo_restricted(message)
                 raise ExtractorError(message)
             raise e
@@ -189,7 +193,8 @@ class HotStarIE(HotStarBaseIE):
                         'height': int_or_none(playback_set.get('height')),
                     })
             except ExtractorError as e:
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
+                if isinstance(e.cause,
+                              compat_HTTPError) and e.cause.code == 403:
                     geo_restricted = True
                 continue
         if not formats and geo_restricted:
@@ -206,17 +211,23 @@ class HotStarIE(HotStarBaseIE):
             'title': title,
             'thumbnail': 'https://img1.hotstarext.com/image/upload/' + image if image else None,
             'description': video_data.get('description'),
-            'duration': int_or_none(video_data.get('duration')),
-            'timestamp': int_or_none(video_data.get('broadcastDate') or video_data.get('startDate')),
+            'duration': int_or_none(
+                video_data.get('duration')),
+            'timestamp': int_or_none(
+                video_data.get('broadcastDate') or video_data.get('startDate')),
             'formats': formats,
             'channel': video_data.get('channelName'),
-            'channel_id': str_or_none(video_data.get('channelId')),
+            'channel_id': str_or_none(
+                video_data.get('channelId')),
             'series': video_data.get('showName'),
             'season': video_data.get('seasonName'),
-            'season_number': int_or_none(video_data.get('seasonNo')),
-            'season_id': str_or_none(video_data.get('seasonId')),
+            'season_number': int_or_none(
+                video_data.get('seasonNo')),
+            'season_id': str_or_none(
+                video_data.get('seasonId')),
             'episode': title,
-            'episode_number': int_or_none(video_data.get('episodeNo')),
+            'episode_number': int_or_none(
+                video_data.get('episodeNo')),
         }
 
 

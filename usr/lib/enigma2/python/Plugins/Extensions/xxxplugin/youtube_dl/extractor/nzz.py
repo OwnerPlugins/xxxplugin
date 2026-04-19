@@ -33,7 +33,8 @@ class NZZIE(InfoExtractor):
         for player_element in re.findall(
                 r'(<[^>]+class="kalturaPlayer[^"]*"[^>]*>)', webpage):
             player_params = extract_attributes(player_element)
-            if player_params.get('data-type') not in ('kaltura_singleArticle',):
+            if player_params.get(
+                    'data-type') not in ('kaltura_singleArticle',):
                 self.report_warning('Unsupported player type')
                 continue
             entry_id = player_params['data-id']

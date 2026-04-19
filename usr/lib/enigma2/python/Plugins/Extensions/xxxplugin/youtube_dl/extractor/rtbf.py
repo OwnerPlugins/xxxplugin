@@ -77,7 +77,9 @@ class RTBFIE(InfoExtractor):
 
         error = data.get('error')
         if error:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, error), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, error), expected=True)
 
         provider = data.get('provider')
         if provider in self._PROVIDERS:
@@ -95,7 +97,8 @@ class RTBFIE(InfoExtractor):
             formats.extend(self._extract_m3u8_formats(
                 m3u8_url, media_id, 'mp4', m3u8_id='hls', fatal=False))
 
-        fix_url = lambda x: x.replace('//rtbf-vod.', '//rtbf.') if '/geo/drm/' in x else x
+        def fix_url(x): return x.replace(
+            '//rtbf-vod.', '//rtbf.') if '/geo/drm/' in x else x
         http_url = data.get('url')
         if formats and http_url and re.search(height_re, http_url):
             http_url = fix_url(http_url)

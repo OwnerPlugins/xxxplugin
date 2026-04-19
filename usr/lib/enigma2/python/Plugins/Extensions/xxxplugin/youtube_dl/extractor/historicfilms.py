@@ -31,11 +31,14 @@ class HistoricFilmsIE(InfoExtractor):
         title = self._og_search_title(webpage)
         description = self._og_search_description(webpage)
         thumbnail = self._html_search_meta(
-            'thumbnailUrl', webpage, 'thumbnails') or self._og_search_thumbnail(webpage)
+            'thumbnailUrl',
+            webpage,
+            'thumbnails') or self._og_search_thumbnail(webpage)
         duration = parse_duration(self._html_search_meta(
             'duration', webpage, 'duration'))
 
-        video_url = 'http://www.historicfilms.com/video/%s_%s_web.mov' % (tape_id, video_id)
+        video_url = 'http://www.historicfilms.com/video/%s_%s_web.mov' % (
+            tape_id, video_id)
 
         return {
             'id': video_id,

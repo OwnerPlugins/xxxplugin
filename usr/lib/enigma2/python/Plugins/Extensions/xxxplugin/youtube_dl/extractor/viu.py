@@ -109,7 +109,8 @@ class ViuIE(ViuBaseIE):
 
         subtitles = {}
         for key, value in video_data.items():
-            mobj = re.match(r'^subtitle_(?P<lang>[^_]+)_(?P<ext>(vtt|srt))', key)
+            mobj = re.match(
+                r'^subtitle_(?P<lang>[^_]+)_(?P<ext>(vtt|srt))', key)
             if not mobj:
                 continue
             subtitles.setdefault(mobj.group('lang'), []).append({
@@ -221,16 +222,16 @@ class ViuOTTIE(InfoExtractor):
 
         video_data = product_data.get('current_product')
         if not video_data:
-            raise ExtractorError('This video is not available in your region.', expected=True)
+            raise ExtractorError(
+                'This video is not available in your region.',
+                expected=True)
 
         stream_data = self._download_json(
-            'https://d1k2us671qcoau.cloudfront.net/distribute_web_%s.php' % country_code,
-            video_id, 'Downloading stream info', query={
-                'ccs_product_id': video_data['ccs_product_id'],
-            }, headers={
-                'Referer': url,
-                'Origin': re.search(r'https?://[^/]+', url).group(0),
-            })['data']['stream']
+            'https://d1k2us671qcoau.cloudfront.net/distribute_web_%s.php' %
+            country_code, video_id, 'Downloading stream info', query={
+                'ccs_product_id': video_data['ccs_product_id'], }, headers={
+                'Referer': url, 'Origin': re.search(
+                    r'https?://[^/]+', url).group(0), })['data']['stream']
 
         stream_sizes = stream_data.get('size', {})
         formats = []

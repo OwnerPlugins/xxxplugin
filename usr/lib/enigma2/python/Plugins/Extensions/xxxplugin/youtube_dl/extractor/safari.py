@@ -171,8 +171,10 @@ class SafariIE(SafariBaseIE):
                 if session:
                     query['flashvars[ks]'] = session
 
-        return self.url_result(update_url_query(
-            'https://cdnapisec.kaltura.com/html5/html5lib/v2.37.1/mwEmbedFrame.php', query),
+        return self.url_result(
+            update_url_query(
+                'https://cdnapisec.kaltura.com/html5/html5lib/v2.37.1/mwEmbedFrame.php',
+                query),
             'Kaltura')
 
 
@@ -248,8 +250,12 @@ class SafariCourseIE(SafariBaseIE):
         course_id = self._match_id(url)
 
         course_json = self._download_json(
-            '%s/book/%s/?override_format=%s' % (self._API_BASE, course_id, self._API_FORMAT),
-            course_id, 'Downloading course JSON')
+            '%s/book/%s/?override_format=%s' %
+            (self._API_BASE,
+             course_id,
+             self._API_FORMAT),
+            course_id,
+            'Downloading course JSON')
 
         if 'chapters' not in course_json:
             raise ExtractorError(

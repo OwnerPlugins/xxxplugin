@@ -35,17 +35,25 @@ class YandexMusicBaseIE(InfoExtractor):
             'time until unblocked and optionally use --sleep-interval '
             'in future or alternatively you can go to https://music.yandex.ru/ '
             'solve CAPTCHA, then export cookies and pass cookie file to '
-            'youtube-dl with --cookies',
-            expected=True)
+            'youtube-dl with --cookies', expected=True)
 
     def _download_webpage_handle(self, *args, **kwargs):
-        webpage = super(YandexMusicBaseIE, self)._download_webpage_handle(*args, **kwargs)
+        webpage = super(
+            YandexMusicBaseIE,
+            self)._download_webpage_handle(
+            *args,
+            **kwargs)
         if 'Нам очень жаль, но&nbsp;запросы, поступившие с&nbsp;вашего IP-адреса, похожи на&nbsp;автоматические.' in webpage:
             self._raise_captcha()
         return webpage
 
     def _download_json(self, *args, **kwargs):
-        response = super(YandexMusicBaseIE, self)._download_json(*args, **kwargs)
+        response = super(
+            YandexMusicBaseIE,
+            self)._download_json(
+            *
+            args,
+            **kwargs)
         self._handle_error(response)
         return response
 
@@ -129,7 +137,8 @@ class YandexMusicTrackIE(YandexMusicBaseIE):
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
-        tld, album_id, track_id = mobj.group('tld'), mobj.group('album_id'), mobj.group('id')
+        tld, album_id, track_id = mobj.group(
+            'tld'), mobj.group('album_id'), mobj.group('id')
 
         track = self._call_api(
             'track', tld, url, track_id, 'Downloading track JSON',
@@ -140,17 +149,20 @@ class YandexMusicTrackIE(YandexMusicBaseIE):
             track_title = '%s (%s)' % (track_title, track_version)
 
         download_data = self._download_json(
-            'https://music.yandex.ru/api/v2.1/handlers/track/%s:%s/web-album_track-track-track-main/download/m' % (track_id, album_id),
-            track_id, 'Downloading track location url JSON',
-            query={'hq': 1},
-            headers={'X-Retpath-Y': url})
+            'https://music.yandex.ru/api/v2.1/handlers/track/%s:%s/web-album_track-track-track-main/download/m' %
+            (track_id, album_id), track_id, 'Downloading track location url JSON', query={
+                'hq': 1}, headers={
+                'X-Retpath-Y': url})
 
         fd_data = self._download_json(
             download_data['src'], track_id,
             'Downloading track location JSON',
             query={'format': 'json'})
-        key = hashlib.md5(('XGRlBW9FXlekgbPrRHuSiA' + fd_data['path'][1:] + fd_data['s']).encode('utf-8')).hexdigest()
-        f_url = 'http://%s/get-mp3/%s/%s?track-id=%s ' % (fd_data['host'], key, fd_data['ts'] + fd_data['path'], track['id'])
+        key = hashlib.md5(('XGRlBW9FXlekgbPrRHuSiA' +
+                           fd_data['path'][1:] +
+                           fd_data['s']).encode('utf-8')).hexdigest()
+        f_url = 'http://%s/get-mp3/%s/%s?track-id=%s ' % (
+            fd_data['host'], key, fd_data['ts'] + fd_data['path'], track['id'])
 
         thumbnail = None
         cover_uri = track.get('albums', [{}])[0].get('coverUri')
@@ -185,7 +197,8 @@ class YandexMusicTrackIE(YandexMusicBaseIE):
 
         def extract_artist(artist_list):
             if artist_list and isinstance(artist_list, list):
-                artists_names = [extract_artist_name(a) for a in artist_list if a.get('name')]
+                artists_names = [extract_artist_name(
+                    a) for a in artist_list if a.get('name')]
                 if artists_names:
                     return ', '.join(artists_names)
 
@@ -272,9 +285,13 @@ class YandexMusicPlaylistBaseIE(YandexMusicBaseIE):
             album_id = album.get('id')
             if not album_id:
                 continue
-            entries.append(self.url_result(
-                'http://music.yandex.ru/album/%s/track/%s' % (album_id, track_id),
-                ie=YandexMusicTrackIE.ie_key(), video_id=track_id))
+            entries.append(
+                self.url_result(
+                    'http://music.yandex.ru/album/%s/track/%s' %
+                    (album_id,
+                     track_id),
+                    ie=YandexMusicTrackIE.ie_key(),
+                    video_id=track_id))
         return entries
 
 
@@ -311,7 +328,8 @@ class YandexMusicAlbumIE(YandexMusicPlaylistBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if YandexMusicTrackIE.suitable(url) else super(YandexMusicAlbumIE, cls).suitable(url)
+        return False if YandexMusicTrackIE.suitable(
+            url) else super(YandexMusicAlbumIE, cls).suitable(url)
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -322,7 +340,8 @@ class YandexMusicAlbumIE(YandexMusicPlaylistBaseIE):
             'album', tld, url, album_id, 'Downloading album JSON',
             {'album': album_id})
 
-        entries = self._build_playlist([track for volume in album['volumes'] for track in volume])
+        entries = self._build_playlist(
+            [track for volume in album['volumes'] for track in volume])
 
         title = album['title']
         artist = try_get(album, lambda x: x['artists'][0]['name'], compat_str)

@@ -38,7 +38,8 @@ class XboxClipsIE(InfoExtractor):
 
         if '/video.php' in url:
             qs = compat_parse_qs(compat_urllib_parse_urlparse(url).query)
-            url = 'https://gameclips.io/%s/%s' % (qs['gamertag'][0], qs['vid'][0])
+            url = 'https://gameclips.io/%s/%s' % (
+                qs['gamertag'][0], qs['vid'][0])
 
         webpage = self._download_webpage(url, video_id)
         info = self._parse_html5_media_entries(url, webpage, video_id)[0]
@@ -49,7 +50,8 @@ class XboxClipsIE(InfoExtractor):
             r'>Recorded: (\d{2})-(Jan|Feb|Mar|Apr|May|Ju[nl]|Aug|Sep|Oct|Nov|Dec)-(\d{4})',
             webpage)
         if mobj:
-            upload_date = '%s%.2d%s' % (mobj.group(3), month_by_abbreviation(mobj.group(2)), mobj.group(1))
+            upload_date = '%s%.2d%s' % (mobj.group(
+                3), month_by_abbreviation(mobj.group(2)), mobj.group(1))
         filesize = parse_filesize(self._html_search_regex(
             r'>Size: ([^<]+)<', webpage, 'file size', fatal=False))
         duration = int_or_none(self._html_search_regex(

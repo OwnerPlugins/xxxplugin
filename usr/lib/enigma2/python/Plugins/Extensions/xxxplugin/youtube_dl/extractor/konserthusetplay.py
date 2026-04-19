@@ -34,7 +34,9 @@ class KonserthusetPlayIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         e = self._search_regex(
-            r'https?://csp\.picsearch\.com/rest\?.*\be=(.+?)[&"\']', webpage, 'e')
+            r'https?://csp\.picsearch\.com/rest\?.*\be=(.+?)[&"\']',
+            webpage,
+            'e')
 
         rest = self._download_json(
             'http://csp.picsearch.com/rest?e=%s&containerId=mediaplayer&i=object' % e,
@@ -44,7 +46,8 @@ class KonserthusetPlayIE(InfoExtractor):
         player_config = media['playerconfig']
         playlist = player_config['playlist']
 
-        source = next(f for f in playlist if f.get('bitrates') or f.get('provider'))
+        source = next(f for f in playlist if f.get(
+            'bitrates') or f.get('provider'))
 
         FORMAT_ID_REGEX = r'_([^_]+)_h264m\.mp4'
 
@@ -111,7 +114,8 @@ class KonserthusetPlayIE(InfoExtractor):
             for lang, subtitle_url in captions.items():
                 subtitle_url = url_or_none(subtitle_url)
                 if lang != 'none' and subtitle_url:
-                    subtitles.setdefault(lang, []).append({'url': subtitle_url})
+                    subtitles.setdefault(lang, []).append(
+                        {'url': subtitle_url})
 
         return {
             'id': video_id,

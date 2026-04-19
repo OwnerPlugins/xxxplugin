@@ -89,7 +89,8 @@ class IGNBaseIE(InfoExtractor):
             return
 
         thumbnails = traverse_obj(
-            video, ('thumbnails', Ellipsis, {'url': 'url'}), expected_type=url_or_none)
+            video, ('thumbnails', Ellipsis, {
+                'url': 'url'}), expected_type=url_or_none)
         tags = traverse_obj(
             video, ('tags', Ellipsis, 'displayName'),
             expected_type=lambda x: x.strip() or None)
@@ -169,10 +170,11 @@ class IGNIE(IGNBaseIE):
         grids = re.findall(
             r'''(?s)<section\b[^>]+\bclass\s*=\s*['"](?:[\w-]+\s+)*?content-feed-grid(?!\B|-)[^>]+>(.+?)</section[^>]*>''',
             webpage)
-        return filter(None,
-                      (urljoin(url, m.group('path')) for m in re.finditer(
-                          r'''<a\b[^>]+\bhref\s*=\s*('|")(?P<path>/videos%s)\1'''
-                          % cls._VIDEO_PATH_RE, grids[0] if grids else '')))
+        return filter(
+            None, (urljoin(
+                url, m.group('path')) for m in re.finditer(
+                r'''<a\b[^>]+\bhref\s*=\s*('|")(?P<path>/videos%s)\1''' %
+                cls._VIDEO_PATH_RE, grids[0] if grids else '')))
 
     def _real_extract(self, url):
         m = re.match(self._VALID_URL, url)
@@ -236,7 +238,9 @@ class IGNVideoIE(IGNBaseIE):
         video_id = self._match_id(url)
         parsed_url = compat_urlparse.urlparse(url)
         embed_url = compat_urlparse.urlunparse(
-            parsed_url._replace(path=parsed_url.path.rsplit('/', 1)[0] + '/embed'))
+            parsed_url._replace(
+                path=parsed_url.path.rsplit(
+                    '/', 1)[0] + '/embed'))
 
         webpage, urlh = self._download_webpage_handle(embed_url, video_id)
         new_url = urlh.geturl()
@@ -244,7 +248,11 @@ class IGNVideoIE(IGNBaseIE):
             compat_urlparse.urlparse(new_url).query).get('url', [None])[-1]
         if ign_url:
             return self.url_result(ign_url, IGNIE.ie_key())
-        video = self._search_regex(r'(<div\b[^>]+\bdata-video-id\s*=\s*[^>]+>)', webpage, 'video element', fatal=False)
+        video = self._search_regex(
+            r'(<div\b[^>]+\bdata-video-id\s*=\s*[^>]+>)',
+            webpage,
+            'video element',
+            fatal=False)
         if not video:
             if new_url == url:
                 raise ExtractorError('Redirect loop: ' + url)
@@ -344,8 +352,11 @@ class IGNArticleIE(IGNBaseIE):
         return self._parse_json(
             self._search_regex(
                 r'(?s)<script[^>]+id=[\'"]__NEXT_DATA__[\'"][^>]*>([^<]+)</script>',
-                webpage, 'next.js data', **kw),
-            video_id, **kw)
+                webpage,
+                'next.js data',
+                **kw),
+            video_id,
+            **kw)
 
     def _real_extract(self, url):
         display_id = self._match_id(url)
@@ -360,7 +371,9 @@ class IGNArticleIE(IGNBaseIE):
                 if media_url:
                     yield self.url_result(media_url, IGNIE.ie_key())
                 for content in (article.get('content') or []):
-                    for video_url in re.findall(r'(?:\[(?:ignvideo\s+url|youtube\s+clip_id)|<iframe[^>]+src)="([^"]+)"', content):
+                    for video_url in re.findall(
+                        r'(?:\[(?:ignvideo\s+url|youtube\s+clip_id)|<iframe[^>]+src)="([^"]+)"',
+                            content):
                         if url_or_none(video_url):
                             yield self.url_result(video_url)
 
@@ -372,7 +385,8 @@ class IGNArticleIE(IGNBaseIE):
 
         webpage = self._download_webpage(url, display_id)
 
-        playlist_id = self._html_search_meta('dable:item_id', webpage, default=None)
+        playlist_id = self._html_search_meta(
+            'dable:item_id', webpage, default=None)
         if playlist_id:
 
             def entries():
@@ -382,7 +396,8 @@ class IGNArticleIE(IGNBaseIE):
                     flashvars = self._search_regex(
                         r'''(<param\b[^>]+\bname\s*=\s*("|')flashvars\2[^>]*>)''',
                         m.group('params'), 'flashvars', default='')
-                    flashvars = compat_parse_qs(extract_attributes(flashvars).get('value') or '')
+                    flashvars = compat_parse_qs(
+                        extract_attributes(flashvars).get('value') or '')
                     v_url = url_or_none((flashvars.get('url') or [None])[-1])
                     if v_url:
                         yield self.url_result(v_url)
@@ -395,14 +410,26 @@ class IGNArticleIE(IGNBaseIE):
 
             def entries():
                 for player in traverse_obj(
+                    nextjs_data,
+                    ('props',
+                     'apolloState',
+                     'ROOT_QUERY',
+                     lambda k,
+                     _: k.startswith('videoPlayerProps('),
+                     '__ref')):
+                    # skip promo links (which may not always be served, eg GH
+                    # CI servers)
+                    if traverse_obj(
                         nextjs_data,
-                        ('props', 'apolloState', 'ROOT_QUERY', lambda k, _: k.startswith('videoPlayerProps('), '__ref')):
-                    # skip promo links (which may not always be served, eg GH CI servers)
-                    if traverse_obj(nextjs_data,
-                                    ('props', 'apolloState', player.replace('PlayerProps', 'ModernContent')),
-                                    expected_type=dict):
+                        ('props',
+                         'apolloState',
+                         player.replace(
+                             'PlayerProps',
+                             'ModernContent')),
+                            expected_type=dict):
                         continue
-                    video = traverse_obj(nextjs_data, ('props', 'apolloState', player), expected_type=dict) or {}
+                    video = traverse_obj(
+                        nextjs_data, ('props', 'apolloState', player), expected_type=dict) or {}
                     info = self._extract_video_info(video, fatal=False)
                     if info:
                         yield merge_dicts({
@@ -410,5 +437,11 @@ class IGNArticleIE(IGNBaseIE):
                         }, info)
 
         return self.playlist_result(
-            entries(), playlist_id or display_id,
-            re.sub(r'\s+-\s+IGN\s*$', '', self._og_search_title(webpage, default='')) or None)
+            entries(),
+            playlist_id or display_id,
+            re.sub(
+                r'\s+-\s+IGN\s*$',
+                '',
+                self._og_search_title(
+                    webpage,
+                    default='')) or None)

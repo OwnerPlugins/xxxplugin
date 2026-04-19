@@ -20,9 +20,7 @@ class PressTVIE(InfoExtractor):
             'title': 'Organic mattresses used to clean waste water',
             'upload_date': '20160409',
             'thumbnail': r're:^https?://.*\.jpg',
-            'description': 'md5:20002e654bbafb6908395a5c0cfcd125'
-        }
-    }
+            'description': 'md5:20002e654bbafb6908395a5c0cfcd125'}}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

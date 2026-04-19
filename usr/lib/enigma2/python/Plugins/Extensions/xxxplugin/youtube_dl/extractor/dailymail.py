@@ -42,11 +42,13 @@ class DailyMailIE(InfoExtractor):
             r"data-opts='({.+?})'", webpage, 'video data'), video_id)
         title = unescapeHTML(video_data['title'])
 
-        sources_url = (try_get(
-            video_data,
-            (lambda x: x['plugins']['sources']['url'],
-             lambda x: x['sources']['url']), compat_str)
-            or 'http://www.dailymail.co.uk/api/player/%s/video-sources.json' % video_id)
+        sources_url = (
+            try_get(
+                video_data,
+                (lambda x: x['plugins']['sources']['url'],
+                 lambda x: x['sources']['url']),
+                compat_str) or 'http://www.dailymail.co.uk/api/player/%s/video-sources.json' %
+            video_id)
 
         video_sources = self._download_json(sources_url, video_id)
         body = video_sources.get('body')
@@ -61,7 +63,8 @@ class DailyMailIE(InfoExtractor):
             tbr = int_or_none(rendition.get('encodingRate'), 1000)
             container = rendition.get('videoContainer')
             is_hls = container == 'M2TS'
-            protocol = 'm3u8_native' if is_hls else determine_protocol({'url': rendition_url})
+            protocol = 'm3u8_native' if is_hls else determine_protocol(
+                {'url': rendition_url})
             formats.append({
                 'format_id': ('hls' if is_hls else protocol) + ('-%d' % tbr if tbr else ''),
                 'url': rendition_url,
@@ -78,7 +81,8 @@ class DailyMailIE(InfoExtractor):
         return {
             'id': video_id,
             'title': title,
-            'description': unescapeHTML(video_data.get('descr')),
+            'description': unescapeHTML(
+                video_data.get('descr')),
             'thumbnail': video_data.get('poster') or video_data.get('thumbnail'),
             'formats': formats,
         }

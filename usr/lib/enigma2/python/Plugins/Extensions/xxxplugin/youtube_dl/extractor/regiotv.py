@@ -39,7 +39,8 @@ class RegioTVIE(InfoExtractor):
         request = sanitized_Request(
             'http://v.telvi.de/',
             SOAP_TEMPLATE.format('GetHTML5VideoData', key).encode('utf-8'))
-        video_data = self._download_xml(request, video_id, 'Downloading video XML')
+        video_data = self._download_xml(
+            request, video_id, 'Downloading video XML')
 
         NS_MAP = {
             'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
@@ -47,7 +48,12 @@ class RegioTVIE(InfoExtractor):
         }
 
         video_url = xpath_text(
-            video_data, xpath_with_ns('.//video', NS_MAP), 'video url', fatal=True)
+            video_data,
+            xpath_with_ns(
+                './/video',
+                NS_MAP),
+            'video url',
+            fatal=True)
         thumbnail = xpath_text(
             video_data, xpath_with_ns('.//image', NS_MAP), 'thumbnail')
         description = self._og_search_description(

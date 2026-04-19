@@ -28,13 +28,18 @@ class MovingImageIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         formats = self._extract_m3u8_formats(
-            self._html_search_regex(r'file\s*:\s*"([^"]+)"', webpage, 'm3u8 manifest URL'),
-            video_id, ext='mp4', entry_protocol='m3u8_native')
+            self._html_search_regex(
+                r'file\s*:\s*"([^"]+)"',
+                webpage,
+                'm3u8 manifest URL'),
+            video_id,
+            ext='mp4',
+            entry_protocol='m3u8_native')
 
         def search_field(field_name, fatal=False):
             return self._search_regex(
-                r'<span\s+class="field_title">%s:</span>\s*<span\s+class="field_content">([^<]+)</span>' % field_name,
-                webpage, 'title', fatal=fatal)
+                r'<span\s+class="field_title">%s:</span>\s*<span\s+class="field_content">([^<]+)</span>' %
+                field_name, webpage, 'title', fatal=fatal)
 
         title = unescapeHTML(search_field('Title', fatal=True)).strip('()[]')
         description = unescapeHTML(search_field('Description'))

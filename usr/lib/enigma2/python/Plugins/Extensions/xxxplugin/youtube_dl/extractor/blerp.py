@@ -155,8 +155,11 @@ class BlerpIE(InfoExtractor):
             'Content-Type': 'application/json'
         }
 
-        json_result = self._download_json('https://api.blerp.com/graphql',
-                                          audio_id, data=json.dumps(data).encode('utf-8'), headers=headers)
+        json_result = self._download_json(
+            'https://api.blerp.com/graphql',
+            audio_id,
+            data=json.dumps(data).encode('utf-8'),
+            headers=headers)
 
         bite_json = json_result['data']['web']['biteById']
 
@@ -164,10 +167,25 @@ class BlerpIE(InfoExtractor):
             'id': bite_json['_id'],
             'url': bite_json['audio']['mp3']['url'],
             'title': bite_json['title'],
-            'uploader': traverse_obj(bite_json, ('ownerObject', 'username'), expected_type=strip_or_none),
-            'uploader_id': traverse_obj(bite_json, ('ownerObject', '_id'), expected_type=strip_or_none),
+            'uploader': traverse_obj(
+                bite_json,
+                ('ownerObject',
+                 'username'),
+                expected_type=strip_or_none),
+            'uploader_id': traverse_obj(
+                bite_json,
+                ('ownerObject',
+                 '_id'),
+                expected_type=strip_or_none),
             'ext': 'mp3',
-            'tags': list(filter(None, map(strip_or_none, (traverse_obj(bite_json, 'userKeywords', expected_type=list) or []))) or None)
-        }
+            'tags': list(
+                filter(
+                    None,
+                    map(
+                        strip_or_none,
+                        (traverse_obj(
+                            bite_json,
+                            'userKeywords',
+                            expected_type=list) or []))) or None)}
 
         return info_dict

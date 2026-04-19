@@ -120,8 +120,12 @@ class IPrimaIE(InfoExtractor):
         options = self._parse_json(
             self._search_regex(
                 r'(?s)(?:TDIPlayerOptions|playerOptions)\s*=\s*({.+?});\s*\]\]',
-                playerpage, 'player options', default='{}'),
-            video_id, transform_source=js_to_json, fatal=False)
+                playerpage,
+                'player options',
+                default='{}'),
+            video_id,
+            transform_source=js_to_json,
+            fatal=False)
         if options:
             for key, tracks in options.get('tracks', {}).items():
                 if not isinstance(tracks, list):
@@ -132,7 +136,8 @@ class IPrimaIE(InfoExtractor):
                         extract_formats(src, key.lower(), track.get('lang'))
 
         if not formats:
-            for _, src in re.findall(r'src["\']\s*:\s*(["\'])(.+?)\1', playerpage):
+            for _, src in re.findall(
+                    r'src["\']\s*:\s*(["\'])(.+?)\1', playerpage):
                 extract_formats(src)
 
         if not formats and '>GEO_IP_NOT_ALLOWED<' in playerpage:

@@ -26,8 +26,7 @@ class WeiboIE(InfoExtractor):
             'id': 'Fp6RGfbff',
             'ext': 'mp4',
             'title': 'You should have servants to massage you,... 来自Hosico_猫 - 微博',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

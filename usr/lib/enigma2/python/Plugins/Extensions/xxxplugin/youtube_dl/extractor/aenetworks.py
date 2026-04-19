@@ -56,10 +56,14 @@ class AENetworksBaseIE(ThePlatformIE):
         for q in TP_SMIL_QUERY:
             q.update(query)
             m_url = update_url_query(smil_url, q)
-            m_url = self._sign_url(m_url, self._THEPLATFORM_KEY, self._THEPLATFORM_SECRET)
+            m_url = self._sign_url(
+                m_url,
+                self._THEPLATFORM_KEY,
+                self._THEPLATFORM_SECRET)
             try:
                 tp_formats, tp_subtitles = self._extract_theplatform_smil(
-                    m_url, video_id, 'Downloading %s SMIL data' % (q.get('switch') or q['assetTypes']))
+                    m_url, video_id, 'Downloading %s SMIL data' %
+                    (q.get('switch') or q['assetTypes']))
             except ExtractorError as e:
                 if isinstance(e, GeoRestrictedError):
                     raise
@@ -86,13 +90,21 @@ class AENetworksBaseIE(ThePlatformIE):
                      lambda k, v: k == 0 and v[filter_key] == filter_value),
             get_all=False)
         if not result:
-            raise ExtractorError('Show not found in A&E feed (too new?)', expected=True,
-                                 video_id=remove_start(filter_value, '/'))
+            raise ExtractorError(
+                'Show not found in A&E feed (too new?)',
+                expected=True,
+                video_id=remove_start(
+                    filter_value,
+                    '/'))
         title = result['title']
         video_id = result['id']
         media_url = result['publicUrl']
-        theplatform_metadata = self._download_theplatform_metadata(self._search_regex(
-            r'https?://link\.theplatform\.com/s/([^?]+)', media_url, 'theplatform_path'), video_id)
+        theplatform_metadata = self._download_theplatform_metadata(
+            self._search_regex(
+                r'https?://link\.theplatform\.com/s/([^?]+)',
+                media_url,
+                'theplatform_path'),
+            video_id)
         info = self._parse_theplatform_metadata(theplatform_metadata)
         auth = None
         if theplatform_metadata.get('AETN$isBehindWall'):
@@ -184,7 +196,8 @@ class AENetworksIE(AENetworksBaseIE):
 
     def _real_extract(self, url):
         domain, canonical = re.match(self._VALID_URL, url).groups()
-        return self._extract_aetn_info(domain, 'canonical', '/' + canonical, url)
+        return self._extract_aetn_info(
+            domain, 'canonical', '/' + canonical, url)
 
 
 class AENetworksListBaseIE(AENetworksBaseIE):
@@ -225,21 +238,18 @@ class AENetworksListBaseIE(AENetworksBaseIE):
 
 class AENetworksCollectionIE(AENetworksListBaseIE):
     IE_NAME = 'aenetworks:collection'
-    _VALID_URL = AENetworksBaseIE._BASE_URL_REGEX + r'(?:[^/]+/)*(?:list|collections)/(?P<id>[^/?#&]+)/?(?:[?#&]|$)'
-    _TESTS = [{
-        'url': 'https://watch.historyvault.com/list/america-the-story-of-us',
-        'info_dict': {
-            'id': '282',
-            'title': 'America The Story of Us',
-        },
-        'playlist_mincount': 12,
-    }, {
-        'url': 'https://watch.historyvault.com/shows/america-the-story-of-us-2/season-1/list/america-the-story-of-us',
-        'only_matching': True
-    }, {
-        'url': 'https://www.historyvault.com/collections/mysteryquest',
-        'only_matching': True
-    }]
+    _VALID_URL = AENetworksBaseIE._BASE_URL_REGEX + \
+        r'(?:[^/]+/)*(?:list|collections)/(?P<id>[^/?#&]+)/?(?:[?#&]|$)'
+    _TESTS = [{'url': 'https://watch.historyvault.com/list/america-the-story-of-us',
+               'info_dict': {'id': '282',
+                             'title': 'America The Story of Us',
+                             },
+               'playlist_mincount': 12,
+               },
+              {'url': 'https://watch.historyvault.com/shows/america-the-story-of-us-2/season-1/list/america-the-story-of-us',
+               'only_matching': True},
+              {'url': 'https://www.historyvault.com/collections/mysteryquest',
+               'only_matching': True}]
     _RESOURCE = 'list'
     _ITEMS_KEY = 'items'
     _PLAYLIST_TITLE_KEY = 'display_title'
@@ -261,7 +271,8 @@ class AENetworksCollectionIE(AENetworksListBaseIE):
 
 class AENetworksShowIE(AENetworksListBaseIE):
     IE_NAME = 'aenetworks:show'
-    _VALID_URL = AENetworksBaseIE._BASE_URL_REGEX + r'shows/(?P<id>[^/?#&]+)/?(?:[?#&]|$)'
+    _VALID_URL = AENetworksBaseIE._BASE_URL_REGEX + \
+        r'shows/(?P<id>[^/?#&]+)/?(?:[?#&]|$)'
     _TESTS = [{
         'url': 'http://www.history.com/shows/ancient-aliens',
         'info_dict': {

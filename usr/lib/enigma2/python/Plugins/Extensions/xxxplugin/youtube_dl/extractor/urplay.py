@@ -59,15 +59,20 @@ class URPlayIE(InfoExtractor):
             r'(?s)\bid\s*=\s*"__NEXT_DATA__"[^>]*>\s*({.+?})\s*</script',
             webpage, 'urplayer next data', fatal=False) or {}
         if urplayer_data:
-            urplayer_data = self._parse_json(urplayer_data, video_id, fatal=False)
-            urplayer_data = try_get(urplayer_data, lambda x: x['props']['pageProps']['program'], dict)
+            urplayer_data = self._parse_json(
+                urplayer_data, video_id, fatal=False)
+            urplayer_data = try_get(
+                urplayer_data,
+                lambda x: x['props']['pageProps']['program'],
+                dict)
             if not urplayer_data:
                 raise ExtractorError('Unable to parse __NEXT_DATA__')
         else:
             accessible_episodes = self._parse_json(self._html_search_regex(
                 r'data-react-class="routes/Product/components/ProgramContainer/ProgramContainer"[^>]+data-react-props="({.+?})"',
                 webpage, 'urplayer data'), video_id)['accessibleEpisodes']
-            urplayer_data = next(e for e in accessible_episodes if e.get('id') == int_or_none(video_id))
+            urplayer_data = next(
+                e for e in accessible_episodes if e.get('id') == int_or_none(video_id))
         episode = urplayer_data['title']
         raw_streaming_info = urplayer_data['streamingInfo']['raw']
         host = self._download_json(
@@ -96,7 +101,8 @@ class URPlayIE(InfoExtractor):
                 lang = ISO639Utils.short2long(lang)
             return lang or None
 
-        for k, v in (urplayer_data['streamingInfo'].get('sweComplete') or {}).items():
+        for k, v in (urplayer_data['streamingInfo'].get(
+                'sweComplete') or {}).items():
             if (k in ('sd', 'hd') or not isinstance(v, dict)):
                 continue
             lang, sttl_url = (v.get(kk) for kk in ('language', 'location', ))
@@ -125,7 +131,9 @@ class URPlayIE(InfoExtractor):
             thumbnails.append(t)
 
         series = urplayer_data.get('series') or {}
-        series_title = dict_get(series, ('seriesTitle', 'title')) or dict_get(urplayer_data, ('seriesTitle', 'mainTitle'))
+        series_title = dict_get(
+            series, ('seriesTitle', 'title')) or dict_get(
+            urplayer_data, ('seriesTitle', 'mainTitle'))
 
         return {
             'id': video_id,

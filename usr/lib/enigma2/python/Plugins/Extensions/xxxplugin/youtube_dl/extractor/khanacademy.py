@@ -74,7 +74,9 @@ class KhanAcademyIE(KhanAcademyBaseIE):
 
 class KhanAcademyUnitIE(KhanAcademyBaseIE):
     IE_NAME = 'khanacademy:unit'
-    _VALID_URL = (KhanAcademyBaseIE._VALID_URL_TEMPL % ('2', '')) + '/?(?:[?#&]|$)'
+    _VALID_URL = (
+        KhanAcademyBaseIE._VALID_URL_TEMPL %
+        ('2', '')) + '/?(?:[?#&]|$)'
     _TEST = {
         'url': 'https://www.khanacademy.org/computing/computer-science/cryptography',
         'info_dict': {
@@ -89,7 +91,10 @@ class KhanAcademyUnitIE(KhanAcademyBaseIE):
         curation = component_props['curation']
 
         entries = []
-        tutorials = try_get(curation, lambda x: x['tabs'][0]['modules'][0]['tutorials'], list) or []
+        tutorials = try_get(
+            curation,
+            lambda x: x['tabs'][0]['modules'][0]['tutorials'],
+            list) or []
         for tutorial_number, tutorial in enumerate(tutorials, 1):
             chapter_info = {
                 'chapter': tutorial.get('title'),

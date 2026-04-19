@@ -78,7 +78,8 @@ class CBSInteractiveIE(CBSIE):
             r"data(?:-(?:cnet|zdnet))?-video(?:-(?:uvp(?:js)?|player))?-options='([^']+)'",
             webpage, 'data json')
         data = self._parse_json(data_json, display_id)
-        vdata = data.get('video') or (data.get('videos') or data.get('playlist'))[0]
+        vdata = data.get('video') or (
+            data.get('videos') or data.get('playlist'))[0]
 
         video_id = vdata['mpxRefId']
 
@@ -91,7 +92,8 @@ class CBSInteractiveIE(CBSIE):
             uploader = None
             uploader_id = None
 
-        info = self._extract_video_info(video_id, site, self.MPX_ACCOUNTS[site])
+        info = self._extract_video_info(
+            video_id, site, self.MPX_ACCOUNTS[site])
         info.update({
             'id': video_id,
             'display_id': display_id,

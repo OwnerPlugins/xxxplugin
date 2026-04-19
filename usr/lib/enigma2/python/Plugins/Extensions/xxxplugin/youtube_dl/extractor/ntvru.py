@@ -101,7 +101,13 @@ class NTVRuIE(InfoExtractor):
             'http://www.ntv.ru/vi%s/' % video_id,
             video_id, 'Downloading video XML')
 
-        title = strip_or_none(unescapeHTML(xpath_text(player, './data/title', 'title', fatal=True)))
+        title = strip_or_none(
+            unescapeHTML(
+                xpath_text(
+                    player,
+                    './data/title',
+                    'title',
+                    fatal=True)))
 
         video = player.find('./data/video')
 
@@ -114,18 +120,30 @@ class NTVRuIE(InfoExtractor):
                 file_ = self._proto_relative_url(file_)
             elif not file_.startswith('http'):
                 file_ = 'http://media.ntv.ru/vod/' + file_
-            formats.append({
-                'url': file_,
-                'filesize': int_or_none(xpath_text(video, './%ssize' % format_id)),
-            })
+            formats.append({'url': file_, 'filesize': int_or_none(
+                xpath_text(video, './%ssize' % format_id)), })
         self._sort_formats(formats)
 
         return {
-            'id': xpath_text(video, './id'),
+            'id': xpath_text(
+                video,
+                './id'),
             'title': title,
-            'description': strip_or_none(unescapeHTML(xpath_text(player, './data/description'))),
-            'thumbnail': xpath_text(video, './splash'),
-            'duration': int_or_none(xpath_text(video, './totaltime')),
-            'view_count': int_or_none(xpath_text(video, './views')),
+            'description': strip_or_none(
+                unescapeHTML(
+                    xpath_text(
+                        player,
+                        './data/description'))),
+            'thumbnail': xpath_text(
+                video,
+                './splash'),
+            'duration': int_or_none(
+                xpath_text(
+                    video,
+                    './totaltime')),
+            'view_count': int_or_none(
+                xpath_text(
+                    video,
+                    './views')),
             'formats': formats,
         }

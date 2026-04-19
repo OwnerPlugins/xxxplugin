@@ -225,7 +225,8 @@ class NPOIE(NPOBaseIE):
             if not stream_url or stream_url in format_urls:
                 continue
             format_urls.add(stream_url)
-            if stream.get('protection') is not None or stream.get('keySystemOptions') is not None:
+            if stream.get('protection') is not None or stream.get(
+                    'keySystemOptions') is not None:
                 drm = True
                 continue
             stream_type = stream.get('type')
@@ -247,7 +248,8 @@ class NPOIE(NPOBaseIE):
 
         if not formats:
             if drm:
-                raise ExtractorError('This video is DRM protected.', expected=True)
+                raise ExtractorError(
+                    'This video is DRM protected.', expected=True)
             return
 
         self._sort_formats(formats)
@@ -314,7 +316,8 @@ class NPOIE(NPOBaseIE):
         video_id = metadata.get('prid') or video_id
 
         # titel is too generic in some cases so utilize aflevering_titel as well
-        # when available (e.g. http://tegenlicht.vpro.nl/afleveringen/2014-2015/access-to-africa.html)
+        # when available (e.g.
+        # http://tegenlicht.vpro.nl/afleveringen/2014-2015/access-to-africa.html)
         title = metadata['titel']
         sub_title = metadata.get('aflevering_titel')
         if sub_title and sub_title != title:
@@ -330,7 +333,14 @@ class NPOIE(NPOBaseIE):
                 r'^(?:https?:)?//', format_url)
 
         QUALITY_LABELS = ('Laag', 'Normaal', 'Hoog')
-        QUALITY_FORMATS = ('adaptive', 'wmv_sb', 'h264_sb', 'wmv_bb', 'h264_bb', 'wvc1_std', 'h264_std')
+        QUALITY_FORMATS = (
+            'adaptive',
+            'wmv_sb',
+            'h264_sb',
+            'wmv_bb',
+            'h264_bb',
+            'wvc1_std',
+            'h264_std')
 
         quality_from_label = qualities(QUALITY_LABELS)
         quality_from_format_id = qualities(QUALITY_FORMATS)
@@ -372,7 +382,8 @@ class NPOIE(NPOBaseIE):
                     'quality': quality,
                 })
 
-            # Example: http://www.npo.nl/de-nieuwe-mens-deel-1/21-07-2010/WO_VPRO_043706
+            # Example:
+            # http://www.npo.nl/de-nieuwe-mens-deel-1/21-07-2010/WO_VPRO_043706
             if item.get('contentType') in ('url', 'audio'):
                 add_format_url(item_url)
                 continue
@@ -383,7 +394,8 @@ class NPOIE(NPOBaseIE):
                     'Downloading %s stream JSON'
                     % item_label or item.get('format') or format_id or num)
             except ExtractorError as ee:
-                if isinstance(ee.cause, compat_HTTPError) and ee.cause.code == 404:
+                if isinstance(ee.cause,
+                              compat_HTTPError) and ee.cause.code == 404:
                     error = (self._parse_json(
                         ee.cause.read().decode(), video_id,
                         fatal=False) or {}).get('errorstring')
@@ -430,7 +442,8 @@ class NPOIE(NPOBaseIE):
                 elif stream_type == 'hls':
                     formats.extend(self._extract_m3u8_formats(
                         stream_url, video_id, ext='mp4', fatal=False))
-                # Example: http://www.npo.nl/de-nieuwe-mens-deel-1/21-07-2010/WO_VPRO_043706
+                # Example:
+                # http://www.npo.nl/de-nieuwe-mens-deel-1/21-07-2010/WO_VPRO_043706
                 elif '.asf' in stream_url:
                     asx = self._download_xml(
                         stream_url, video_id,
@@ -534,12 +547,12 @@ class NPORadioIE(InfoExtractor):
         },
         'params': {
             'skip_download': True,
-        }
-    }
+        }}
 
     @classmethod
     def suitable(cls, url):
-        return False if NPORadioFragmentIE.suitable(url) else super(NPORadioIE, cls).suitable(url)
+        return False if NPORadioFragmentIE.suitable(
+            url) else super(NPORadioIE, cls).suitable(url)
 
     @staticmethod
     def _html_get_attribute_regex(attribute):
@@ -554,7 +567,10 @@ class NPORadioIE(InfoExtractor):
             self._html_get_attribute_regex('data-channel'), webpage, 'title')
 
         stream = self._parse_json(
-            self._html_search_regex(self._html_get_attribute_regex('data-streams'), webpage, 'data-streams'),
+            self._html_search_regex(
+                self._html_get_attribute_regex('data-streams'),
+                webpage,
+                'data-streams'),
             video_id)
 
         codec = stream.get('codec')
@@ -607,7 +623,10 @@ class NPODataMidEmbedIE(InfoExtractor):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
         video_id = self._search_regex(
-            r'data-mid=(["\'])(?P<id>(?:(?!\1).)+)\1', webpage, 'video_id', group='id')
+            r'data-mid=(["\'])(?P<id>(?:(?!\1).)+)\1',
+            webpage,
+            'video_id',
+            group='id')
         return {
             '_type': 'url_transparent',
             'ie_key': 'NPO',
@@ -663,9 +682,12 @@ class NPOPlaylistBaseIE(NPOIE):
         webpage = self._download_webpage(url, playlist_id)
 
         entries = [
-            self.url_result('npo:%s' % video_id if not video_id.startswith('http') else video_id)
-            for video_id in orderedSet(re.findall(self._PLAYLIST_ENTRY_RE, webpage))
-        ]
+            self.url_result(
+                'npo:%s' %
+                video_id if not video_id.startswith('http') else video_id) for video_id in orderedSet(
+                re.findall(
+                    self._PLAYLIST_ENTRY_RE,
+                    webpage))]
 
         playlist_title = self._html_search_regex(
             self._PLAYLIST_TITLE_RE, webpage, 'playlist title',
@@ -677,8 +699,9 @@ class NPOPlaylistBaseIE(NPOIE):
 class VPROIE(NPOPlaylistBaseIE):
     IE_NAME = 'vpro'
     _VALID_URL = r'https?://(?:www\.)?(?:(?:tegenlicht\.)?vpro|2doc)\.nl/(?:[^/]+/)*(?P<id>[^/]+)\.html'
-    _PLAYLIST_TITLE_RE = (r'<h1[^>]+class=["\'].*?\bmedia-platform-title\b.*?["\'][^>]*>([^<]+)',
-                          r'<h5[^>]+class=["\'].*?\bmedia-platform-subtitle\b.*?["\'][^>]*>([^<]+)')
+    _PLAYLIST_TITLE_RE = (
+        r'<h1[^>]+class=["\'].*?\bmedia-platform-title\b.*?["\'][^>]*>([^<]+)',
+        r'<h5[^>]+class=["\'].*?\bmedia-platform-subtitle\b.*?["\'][^>]*>([^<]+)')
     _PLAYLIST_ENTRY_RE = r'data-media-id="([^"]+)"'
 
     _TESTS = [

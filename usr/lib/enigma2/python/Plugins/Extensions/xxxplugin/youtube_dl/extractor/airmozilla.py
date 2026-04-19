@@ -27,18 +27,25 @@ class AirMozillaIE(InfoExtractor):
             'location': 'SFO Commons',
             'duration': 3780,
             'view_count': int,
-            'categories': ['Main', 'Privacy'],
-        }
-    }
+            'categories': [
+                'Main',
+                'Privacy'],
+        }}
 
     def _real_extract(self, url):
         display_id = self._match_id(url)
         webpage = self._download_webpage(url, display_id)
-        video_id = self._html_search_regex(r'//vid\.ly/(.*?)/embed', webpage, 'id')
+        video_id = self._html_search_regex(
+            r'//vid\.ly/(.*?)/embed', webpage, 'id')
 
-        embed_script = self._download_webpage('https://vid.ly/{0}/embed'.format(video_id), video_id)
-        jwconfig = self._parse_json(self._search_regex(
-            r'initCallback\((.*)\);', embed_script, 'metadata'), video_id)['config']
+        embed_script = self._download_webpage(
+            'https://vid.ly/{0}/embed'.format(video_id), video_id)
+        jwconfig = self._parse_json(
+            self._search_regex(
+                r'initCallback\((.*)\);',
+                embed_script,
+                'metadata'),
+            video_id)['config']
 
         info_dict = self._parse_jwplayer_data(jwconfig, video_id)
         view_count = int_or_none(self._html_search_regex(

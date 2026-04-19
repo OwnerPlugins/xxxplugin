@@ -58,8 +58,8 @@ class IndavideoEmbedIE(InfoExtractor):
         video_id = self._match_id(url)
 
         video = self._download_json(
-            'https://amfphp.indavideo.hu/SYm0json.php/player.playerHandler.getVideoData/%s' % video_id,
-            video_id)['data']
+            'https://amfphp.indavideo.hu/SYm0json.php/player.playerHandler.getVideoData/%s' %
+            video_id, video_id)['data']
 
         title = video['title']
 
@@ -87,8 +87,12 @@ class IndavideoEmbedIE(InfoExtractor):
 
         formats = []
         for video_url in video_urls:
-            height = int_or_none(self._search_regex(
-                r'\.(\d{3,4})\.mp4(?:\?|$)', video_url, 'height', default=None))
+            height = int_or_none(
+                self._search_regex(
+                    r'\.(\d{3,4})\.mp4(?:\?|$)',
+                    video_url,
+                    'height',
+                    default=None))
             if filesh:
                 if not height:
                     continue

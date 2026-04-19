@@ -37,11 +37,10 @@ class TVAIE(InfoExtractor):
         video_id = self._match_id(url)
 
         return {
-            '_type': 'url_transparent',
-            'id': video_id,
-            'url': smuggle_url(self.BRIGHTCOVE_URL_TEMPLATE % video_id, {'geo_countries': ['CA']}),
-            'ie_key': 'BrightcoveNew',
-        }
+            '_type': 'url_transparent', 'id': video_id, 'url': smuggle_url(
+                self.BRIGHTCOVE_URL_TEMPLATE %
+                video_id, {
+                    'geo_countries': ['CA']}), 'ie_key': 'BrightcoveNew', }
 
 
 class QubIE(InfoExtractor):

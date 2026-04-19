@@ -92,9 +92,11 @@ class DouyuTVIE(InfoExtractor):
             raise ExtractorError('Live stream is offline', expected=True)
 
         # Grab the URL from PC client API
-        # The m3u8 url from mobile API requires re-authentication every 5 minutes
+        # The m3u8 url from mobile API requires re-authentication every 5
+        # minutes
         tt = int(time.time())
-        signContent = 'lapi/live/thirdPart/getPlay/%s?aid=pcclient&rate=0&time=%d9TUk5fjjUjg9qIMH3sdnh' % (room_id, tt)
+        signContent = 'lapi/live/thirdPart/getPlay/%s?aid=pcclient&rate=0&time=%d9TUk5fjjUjg9qIMH3sdnh' % (
+            room_id, tt)
         sign = hashlib.md5(signContent.encode('ascii')).hexdigest()
         video_url = self._download_json(
             'http://coapi.douyucdn.cn/lapi/live/thirdPart/getPlay/' + room_id,

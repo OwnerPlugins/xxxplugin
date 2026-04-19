@@ -93,8 +93,11 @@ class TagesschauPlayerIE(InfoExtractor):
         title = self._og_search_title(webpage).strip()
         formats = []
 
-        for media_json in re.findall(r'({src\s*:\s*["\']http[^}]+type\s*:[^}]+})', webpage):
-            media = self._parse_json(js_to_json(media_json), video_id, fatal=False)
+        for media_json in re.findall(
+            r'({src\s*:\s*["\']http[^}]+type\s*:[^}]+})',
+                webpage):
+            media = self._parse_json(
+                js_to_json(media_json), video_id, fatal=False)
             if not media:
                 continue
             src = media.get('src')
@@ -208,7 +211,8 @@ class TagesschauIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if TagesschauPlayerIE.suitable(url) else super(TagesschauIE, cls).suitable(url)
+        return False if TagesschauPlayerIE.suitable(
+            url) else super(TagesschauIE, cls).suitable(url)
 
     def _extract_formats(self, download_text, media_kind):
         links = re.finditer(
@@ -250,8 +254,7 @@ class TagesschauIE(InfoExtractor):
                         })
                 else:
                     m = re.match(
-                        r'(?P<format>.+?)-Format\s*:\s*(?P<abr>\d+)kbps\s*,\s*(?P<note>.+)',
-                        title)
+                        r'(?P<format>.+?)-Format\s*:\s*(?P<abr>\d+)kbps\s*,\s*(?P<note>.+)', title)
                     if m:
                         format.update({
                             'format_note': '%s, %s' % (m.group('format'), m.group('note')),
@@ -278,9 +281,10 @@ class TagesschauIE(InfoExtractor):
         webpage_type = self._og_search_property('type', webpage, default=None)
         if webpage_type == 'website':  # Article
             entries = []
-            for num, (entry_title, media_kind, download_text) in enumerate(re.findall(
-                    r'(?s)<p[^>]+class="infotext"[^>]*>\s*(?:<a[^>]+>)?\s*<strong>(.+?)</strong>.*?</p>.*?%s' % DOWNLOAD_REGEX,
-                    webpage), 1):
+            for num, (entry_title, media_kind, download_text) in enumerate(
+                re.findall(
+                    r'(?s)<p[^>]+class="infotext"[^>]*>\s*(?:<a[^>]+>)?\s*<strong>(.+?)</strong>.*?</p>.*?%s' %
+                    DOWNLOAD_REGEX, webpage), 1):
                 entries.append({
                     'id': '%s-%d' % (display_id, num),
                     'title': '%s' % entry_title,
@@ -293,7 +297,11 @@ class TagesschauIE(InfoExtractor):
             download_text = self._search_regex(
                 DOWNLOAD_REGEX, webpage, 'download links', group='links')
             media_kind = self._search_regex(
-                DOWNLOAD_REGEX, webpage, 'media kind', default='Video', group='kind')
+                DOWNLOAD_REGEX,
+                webpage,
+                'media kind',
+                default='Video',
+                group='kind')
             formats = self._extract_formats(download_text, media_kind)
         thumbnail = self._og_search_thumbnail(webpage)
         description = self._html_search_regex(

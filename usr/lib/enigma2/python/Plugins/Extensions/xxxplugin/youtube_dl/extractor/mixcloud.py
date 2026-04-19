@@ -22,7 +22,13 @@ from ..utils import (
 
 
 class MixcloudBaseIE(InfoExtractor):
-    def _call_api(self, object_type, object_fields, display_id, username, slug=None):
+    def _call_api(
+            self,
+            object_type,
+            object_fields,
+            display_id,
+            username,
+            slug=None):
         lookup_key = object_type + 'Lookup'
         return self._download_json(
             'https://app.mixcloud.com/graphql', display_id, query={
@@ -98,7 +104,8 @@ class MixcloudIE(MixcloudBaseIE):
 
     def _real_extract(self, url):
         username, slug = self._match_valid_url(url).groups()
-        username, slug = compat_urllib_parse_unquote(username), compat_urllib_parse_unquote(slug)
+        username, slug = compat_urllib_parse_unquote(
+            username), compat_urllib_parse_unquote(slug)
         track_id = '%s_%s' % (username, slug)
 
         cloudcast = self._call_api('cloudcast', '''audioLength
@@ -180,7 +187,10 @@ class MixcloudIE(MixcloudBaseIE):
         self._sort_formats(formats)
 
         comments = []
-        for edge in (try_get(cloudcast, lambda x: x['comments']['edges']) or []):
+        for edge in (
+            try_get(
+                cloudcast,
+                lambda x: x['comments']['edges']) or []):
             node = edge.get('node') or {}
             text = strip_or_none(node.get('comment'))
             if not text:
@@ -199,7 +209,8 @@ class MixcloudIE(MixcloudBaseIE):
             if not tag:
                 tags.append(tag)
 
-        get_count = lambda x: int_or_none(try_get(cloudcast, lambda y: y[x]['totalCount']))
+        def get_count(x): return int_or_none(
+            try_get(cloudcast, lambda y: y[x]['totalCount']))
 
         owner = cloudcast.get('owner') or {}
 
@@ -208,19 +219,26 @@ class MixcloudIE(MixcloudBaseIE):
             'title': title,
             'formats': formats,
             'description': cloudcast.get('description'),
-            'thumbnail': try_get(cloudcast, lambda x: x['picture']['url'], compat_str),
+            'thumbnail': try_get(
+                cloudcast,
+                lambda x: x['picture']['url'],
+                compat_str),
             'uploader': owner.get('displayName'),
-            'timestamp': parse_iso8601(cloudcast.get('publishDate')),
+            'timestamp': parse_iso8601(
+                cloudcast.get('publishDate')),
             'uploader_id': owner.get('username'),
             'uploader_url': owner.get('url'),
-            'duration': int_or_none(cloudcast.get('audioLength')),
-            'view_count': int_or_none(cloudcast.get('plays')),
+            'duration': int_or_none(
+                cloudcast.get('audioLength')),
+            'view_count': int_or_none(
+                cloudcast.get('plays')),
             'like_count': get_count('favorites'),
             'repost_count': get_count('reposts'),
             'comment_count': get_count('comments'),
             'comments': comments,
             'tags': tags,
-            'artist': ', '.join(cloudcast.get('featuringArtistList') or []) or None,
+            'artist': ', '.join(
+                cloudcast.get('featuringArtistList') or []) or None,
         }
 
 
@@ -270,8 +288,10 @@ class MixcloudPlaylistBaseIE(MixcloudBaseIE):
                 if not cloudcast_url:
                     continue
                 slug = try_get(cloudcast, lambda x: x['slug'], compat_str)
-                owner_username = try_get(cloudcast, lambda x: x['owner']['username'], compat_str)
-                video_id = '%s_%s' % (owner_username, slug) if slug and owner_username else None
+                owner_username = try_get(
+                    cloudcast, lambda x: x['owner']['username'], compat_str)
+                video_id = '%s_%s' % (owner_username,
+                                      slug) if slug and owner_username else None
                 entries.append(self.url_result(
                     cloudcast_url, MixcloudIE.ie_key(), video_id))
 

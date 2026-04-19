@@ -21,8 +21,7 @@ class HornBunnyIE(InfoExtractor):
             'age_limit': 18,
             'view_count': int,
             'thumbnail': r're:^https?://.*\.jpg$',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

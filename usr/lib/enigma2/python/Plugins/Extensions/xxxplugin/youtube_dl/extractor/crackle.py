@@ -79,9 +79,11 @@ class CrackleIE(InfoExtractor):
             try:
                 # Authorization generation algorithm is reverse engineered from:
                 # https://www.sonycrackle.com/static/js/main.ea93451f.chunk.js
-                media_detail_url = 'https://web-api-us.crackle.com/Service.svc/details/media/%s/%s?disableProtocols=true' % (video_id, country)
+                media_detail_url = 'https://web-api-us.crackle.com/Service.svc/details/media/%s/%s?disableProtocols=true' % (
+                    video_id, country)
                 timestamp = time.strftime('%Y%m%d%H%M', time.gmtime())
-                h = hmac.new(b'IGSLUQCBDFHEOIFM', '|'.join([media_detail_url, timestamp]).encode(), hashlib.sha1).hexdigest().upper()
+                h = hmac.new(b'IGSLUQCBDFHEOIFM', '|'.join(
+                    [media_detail_url, timestamp]).encode(), hashlib.sha1).hexdigest().upper()
                 media = self._download_json(
                     media_detail_url, video_id, 'Downloading media JSON as %s' % country,
                     'Unable to download media JSON', headers={
@@ -90,7 +92,8 @@ class CrackleIE(InfoExtractor):
                     })
             except ExtractorError as e:
                 # 401 means geo restriction, trying next country
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
+                if isinstance(e.cause,
+                              compat_HTTPError) and e.cause.code == 401:
                     last_e = e
                     continue
                 raise
@@ -110,9 +113,14 @@ class CrackleIE(InfoExtractor):
                     continue
                 ext = determine_ext(format_url)
                 if ext == 'm3u8':
-                    formats.extend(self._extract_m3u8_formats(
-                        format_url, video_id, 'mp4', entry_protocol='m3u8_native',
-                        m3u8_id='hls', fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            format_url,
+                            video_id,
+                            'mp4',
+                            entry_protocol='m3u8_native',
+                            m3u8_id='hls',
+                            fatal=False))
                 elif ext == 'mpd':
                     formats.extend(self._extract_mpd_formats(
                         format_url, video_id, mpd_id='dash', fatal=False))

@@ -12,28 +12,26 @@ from ..utils import (
 
 class TMZIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?tmz\.com/videos/(?P<id>[^/?#&]+)'
-    _TESTS = [{
-        'url': 'http://www.tmz.com/videos/0-cegprt2p/',
-        'md5': '31f9223e20eef55954973359afa61a20',
-        'info_dict': {
-            'id': 'P6YjLBLk',
-            'ext': 'mp4',
-            'title': "No Charges Against Hillary Clinton? Harvey Says It Ain't Over Yet",
-            'description': 'md5:b714359fc18607715ebccbd2da8ff488',
-            'timestamp': 1467831837,
-            'upload_date': '20160706',
-        },
-        'add_ie': [JWPlatformIE.ie_key()],
-    }, {
-        'url': 'http://www.tmz.com/videos/0_okj015ty/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tmz.com/videos/071119-chris-morgan-women-4590005-0-zcsejvcr/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tmz.com/videos/2021-02-19-021921-floyd-mayweather-1043872/',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.tmz.com/videos/0-cegprt2p/',
+               'md5': '31f9223e20eef55954973359afa61a20',
+               'info_dict': {'id': 'P6YjLBLk',
+                             'ext': 'mp4',
+                             'title': "No Charges Against Hillary Clinton? Harvey Says It Ain't Over Yet",
+                             'description': 'md5:b714359fc18607715ebccbd2da8ff488',
+                             'timestamp': 1467831837,
+                             'upload_date': '20160706',
+                             },
+               'add_ie': [JWPlatformIE.ie_key()],
+               },
+              {'url': 'http://www.tmz.com/videos/0_okj015ty/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tmz.com/videos/071119-chris-morgan-women-4590005-0-zcsejvcr/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tmz.com/videos/2021-02-19-021921-floyd-mayweather-1043872/',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url).replace('-', '_')
@@ -52,8 +50,10 @@ class TMZIE(InfoExtractor):
                     '_type': 'url_transparent',
                     'title': message.get('title'),
                     'description': message.get('description'),
-                    'timestamp': unified_timestamp(message.get('published_at')),
-                    'duration': int_or_none(message.get('duration')),
+                    'timestamp': unified_timestamp(
+                        message.get('published_at')),
+                    'duration': int_or_none(
+                        message.get('duration')),
                 }
                 jwplatform_id = message.get('jwplayer_media_id')
                 if jwplatform_id:
@@ -62,8 +62,10 @@ class TMZIE(InfoExtractor):
                         'ie_key': JWPlatformIE.ie_key(),
                     })
                 else:
-                    kaltura_entry_id = message.get('kaltura_entry_id') or video_id
-                    kaltura_partner_id = message.get('kaltura_partner_id') or '591531'
+                    kaltura_entry_id = message.get(
+                        'kaltura_entry_id') or video_id
+                    kaltura_partner_id = message.get(
+                        'kaltura_partner_id') or '591531'
                     info.update({
                         'url': 'kaltura:%s:%s' % (kaltura_partner_id, kaltura_entry_id),
                         'ie_key': KalturaIE.ie_key(),
@@ -89,7 +91,8 @@ class TMZArticleIE(InfoExtractor):
         'params': {
             'skip_download': True,
         },
-        'add_ie': [JWPlatformIE.ie_key()],
+        'add_ie': [
+            JWPlatformIE.ie_key()],
     }
 
     def _real_extract(self, url):

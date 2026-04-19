@@ -138,10 +138,14 @@ class MetacafeIE(InfoExtractor):
             prefix, ext_id = m_external.groups()
             # Check if video comes from YouTube
             if prefix == 'yt':
-                return self.url_result('http://www.youtube.com/watch?v=%s' % ext_id, 'Youtube')
+                return self.url_result(
+                    'http://www.youtube.com/watch?v=%s' %
+                    ext_id, 'Youtube')
             # CBS videos use theplatform.com
             if prefix == 'cb':
-                return self.url_result('theplatform:%s' % ext_id, 'ThePlatform')
+                return self.url_result(
+                    'theplatform:%s' %
+                    ext_id, 'ThePlatform')
 
         headers = {
             # Disable family filter
@@ -162,7 +166,15 @@ class MetacafeIE(InfoExtractor):
             raise ExtractorError(error, expected=True)
 
         video_title = self._html_search_meta(
-            ['og:title', 'twitter:title'], webpage, 'title', default=None) or self._search_regex(r'<h1>(.*?)</h1>', webpage, 'title')
+            [
+                'og:title',
+                'twitter:title'],
+            webpage,
+            'title',
+            default=None) or self._search_regex(
+            r'<h1>(.*?)</h1>',
+            webpage,
+            'title')
 
         # Extract URL, uploader and title from webpage
         self.report_extraction(video_id)
@@ -193,7 +205,8 @@ class MetacafeIE(InfoExtractor):
                 if 'mediaData' not in vardict:
                     raise ExtractorError('Unable to extract media URL')
                 mobj = re.search(
-                    r'"mediaURL":"(?P<mediaURL>http.*?)",(.*?)"key":"(?P<key>.*?)"', vardict['mediaData'][0])
+                    r'"mediaURL":"(?P<mediaURL>http.*?)",(.*?)"key":"(?P<key>.*?)"',
+                    vardict['mediaData'][0])
                 if mobj is None:
                     raise ExtractorError('Unable to extract media URL')
                 mediaURL = mobj.group('mediaURL').replace('\\/', '/')
@@ -236,7 +249,8 @@ class MetacafeIE(InfoExtractor):
                     source_url = source.get('src')
                     if not source_url:
                         continue
-                    ext = mimetype2ext(source.get('type')) or determine_ext(source_url)
+                    ext = mimetype2ext(
+                        source.get('type')) or determine_ext(source_url)
                     if ext == 'm3u8':
                         video_url.extend(self._extract_m3u8_formats(
                             source_url, video_id, 'mp4',
@@ -261,9 +275,9 @@ class MetacafeIE(InfoExtractor):
         duration = int_or_none(
             self._html_search_meta('video:duration', webpage, default=None))
         age_limit = (
-            18
-            if re.search(r'(?:"contentRating":|"rating",)"restricted"', webpage)
-            else 0)
+            18 if re.search(
+                r'(?:"contentRating":|"rating",)"restricted"',
+                webpage) else 0)
 
         if isinstance(video_url, list):
             formats = video_url

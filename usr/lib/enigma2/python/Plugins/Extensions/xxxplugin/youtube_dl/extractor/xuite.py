@@ -141,13 +141,17 @@ class XuiteIE(InfoExtractor):
         return {
             'id': video_id,
             'title': media_info['TITLE'],
-            'description': remove_end(media_info.get('metaDesc'), ' (Xuite 影音)'),
+            'description': remove_end(
+                media_info.get('metaDesc'),
+                ' (Xuite 影音)'),
             'thumbnail': media_info.get('ogImageUrl'),
             'timestamp': timestamp,
             'uploader': uploader,
             'uploader_id': media_info.get('MEMBER_ID'),
             'uploader_url': uploader_url,
-            'duration': float_or_none(media_info.get('MEDIA_DURATION'), 1000000),
+            'duration': float_or_none(
+                media_info.get('MEDIA_DURATION'),
+                1000000),
             'categories': categories,
             'formats': formats,
         }

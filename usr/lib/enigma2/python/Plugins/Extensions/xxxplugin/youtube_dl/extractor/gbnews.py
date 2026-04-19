@@ -56,7 +56,8 @@ class GBNewsIE(InfoExtractor):
         display_id = self._match_id(url).split('/')[-1]
 
         webpage = self._download_webpage(url, display_id)
-        # extraction based on https://github.com/ytdl-org/youtube-dl/issues/29341
+        # extraction based on
+        # https://github.com/ytdl-org/youtube-dl/issues/29341
         '''
         <div id="video-106908"
             class="simplestream"
@@ -96,7 +97,10 @@ class GBNewsIE(InfoExtractor):
         uvid = video_data['data-uvid']
         dtype = video_data.get('data-type')
         stream_data = self._download_json(
-            '%s/api/%s/stream/%s' % (meta_url, 'show' if dtype == 'vod' else dtype, uvid),
+            '%s/api/%s/stream/%s' %
+            (meta_url,
+             'show' if dtype == 'vod' else dtype,
+             uvid),
             uvid,
             query={
                 'key': video_data.get('data-key'),
@@ -106,7 +110,8 @@ class GBNewsIE(InfoExtractor):
                 'Token': video_data.get('data-token'),
                 'Token-Expiry': video_data.get('data-expiry'),
                 'Uvid': uvid,
-            }, fatal=False)
+            },
+            fatal=False)
 
         stream_url = traverse_obj(stream_data, (
             'response', 'stream', T(url_or_none)))

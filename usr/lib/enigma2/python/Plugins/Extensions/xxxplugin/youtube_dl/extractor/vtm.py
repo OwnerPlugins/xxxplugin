@@ -30,7 +30,8 @@ class VTMIE(InfoExtractor):
         uuid = self._match_id(url)
         video = self._download_json(
             'https://omc4vm23offuhaxx6hekxtzspi.appsync-api.eu-west-1.amazonaws.com/graphql',
-            uuid, query={
+            uuid,
+            query={
                 'query': '''{
   getComponent(type: Video, uuid: "%s") {
     ... on Video {
@@ -44,8 +45,10 @@ class VTMIE(InfoExtractor):
       title
     }
   }
-}''' % uuid,
-            }, headers={
+}''' %
+                uuid,
+            },
+            headers={
                 'x-api-key': 'da2-lz2cab4tfnah3mve6wiye4n77e',
             })['data']['getComponent']
 
@@ -55,8 +58,12 @@ class VTMIE(InfoExtractor):
             'title': video.get('title'),
             'url': 'http://mychannels.video/embed/%d' % video['myChannelsVideo'],
             'description': video.get('description'),
-            'timestamp': parse_iso8601(video.get('publishedAt')),
-            'duration': int_or_none(video.get('duration')),
-            'series': try_get(video, lambda x: x['program']['title']),
+            'timestamp': parse_iso8601(
+                video.get('publishedAt')),
+            'duration': int_or_none(
+                video.get('duration')),
+            'series': try_get(
+                video,
+                lambda x: x['program']['title']),
             'ie_key': 'Medialaan',
         }

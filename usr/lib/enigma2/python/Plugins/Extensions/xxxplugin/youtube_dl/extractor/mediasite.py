@@ -117,9 +117,10 @@ class MediasiteIE(InfoExtractor):
     @staticmethod
     def _extract_urls(webpage):
         return [
-            unescapeHTML(mobj.group('url'))
-            for mobj in re.finditer(
-                r'(?xi)<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:(?:https?:)?//[^/]+)?/Mediasite/Play/%s(?:\?.*?)?)\1' % _ID_RE,
+            unescapeHTML(
+                mobj.group('url')) for mobj in re.finditer(
+                r'(?xi)<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:(?:https?:)?//[^/]+)?/Mediasite/Play/%s(?:\?.*?)?)\1' %
+                _ID_RE,
                 webpage)]
 
     def _real_extract(self, url):
@@ -128,10 +129,12 @@ class MediasiteIE(InfoExtractor):
         resource_id = mobj.group('id')
         query = mobj.group('query')
 
-        webpage, urlh = self._download_webpage_handle(url, resource_id)  # XXX: add UrlReferrer?
+        webpage, urlh = self._download_webpage_handle(
+            url, resource_id)  # XXX: add UrlReferrer?
         redirect_url = urlh.geturl()
 
-        # XXX: might have also extracted UrlReferrer and QueryString from the html
+        # XXX: might have also extracted UrlReferrer and QueryString from the
+        # html
         service_path = compat_urlparse.urljoin(redirect_url, self._html_search_regex(
             r'<div[^>]+\bid=["\']ServicePath[^>]+>(.+?)</div>', webpage, resource_id,
             default='/Mediasite/PlayerService/PlayerService.svc/json'))
@@ -156,7 +159,8 @@ class MediasiteIE(InfoExtractor):
 
         if presentation is None:
             raise ExtractorError(
-                'Mediasite says: %s' % player_options['PlayerPresentationStatusMessage'],
+                'Mediasite says: %s' %
+                player_options['PlayerPresentationStatusMessage'],
                 expected=True)
 
         thumbnails = []
@@ -178,7 +182,8 @@ class MediasiteIE(InfoExtractor):
                 video_url = url_or_none(VideoUrl.get('Location'))
                 if not video_url:
                     continue
-                # XXX: if Stream.get('CanChangeScheme', False), switch scheme to HTTP/HTTPS
+                # XXX: if Stream.get('CanChangeScheme', False), switch scheme
+                # to HTTP/HTTPS
 
                 media_type = VideoUrl.get('MediaType')
                 if media_type == 'SS':
@@ -285,7 +290,8 @@ class MediasiteCatalogIE(InfoExtractor):
         webpage = self._download_webpage(url, catalog_id)
 
         # AntiForgeryToken is optional (e.g. [1])
-        # 1. https://live.libraries.psu.edu/Mediasite/Catalog/Full/8376d4b24dd1457ea3bfe4cf9163feda21
+        # 1.
+        # https://live.libraries.psu.edu/Mediasite/Catalog/Full/8376d4b24dd1457ea3bfe4cf9163feda21
         anti_forgery_token = self._search_regex(
             r'AntiForgeryToken\s*:\s*(["\'])(?P<value>(?:(?!\1).)+)\1',
             webpage, 'anti forgery token', default=None, group='value')

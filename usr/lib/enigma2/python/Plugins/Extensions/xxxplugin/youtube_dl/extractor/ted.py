@@ -161,7 +161,9 @@ class TEDIE(InfoExtractor):
                                          'Downloading playlist webpage')
 
         playlist_entries = []
-        for entry in re.findall(r'(?s)<[^>]+data-ga-context=["\']playlist["\'][^>]*>', webpage):
+        for entry in re.findall(
+            r'(?s)<[^>]+data-ga-context=["\']playlist["\'][^>]*>',
+                webpage):
             attrs = extract_attributes(entry)
             entry_url = compat_urlparse.urljoin(url, attrs['href'])
             playlist_entries.append(self.url_result(entry_url, self.ie_key()))
@@ -187,12 +189,11 @@ class TEDIE(InfoExtractor):
         title = talk_info['title'].strip()
 
         downloads = talk_info.get('downloads') or {}
-        native_downloads = downloads.get('nativeDownloads') or talk_info.get('nativeDownloads') or {}
+        native_downloads = downloads.get(
+            'nativeDownloads') or talk_info.get('nativeDownloads') or {}
 
-        formats = [{
-            'url': format_url,
-            'format_id': format_id,
-        } for (format_id, format_url) in native_downloads.items() if format_url is not None]
+        formats = [{'url': format_url, 'format_id': format_id, } for (
+            format_id, format_url) in native_downloads.items() if format_url is not None]
 
         subtitled_downloads = downloads.get('subtitledDownloads') or {}
         for lang, subtitled_download in subtitled_downloads.items():
@@ -258,12 +259,14 @@ class TEDIE(InfoExtractor):
                             'tbr': int_or_none(resource.get('bitrate')),
                         })
 
-        m3u8_formats = list(filter(
-            lambda f: f.get('protocol') == 'm3u8' and f.get('vcodec') != 'none',
-            formats))
+        m3u8_formats = list(
+            filter(
+                lambda f: f.get('protocol') == 'm3u8' and f.get('vcodec') != 'none',
+                formats))
         if http_url:
             for m3u8_format in m3u8_formats:
-                bitrate = self._search_regex(r'(\d+k)', m3u8_format['url'], 'bitrate', default=None)
+                bitrate = self._search_regex(
+                    r'(\d+k)', m3u8_format['url'], 'bitrate', default=None)
                 if not bitrate:
                     continue
                 bitrate_url = re.sub(r'\d+k', bitrate, http_url)
@@ -323,16 +326,19 @@ class TEDIE(InfoExtractor):
                 talk_info,
                 (lambda x: x['downloads']['languages'],
                  lambda x: x['languages']), list):
-            lang_code = language.get('languageCode') or language.get('ianaCode')
+            lang_code = language.get(
+                'languageCode') or language.get('ianaCode')
             if not lang_code:
                 continue
             sub_lang_list[lang_code] = [
                 {
-                    'url': 'http://www.ted.com/talks/subtitles/id/%s/lang/%s/format/%s' % (video_id, lang_code, ext),
+                    'url': 'http://www.ted.com/talks/subtitles/id/%s/lang/%s/format/%s' % (video_id,
+                                                                                           lang_code,
+                                                                                           ext),
                     'ext': ext,
-                }
-                for ext in ['ted', 'srt']
-            ]
+                } for ext in [
+                    'ted',
+                    'srt']]
         return sub_lang_list
 
     def _watch_info(self, url, name):
@@ -343,7 +349,9 @@ class TEDIE(InfoExtractor):
             webpage, 'config', default=None)
         if not config_json:
             embed_url = self._search_regex(
-                r"<iframe[^>]+class='pages-video-embed__video__object'[^>]+src='([^']+)'", webpage, 'embed url')
+                r"<iframe[^>]+class='pages-video-embed__video__object'[^>]+src='([^']+)'",
+                webpage,
+                'embed url')
             return self.url_result(self._proto_relative_url(embed_url))
         config = json.loads(config_json)['config']
         video_url = config['video']['url']
@@ -356,7 +364,9 @@ class TEDIE(InfoExtractor):
                 r'(?s)<h4 class="[^"]+" id="h3--about-this-talk">.*?</h4>(.*?)</div>',
                 r'(?s)<p><strong>About this talk:</strong>\s+(.*?)</p>',
             ],
-            webpage, 'description', fatal=False)
+            webpage,
+            'description',
+            fatal=False)
 
         return {
             'id': name,

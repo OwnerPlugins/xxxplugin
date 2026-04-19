@@ -82,12 +82,21 @@ class HearThisAtIE(InfoExtractor):
             meta_span % 'plays_count', webpage, 'view count', fatal=False))
         like_count = str_to_int(self._search_regex(
             meta_span % 'likes_count', webpage, 'like count', fatal=False))
-        comment_count = str_to_int(self._search_regex(
-            meta_span % 'comment_count', webpage, 'comment count', fatal=False))
+        comment_count = str_to_int(
+            self._search_regex(
+                meta_span %
+                'comment_count',
+                webpage,
+                'comment count',
+                fatal=False))
         duration = str_to_int(self._search_regex(
             r'data-length="(\d+)', webpage, 'duration', fatal=False))
-        timestamp = str_to_int(self._search_regex(
-            r'<span[^>]+class="calctime"[^>]+data-time="(\d+)', webpage, 'timestamp', fatal=False))
+        timestamp = str_to_int(
+            self._search_regex(
+                r'<span[^>]+class="calctime"[^>]+data-time="(\d+)',
+                webpage,
+                'timestamp',
+                fatal=False))
 
         formats = []
         mp3_url = self._search_regex(

@@ -59,16 +59,16 @@ class ZDFBaseIE(InfoExtractor):
         mime_type = meta.get('mimeType')
         ext = determine_ext(format_url)
 
-        join_nonempty = lambda s, l: s.join(filter(None, l))
-        meta_map = lambda t: map(lambda x: str_or_none(meta.get(x)), t)
+        def join_nonempty(s, l): return s.join(filter(None, l))
+        def meta_map(t): return map(lambda x: str_or_none(meta.get(x)), t)
 
         if mime_type == 'application/x-mpegURL' or ext == 'm3u8':
             new_formats = self._extract_m3u8_formats(
                 format_url, video_id, 'mp4', m3u8_id='hls',
                 entry_protocol='m3u8_native', fatal=False)
         elif mime_type == 'application/f4m+xml' or ext == 'f4m':
-            new_formats = self._extract_f4m_formats(
-                update_url_query(format_url, {'hdcore': '3.7.0'}), video_id, f4m_id='hds', fatal=False)
+            new_formats = self._extract_f4m_formats(update_url_query(
+                format_url, {'hdcore': '3.7.0'}), video_id, f4m_id='hds', fatal=False)
         else:
             f = parse_codecs(meta.get('mimeCodec'))
             if not f:
@@ -109,7 +109,8 @@ class ZDFBaseIE(InfoExtractor):
                 if not isinstance(f_qualities, list):
                     continue
                 for quality in f_qualities:
-                    tracks = try_get(quality, lambda x: x['audio']['tracks'], list)
+                    tracks = try_get(
+                        quality, lambda x: x['audio']['tracks'], list)
                     if not tracks:
                         continue
                     for track in tracks:
@@ -147,7 +148,8 @@ class ZDFBaseIE(InfoExtractor):
 class ZDFIE(ZDFBaseIE):
     _VALID_URL = r'https?://www\.zdf\.de/(?:[^/]+/)*(?P<id>[^/?#&]+)\.html'
     _TESTS = [{
-        # Same as https://www.phoenix.de/sendungen/ereignisse/corona-nachgehakt/wohin-fuehrt-der-protest-in-der-pandemie-a-2050630.html
+        # Same as
+        # https://www.phoenix.de/sendungen/ereignisse/corona-nachgehakt/wohin-fuehrt-der-protest-in-der-pandemie-a-2050630.html
         'url': 'https://www.zdf.de/politik/phoenix-sendungen/wohin-fuehrt-der-protest-in-der-pandemie-100.html',
         'md5': '34ec321e7eb34231fd88616c65c92db0',
         'info_dict': {
@@ -200,7 +202,8 @@ class ZDFIE(ZDFBaseIE):
             'thumbnail': 'https://www.zdf.de/assets/teaser-funk-alles-ist-verzaubert-100~1920x1080?cb=1636466431799',
         },
     }, {
-        # Same as https://www.phoenix.de/sendungen/dokumentationen/gesten-der-maechtigen-i-a-89468.html?ref=suche
+        # Same as
+        # https://www.phoenix.de/sendungen/dokumentationen/gesten-der-maechtigen-i-a-89468.html?ref=suche
         'url': 'https://www.zdf.de/politik/phoenix-sendungen/die-gesten-der-maechtigen-100.html',
         'only_matching': True,
     }, {
@@ -208,7 +211,8 @@ class ZDFIE(ZDFBaseIE):
         'url': 'https://www.zdf.de/filme/filme-sonstige/der-hauptmann-112.html',
         'only_matching': True,
     }, {
-        # Same as https://www.3sat.de/wissen/nano/nano-21-mai-2019-102.html, equal media ids
+        # Same as https://www.3sat.de/wissen/nano/nano-21-mai-2019-102.html,
+        # equal media ids
         'url': 'https://www.zdf.de/wissen/nano/nano-21-mai-2019-102.html',
         'only_matching': True,
     }, {
@@ -257,7 +261,11 @@ class ZDFIE(ZDFBaseIE):
                 or d.get('http://zdf.de/rels/streams/ptmd-template',
                          '').replace('{playerId}', 'ngplayer_2_4'))
 
-        ptmd_path = get_ptmd_path(try_get(t, lambda x: x['streams']['default'], dict) or {})
+        ptmd_path = get_ptmd_path(
+            try_get(
+                t,
+                lambda x: x['streams']['default'],
+                dict) or {})
         if not ptmd_path:
             ptmd_path = get_ptmd_path(t)
 
@@ -298,15 +306,17 @@ class ZDFIE(ZDFBaseIE):
     def _extract_regular(self, url, player, video_id):
         content = self._call_api(
             player['content'], video_id, 'content', player['apiToken'], url)
-        return self._extract_entry(player['content'], player, content, video_id)
+        return self._extract_entry(
+            player['content'], player, content, video_id)
 
     def _extract_mobile(self, video_id):
         video = self._download_json(
-            'https://zdf-cdn.live.cellular.de/mediathekV2/document/%s' % video_id,
-            video_id)
+            'https://zdf-cdn.live.cellular.de/mediathekV2/document/%s' %
+            video_id, video_id)
 
         formats = []
-        formitaeten = try_get(video, lambda x: x['document']['formitaeten'], list)
+        formitaeten = try_get(
+            video, lambda x: x['document']['formitaeten'], list)
         document = formitaeten and video['document']
         if formitaeten:
             title = document['titel']
@@ -335,9 +345,14 @@ class ZDFIE(ZDFBaseIE):
             'id': content_id,
             'title': title,
             'description': document.get('beschreibung'),
-            'duration': int_or_none(document.get('length')),
-            'timestamp': unified_timestamp(document.get('date')) or unified_timestamp(
-                try_get(video, lambda x: x['meta']['editorialDate'], compat_str)),
+            'duration': int_or_none(
+                document.get('length')),
+            'timestamp': unified_timestamp(
+                document.get('date')) or unified_timestamp(
+                try_get(
+                    video,
+                    lambda x: x['meta']['editorialDate'],
+                    compat_str)),
             'thumbnails': thumbnails,
             'subtitles': self._extract_subtitles(document),
             'formats': formats,
@@ -357,40 +372,43 @@ class ZDFIE(ZDFBaseIE):
 
 class ZDFChannelIE(ZDFBaseIE):
     _VALID_URL = r'https?://www\.zdf\.de/(?:[^/]+/)*(?P<id>[^/?#&]+)'
-    _TESTS = [{
-        'url': 'https://www.zdf.de/sport/das-aktuelle-sportstudio',
-        'info_dict': {
-            'id': 'das-aktuelle-sportstudio',
-            'title': 'das aktuelle sportstudio',
-        },
-        'playlist_mincount': 18,
-    }, {
-        'url': 'https://www.zdf.de/dokumentation/planet-e',
-        'info_dict': {
-            'id': 'planet-e',
-            'title': 'planet e.',
-        },
-        'playlist_mincount': 50,
-    }, {
-        'url': 'https://www.zdf.de/gesellschaft/aktenzeichen-xy-ungeloest',
-        'info_dict': {
-            'id': 'aktenzeichen-xy-ungeloest',
-            'title': 'Aktenzeichen XY... ungelöst',
-            'entries': "lambda x: not any('xy580-fall1-kindermoerder-gesucht-100' in e['url'] for e in x)",
-        },
-        'playlist_mincount': 2,
-    }, {
-        'url': 'https://www.zdf.de/filme/taunuskrimi/',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.zdf.de/sport/das-aktuelle-sportstudio',
+               'info_dict': {'id': 'das-aktuelle-sportstudio',
+                             'title': 'das aktuelle sportstudio',
+                             },
+               'playlist_mincount': 18,
+               },
+              {'url': 'https://www.zdf.de/dokumentation/planet-e',
+               'info_dict': {'id': 'planet-e',
+                             'title': 'planet e.',
+                             },
+               'playlist_mincount': 50,
+               },
+              {'url': 'https://www.zdf.de/gesellschaft/aktenzeichen-xy-ungeloest',
+               'info_dict': {'id': 'aktenzeichen-xy-ungeloest',
+                             'title': 'Aktenzeichen XY... ungelöst',
+                             'entries': "lambda x: not any('xy580-fall1-kindermoerder-gesucht-100' in e['url'] for e in x)",
+                             },
+               'playlist_mincount': 2,
+               },
+              {'url': 'https://www.zdf.de/filme/taunuskrimi/',
+               'only_matching': True,
+               }]
 
     @classmethod
     def suitable(cls, url):
-        return False if ZDFIE.suitable(url) else super(ZDFChannelIE, cls).suitable(url)
+        return False if ZDFIE.suitable(url) else super(
+            ZDFChannelIE, cls).suitable(url)
 
     def _og_search_title(self, webpage, fatal=False):
-        title = super(ZDFChannelIE, self)._og_search_title(webpage, fatal=fatal)
-        return re.split(r'\s+[-|]\s+ZDF(?:mediathek)?$', title or '')[0] or None
+        title = super(
+            ZDFChannelIE,
+            self)._og_search_title(
+            webpage,
+            fatal=fatal)
+        return re.split(
+            r'\s+[-|]\s+ZDF(?:mediathek)?$',
+            title or '')[0] or None
 
     def _real_extract(self, url):
         channel_id = self._match_id(url)
@@ -398,23 +416,28 @@ class ZDFChannelIE(ZDFBaseIE):
         webpage = self._download_webpage(url, channel_id)
 
         matches = re.finditer(
-            r'''<div\b[^>]*?\sdata-plusbar-id\s*=\s*(["'])(?P<p_id>[\w-]+)\1[^>]*?\sdata-plusbar-url=\1(?P<url>%s)\1''' % ZDFIE._VALID_URL,
-            webpage)
+            r'''<div\b[^>]*?\sdata-plusbar-id\s*=\s*(["'])(?P<p_id>[\w-]+)\1[^>]*?\sdata-plusbar-url=\1(?P<url>%s)\1''' %
+            ZDFIE._VALID_URL, webpage)
 
         if self._downloader.params.get('noplaylist', False):
             entry = next(
-                (self.url_result(m.group('url'), ie=ZDFIE.ie_key()) for m in matches),
+                (self.url_result(
+                    m.group('url'),
+                    ie=ZDFIE.ie_key()) for m in matches),
                 None)
-            self.to_screen('Downloading just the main video because of --no-playlist')
+            self.to_screen(
+                'Downloading just the main video because of --no-playlist')
             if entry:
                 return entry
         else:
-            self.to_screen('Downloading playlist %s - add --no-playlist to download just the main video' % (channel_id, ))
+            self.to_screen(
+                'Downloading playlist %s - add --no-playlist to download just the main video' %
+                (channel_id, ))
 
         def check_video(m):
             v_ref = self._search_regex(
-                r'''(<a\b[^>]*?\shref\s*=[^>]+?\sdata-target-id\s*=\s*(["'])%s\2[^>]*>)''' % (m.group('p_id'), ),
-                webpage, 'check id', default='')
+                r'''(<a\b[^>]*?\shref\s*=[^>]+?\sdata-target-id\s*=\s*(["'])%s\2[^>]*>)''' %
+                (m.group('p_id'), ), webpage, 'check id', default='')
             v_ref = extract_attributes(v_ref)
             return v_ref.get('data-target-video-type') != 'novideo'
 

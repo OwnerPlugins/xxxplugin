@@ -34,12 +34,14 @@ class RteBaseIE(InfoExtractor):
             except ExtractorError as ee:
                 if num < len(ENDPOINTS) or formats:
                     continue
-                if isinstance(ee.cause, compat_HTTPError) and ee.cause.code == 404:
-                    error_info = self._parse_json(ee.cause.read().decode(), item_id, fatal=False)
+                if isinstance(ee.cause,
+                              compat_HTTPError) and ee.cause.code == 404:
+                    error_info = self._parse_json(
+                        ee.cause.read().decode(), item_id, fatal=False)
                     if error_info:
                         raise ExtractorError(
-                            '%s said: %s' % (self.IE_NAME, error_info['message']),
-                            expected=True)
+                            '%s said: %s' %
+                            (self.IE_NAME, error_info['message']), expected=True)
                 raise
 
             # NB the string values in the JSON are stored using XML escaping(!)
@@ -67,7 +69,9 @@ class RteBaseIE(InfoExtractor):
                 continue
 
             if mg.get('url'):
-                m = re.match(r'(?P<url>rtmpe?://[^/]+)/(?P<app>.+)/(?P<playpath>mp4:.*)', mg['url'])
+                m = re.match(
+                    r'(?P<url>rtmpe?://[^/]+)/(?P<app>.+)/(?P<playpath>mp4:.*)',
+                    mg['url'])
                 if m:
                     m = m.groupdict()
                     formats.append({
@@ -130,7 +134,8 @@ class RteRadioIE(RteBaseIE):
     # the old format #!rii=<channel_id>:<id>:<playable_item_id>:<date>:
     # the new format #!rii=b<channel_id>_<id>_<playable_item_id>_<date>_
     # where the IDs are int/empty, the date is DD-MM-YYYY, and the specifier may be truncated.
-    # An <id> uniquely defines an individual recording, and is the only part we require.
+    # An <id> uniquely defines an individual recording, and is the only part
+    # we require.
     _VALID_URL = r'https?://(?:www\.)?rte\.ie/radio/utils/radioplayer/rteradioweb\.html#!rii=(?:b?[0-9]*)(?:%3A|:|%5F|_)(?P<id>[0-9]+)'
 
     _TESTS = [{

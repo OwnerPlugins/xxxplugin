@@ -80,7 +80,8 @@ class ThreeQSDNIE(InfoExtractor):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+\b(?:data-)?src=(["\'])(?P<url>%s.*?)\1' % ThreeQSDNIE._VALID_URL, webpage)
+            r'<iframe[^>]+\b(?:data-)?src=(["\'])(?P<url>%s.*?)\1' %
+            ThreeQSDNIE._VALID_URL, webpage)
         if mobj:
             return mobj.group('url')
 
@@ -89,7 +90,10 @@ class ThreeQSDNIE(InfoExtractor):
 
         try:
             config = self._download_json(
-                url.replace('://playout.3qsdn.com/', '://playout.3qsdn.com/config/'), video_id)
+                url.replace(
+                    '://playout.3qsdn.com/',
+                    '://playout.3qsdn.com/config/'),
+                video_id)
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
                 self.raise_geo_restricted()
@@ -138,7 +142,17 @@ class ThreeQSDNIE(InfoExtractor):
                 f['preference'] = -40
             elif f.get('vcodec') == 'none':
                 f['preference'] = -50
-        self._sort_formats(formats, ('preference', 'width', 'height', 'source_preference', 'tbr', 'vbr', 'abr', 'ext', 'format_id'))
+        self._sort_formats(
+            formats,
+            ('preference',
+             'width',
+             'height',
+             'source_preference',
+             'tbr',
+             'vbr',
+             'abr',
+             'ext',
+             'format_id'))
 
         subtitles = {}
         for subtitle in (config.get('subtitles') or []):

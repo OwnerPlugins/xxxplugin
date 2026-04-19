@@ -15,7 +15,8 @@ class GigyaBaseIE(InfoExtractor):
             note='Logging in', errnote='Unable to log in',
             data=urlencode_postdata(auth_data))
 
-        error_message = auth_info.get('errorDetails') or auth_info.get('errorMessage')
+        error_message = auth_info.get(
+            'errorDetails') or auth_info.get('errorMessage')
         if error_message:
             raise ExtractorError(
                 'Unable to login: %s' % error_message, expected=True)

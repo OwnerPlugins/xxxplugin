@@ -38,7 +38,8 @@ class CaffeineTVIE(InfoExtractor):
         json_data = self._download_json(
             'https://api.caffeine.tv/social/public/activity/' + video_id,
             video_id)
-        broadcast_info = traverse_obj(json_data, ('broadcast_info', T(dict))) or {}
+        broadcast_info = traverse_obj(
+            json_data, ('broadcast_info', T(dict))) or {}
         title = broadcast_info['broadcast_title']
         video_url = broadcast_info['video_url']
 
@@ -70,7 +71,8 @@ class CaffeineTVIE(InfoExtractor):
             'thumbnail': ('preview_image_path', T(lambda u: urljoin(url, u))),
             'age_limit': ('content_rating', T(lambda r: r and {
                 # assume Apple Store ratings [1]
-                # 1. https://en.wikipedia.org/wiki/Mobile_software_content_rating_system
+                # 1.
+                # https://en.wikipedia.org/wiki/Mobile_software_content_rating_system
                 'FOUR_PLUS': 0,
                 'NINE_PLUS': 9,
                 'TWELVE_PLUS': 12,

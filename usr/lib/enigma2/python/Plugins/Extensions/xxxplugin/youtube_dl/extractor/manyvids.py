@@ -72,7 +72,9 @@ class ManyVidsIE(InfoExtractor):
         )
 
         def txt_or_none(s, default=None):
-            return (s.strip() or default) if isinstance(s, compat_str) else default
+            return (
+                s.strip() or default) if isinstance(
+                s, compat_str) else default
 
         uploader = txt_or_none(info.get('data-meta-author'))
 
@@ -132,9 +134,14 @@ class ManyVidsIE(InfoExtractor):
         for f in formats:
             if f.get('height') is None:
                 f['height'] = int_or_none(
-                    self._search_regex(r'_(\d{2,3}[02468])_', f['url'], 'video height', default=None))
+                    self._search_regex(
+                        r'_(\d{2,3}[02468])_',
+                        f['url'],
+                        'video height',
+                        default=None))
             if '/preview/' in f['url']:
-                f['format_id'] = '_'.join(filter(None, (f.get('format_id'), 'preview')))
+                f['format_id'] = '_'.join(
+                    filter(None, (f.get('format_id'), 'preview')))
                 f['preference'] = -10
             if 'transcoded' in f['format_id']:
                 f['preference'] = f.get('preference', -1) - 1
@@ -143,15 +150,18 @@ class ManyVidsIE(InfoExtractor):
 
         def get_likes():
             likes = self._search_regex(
-                r'''(<a\b[^>]*\bdata-id\s*=\s*(['"])%s\2[^>]*>)''' % (video_id, ),
-                webpage, 'likes', default='')
+                r'''(<a\b[^>]*\bdata-id\s*=\s*(['"])%s\2[^>]*>)''' %
+                (video_id, ), webpage, 'likes', default='')
             likes = extract_attributes(likes)
             return int_or_none(likes.get('data-likes'))
 
         def get_views():
-            return str_to_int(self._html_search_regex(
-                r'''(?s)<span\b[^>]*\bclass\s*=["']views-wrapper\b[^>]+>.+?<span\b[^>]+>\s*(\d[\d,.]*)\s*</span>''',
-                webpage, 'view count', default=None))
+            return str_to_int(
+                self._html_search_regex(
+                    r'''(?s)<span\b[^>]*\bclass\s*=["']views-wrapper\b[^>]+>.+?<span\b[^>]+>\s*(\d[\d,.]*)\s*</span>''',
+                    webpage,
+                    'view count',
+                    default=None))
 
         return {
             'id': video_id,

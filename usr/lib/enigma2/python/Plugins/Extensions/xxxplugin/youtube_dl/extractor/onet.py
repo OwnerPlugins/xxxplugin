@@ -42,7 +42,8 @@ class OnetBaseIE(InfoExtractor):
         error = response.get('error')
         if error:
             raise ExtractorError(
-                '%s said: %s' % (self.IE_NAME, error['message']), expected=True)
+                '%s said: %s' %
+                (self.IE_NAME, error['message']), expected=True)
 
         video = response['result'].get('0')
 
@@ -89,8 +90,10 @@ class OnetBaseIE(InfoExtractor):
 
         title = (self._og_search_title(
             webpage, default=None) if webpage else None) or meta['title']
-        description = (self._og_search_description(
-            webpage, default=None) if webpage else None) or meta.get('description')
+        description = (
+            self._og_search_description(
+                webpage,
+                default=None) if webpage else None) or meta.get('description')
         duration = meta.get('length') or meta.get('lenght')
         timestamp = parse_iso8601(meta.get('addDate'), ' ')
 
@@ -117,7 +120,8 @@ class OnetMVPIE(OnetBaseIE):
 
 
 class OnetIE(OnetBaseIE):
-    _VALID_URL = OnetBaseIE._URL_BASE_RE + r'[a-z]+/(?P<display_id>[0-9a-z-]+)/(?P<id>[0-9a-z]+)'
+    _VALID_URL = OnetBaseIE._URL_BASE_RE + \
+        r'[a-z]+/(?P<display_id>[0-9a-z-]+)/(?P<id>[0-9a-z]+)'
     IE_NAME = 'onet.tv'
 
     _TESTS = [{
@@ -176,30 +180,46 @@ class OnetChannelIE(OnetBaseIE):
 
         webpage = self._download_webpage(url, channel_id)
 
-        current_clip_info = self._parse_json(self._search_regex(
-            r'var\s+currentClip\s*=\s*({[^}]+})', webpage, 'video info'), channel_id,
-            transform_source=lambda s: js_to_json(re.sub(r'\'\s*\+\s*\'', '', s)))
+        current_clip_info = self._parse_json(
+            self._search_regex(
+                r'var\s+currentClip\s*=\s*({[^}]+})',
+                webpage,
+                'video info'),
+            channel_id,
+            transform_source=lambda s: js_to_json(
+                re.sub(
+                    r'\'\s*\+\s*\'',
+                    '',
+                    s)))
         video_id = remove_start(current_clip_info['ckmId'], 'mvp:')
         video_name = url_basename(current_clip_info['url'])
 
         if self._downloader.params.get('noplaylist'):
             self.to_screen(
-                'Downloading just video %s because of --no-playlist' % video_name)
+                'Downloading just video %s because of --no-playlist' %
+                video_name)
             return self._extract_from_id(video_id, webpage)
 
         self.to_screen(
-            'Downloading channel %s - add --no-playlist to just download video %s' % (
-                channel_id, video_name))
+            'Downloading channel %s - add --no-playlist to just download video %s' %
+            (channel_id, video_name))
         matches = re.findall(
-            r'<a[^>]+href=[\'"](%s[a-z]+/[0-9a-z-]+/[0-9a-z]+)' % self._URL_BASE_RE,
-            webpage)
+            r'<a[^>]+href=[\'"](%s[a-z]+/[0-9a-z-]+/[0-9a-z]+)' %
+            self._URL_BASE_RE, webpage)
         entries = [
             self.url_result(video_link, OnetIE.ie_key())
             for video_link in matches]
 
-        channel_title = strip_or_none(get_element_by_class('o_channelName', webpage))
-        channel_description = strip_or_none(get_element_by_class('o_channelDesc', webpage))
-        return self.playlist_result(entries, channel_id, channel_title, channel_description)
+        channel_title = strip_or_none(
+            get_element_by_class(
+                'o_channelName', webpage))
+        channel_description = strip_or_none(
+            get_element_by_class('o_channelDesc', webpage))
+        return self.playlist_result(
+            entries,
+            channel_id,
+            channel_title,
+            channel_description)
 
 
 class OnetPlIE(InfoExtractor):

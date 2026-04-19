@@ -63,14 +63,19 @@ class TNAFlixNetworkBaseIE(InfoExtractor):
         if first > last:
             return
 
-        width = int_or_none(xpath_text(timeline, './imageWidth', 'thumbnail width'))
-        height = int_or_none(xpath_text(timeline, './imageHeight', 'thumbnail height'))
+        width = int_or_none(
+            xpath_text(
+                timeline,
+                './imageWidth',
+                'thumbnail width'))
+        height = int_or_none(
+            xpath_text(
+                timeline,
+                './imageHeight',
+                'thumbnail height'))
 
-        return [{
-            'url': self._proto_relative_url(pattern_el.text.replace('#', compat_str(i)), 'http:'),
-            'width': width,
-            'height': height,
-        } for i in range(first, last + 1)]
+        return [{'url': self._proto_relative_url(pattern_el.text.replace('#', compat_str(
+            i)), 'http:'), 'width': width, 'height': height, } for i in range(first, last + 1)]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -91,8 +96,14 @@ class TNAFlixNetworkBaseIE(InfoExtractor):
 
         if not cfg_url:
             inputs = self._hidden_inputs(webpage)
-            cfg_url = ('https://cdn-fck.%sflix.com/%sflix/%s%s.fid?key=%s&VID=%s&premium=1&vip=1&alpha'
-                       % (self._HOST, self._HOST, inputs['vkey'], self._VKEY_SUFFIX, inputs['nkey'], video_id))
+            cfg_url = (
+                'https://cdn-fck.%sflix.com/%sflix/%s%s.fid?key=%s&VID=%s&premium=1&vip=1&alpha' %
+                (self._HOST,
+                 self._HOST,
+                 inputs['vkey'],
+                    self._VKEY_SUFFIX,
+                    inputs['nkey'],
+                    video_id))
 
         cfg_xml = self._download_xml(
             cfg_url, display_id, 'Downloading metadata',
@@ -106,10 +117,8 @@ class TNAFlixNetworkBaseIE(InfoExtractor):
 
         video_link = cfg_xml.find('./videoLink')
         if video_link is not None:
-            formats.append({
-                'url': extract_video_url(video_link),
-                'ext': xpath_text(cfg_xml, './videoConfig/type', 'type', default='flv'),
-            })
+            formats.append({'url': extract_video_url(video_link), 'ext': xpath_text(
+                cfg_xml, './videoConfig/type', 'type', default='flv'), })
 
         for item in cfg_xml.findall('./quality/item'):
             video_link = item.find('./videoLink')
@@ -119,11 +128,8 @@ class TNAFlixNetworkBaseIE(InfoExtractor):
             format_id = None if res is None else res.text
             height = int_or_none(self._search_regex(
                 r'^(\d+)[pP]', format_id, 'height', default=None))
-            formats.append({
-                'url': self._proto_relative_url(extract_video_url(video_link), 'http:'),
-                'format_id': format_id,
-                'height': height,
-            })
+            formats.append({'url': self._proto_relative_url(extract_video_url(
+                video_link), 'http:'), 'format_id': format_id, 'height': height, })
 
         self._sort_formats(formats)
 
@@ -144,16 +150,27 @@ class TNAFlixNetworkBaseIE(InfoExtractor):
             'duration', webpage, 'duration', default=None))
 
         def extract_field(pattern, name):
-            return self._html_search_regex(pattern, webpage, name, default=None) if pattern else None
+            return self._html_search_regex(
+                pattern, webpage, name, default=None) if pattern else None
 
         description = extract_field(self._DESCRIPTION_REGEX, 'description')
         uploader = extract_field(self._UPLOADER_REGEX, 'uploader')
-        view_count = str_to_int(extract_field(self._VIEW_COUNT_REGEX, 'view count'))
-        comment_count = str_to_int(extract_field(self._COMMENT_COUNT_REGEX, 'comment count'))
-        average_rating = float_or_none(extract_field(self._AVERAGE_RATING_REGEX, 'average rating'))
+        view_count = str_to_int(
+            extract_field(
+                self._VIEW_COUNT_REGEX,
+                'view count'))
+        comment_count = str_to_int(
+            extract_field(
+                self._COMMENT_COUNT_REGEX,
+                'comment count'))
+        average_rating = float_or_none(
+            extract_field(
+                self._AVERAGE_RATING_REGEX,
+                'average rating'))
 
         categories_str = extract_field(self._CATEGORIES_REGEX, 'categories')
-        categories = [c.strip() for c in categories_str.split(',')] if categories_str is not None else []
+        categories = [c.strip() for c in categories_str.split(
+            ',')] if categories_str is not None else []
 
         return {
             'id': video_id,
@@ -198,9 +215,11 @@ class TNAFlixNetworkEmbedIE(TNAFlixNetworkBaseIE):
 
     @staticmethod
     def _extract_urls(webpage):
-        return [url for _, url in re.findall(
-            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//player\.(?:tna|emp)flix\.com/video/\d+)\1',
-            webpage)]
+        return [
+            url for _,
+            url in re.findall(
+                r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//player\.(?:tna|emp)flix\.com/video/\d+)\1',
+                webpage)]
 
 
 class TNAEMPFlixBaseIE(TNAFlixNetworkBaseIE):
@@ -307,7 +326,8 @@ class MovieFapIE(TNAFlixNetworkBaseIE):
             'categories': ['Amateur', 'Masturbation', 'Mature', 'Flashing'],
         }
     }, {
-        # quirky single-format case where the extension is given as fid, but the video is really an flv
+        # quirky single-format case where the extension is given as fid, but
+        # the video is really an flv
         'url': 'http://www.moviefap.com/videos/e5da0d3edce5404418f5/jeune-couple-russe.html',
         'md5': 'fa56683e291fc80635907168a743c9ad',
         'info_dict': {

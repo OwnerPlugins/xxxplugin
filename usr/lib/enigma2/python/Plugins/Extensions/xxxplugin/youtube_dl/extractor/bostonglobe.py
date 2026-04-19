@@ -61,12 +61,13 @@ class BostonGlobeIE(InfoExtractor):
 
             if video_id and account_id and player_id and embed:
                 entries.append(
-                    'http://players.brightcove.net/%s/%s_%s/index.html?videoId=%s'
-                    % (account_id, player_id, embed, video_id))
+                    'http://players.brightcove.net/%s/%s_%s/index.html?videoId=%s' %
+                    (account_id, player_id, embed, video_id))
 
         if len(entries) == 0:
             return self.url_result(url, 'Generic')
         elif len(entries) == 1:
             return self.url_result(entries[0], 'BrightcoveNew')
         else:
-            return self.playlist_from_matches(entries, page_id, page_title, ie='BrightcoveNew')
+            return self.playlist_from_matches(
+                entries, page_id, page_title, ie='BrightcoveNew')

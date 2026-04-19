@@ -82,7 +82,8 @@ class LineTVIE(InfoExtractor):
 
         title = self._og_search_title(webpage)
 
-        # like_count requires an additional API request https://tv.line.me/api/likeit/getCount
+        # like_count requires an additional API request
+        # https://tv.line.me/api/likeit/getCount
 
         return {
             'id': video_id,
@@ -105,7 +106,8 @@ class LineLiveBaseIE(InfoExtractor):
         is_live = item.get('isBroadcastingNow')
 
         thumbnails = []
-        for thumbnail_id, thumbnail_url in (item.get('thumbnailURLs') or {}).items():
+        for thumbnail_id, thumbnail_url in (
+                item.get('thumbnailURLs') or {}).items():
             if not thumbnail_url:
                 continue
             thumbnails.append({
@@ -120,13 +122,17 @@ class LineLiveBaseIE(InfoExtractor):
             'id': broadcast_id,
             'title': self._live_title(title) if is_live else title,
             'thumbnails': thumbnails,
-            'timestamp': int_or_none(item.get('createdAt')),
+            'timestamp': int_or_none(
+                item.get('createdAt')),
             'channel': channel.get('name'),
             'channel_id': channel_id,
             'channel_url': 'https://live.line.me/channels/' + channel_id if channel_id else None,
-            'duration': int_or_none(item.get('archiveDuration')),
-            'view_count': int_or_none(item.get('viewerCount')),
-            'comment_count': int_or_none(item.get('chatCount')),
+            'duration': int_or_none(
+                item.get('archiveDuration')),
+            'view_count': int_or_none(
+                item.get('viewerCount')),
+            'comment_count': int_or_none(
+                item.get('chatCount')),
             'is_live': is_live,
         }
 
@@ -157,13 +163,15 @@ class LineLiveIE(LineLiveBaseIE):
     def _real_extract(self, url):
         channel_id, broadcast_id = re.match(self._VALID_URL, url).groups()
         broadcast = self._download_json(
-            self._API_BASE_URL + '%s/broadcast/%s' % (channel_id, broadcast_id),
-            broadcast_id)
+            self._API_BASE_URL + '%s/broadcast/%s' %
+            (channel_id, broadcast_id), broadcast_id)
         item = broadcast['item']
         info = self._parse_broadcast_item(item)
         protocol = 'm3u8' if info['is_live'] else 'm3u8_native'
         formats = []
-        for k, v in (broadcast.get(('live' if info['is_live'] else 'archived') + 'HLSURLs') or {}).items():
+        for k, v in (
+            broadcast.get(
+                ('live' if info['is_live'] else 'archived') + 'HLSURLs') or {}).items():
             if not v:
                 continue
             if k == 'abr':
@@ -183,7 +191,10 @@ class LineLiveIE(LineLiveBaseIE):
         if not formats:
             archive_status = item.get('archiveStatus')
             if archive_status != 'ARCHIVED':
-                raise ExtractorError('this video has been ' + archive_status.lower(), expected=True)
+                raise ExtractorError(
+                    'this video has been ' +
+                    archive_status.lower(),
+                    expected=True)
         self._sort_formats(formats)
         info['formats'] = formats
         return info
@@ -224,7 +235,12 @@ class LineLiveChannelIE(LineLiveBaseIE):
 
     def _real_extract(self, url):
         channel_id = self._match_id(url)
-        channel = self._download_json(self._API_BASE_URL + channel_id, channel_id)
+        channel = self._download_json(
+            self._API_BASE_URL + channel_id, channel_id)
         return self.playlist_result(
-            self._archived_broadcasts_entries(channel.get('archivedBroadcasts') or {}, channel_id),
-            channel_id, channel.get('title'), channel.get('information'))
+            self._archived_broadcasts_entries(
+                channel.get('archivedBroadcasts') or {},
+                channel_id),
+            channel_id,
+            channel.get('title'),
+            channel.get('information'))

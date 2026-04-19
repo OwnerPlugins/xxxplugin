@@ -41,11 +41,11 @@ class MinistryGridIE(InfoExtractor):
             r'getPlid:function\(\){return"(\d+)"}', webpage, 'p_l_id')
 
         for i, portlet in enumerate(portlets):
-            portlet_url = 'http://www.ministrygrid.com/c/portal/render_portlet?p_l_id=%s&p_p_id=%s' % (pl_id, portlet)
+            portlet_url = 'http://www.ministrygrid.com/c/portal/render_portlet?p_l_id=%s&p_p_id=%s' % (
+                pl_id, portlet)
             portlet_code = self._download_webpage(
-                portlet_url, video_id,
-                note='Looking in portlet %s (%d/%d)' % (portlet, i + 1, len(portlets)),
-                fatal=False)
+                portlet_url, video_id, note='Looking in portlet %s (%d/%d)' %
+                (portlet, i + 1, len(portlets)), fatal=False)
             video_iframe_url = self._search_regex(
                 r'<iframe.*?src="([^"]+)"', portlet_code, 'video iframe',
                 default=None)

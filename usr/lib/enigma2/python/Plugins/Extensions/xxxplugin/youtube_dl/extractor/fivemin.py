@@ -9,7 +9,8 @@ class FiveMinIE(InfoExtractor):
 
     _TESTS = [
         {
-            # From http://www.engadget.com/2013/11/15/ipad-mini-retina-display-review/
+            # From
+            # http://www.engadget.com/2013/11/15/ipad-mini-retina-display-review/
             'url': 'http://pshared.5min.com/Scripts/PlayerSeed.js?sid=281&width=560&height=345&playList=518013791',
             'md5': '4f7b0b79bf1a470e5004f7112385941d',
             'info_dict': {
@@ -28,7 +29,8 @@ class FiveMinIE(InfoExtractor):
             }
         },
         {
-            # From http://on.aol.com/video/how-to-make-a-next-level-fruit-salad-518086247
+            # From
+            # http://on.aol.com/video/how-to-make-a-next-level-fruit-salad-518086247
             'url': '5min:518086247',
             'md5': 'e539a9dd682c288ef5a498898009f69e',
             'info_dict': {

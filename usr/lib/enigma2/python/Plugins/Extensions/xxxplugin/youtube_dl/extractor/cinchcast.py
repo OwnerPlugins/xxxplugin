@@ -27,8 +27,8 @@ class CinchcastIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         doc = self._download_xml(
-            'http://www.blogtalkradio.com/playerasset/mrss?assetType=single&assetId=%s' % video_id,
-            video_id)
+            'http://www.blogtalkradio.com/playerasset/mrss?assetType=single&assetId=%s' %
+            video_id, video_id)
 
         item = doc.find('.//item')
         title = xpath_text(item, './title', fatal=True)
@@ -36,10 +36,8 @@ class CinchcastIE(InfoExtractor):
             item, './{http://developer.longtailvideo.com/trac/}date')
         upload_date = unified_strdate(date_str, day_first=False)
         # duration is present but wrong
-        formats = [{
-            'format_id': 'main',
-            'url': item.find('./{http://search.yahoo.com/mrss/}content').attrib['url'],
-        }]
+        formats = [{'format_id': 'main', 'url': item.find(
+            './{http://search.yahoo.com/mrss/}content').attrib['url'], }]
         backup_url = xpath_text(
             item, './{http://developer.longtailvideo.com/trac/}backupContent')
         if backup_url:

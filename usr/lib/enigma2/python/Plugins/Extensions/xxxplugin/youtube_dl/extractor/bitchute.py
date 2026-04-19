@@ -14,31 +14,32 @@ from ..utils import (
 
 class BitChuteIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?bitchute\.com/(?:video|embed|torrent/[^/]+)/(?P<id>[^/?#&]+)'
-    _TESTS = [{
-        'url': 'https://www.bitchute.com/video/szoMrox2JEI/',
-        'md5': '66c4a70e6bfc40dcb6be3eb1d74939eb',
-        'info_dict': {
-            'id': 'szoMrox2JEI',
-            'ext': 'mp4',
-            'title': 'Fuck bitches get money',
-            'description': 'md5:3f21f6fb5b1d17c3dee9cf6b5fe60b3a',
-            'thumbnail': r're:^https?://.*\.jpg$',
-            'uploader': 'Victoria X Rave',
-            'upload_date': '20170813',
-        },
-    }, {
-        'url': 'https://www.bitchute.com/embed/lbb5G1hjPhw/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.bitchute.com/torrent/Zee5BE49045h/szoMrox2JEI.webtorrent',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.bitchute.com/video/szoMrox2JEI/',
+               'md5': '66c4a70e6bfc40dcb6be3eb1d74939eb',
+               'info_dict': {'id': 'szoMrox2JEI',
+                             'ext': 'mp4',
+                             'title': 'Fuck bitches get money',
+                             'description': 'md5:3f21f6fb5b1d17c3dee9cf6b5fe60b3a',
+                             'thumbnail': r're:^https?://.*\.jpg$',
+                             'uploader': 'Victoria X Rave',
+                             'upload_date': '20170813',
+                             },
+               },
+              {'url': 'https://www.bitchute.com/embed/lbb5G1hjPhw/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.bitchute.com/torrent/Zee5BE49045h/szoMrox2JEI.webtorrent',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
         webpage = self._download_webpage(
-            'https://www.bitchute.com/video/%s' % video_id, video_id, headers={
+            'https://www.bitchute.com/video/%s' %
+            video_id,
+            video_id,
+            headers={
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.57 Safari/537.36',
             })
 
@@ -76,9 +77,12 @@ class BitChuteIE(InfoExtractor):
              r'(?s)<p\b[^>]+\bclass=["\']video-author[^>]+>(.+?)</p>'),
             webpage, 'uploader', fatal=False)
 
-        upload_date = unified_strdate(self._search_regex(
-            r'class=["\']video-publish-date[^>]+>[^<]+ at \d+:\d+ UTC on (.+?)\.',
-            webpage, 'upload date', fatal=False))
+        upload_date = unified_strdate(
+            self._search_regex(
+                r'class=["\']video-publish-date[^>]+>[^<]+ at \d+:\d+ UTC on (.+?)\.',
+                webpage,
+                'upload date',
+                fatal=False))
 
         return {
             'id': video_id,

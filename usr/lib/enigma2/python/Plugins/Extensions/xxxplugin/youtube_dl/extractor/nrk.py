@@ -31,13 +31,25 @@ class NRKBaseIE(InfoExtractor):
     def _extract_nrk_formats(self, asset_url, video_id):
         if re.match(r'https?://[^/]+\.akamaihd\.net/i/', asset_url):
             return self._extract_akamai_formats(asset_url, video_id)
-        asset_url = re.sub(r'(?:bw_(?:low|high)=\d+|no_audio_only)&?', '', asset_url)
+        asset_url = re.sub(
+            r'(?:bw_(?:low|high)=\d+|no_audio_only)&?',
+            '',
+            asset_url)
         formats = self._extract_m3u8_formats(
             asset_url, video_id, 'mp4', 'm3u8_native', fatal=False)
         if not formats and re.search(self._CDN_REPL_REGEX, asset_url):
             formats = self._extract_m3u8_formats(
-                re.sub(self._CDN_REPL_REGEX, '://nrk-od-%02d.akamaized.net/no/' % random.randint(0, 99), asset_url),
-                video_id, 'mp4', 'm3u8_native', fatal=False)
+                re.sub(
+                    self._CDN_REPL_REGEX,
+                    '://nrk-od-%02d.akamaized.net/no/' %
+                    random.randint(
+                        0,
+                        99),
+                    asset_url),
+                video_id,
+                'mp4',
+                'm3u8_native',
+                fatal=False)
         return formats
 
     def _raise_error(self, data):
@@ -49,14 +61,24 @@ class NRKBaseIE(InfoExtractor):
         }
         message_type = data.get('messageType', '')
         # Can be ProgramIsGeoBlocked or ChannelIsGeoBlocked*
-        if 'IsGeoBlocked' in message_type or try_get(data, lambda x: x['usageRights']['isGeoBlocked']) is True:
+        if 'IsGeoBlocked' in message_type or try_get(
+                data, lambda x: x['usageRights']['isGeoBlocked']) is True:
             self.raise_geo_restricted(
                 msg=MESSAGES.get('ProgramIsGeoBlocked'),
                 countries=self._GEO_COUNTRIES)
-        message = data.get('endUserMessage') or MESSAGES.get(message_type, message_type)
-        raise ExtractorError('%s said: %s' % (self.IE_NAME, message), expected=True)
+        message = data.get('endUserMessage') or MESSAGES.get(
+            message_type, message_type)
+        raise ExtractorError('%s said: %s' %
+                             (self.IE_NAME, message), expected=True)
 
-    def _call_api(self, path, video_id, item=None, note=None, fatal=True, query=None):
+    def _call_api(
+            self,
+            path,
+            video_id,
+            item=None,
+            note=None,
+            fatal=True,
+            query=None):
         return self._download_json(
             urljoin('https://psapi.nrk.no/', path),
             video_id, note or 'Downloading %s JSON' % item,
@@ -149,7 +171,9 @@ class NRKIE(NRKBaseIE):
         path_templ = 'playback/%s/' + video_id
 
         def call_playback_api(item, query=None):
-            return self._call_api(path_templ % item, video_id, item, query=query)
+            return self._call_api(
+                path_templ %
+                item, video_id, item, query=query)
         # known values for preferredCdn: akamai, iponly, minicdn and telenor
         manifest = call_playback_api('manifest', {'preferredCdn': 'akamai'})
 
@@ -188,7 +212,9 @@ class NRKIE(NRKBaseIE):
         alt_title = titles.get('subtitle')
 
         description = preplay.get('description')
-        duration = parse_duration(playable.get('duration')) or parse_duration(data.get('duration'))
+        duration = parse_duration(
+            playable.get('duration')) or parse_duration(
+            data.get('duration'))
 
         thumbnails = []
         for image in try_get(
@@ -220,7 +246,9 @@ class NRKIE(NRKBaseIE):
             })
 
         legal_age = try_get(
-            data, lambda x: x['legalAge']['body']['rating']['code'], compat_str)
+            data,
+            lambda x: x['legalAge']['body']['rating']['code'],
+            compat_str)
         # https://en.wikipedia.org/wiki/Norwegian_Media_Authority
         age_limit = None
         if legal_age:
@@ -229,7 +257,8 @@ class NRKIE(NRKBaseIE):
             elif legal_age.isdigit():
                 age_limit = int_or_none(legal_age)
 
-        is_series = try_get(data, lambda x: x['_links']['series']['name']) == 'series'
+        is_series = try_get(
+            data, lambda x: x['_links']['series']['name']) == 'series'
 
         info = {
             'id': video_id,
@@ -451,7 +480,8 @@ class NRKTVEpisodeIE(InfoExtractor):
     }]
 
     def _real_extract(self, url):
-        display_id, season_number, episode_number = re.match(self._VALID_URL, url).groups()
+        display_id, season_number, episode_number = re.match(
+            self._VALID_URL, url).groups()
 
         webpage = self._download_webpage(url, display_id)
 
@@ -589,8 +619,8 @@ class NRKTVSeasonIE(NRKTVSerieBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return (False if NRKTVIE.suitable(url) or NRKTVEpisodeIE.suitable(url) or NRKRadioPodkastIE.suitable(url)
-                else super(NRKTVSeasonIE, cls).suitable(url))
+        return (False if NRKTVIE.suitable(url) or NRKTVEpisodeIE.suitable(
+            url) or NRKRadioPodkastIE.suitable(url) else super(NRKTVSeasonIE, cls).suitable(url))
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -605,7 +635,10 @@ class NRKTVSeasonIE(NRKTVSerieBaseIE):
             % (domain, self._catalog_name(serie_kind), serie, season_id),
             display_id, 'season', query={'pageSize': 50})
 
-        title = try_get(data, lambda x: x['titles']['title'], compat_str) or display_id
+        title = try_get(
+            data,
+            lambda x: x['titles']['title'],
+            compat_str) or display_id
         return self.playlist_result(
             self._entries(data, display_id),
             display_id, title)
@@ -686,9 +719,14 @@ class NRKTVSeriesIE(NRKTVSerieBaseIE):
     @classmethod
     def suitable(cls, url):
         return (
-            False if any(ie.suitable(url)
-                         for ie in (NRKTVIE, NRKTVEpisodeIE, NRKRadioPodkastIE, NRKTVSeasonIE))
-            else super(NRKTVSeriesIE, cls).suitable(url))
+            False if any(
+                ie.suitable(url) for ie in (
+                    NRKTVIE,
+                    NRKTVEpisodeIE,
+                    NRKRadioPodkastIE,
+                    NRKTVSeasonIE)) else super(
+                NRKTVSeriesIE,
+                cls).suitable(url))
 
     def _real_extract(self, url):
         site, serie_kind, series_id = re.match(self._VALID_URL, url).groups()
@@ -709,7 +747,8 @@ class NRKTVSeriesIE(NRKTVSerieBaseIE):
         entries = []
         entries.extend(self._entries(series, series_id))
         embedded = series.get('_embedded') or {}
-        linked_seasons = try_get(series, lambda x: x['_links']['seasons']) or []
+        linked_seasons = try_get(
+            series, lambda x: x['_links']['seasons']) or []
         embedded_seasons = embedded.get('seasons') or []
         if len(linked_seasons) > len(embedded_seasons):
             for season in linked_seasons:
@@ -717,7 +756,8 @@ class NRKTVSeriesIE(NRKTVSerieBaseIE):
                 if not season_url:
                     season_name = season.get('name')
                     if season_name and isinstance(season_name, compat_str):
-                        season_url = 'https://%s.nrk.no/serie/%s/sesong/%s' % (domain, series_id, season_name)
+                        season_url = 'https://%s.nrk.no/serie/%s/sesong/%s' % (
+                            domain, series_id, season_name)
                 if season_url:
                     entries.append(self.url_result(
                         season_url, ie=NRKTVSeasonIE.ie_key(),
@@ -748,28 +788,26 @@ class NRKTVDirekteIE(NRKTVIE):
 class NRKRadioPodkastIE(InfoExtractor):
     _VALID_URL = r'https?://radio\.nrk\.no/pod[ck]ast/(?:[^/]+/)+(?P<id>l_[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})'
 
-    _TESTS = [{
-        'url': 'https://radio.nrk.no/podkast/ulrikkes_univers/l_96f4f1b0-de54-4e6a-b4f1-b0de54fe6af8',
-        'md5': '8d40dab61cea8ab0114e090b029a0565',
-        'info_dict': {
-            'id': 'MUHH48000314AA',
-            'ext': 'mp4',
-            'title': '20 spørsmål 23.05.2014',
-            'description': 'md5:bdea103bc35494c143c6a9acdd84887a',
-            'duration': 1741,
-            'series': '20 spørsmål',
-            'episode': '23.05.2014',
-        },
-    }, {
-        'url': 'https://radio.nrk.no/podcast/ulrikkes_univers/l_96f4f1b0-de54-4e6a-b4f1-b0de54fe6af8',
-        'only_matching': True,
-    }, {
-        'url': 'https://radio.nrk.no/podkast/ulrikkes_univers/sesong/1/l_96f4f1b0-de54-4e6a-b4f1-b0de54fe6af8',
-        'only_matching': True,
-    }, {
-        'url': 'https://radio.nrk.no/podkast/hele_historien/sesong/bortfoert-i-bergen/l_774d1a2c-7aa7-4965-8d1a-2c7aa7d9652c',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://radio.nrk.no/podkast/ulrikkes_univers/l_96f4f1b0-de54-4e6a-b4f1-b0de54fe6af8',
+               'md5': '8d40dab61cea8ab0114e090b029a0565',
+               'info_dict': {'id': 'MUHH48000314AA',
+                             'ext': 'mp4',
+                             'title': '20 spørsmål 23.05.2014',
+                             'description': 'md5:bdea103bc35494c143c6a9acdd84887a',
+                             'duration': 1741,
+                             'series': '20 spørsmål',
+                             'episode': '23.05.2014',
+                             },
+               },
+              {'url': 'https://radio.nrk.no/podcast/ulrikkes_univers/l_96f4f1b0-de54-4e6a-b4f1-b0de54fe6af8',
+               'only_matching': True,
+               },
+              {'url': 'https://radio.nrk.no/podkast/ulrikkes_univers/sesong/1/l_96f4f1b0-de54-4e6a-b4f1-b0de54fe6af8',
+               'only_matching': True,
+               },
+              {'url': 'https://radio.nrk.no/podkast/hele_historien/sesong/bortfoert-i-bergen/l_774d1a2c-7aa7-4965-8d1a-2c7aa7d9652c',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -866,7 +904,7 @@ class NRKSkoleIE(InfoExtractor):
         video_id = self._match_id(url)
 
         nrk_id = self._download_json(
-            'https://nrkno-skole-prod.kube.nrk.no/skole/api/media/%s' % video_id,
-            video_id)['psId']
+            'https://nrkno-skole-prod.kube.nrk.no/skole/api/media/%s' %
+            video_id, video_id)['psId']
 
         return self.url_result('nrk:%s' % nrk_id)

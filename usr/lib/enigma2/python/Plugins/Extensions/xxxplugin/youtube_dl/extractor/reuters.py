@@ -20,22 +20,25 @@ class ReutersIE(InfoExtractor):
             'id': '368575562',
             'ext': 'mp4',
             'title': 'San Francisco police chief resigns',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
         webpage = self._download_webpage(
-            'http://www.reuters.com/assets/iframe/yovideo?videoId=%s' % video_id, video_id)
+            'http://www.reuters.com/assets/iframe/yovideo?videoId=%s' %
+            video_id, video_id)
         video_data = js_to_json(self._search_regex(
             r'(?s)Reuters\.yovideo\.drawPlayer\(({.*?})\);',
             webpage, 'video data'))
 
         def get_json_value(key, fatal=False):
-            return self._search_regex(r'"%s"\s*:\s*"([^"]+)"' % key, video_data, key, fatal=fatal)
+            return self._search_regex(
+                r'"%s"\s*:\s*"([^"]+)"' %
+                key, video_data, key, fatal=fatal)
 
         title = unescapeHTML(get_json_value('title', fatal=True))
-        mmid, fid = re.search(r',/(\d+)\?f=(\d+)', get_json_value('flv', fatal=True)).groups()
+        mmid, fid = re.search(r',/(\d+)\?f=(\d+)',
+                              get_json_value('flv', fatal=True)).groups()
 
         mas_data = self._download_json(
             'http://mas-e.cds1.yospace.com/mas/%s/%s?trans=json' % (mmid, fid),
@@ -47,8 +50,14 @@ class ReutersIE(InfoExtractor):
                 continue
             method = f.get('method')
             if method == 'hls':
-                formats.extend(self._extract_m3u8_formats(
-                    f_url, video_id, 'mp4', 'm3u8_native', m3u8_id='hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        f_url,
+                        video_id,
+                        'mp4',
+                        'm3u8_native',
+                        m3u8_id='hls',
+                        fatal=False))
             else:
                 container = f.get('container')
                 ext = '3gp' if method == 'mobile' else container

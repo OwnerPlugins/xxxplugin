@@ -22,7 +22,8 @@ class ZattooPlatformBaseIE(InfoExtractor):
     _power_guide_hash = None
 
     def _host_url(self):
-        return 'https://%s' % (self._API_HOST if hasattr(self, '_API_HOST') else self._HOST)
+        return 'https://%s' % (self._API_HOST if hasattr(self,
+                               '_API_HOST') else self._HOST)
 
     def _login(self):
         username, password = self._get_login_info()
@@ -132,7 +133,8 @@ class ZattooPlatformBaseIE(InfoExtractor):
         elif record_id:
             url = '%s/zapi/watch/recording/%s' % (self._host_url(), record_id)
         else:
-            url = '%s/zapi/watch/recall/%s/%s' % (self._host_url(), cid, video_id)
+            url = '%s/zapi/watch/recall/%s/%s' % (
+                self._host_url(), cid, video_id)
 
         formats = []
         for stream_type in ('dash', 'hls', 'hls5', 'hds'):
@@ -187,7 +189,12 @@ class ZattooPlatformBaseIE(InfoExtractor):
         self._sort_formats(formats)
         return formats
 
-    def _extract_video(self, channel_name, video_id, record_id=None, is_live=False):
+    def _extract_video(
+            self,
+            channel_name,
+            video_id,
+            record_id=None,
+            is_live=False):
         if is_live:
             cid = self._extract_cid(video_id, channel_name)
             info_dict = {
@@ -209,7 +216,8 @@ class QuicklineBaseIE(ZattooPlatformBaseIE):
 
 
 class QuicklineIE(QuicklineBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?%s/watch/(?P<channel>[^/]+)/(?P<id>[0-9]+)' % re.escape(QuicklineBaseIE._HOST)
+    _VALID_URL = r'https?://(?:www\.)?%s/watch/(?P<channel>[^/]+)/(?P<id>[0-9]+)' % re.escape(
+        QuicklineBaseIE._HOST)
 
     _TEST = {
         'url': 'https://mobiltv.quickline.com/watch/prosieben/130671867-maze-runner-die-auserwaehlten-in-der-brandwueste',
@@ -222,7 +230,8 @@ class QuicklineIE(QuicklineBaseIE):
 
 
 class QuicklineLiveIE(QuicklineBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?%s/watch/(?P<id>[^/]+)' % re.escape(QuicklineBaseIE._HOST)
+    _VALID_URL = r'https?://(?:www\.)?%s/watch/(?P<id>[^/]+)' % re.escape(
+        QuicklineBaseIE._HOST)
 
     _TEST = {
         'url': 'https://mobiltv.quickline.com/watch/srf1',
@@ -231,7 +240,8 @@ class QuicklineLiveIE(QuicklineBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if QuicklineIE.suitable(url) else super(QuicklineLiveIE, cls).suitable(url)
+        return False if QuicklineIE.suitable(url) else super(
+            QuicklineLiveIE, cls).suitable(url)
 
     def _real_extract(self, url):
         channel_name = video_id = self._match_id(url)
@@ -262,7 +272,8 @@ class ZattooIE(ZattooBaseIE):
     }]
 
     def _real_extract(self, url):
-        channel_name, video_id, record_id = re.match(self._VALID_URL, url).groups()
+        channel_name, video_id, record_id = re.match(
+            self._VALID_URL, url).groups()
         return self._extract_video(channel_name, video_id, record_id)
 
 
@@ -276,7 +287,8 @@ class ZattooLiveIE(ZattooBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if ZattooIE.suitable(url) else super(ZattooLiveIE, cls).suitable(url)
+        return False if ZattooIE.suitable(url) else super(
+            ZattooLiveIE, cls).suitable(url)
 
     def _real_extract(self, url):
         channel_name = video_id = self._match_id(url)

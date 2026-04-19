@@ -21,8 +21,7 @@ class LocalNews8IE(InfoExtractor):
             'timestamp': 1441844822,
             'upload_date': '20150910',
             'uploader_id': 'api',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

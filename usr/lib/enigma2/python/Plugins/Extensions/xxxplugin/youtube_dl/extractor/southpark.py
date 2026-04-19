@@ -10,23 +10,21 @@ class SouthParkIE(MTVServicesInfoExtractor):
 
     _FEED_URL = 'http://feeds.mtvnservices.com/od/feed/intl-mrss-player-feed'
 
-    _TESTS = [{
-        'url': 'http://southpark.cc.com/clips/104437/bat-daded#tab=featured',
-        'info_dict': {
-            'id': 'a7bff6c2-ed00-11e0-aca6-0026b9414f30',
-            'ext': 'mp4',
-            'title': 'South Park|Bat Daded',
-            'description': 'Randy disqualifies South Park by getting into a fight with Bat Dad.',
-            'timestamp': 1112760000,
-            'upload_date': '20050406',
-        },
-    }, {
-        'url': 'http://southpark.cc.com/collections/7758/fan-favorites/1',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.southparkstudios.com/episodes/h4o269/south-park-stunning-and-brave-season-19-ep-1',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://southpark.cc.com/clips/104437/bat-daded#tab=featured',
+               'info_dict': {'id': 'a7bff6c2-ed00-11e0-aca6-0026b9414f30',
+                             'ext': 'mp4',
+                             'title': 'South Park|Bat Daded',
+                             'description': 'Randy disqualifies South Park by getting into a fight with Bat Dad.',
+                             'timestamp': 1112760000,
+                             'upload_date': '20050406',
+                             },
+               },
+              {'url': 'http://southpark.cc.com/collections/7758/fan-favorites/1',
+               'only_matching': True,
+               },
+              {'url': 'https://www.southparkstudios.com/episodes/h4o269/south-park-stunning-and-brave-season-19-ep-1',
+               'only_matching': True,
+               }]
 
     def _get_feed_query(self, uri):
         return {

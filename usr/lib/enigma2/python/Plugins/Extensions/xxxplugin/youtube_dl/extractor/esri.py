@@ -25,8 +25,7 @@ class EsriVideoIE(InfoExtractor):
             'thumbnail': r're:^https?://.*\.jpg$',
             'duration': 185,
             'upload_date': '20120419',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -52,7 +51,8 @@ class EsriVideoIE(InfoExtractor):
         description = self._html_search_meta(
             'description', webpage, 'description', fatal=False)
 
-        thumbnail = self._html_search_meta('thumbnail', webpage, 'thumbnail', fatal=False)
+        thumbnail = self._html_search_meta(
+            'thumbnail', webpage, 'thumbnail', fatal=False)
         if thumbnail:
             thumbnail = re.sub(r'_[st]\.jpg$', '_x.jpg', thumbnail)
 

@@ -38,7 +38,8 @@ class BigoIE(InfoExtractor):
             raise ExtractorError('Received invalid JSON data')
         if info_raw.get('code'):
             raise ExtractorError(
-                'Bigo says: %s (code %s)' % (info_raw.get('msg'), info_raw.get('code')), expected=True)
+                'Bigo says: %s (code %s)' %
+                (info_raw.get('msg'), info_raw.get('code')), expected=True)
         info = info_raw.get('data') or {}
 
         if not info.get('alive'):

@@ -56,18 +56,25 @@ class SportDeutschlandIE(InfoExtractor):
         info = {
             'id': asset_id,
             'title': title,
-            'description': clean_html(asset.get('body') or asset.get('description')) or asset.get('teaser'),
-            'duration': int_or_none(asset.get('seconds')),
+            'description': clean_html(
+                asset.get('body') or asset.get('description')) or asset.get('teaser'),
+            'duration': int_or_none(
+                asset.get('seconds')),
         }
         videos = asset.get('videos') or []
         if len(videos) > 1:
-            playlist_id = compat_parse_qs(compat_urllib_parse_urlparse(url).query).get('playlistId', [None])[0]
+            playlist_id = compat_parse_qs(
+                compat_urllib_parse_urlparse(url).query).get(
+                'playlistId', [None])[0]
             if playlist_id:
                 if self._downloader.params.get('noplaylist'):
                     videos = [videos[int(playlist_id)]]
-                    self.to_screen('Downloading just a single video because of --no-playlist')
+                    self.to_screen(
+                        'Downloading just a single video because of --no-playlist')
                 else:
-                    self.to_screen('Downloading playlist %s - add --no-playlist to just download video' % asset_id)
+                    self.to_screen(
+                        'Downloading playlist %s - add --no-playlist to just download video' %
+                        asset_id)
 
             def entries():
                 for i, video in enumerate(videos, 1):
@@ -75,8 +82,8 @@ class SportDeutschlandIE(InfoExtractor):
                     video_url = video.get('url')
                     if not (video_id and video_url):
                         continue
-                    formats = self._extract_m3u8_formats(
-                        video_url.replace('.smil', '.m3u8'), video_id, 'mp4', fatal=False)
+                    formats = self._extract_m3u8_formats(video_url.replace(
+                        '.smil', '.m3u8'), video_id, 'mp4', fatal=False)
                     if not formats:
                         continue
                     yield {
@@ -92,7 +99,8 @@ class SportDeutschlandIE(InfoExtractor):
         else:
             formats = self._extract_m3u8_formats(
                 videos[0]['url'].replace('.smil', '.m3u8'), asset_id, 'mp4')
-            section_title = strip_or_none(try_get(data, lambda x: x['section']['title']))
+            section_title = strip_or_none(
+                try_get(data, lambda x: x['section']['title']))
             info.update({
                 'formats': formats,
                 'display_id': asset.get('permalink'),

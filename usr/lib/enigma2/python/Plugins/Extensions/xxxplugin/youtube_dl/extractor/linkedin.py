@@ -44,7 +44,8 @@ class LinkedInLearningBaseIE(InfoExtractor):
                 return mobj.group(1)
 
     def _get_video_id(self, video_data, course_slug, video_slug):
-        return self._get_urn_id(video_data) or '%s/%s' % (course_slug, video_slug)
+        return self._get_urn_id(
+            video_data) or '%s/%s' % (course_slug, video_slug)
 
     def _real_initialize(self):
         email, password = self._get_login_info()
@@ -93,7 +94,10 @@ class LinkedInLearningIE(LinkedInLearningBaseIE):
         formats = []
         for width, height in ((640, 360), (960, 540), (1280, 720)):
             video_data = self._call_api(
-                course_slug, 'selectedVideo', video_slug, height)['selectedVideo']
+                course_slug,
+                'selectedVideo',
+                video_slug,
+                height)['selectedVideo']
 
             video_url_data = video_data.get('url') or {}
             progressive_url = video_url_data.get('progressiveUrl')
@@ -124,7 +128,13 @@ class LinkedInLearningIE(LinkedInLearningBaseIE):
                 streaming_url, video_slug, 'mp4',
                 'm3u8_native', m3u8_id='hls', fatal=False))
 
-        self._sort_formats(formats, ('width', 'height', 'source_preference', 'tbr', 'abr'))
+        self._sort_formats(
+            formats,
+            ('width',
+             'height',
+             'source_preference',
+             'tbr',
+             'abr'))
 
         return {
             'id': self._get_video_id(video_data, course_slug, video_slug),
@@ -151,14 +161,16 @@ class LinkedInLearningCourseIE(LinkedInLearningBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if LinkedInLearningIE.suitable(url) else super(LinkedInLearningCourseIE, cls).suitable(url)
+        return False if LinkedInLearningIE.suitable(url) else super(
+            LinkedInLearningCourseIE, cls).suitable(url)
 
     def _real_extract(self, url):
         course_slug = self._match_id(url)
         course_data = self._call_api(course_slug, 'chapters,description,title')
 
         entries = []
-        for chapter_number, chapter in enumerate(course_data.get('chapters', []), 1):
+        for chapter_number, chapter in enumerate(
+                course_data.get('chapters', []), 1):
             chapter_title = chapter.get('title')
             chapter_id = self._get_urn_id(chapter)
             for video in chapter.get('videos', []):

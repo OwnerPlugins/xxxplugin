@@ -28,5 +28,5 @@ class PeopleIE(InfoExtractor):
 
     def _real_extract(self, url):
         return self.url_result(
-            'http://players.brightcove.net/416418724/default_default/index.html?videoId=ref:%s'
-            % self._match_id(url), 'BrightcoveNew')
+            'http://players.brightcove.net/416418724/default_default/index.html?videoId=ref:%s' %
+            self._match_id(url), 'BrightcoveNew')

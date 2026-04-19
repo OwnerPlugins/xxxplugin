@@ -24,7 +24,8 @@ class PicartoIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if PicartoVodIE.suitable(url) else super(PicartoIE, cls).suitable(url)
+        return False if PicartoVodIE.suitable(
+            url) else super(PicartoIE, cls).suitable(url)
 
     def _real_extract(self, url):
         channel_id = self._match_id(url)
@@ -51,8 +52,12 @@ class PicartoIE(InfoExtractor):
         title = metadata['title']
 
         cdn_data = self._download_json(
-            data['getLoadBalancerUrl']['url'] + '/stream/json_' + metadata['stream_name'] + '.js',
-            channel_id, 'Downloading load balancing info')
+            data['getLoadBalancerUrl']['url'] +
+            '/stream/json_' +
+            metadata['stream_name'] +
+            '.js',
+            channel_id,
+            'Downloading load balancing info')
 
         formats = []
         for source in (cdn_data.get('source') or []):

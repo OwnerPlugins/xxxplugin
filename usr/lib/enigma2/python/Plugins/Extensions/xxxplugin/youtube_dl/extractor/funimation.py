@@ -71,7 +71,8 @@ class FunimationIE(InfoExtractor):
             self._TOKEN = data['token']
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
-                error = self._parse_json(e.cause.read().decode(), None)['error']
+                error = self._parse_json(
+                    e.cause.read().decode(), None)['error']
                 raise ExtractorError(error, expected=True)
             raise
 
@@ -102,13 +103,16 @@ class FunimationIE(InfoExtractor):
                 'og:video:url',
                 'og:video:secure_url',
             ], webpage, fatal=True)
-            video_id = self._search_regex(r'/player/(\d+)', player_url, 'video id')
+            video_id = self._search_regex(
+                r'/player/(\d+)', player_url, 'video id')
 
-        title = episode = title_data.get('title') or _search_kane('videoTitle') or self._og_search_title(webpage)
+        title = episode = title_data.get('title') or _search_kane(
+            'videoTitle') or self._og_search_title(webpage)
         series = _search_kane('showName')
         if series:
             title = '%s - %s' % (series, title)
-        description = self._html_search_meta(['description', 'og:description'], webpage, fatal=True)
+        description = self._html_search_meta(
+            ['description', 'og:description'], webpage, fatal=True)
 
         try:
             headers = {}
@@ -122,8 +126,11 @@ class FunimationIE(InfoExtractor):
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
                 error = self._parse_json(e.cause.read(), video_id)['errors'][0]
-                raise ExtractorError('%s said: %s' % (
-                    self.IE_NAME, error.get('detail') or error.get('title')), expected=True)
+                raise ExtractorError(
+                    '%s said: %s' %
+                    (self.IE_NAME,
+                     error.get('detail') or error.get('title')),
+                    expected=True)
             raise
 
         formats = []
@@ -150,8 +157,10 @@ class FunimationIE(InfoExtractor):
             'description': description,
             'thumbnail': self._og_search_thumbnail(webpage),
             'series': series,
-            'season_number': int_or_none(title_data.get('seasonNum') or _search_kane('season')),
-            'episode_number': int_or_none(title_data.get('episodeNum')),
+            'season_number': int_or_none(
+                title_data.get('seasonNum') or _search_kane('season')),
+            'episode_number': int_or_none(
+                title_data.get('episodeNum')),
             'episode': episode,
             'season_id': title_data.get('seriesId'),
             'formats': formats,

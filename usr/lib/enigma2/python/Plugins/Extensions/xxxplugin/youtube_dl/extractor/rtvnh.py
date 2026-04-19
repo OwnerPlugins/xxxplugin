@@ -14,20 +14,23 @@ class RTVNHIE(InfoExtractor):
             'id': '131946',
             'ext': 'mp4',
             'title': 'Grote zoektocht in zee bij Zandvoort naar vermiste vrouw',
-            'thumbnail': r're:^https?:.*\.jpg$'
-        }
-    }
+            'thumbnail': r're:^https?:.*\.jpg$'}}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
-        meta = self._parse_json(self._download_webpage(
-            'http://www.rtvnh.nl/video/json?m=' + video_id, video_id), video_id)
+        meta = self._parse_json(
+            self._download_webpage(
+                'http://www.rtvnh.nl/video/json?m=' +
+                video_id,
+                video_id),
+            video_id)
 
         status = meta.get('status')
         if status != 200:
             raise ExtractorError(
-                '%s returned error code %d' % (self.IE_NAME, status), expected=True)
+                '%s returned error code %d' %
+                (self.IE_NAME, status), expected=True)
 
         formats = []
         rtmp_formats = self._extract_smil_formats(

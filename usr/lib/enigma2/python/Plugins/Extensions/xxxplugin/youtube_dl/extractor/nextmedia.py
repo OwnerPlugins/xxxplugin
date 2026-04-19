@@ -42,7 +42,9 @@ class NextMediaIE(InfoExtractor):
             r'window\.location\.href\s*=\s*([\'"])(?P<url>(?!\1).+)\1',
             page, 'redirection URL', default=None, group='url')
         if redirection_url:
-            return self.url_result(compat_urlparse.urljoin(url, redirection_url))
+            return self.url_result(
+                compat_urlparse.urljoin(
+                    url, redirection_url))
 
         title = self._fetch_title(page)
         video_url = self._search_regex(self._URL_PATTERN, page, 'video url')
@@ -70,11 +72,16 @@ class NextMediaIE(InfoExtractor):
         return self._og_search_thumbnail(page)
 
     def _fetch_timestamp(self, page):
-        dateCreated = self._search_regex('"dateCreated":"([^"]+)"', page, 'created time')
+        dateCreated = self._search_regex(
+            '"dateCreated":"([^"]+)"', page, 'created time')
         return parse_iso8601(dateCreated)
 
     def _fetch_upload_date(self, url):
-        return self._search_regex(self._VALID_URL, url, 'upload date', group='date')
+        return self._search_regex(
+            self._VALID_URL,
+            url,
+            'upload date',
+            group='date')
 
     def _fetch_description(self, page):
         return self._og_search_property('description', page)
@@ -172,7 +179,8 @@ class AppleDailyIE(NextMediaIE):
         'url': 'http://www.appledaily.com.tw/actionnews/appledaily/7/20161003/960588/',
         'only_matching': True,
     }, {
-        # Redirected from http://ent.appledaily.com.tw/enews/article/entertainment/20150128/36354694
+        # Redirected from
+        # http://ent.appledaily.com.tw/enews/article/entertainment/20150128/36354694
         'url': 'http://ent.appledaily.com.tw/section/article/headline/20150128/36354694',
         'only_matching': True,
     }]
@@ -180,11 +188,22 @@ class AppleDailyIE(NextMediaIE):
     _URL_PATTERN = r'\{url: \'(.+)\'\}'
 
     def _fetch_title(self, page):
-        return (self._html_search_regex(r'<h1 id="h1">([^<>]+)</h1>', page, 'news title', default=None)
-                or self._html_search_meta('description', page, 'news title'))
+        return (
+            self._html_search_regex(
+                r'<h1 id="h1">([^<>]+)</h1>',
+                page,
+                'news title',
+                default=None) or self._html_search_meta(
+                'description',
+                page,
+                'news title'))
 
     def _fetch_thumbnail(self, page):
-        return self._html_search_regex(r"setInitialImage\(\'([^']+)'\)", page, 'video thumbnail', fatal=False)
+        return self._html_search_regex(
+            r"setInitialImage\(\'([^']+)'\)",
+            page,
+            'video thumbnail',
+            fatal=False)
 
     def _fetch_timestamp(self, page):
         return None

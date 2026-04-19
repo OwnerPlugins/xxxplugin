@@ -35,7 +35,8 @@ class PlaysTVIE(InfoExtractor):
             webpage).groups()
         formats = self._extract_mpd_formats(
             self._proto_relative_url(mpd_url), video_id, mpd_id='DASH')
-        for format_id, height, format_url in re.findall(r'<source\s+res="((\d+)h?)"\s+src="([^"]+)"', sources):
+        for format_id, height, format_url in re.findall(
+                r'<source\s+res="((\d+)h?)"\s+src="([^"]+)"', sources):
             formats.append({
                 'url': self._proto_relative_url(format_url),
                 'format_id': 'http-' + format_id,

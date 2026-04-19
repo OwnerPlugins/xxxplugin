@@ -69,12 +69,15 @@ class TVPlayerIE(InfoExtractor):
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError):
                 response = self._parse_json(
-                    e.cause.read().decode(), resource_id)['tvplayer']['response']
+                    e.cause.read().decode(),
+                    resource_id)['tvplayer']['response']
                 raise ExtractorError(
-                    '%s said: %s' % (self.IE_NAME, response['error']), expected=True)
+                    '%s said: %s' %
+                    (self.IE_NAME, response['error']), expected=True)
             raise
 
-        formats = self._extract_m3u8_formats(response['stream'], display_id, 'mp4')
+        formats = self._extract_m3u8_formats(
+            response['stream'], display_id, 'mp4')
         self._sort_formats(formats)
 
         return {

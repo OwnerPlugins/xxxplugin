@@ -84,34 +84,48 @@ class UdemyIE(InfoExtractor):
 
     def _enroll_course(self, base_url, webpage, course_id):
         def combine_url(base_url, url):
-            return compat_urlparse.urljoin(base_url, url) if not url.startswith('http') else url
+            return compat_urlparse.urljoin(
+                base_url, url) if not url.startswith('http') else url
 
-        checkout_url = unescapeHTML(self._search_regex(
-            r'href=(["\'])(?P<url>(?:https?://(?:www\.)?udemy\.com)?/(?:payment|cart)/checkout/.+?)\1',
-            webpage, 'checkout url', group='url', default=None))
+        checkout_url = unescapeHTML(
+            self._search_regex(
+                r'href=(["\'])(?P<url>(?:https?://(?:www\.)?udemy\.com)?/(?:payment|cart)/checkout/.+?)\1',
+                webpage,
+                'checkout url',
+                group='url',
+                default=None))
         if checkout_url:
             raise ExtractorError(
                 'Course %s is not free. You have to pay for it before you can download. '
-                'Use this URL to confirm purchase: %s'
-                % (course_id, combine_url(base_url, checkout_url)),
-                expected=True)
+                'Use this URL to confirm purchase: %s' %
+                (course_id, combine_url(
+                    base_url, checkout_url)), expected=True)
 
-        enroll_url = unescapeHTML(self._search_regex(
-            r'href=(["\'])(?P<url>(?:https?://(?:www\.)?udemy\.com)?/course/subscribe/.+?)\1',
-            webpage, 'enroll url', group='url', default=None))
+        enroll_url = unescapeHTML(
+            self._search_regex(
+                r'href=(["\'])(?P<url>(?:https?://(?:www\.)?udemy\.com)?/course/subscribe/.+?)\1',
+                webpage,
+                'enroll url',
+                group='url',
+                default=None))
         if enroll_url:
             webpage = self._download_webpage(
                 combine_url(base_url, enroll_url),
                 course_id, 'Enrolling in the course',
                 headers={'Referer': base_url})
             if '>You have enrolled in' in webpage:
-                self.to_screen('%s: Successfully enrolled in the course' % course_id)
+                self.to_screen(
+                    '%s: Successfully enrolled in the course' %
+                    course_id)
 
     def _download_lecture(self, course_id, lecture_id):
         return self._download_json(
-            'https://www.udemy.com/api-2.0/users/me/subscribed-courses/%s/lectures/%s?'
-            % (course_id, lecture_id),
-            lecture_id, 'Downloading lecture JSON', query={
+            'https://www.udemy.com/api-2.0/users/me/subscribed-courses/%s/lectures/%s?' %
+            (course_id,
+             lecture_id),
+            lecture_id,
+            'Downloading lecture JSON',
+            query={
                 'fields[lecture]': 'title,description,view_html,asset',
                 'fields[asset]': 'asset_type,stream_url,thumbnail_url,download_urls,stream_urls,captions,data',
             })
@@ -121,7 +135,8 @@ class UdemyIE(InfoExtractor):
             return
         error = response.get('error')
         if error:
-            error_str = 'Udemy returned error #%s: %s' % (error.get('code'), error.get('message'))
+            error_str = 'Udemy returned error #%s: %s' % (
+                error.get('code'), error.get('message'))
             error_data = error.get('data')
             if error_data:
                 error_str += ' - %s' % error_data.get('formErrors')
@@ -136,7 +151,8 @@ class UdemyIE(InfoExtractor):
         if not ret:
             return ret
         webpage, _ = ret
-        if any(p in webpage for p in (
+        if any(
+            p in webpage for p in (
                 '>Please verify you are a human',
                 'Access to this page has been denied because we believe you are using automation tools to browse the website',
                 '"_pxCaptcha"')):
@@ -164,7 +180,13 @@ class UdemyIE(InfoExtractor):
         else:
             url_or_request = sanitized_Request(url_or_request, headers=headers)
 
-        response = super(UdemyIE, self)._download_json(url_or_request, *args, **kwargs)
+        response = super(
+            UdemyIE,
+            self)._download_json(
+            url_or_request,
+            *
+            args,
+            **kwargs)
         self._handle_error(response)
         return response
 
@@ -208,7 +230,9 @@ class UdemyIE(InfoExtractor):
                 r'(?s)<div[^>]+class="form-errors[^"]*">(.+?)</div>',
                 response, 'error message', default=None)
             if error:
-                raise ExtractorError('Unable to login: %s' % error, expected=True)
+                raise ExtractorError(
+                    'Unable to login: %s' %
+                    error, expected=True)
             raise ExtractorError('Unable to log in')
 
     def _real_extract(self, url):
@@ -241,7 +265,10 @@ class UdemyIE(InfoExtractor):
         stream_url = asset.get('stream_url') or asset.get('streamUrl')
         if stream_url:
             youtube_url = self._search_regex(
-                r'(https?://www\.youtube\.com/watch\?v=.*)', stream_url, 'youtube URL', default=None)
+                r'(https?://www\.youtube\.com/watch\?v=.*)',
+                stream_url,
+                'youtube URL',
+                default=None)
             if youtube_url:
                 return self.url_result(youtube_url, 'Youtube')
 
@@ -286,13 +313,20 @@ class UdemyIE(InfoExtractor):
             if not isinstance(source_list, list):
                 return
             for source in source_list:
-                video_url = url_or_none(source.get('file') or source.get('src'))
+                video_url = url_or_none(
+                    source.get('file') or source.get('src'))
                 if not video_url:
                     continue
-                if source.get('type') == 'application/x-mpegURL' or determine_ext(video_url) == 'm3u8':
-                    formats.extend(self._extract_m3u8_formats(
-                        video_url, video_id, 'mp4', entry_protocol='m3u8_native',
-                        m3u8_id='hls', fatal=False))
+                if source.get(
+                        'type') == 'application/x-mpegURL' or determine_ext(video_url) == 'm3u8':
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            video_url,
+                            video_id,
+                            'mp4',
+                            entry_protocol='m3u8_native',
+                            m3u8_id='hls',
+                            fatal=False))
                     continue
                 format_id = source.get('label')
                 f = {
@@ -358,12 +392,14 @@ class UdemyIE(InfoExtractor):
                 if src in view_html_urls:
                     continue
                 view_html_urls.add(src)
-                if attributes.get('type') == 'application/x-mpegURL' or determine_ext(src) == 'm3u8':
+                if attributes.get(
+                        'type') == 'application/x-mpegURL' or determine_ext(src) == 'm3u8':
                     m3u8_formats = self._extract_m3u8_formats(
                         src, video_id, 'mp4', entry_protocol='m3u8_native',
                         m3u8_id='hls', fatal=False)
                     for f in m3u8_formats:
-                        m = re.search(r'/hls_(?P<height>\d{3,4})_(?P<tbr>\d{2,})/', f['url'])
+                        m = re.search(
+                            r'/hls_(?P<height>\d{3,4})_(?P<tbr>\d{2,})/', f['url'])
                         if m:
                             if not f.get('height'):
                                 f['height'] = int(m.group('height'))
@@ -405,7 +441,13 @@ class UdemyIE(InfoExtractor):
                 if f.get('url'):
                     formats.append(f)
 
-        self._sort_formats(formats, field_preference=('height', 'width', 'tbr', 'format_id'))
+        self._sort_formats(
+            formats,
+            field_preference=(
+                'height',
+                'width',
+                'tbr',
+                'format_id'))
 
         return {
             'id': video_id,
@@ -432,7 +474,8 @@ class UdemyCourseIE(UdemyIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if UdemyIE.suitable(url) else super(UdemyCourseIE, cls).suitable(url)
+        return False if UdemyIE.suitable(url) else super(
+            UdemyCourseIE, cls).suitable(url)
 
     def _real_extract(self, url):
         course_path = self._match_id(url)
@@ -444,8 +487,11 @@ class UdemyCourseIE(UdemyIE):
         self._enroll_course(url, webpage, course_id)
 
         response = self._download_json(
-            'https://www.udemy.com/api-2.0/courses/%s/cached-subscriber-curriculum-items' % course_id,
-            course_id, 'Downloading course curriculum', query={
+            'https://www.udemy.com/api-2.0/courses/%s/cached-subscriber-curriculum-items' %
+            course_id,
+            course_id,
+            'Downloading course curriculum',
+            query={
                 'fields[chapter]': 'title,object_index',
                 'fields[lecture]': 'title,asset',
                 'page_size': '1000',
@@ -458,14 +504,16 @@ class UdemyCourseIE(UdemyIE):
             if clazz == 'lecture':
                 asset = entry.get('asset')
                 if isinstance(asset, dict):
-                    asset_type = asset.get('asset_type') or asset.get('assetType')
+                    asset_type = asset.get(
+                        'asset_type') or asset.get('assetType')
                     if asset_type != 'Video':
                         continue
                 lecture_id = entry.get('id')
                 if lecture_id:
                     entry = {
                         '_type': 'url_transparent',
-                        'url': 'https://www.udemy.com/%s/learn/v4/t/lecture/%s' % (course_path, entry['id']),
+                        'url': 'https://www.udemy.com/%s/learn/v4/t/lecture/%s' % (course_path,
+                                                                                   entry['id']),
                         'title': entry.get('title'),
                         'ie_key': UdemyIE.ie_key(),
                     }

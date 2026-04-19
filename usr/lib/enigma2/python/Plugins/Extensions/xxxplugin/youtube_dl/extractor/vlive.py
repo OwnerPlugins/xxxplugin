@@ -116,14 +116,16 @@ class VLiveIE(VLiveBaseIE):
                 headers={'Referer': 'https://www.vlive.tv/'}, query=query)
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
-                self.raise_login_required(json.loads(e.cause.read().decode('utf-8'))['message'])
+                self.raise_login_required(json.loads(
+                    e.cause.read().decode('utf-8'))['message'])
             raise
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
         post = self._call_api(
-            'post/v1.0/officialVideoPost-%s', video_id,
+            'post/v1.0/officialVideoPost-%s',
+            video_id,
             'author{nickname},channel{channelCode,channelName},officialVideo{commentCount,exposeStatus,likeCount,playCount,playTime,status,title,type,vodId}')
 
         video = post['officialVideo']
@@ -143,7 +145,9 @@ class VLiveIE(VLiveBaseIE):
 
         video_type = video.get('type')
         if video_type == 'VOD':
-            inkey = self._call_api('video/v1.0/vod/%s/inkey', video_id)['inkey']
+            inkey = self._call_api(
+                'video/v1.0/vod/%s/inkey',
+                video_id)['inkey']
             vod_id = video['vodId']
             return merge_dicts(
                 get_common_fields(),
@@ -154,7 +158,8 @@ class VLiveIE(VLiveBaseIE):
                 stream_url = self._call_api(
                     'old/v3/live/%s/playInfo',
                     video_id)['result']['adaptiveStreamUrl']
-                formats = self._extract_m3u8_formats(stream_url, video_id, 'mp4')
+                formats = self._extract_m3u8_formats(
+                    stream_url, video_id, 'mp4')
                 self._sort_formats(formats)
                 info = get_common_fields()
                 info.update({

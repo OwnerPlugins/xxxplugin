@@ -30,9 +30,17 @@ class TwentyThreeVideoIE(InfoExtractor):
         domain, query, photo_id = re.match(self._VALID_URL, url).groups()
         base_url = 'https://%s' % domain
         photo_data = self._download_json(
-            base_url + '/api/photo/list?' + query, photo_id, query={
+            base_url +
+            '/api/photo/list?' +
+            query,
+            photo_id,
+            query={
                 'format': 'json',
-            }, transform_source=lambda s: self._search_regex(r'(?s)({.+})', s, 'photo data'))['photo']
+            },
+            transform_source=lambda s: self._search_regex(
+                r'(?s)({.+})',
+                s,
+                'photo data'))['photo']
         title = photo_data['title']
 
         formats = []
@@ -63,7 +71,17 @@ class TwentyThreeVideoIE(InfoExtractor):
             add_common_info_to_list(formats, 'video_%s_', 'format_id', f)
 
         thumbnails = []
-        for t in ('quad16', 'quad50', 'quad75', 'quad100', 'small', 'portrait', 'standard', 'medium', 'large', 'original'):
+        for t in (
+            'quad16',
+            'quad50',
+            'quad75',
+            'quad100',
+            'small',
+            'portrait',
+            'standard',
+            'medium',
+            'large',
+                'original'):
             add_common_info_to_list(thumbnails, '%s_', 'id', t)
 
         return {

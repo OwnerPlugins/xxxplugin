@@ -51,8 +51,11 @@ class ORFRadioBase(InfoExtractor):
 
     @classmethod
     def _get_api_payload(cls, data, expected_id, in_payload=False):
-        if expected_id not in traverse_obj(data, ('payload',)[:1 if in_payload else 0] + (cls._ID_NAMES, T(txt_or_none))):
-            raise ExtractorError('Unexpected API data result', video_id=expected_id)
+        if expected_id not in traverse_obj(
+                data, ('payload',)[:1 if in_payload else 0] + (cls._ID_NAMES, T(txt_or_none))):
+            raise ExtractorError(
+                'Unexpected API data result',
+                video_id=expected_id)
         return data['payload']
 
     @staticmethod
@@ -81,7 +84,9 @@ class ORFRadioBase(InfoExtractor):
             return
 
         loop_station = cls.STATION_INFO[station][1]
-        for info in traverse_obj(data, ((('streams', Ellipsis), 'stream'), T(lambda v: v if v['loopStreamId'] else None))):
+        for info in traverse_obj(
+            data, ((('streams', Ellipsis), 'stream'), T(
+                lambda v: v if v['loopStreamId'] else None))):
             item_id = info['loopStreamId']
             host = info.get('host') or 'loopstream01.apa.at'
             yield merge_dicts({
@@ -211,15 +216,17 @@ class ORFRadioCollectionIE(ORFRadioBase):
     }]
 
     def _real_extract(self, url):
-        coll_id, item_id = self._match_valid_url(url).group('coll_id', 'item_id')
+        coll_id, item_id = self._match_valid_url(
+            url).group('coll_id', 'item_id')
         data = self._download_json(
             'https://collector.orf.at/api/frontend/collections/{0}?_o=sound.orf.at'.format(
                 coll_id), coll_id)
         data = self._get_api_payload(data, coll_id, in_payload=True)
 
         def yield_items():
-            for item in traverse_obj(data, (
-                    'content', 'items', lambda _, v: any(k in v['target']['params'] for k in self._ID_NAMES))):
+            for item in traverse_obj(
+                data, ('content', 'items', lambda _, v: any(
+                    k in v['target']['params'] for k in self._ID_NAMES))):
                 if item_id is None or item_id == txt_or_none(item.get('id')):
                     target = item['target']
                     typed_item_id = self._get_item_id(target['params'])
@@ -236,18 +243,21 @@ class ORFRadioCollectionIE(ORFRadioBase):
 
         def item_playlist(station, typed_item_id, item_type):
             if item_type == 'upload':
-                item_data = self._download_json('https://audioapi.orf.at/radiothek/api/2.0/upload/{0}?_o=sound.orf.at'.format(
-                    typed_item_id), typed_item_id)
+                item_data = self._download_json(
+                    'https://audioapi.orf.at/radiothek/api/2.0/upload/{0}?_o=sound.orf.at'.format(typed_item_id),
+                    typed_item_id)
             elif item_type == 'podcast-episode':
-                item_data = self._download_json('https://audioapi.orf.at/radiothek/api/2.0/episode/{0}?_o=sound.orf.at'.format(
-                    typed_item_id), typed_item_id)
+                item_data = self._download_json(
+                    'https://audioapi.orf.at/radiothek/api/2.0/episode/{0}?_o=sound.orf.at'.format(typed_item_id),
+                    typed_item_id)
             else:
                 api_station, _, _ = self.STATION_INFO[station]
                 item_data = self._download_json(
                     'https://audioapi.orf.at/{0}/api/json/5.0/{1}/{2}?_o=sound.orf.at'.format(
                         api_station, item_type or 'broadcastitem', typed_item_id), typed_item_id)
 
-            item_data = self._get_api_payload(item_data, typed_item_id, in_payload=True)
+            item_data = self._get_api_payload(
+                item_data, typed_item_id, in_payload=True)
 
             return merge_dicts(
                 {'_type': 'multi_video'},
@@ -264,13 +274,16 @@ class ORFRadioCollectionIE(ORFRadioBase):
             # coll_id = '/'.join((coll_id, item_id))
             return next(yield_item_entries())
 
-        return self.playlist_result(yield_item_entries(), coll_id, data.get('title'))
+        return self.playlist_result(
+            yield_item_entries(), coll_id, data.get('title'))
 
 
 class ORFPodcastIE(ORFRadioBase):
     IE_NAME = 'orf:podcast'
-    _STATION_RE = '|'.join(map(re.escape, (x[0] for x in ORFRadioBase.STATION_INFO.values()))) + '|tv'
-    _VALID_URL = r'https?://sound\.orf\.at/podcast/(?P<station>{0})/(?P<show>[\w-]+)/(?P<id>[\w-]+)'.format(_STATION_RE)
+    _STATION_RE = '|'.join(
+        map(re.escape, (x[0] for x in ORFRadioBase.STATION_INFO.values()))) + '|tv'
+    _VALID_URL = r'https?://sound\.orf\.at/podcast/(?P<station>{0})/(?P<show>[\w-]+)/(?P<id>[\w-]+)'.format(
+        _STATION_RE)
     _TESTS = [{
         'url': 'https://sound.orf.at/podcast/stm/der-kraeutertipp-von-christine-lackner/rotklee',
         'md5': '1f2bab2ba90c2ce0c2754196ea78b35f',
@@ -292,7 +305,8 @@ class ORFPodcastIE(ORFRadioBase):
     _ID_NAMES = ('slug', 'guid')
 
     def _real_extract(self, url):
-        station, show, show_id = self._match_valid_url(url).group('station', 'show', 'id')
+        station, show, show_id = self._match_valid_url(
+            url).group('station', 'show', 'id')
         data = self._download_json(
             'https://audioapi.orf.at/radiothek/api/2.0/podcast/{0}/{1}/{2}'.format(
                 station, show, show_id), show_id)
@@ -311,8 +325,8 @@ class ORFIPTVBase(InfoExtractor):
     def _extract_video(self, video_id, webpage, fatal=False):
 
         data = self._download_json(
-            'http://bits.orf.at/filehandler/static-api/json/current/data.json?file=%s' % video_id,
-            video_id)[0]
+            'http://bits.orf.at/filehandler/static-api/json/current/data.json?file=%s' %
+            video_id, video_id)[0]
 
         video = traverse_obj(data, (
             'sources', ('default', 'q8c'),
@@ -471,7 +485,8 @@ class ORFFM4StoryIE(ORFIPTVBase):
 
         entries = []
         seen_ids = set()
-        for idx, video_id in enumerate(re.findall(r'data-video(?:id)?="(\d+)"', webpage)):
+        for idx, video_id in enumerate(re.findall(
+                r'data-video(?:id)?="(\d+)"', webpage)):
             if video_id in seen_ids:
                 continue
             seen_ids.add(video_id)
@@ -493,11 +508,16 @@ class ORFFM4StoryIE(ORFIPTVBase):
                 continue
             seen_ids.add(yt_id)
             if YoutubeIE.suitable(yt_id):
-                entries.append(self.url_result(yt_id, ie='Youtube', video_id=yt_id))
+                entries.append(
+                    self.url_result(
+                        yt_id,
+                        ie='Youtube',
+                        video_id=yt_id))
 
         return self.playlist_result(
-            entries, story_id,
-            re.sub(self._TITLE_STRIP_RE, '', self._og_search_title(webpage, default='') or None))
+            entries, story_id, re.sub(
+                self._TITLE_STRIP_RE, '', self._og_search_title(
+                    webpage, default='') or None))
 
 
 class ORFONBase(InfoExtractor):
@@ -509,8 +529,7 @@ class ORFONBase(InfoExtractor):
             self._ENC_PFX, video_id).encode('utf-8')).decode('ascii')
         return self._download_json(
             'https://api-tvthek.orf.at/api/v4.3/public/{0}/encrypted/{1}'.format(
-                self._API_PATH, encrypted_id),
-            video_id, **kwargs)
+                self._API_PATH, encrypted_id), video_id, **kwargs)
 
     @classmethod
     def _parse_metadata(cls, api_json):
@@ -533,7 +552,8 @@ class ORFONBase(InfoExtractor):
         # Segmented episode without valid segment id: return entire playlist
         # Segmented episode with valid segment id and yes-playlist: return entire playlist
         # Segmented episode with valid segment id and no-playlist: return single video corresponding to segment id
-        # If a multi_video playlist would be returned, but an unsegmented source exists, that source is chosen instead.
+        # If a multi_video playlist would be returned, but an unsegmented
+        # source exists, that source is chosen instead.
 
         api_json = self._call_api(video_id)
 
@@ -542,8 +562,10 @@ class ORFONBase(InfoExtractor):
 
         # updates formats, subtitles
         def extract_sources(src_json, video_id):
-            for manifest_type in traverse_obj(src_json, ('sources', T(dict.keys), Ellipsis)):
-                for manifest_url in traverse_obj(src_json, ('sources', manifest_type, Ellipsis, 'src', T(url_or_none))):
+            for manifest_type in traverse_obj(
+                    src_json, ('sources', T(dict.keys), Ellipsis)):
+                for manifest_url in traverse_obj(
+                        src_json, ('sources', manifest_type, Ellipsis, 'src', T(url_or_none))):
                     if manifest_type == 'hls':
                         fmts, subs = self._extract_m3u8_formats(
                             manifest_url, video_id, fatal=False, m3u8_id='hls',
@@ -566,8 +588,15 @@ class ORFONBase(InfoExtractor):
             segments = traverse_obj(api_json, (
                 '_embedded', 'segments', lambda _, v: v['id']))
             if len(segments) > 1 and segment_id is not None:
-                if not self._yes_playlist(video_id, segment_id, playlist_label='collection', video_label='segment'):
-                    segments = [next(s for s in segments if txt_or_none(s['id']) == segment_id)]
+                if not self._yes_playlist(
+                        video_id,
+                        segment_id,
+                        playlist_label='collection',
+                        video_label='segment'):
+                    segments = [
+                        next(
+                            s for s in segments if txt_or_none(
+                                s['id']) == segment_id)]
 
             entries = []
             for seg in segments:
@@ -588,9 +617,16 @@ class ORFONBase(InfoExtractor):
         else:
             self._sort_formats(formats)
 
-        for sub_url in traverse_obj(api_json, (
-                '_embedded', 'subtitle',
-                ('xml_url', 'sami_url', 'stl_url', 'ttml_url', 'srt_url', 'vtt_url'),
+        for sub_url in traverse_obj(
+            api_json,
+            ('_embedded',
+             'subtitle',
+             ('xml_url',
+              'sami_url',
+              'stl_url',
+              'ttml_url',
+              'srt_url',
+              'vtt_url'),
                 T(url_or_none))):
             self._merge_subtitles({'de': [{'url': sub_url}]}, target=subtitles)
 
@@ -602,12 +638,20 @@ class ORFONBase(InfoExtractor):
         }, self._parse_metadata(api_json), rev=True)
 
     def _real_extract(self, url):
-        video_id, segment_id = self._match_valid_url(url).group('id', 'segment')
+        video_id, segment_id = self._match_valid_url(
+            url).group('id', 'segment')
         webpage = self._download_webpage(url, video_id)
 
         # ORF doesn't like 410 or 404
-        if self._search_regex(r'<div\b[^>]*>\s*(Nicht mehr verfügbar)\s*</div>', webpage, 'Availability', default=False):
-            raise ExtractorError('Content is no longer available', expected=True, video_id=video_id)
+        if self._search_regex(
+            r'<div\b[^>]*>\s*(Nicht mehr verfügbar)\s*</div>',
+            webpage,
+            'Availability',
+                default=False):
+            raise ExtractorError(
+                'Content is no longer available',
+                expected=True,
+                video_id=video_id)
 
         return merge_dicts({
             'id': video_id,

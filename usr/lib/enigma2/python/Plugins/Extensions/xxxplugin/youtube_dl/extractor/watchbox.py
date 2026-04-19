@@ -119,12 +119,15 @@ class WatchBoxIE(InfoExtractor):
         self._sort_formats(formats)
 
         description = strip_or_none(item.get('descr'))
-        thumbnail = item.get('media_content_thumbnail_large') or source.get('poster') or item.get('media_thumbnail')
-        duration = int_or_none(item.get('media_length') or source.get('length'))
+        thumbnail = item.get('media_content_thumbnail_large') or source.get(
+            'poster') or item.get('media_thumbnail')
+        duration = int_or_none(item.get('media_length')
+                               or source.get('length'))
         timestamp = unified_timestamp(item.get('pubDate'))
         view_count = int_or_none(item.get('media_views'))
         age_limit = int_or_none(try_get(item, lambda x: x['movie']['fsk']))
-        release_year = int_or_none(try_get(item, lambda x: x['movie']['rel_year']))
+        release_year = int_or_none(
+            try_get(item, lambda x: x['movie']['rel_year']))
 
         info = {
             'id': video_id,

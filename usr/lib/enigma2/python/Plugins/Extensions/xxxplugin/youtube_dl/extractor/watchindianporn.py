@@ -23,8 +23,7 @@ class WatchIndianPornIE(InfoExtractor):
             'view_count': int,
             'categories': list,
             'age_limit': 18,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

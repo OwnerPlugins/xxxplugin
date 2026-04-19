@@ -22,9 +22,12 @@ class NineCNineMediaIE(InfoExtractor):
     def _real_extract(self, url):
         destination_code, content_id = re.match(self._VALID_URL, url).groups()
         api_base_url = self._API_BASE_TEMPLATE % (destination_code, content_id)
-        content = self._download_json(api_base_url, content_id, query={
-            '$include': '[Media.Name,Season,ContentPackages.Duration,ContentPackages.Id]',
-        })
+        content = self._download_json(
+            api_base_url,
+            content_id,
+            query={
+                '$include': '[Media.Name,Season,ContentPackages.Duration,ContentPackages.Id]',
+            })
         title = content['Name']
         content_package = content['ContentPackages'][0]
         package_id = content_package['Id']
@@ -34,7 +37,9 @@ class NineCNineMediaIE(InfoExtractor):
                 '$include': '[HasClosedCaptions]',
             })
 
-        if try_get(content_package, lambda x: x['Constraints']['Security']['Type']):
+        if try_get(
+                content_package,
+                lambda x: x['Constraints']['Security']['Type']):
             raise ExtractorError('This video is DRM protected.', expected=True)
 
         manifest_base_url = content_package_url + 'manifest.'

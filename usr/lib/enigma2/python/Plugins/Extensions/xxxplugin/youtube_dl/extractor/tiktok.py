@@ -129,7 +129,8 @@ class TikTokUserIE(TikTokBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if TikTokIE.suitable(url) else super(TikTokUserIE, cls).suitable(url)
+        return False if TikTokIE.suitable(url) else super(
+            TikTokUserIE, cls).suitable(url)
 
     def _real_extract(self, url):
         user_id = self._match_id(url)

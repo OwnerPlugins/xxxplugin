@@ -47,7 +47,8 @@ class MTVServicesInfoExtractor(InfoExtractor):
         return self._FEED_URL
 
     def _get_thumbnail_url(self, uri, itemdoc):
-        search_path = '%s/%s' % (_media_xml_tag('group'), _media_xml_tag('thumbnail'))
+        search_path = '%s/%s' % (_media_xml_tag('group'),
+                                 _media_xml_tag('thumbnail'))
         thumb_node = itemdoc.find(search_path)
         if thumb_node is None:
             return None
@@ -60,22 +61,33 @@ class MTVServicesInfoExtractor(InfoExtractor):
         req.add_header('User-Agent', 'curl/7')
         webpage = self._download_webpage(req, mtvn_id,
                                          'Downloading mobile page')
-        metrics_url = unescapeHTML(self._search_regex(r'<a href="(http://metrics.+?)"', webpage, 'url'))
+        metrics_url = unescapeHTML(
+            self._search_regex(
+                r'<a href="(http://metrics.+?)"',
+                webpage,
+                'url'))
         req = HEADRequest(metrics_url)
         response = self._request_webpage(req, mtvn_id, 'Resolving url')
         url = response.geturl()
         # Transform the url to get the best quality:
-        url = re.sub(r'.+pxE=mp4', 'http://mtvnmobile.vo.llnwd.net/kip0/_pxn=0+_pxK=18639+_pxE=mp4', url, 1)
+        url = re.sub(
+            r'.+pxE=mp4',
+            'http://mtvnmobile.vo.llnwd.net/kip0/_pxn=0+_pxK=18639+_pxE=mp4',
+            url,
+            1)
         return [{'url': url, 'ext': 'mp4'}]
 
     def _extract_video_formats(self, mdoc, mtvn_id, video_id):
-        if re.match(r'.*/(error_country_block\.swf|geoblock\.mp4|copyright_error\.flv(?:\?geo\b.+?)?)$', mdoc.find('.//src').text) is not None:
+        if re.match(
+            r'.*/(error_country_block\.swf|geoblock\.mp4|copyright_error\.flv(?:\?geo\b.+?)?)$',
+                mdoc.find('.//src').text) is not None:
             if mtvn_id is not None and self._MOBILE_TEMPLATE is not None:
                 self.to_screen('The normal version is not available from your '
                                'country, trying with the mobile version')
                 return self._extract_mobile_video_formats(mtvn_id)
-            raise ExtractorError('This video is not available from your country.',
-                                 expected=True)
+            raise ExtractorError(
+                'This video is not available from your country.',
+                expected=True)
 
         formats = []
         for rendition in mdoc.findall('.//rendition'):
@@ -133,8 +145,11 @@ class MTVServicesInfoExtractor(InfoExtractor):
         uri = itemdoc.find('guid').text
         video_id = self._id_from_uri(uri)
         self.report_extraction(video_id)
-        content_el = itemdoc.find('%s/%s' % (_media_xml_tag('group'), _media_xml_tag('content')))
-        mediagen_url = self._remove_template_parameter(content_el.attrib['url'])
+        content_el = itemdoc.find(
+            '%s/%s' %
+            (_media_xml_tag('group'), _media_xml_tag('content')))
+        mediagen_url = self._remove_template_parameter(
+            content_el.attrib['url'])
         mediagen_url = mediagen_url.replace('device={device}', '')
         if 'acceptMethods' not in mediagen_url:
             mediagen_url += '&' if '?' in mediagen_url else '?'
@@ -165,7 +180,8 @@ class MTVServicesInfoExtractor(InfoExtractor):
                 itemdoc, './/{http://search.yahoo.com/mrss/}category',
                 'scheme', 'urn:mtvn:video_title')
         if title_el is None:
-            title_el = itemdoc.find(compat_xpath('.//{http://search.yahoo.com/mrss/}title'))
+            title_el = itemdoc.find(
+                compat_xpath('.//{http://search.yahoo.com/mrss/}title'))
         if title_el is None:
             title_el = itemdoc.find(compat_xpath('.//title'))
             if title_el.text is None:
@@ -178,8 +194,11 @@ class MTVServicesInfoExtractor(InfoExtractor):
 
         # This a short id that's used in the webpage urls
         mtvn_id = None
-        mtvn_id_node = find_xpath_attr(itemdoc, './/{http://search.yahoo.com/mrss/}category',
-                                       'scheme', 'urn:mtvn:id')
+        mtvn_id_node = find_xpath_attr(
+            itemdoc,
+            './/{http://search.yahoo.com/mrss/}category',
+            'scheme',
+            'urn:mtvn:id')
         if mtvn_id_node is not None:
             mtvn_id = mtvn_id_node.text
 
@@ -287,9 +306,12 @@ class MTVServicesInfoExtractor(InfoExtractor):
         if not mgid:
             data = self._parse_json(self._search_regex(
                 r'__DATA__\s*=\s*({.+?});', webpage, 'data'), None)
-            main_container = self._extract_child_with_type(data, 'MainContainer')
-            ab_testing = self._extract_child_with_type(main_container, 'ABTesting')
-            video_player = self._extract_child_with_type(ab_testing or main_container, 'VideoPlayer')
+            main_container = self._extract_child_with_type(
+                data, 'MainContainer')
+            ab_testing = self._extract_child_with_type(
+                main_container, 'ABTesting')
+            video_player = self._extract_child_with_type(
+                ab_testing or main_container, 'VideoPlayer')
             mgid = video_player['props']['media']['video']['config']['uri']
 
         return mgid
@@ -307,7 +329,8 @@ class MTVServicesEmbeddedIE(MTVServicesInfoExtractor):
     _VALID_URL = r'https?://media\.mtvnservices\.com/embed/(?P<mgid>.+?)(\?|/|$)'
 
     _TEST = {
-        # From http://www.thewrap.com/peter-dinklage-sums-up-game-of-thrones-in-45-seconds-video/
+        # From
+        # http://www.thewrap.com/peter-dinklage-sums-up-game-of-thrones-in-45-seconds-video/
         'url': 'http://media.mtvnservices.com/embed/mgid:uma:video:mtv.com:1043906/cp~vid%3D1043906%26uri%3Dmgid%3Auma%3Avideo%3Amtv.com%3A1043906',
         'md5': 'cb349b21a7897164cede95bd7bf3fbb9',
         'info_dict': {
@@ -323,14 +346,16 @@ class MTVServicesEmbeddedIE(MTVServicesInfoExtractor):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//media\.mtvnservices\.com/embed/.+?)\1', webpage)
+            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//media\.mtvnservices\.com/embed/.+?)\1',
+            webpage)
         if mobj:
             return mobj.group('url')
 
     def _get_feed_url(self, uri):
         video_id = self._id_from_uri(uri)
         config = self._download_json(
-            'http://media.mtvnservices.com/pmt/e1/access/index.html?uri=%s&configtype=edge' % uri, video_id)
+            'http://media.mtvnservices.com/pmt/e1/access/index.html?uri=%s&configtype=edge' %
+            uri, video_id)
         return self._remove_template_parameter(config['feedWithQueryParams'])
 
     def _real_extract(self, url):
@@ -344,24 +369,22 @@ class MTVIE(MTVServicesInfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?mtv\.com/(?:video-clips|(?:full-)?episodes)/(?P<id>[^/?#.]+)'
     _FEED_URL = 'http://www.mtv.com/feeds/mrss/'
 
-    _TESTS = [{
-        'url': 'http://www.mtv.com/video-clips/vl8qof/unlocking-the-truth-trailer',
-        'md5': '1edbcdf1e7628e414a8c5dcebca3d32b',
-        'info_dict': {
-            'id': '5e14040d-18a4-47c4-a582-43ff602de88e',
-            'ext': 'mp4',
-            'title': 'Unlocking The Truth|July 18, 2016|1|101|Trailer',
-            'description': '"Unlocking the Truth" premieres August 17th at 11/10c.',
-            'timestamp': 1468846800,
-            'upload_date': '20160718',
-        },
-    }, {
-        'url': 'http://www.mtv.com/full-episodes/94tujl/unlocking-the-truth-gates-of-hell-season-1-ep-101',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.mtv.com/episodes/g8xu7q/teen-mom-2-breaking-the-wall-season-7-ep-713',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.mtv.com/video-clips/vl8qof/unlocking-the-truth-trailer',
+               'md5': '1edbcdf1e7628e414a8c5dcebca3d32b',
+               'info_dict': {'id': '5e14040d-18a4-47c4-a582-43ff602de88e',
+                             'ext': 'mp4',
+                             'title': 'Unlocking The Truth|July 18, 2016|1|101|Trailer',
+                             'description': '"Unlocking the Truth" premieres August 17th at 11/10c.',
+                             'timestamp': 1468846800,
+                             'upload_date': '20160718',
+                             },
+               },
+              {'url': 'http://www.mtv.com/full-episodes/94tujl/unlocking-the-truth-gates-of-hell-season-1-ep-101',
+               'only_matching': True,
+               },
+              {'url': 'http://www.mtv.com/episodes/g8xu7q/teen-mom-2-breaking-the-wall-season-7-ep-713',
+               'only_matching': True,
+               }]
 
 
 class MTVJapanIE(MTVServicesInfoExtractor):
@@ -451,7 +474,8 @@ class MTVDEIE(MTVServicesInfoExtractor):
         },
         'skip': 'Blocked at Travis CI',
     }, {
-        # mediagen URL without query (e.g. http://videos.mtvnn.com/mediagen/e865da714c166d18d6f80893195fcb97)
+        # mediagen URL without query (e.g.
+        # http://videos.mtvnn.com/mediagen/e865da714c166d18d6f80893195fcb97)
         'url': 'http://www.mtv.de/folgen/6b1ylu/teen-mom-2-enthuellungen-S5-F1',
         'info_dict': {
             'id': '1e5a878b-31c5-11e7-a442-0e40cf2fc285',

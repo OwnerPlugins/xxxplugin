@@ -88,19 +88,27 @@ class MotherlessIE(InfoExtractor):
         if any(p in webpage for p in (
                 '<title>404 - MOTHERLESS.COM<',
                 ">The page you're looking for cannot be found.<")):
-            raise ExtractorError('Video %s does not exist' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s does not exist' %
+                video_id, expected=True)
 
         if '>The content you are trying to view is for friends only.' in webpage:
-            raise ExtractorError('Video %s is for friends only' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s is for friends only' %
+                video_id, expected=True)
 
         title = self._html_search_regex(
             (r'(?s)<div[^>]+\bclass=["\']media-meta-title[^>]+>(.+?)</div>',
              r'id="view-upload-title">\s+([^<]+)<'), webpage, 'title')
-        video_url = (self._html_search_regex(
-            (r'setup\(\{\s*["\']file["\']\s*:\s*(["\'])(?P<url>(?:(?!\1).)+)\1',
-             r'fileurl\s*=\s*(["\'])(?P<url>(?:(?!\1).)+)\1'),
-            webpage, 'video URL', default=None, group='url')
-            or 'http://cdn4.videos.motherlessmedia.com/videos/%s.mp4?fs=opencloud' % video_id)
+        video_url = (
+            self._html_search_regex(
+                (r'setup\(\{\s*["\']file["\']\s*:\s*(["\'])(?P<url>(?:(?!\1).)+)\1',
+                 r'fileurl\s*=\s*(["\'])(?P<url>(?:(?!\1).)+)\1'),
+                webpage,
+                'video URL',
+                default=None,
+                group='url') or 'http://cdn4.videos.motherlessmedia.com/videos/%s.mp4?fs=opencloud' %
+            video_id)
         age_limit = self._rta_search(webpage)
         view_count = str_to_int(self._html_search_regex(
             (r'>([\d,.]+)\s+Views<', r'<strong>Views</strong>\s+([^<]+)<'),
@@ -124,9 +132,15 @@ class MotherlessIE(InfoExtractor):
                     'd': 'days',
                 }
                 kwargs = {_AGO_UNITS.get(uploaded_ago[-1]): delta}
-                upload_date = (datetime.datetime.utcnow() - datetime.timedelta(**kwargs)).strftime('%Y%m%d')
+                upload_date = (
+                    datetime.datetime.utcnow() -
+                    datetime.timedelta(
+                        **kwargs)).strftime('%Y%m%d')
 
-        comment_count = len(re.findall(r'''class\s*=\s*['"]media-comment-contents\b''', webpage))
+        comment_count = len(
+            re.findall(
+                r'''class\s*=\s*['"]media-comment-contents\b''',
+                webpage))
         uploader_id = self._html_search_regex(
             (r'''<span\b[^>]+\bclass\s*=\s*["']username\b[^>]*>([^<]+)</span>''',
              r'''(?s)['"](?:media-meta-member|thumb-member-username)\b[^>]+>\s*<a\b[^>]+\bhref\s*=\s*['"]/m/([^"']+)'''),
@@ -221,9 +235,12 @@ class MotherlessGroupIE(InfoExtractor):
             r'<title>([\w\s]+\w)\s+-', webpage, 'title', fatal=False)
         description = self._html_search_meta(
             'description', webpage, fatal=False)
-        page_count = str_to_int(self._search_regex(
-            r'(\d+)\s*</(?:a|span)>\s*<(?:a|span)[^>]+(?:>\s*NEXT|\brel\s*=\s*["\']?next)\b',
-            webpage, 'page_count', default=0))
+        page_count = str_to_int(
+            self._search_regex(
+                r'(\d+)\s*</(?:a|span)>\s*<(?:a|span)[^>]+(?:>\s*NEXT|\brel\s*=\s*["\']?next)\b',
+                webpage,
+                'page_count',
+                default=0))
         if not page_count:
             message = self._search_regex(
                 r'''class\s*=\s*['"]error-page\b[^>]*>\s*<p[^>]*>\s*(?P<error_msg>[^<]+)(?<=\S)\s*''',

@@ -54,7 +54,9 @@ class PlatziBaseIE(InfoExtractor):
 
         login = self._parse_json(
             self._search_regex(
-                r'login\s*=\s*({.+?})(?:\s*;|\s*</script)', login_error, 'login'),
+                r'login\s*=\s*({.+?})(?:\s*;|\s*</script)',
+                login_error,
+                'login'),
             None)
 
         for kind in ('error', 'password', 'nonFields'):
@@ -179,7 +181,8 @@ class PlatziCourseIE(PlatziBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if PlatziIE.suitable(url) else super(PlatziCourseIE, cls).suitable(url)
+        return False if PlatziIE.suitable(url) else super(
+            PlatziCourseIE, cls).suitable(url)
 
     def _real_extract(self, url):
         course_name = self._match_id(url)
@@ -219,6 +222,7 @@ class PlatziCourseIE(PlatziBaseIE):
                 })
 
         course_id = compat_str(try_get(props, lambda x: x['course']['id']))
-        course_title = try_get(props, lambda x: x['course']['name'], compat_str)
+        course_title = try_get(
+            props, lambda x: x['course']['name'], compat_str)
 
         return self.playlist_result(entries, course_id, course_title)

@@ -85,7 +85,8 @@ class TwitchBaseIE(InfoExtractor):
             response = self._download_json(
                 post_url, None, note, data=json.dumps(form).encode(),
                 headers=headers, expected_status=400)
-            error = dict_get(response, ('error', 'error_description', 'error_code'))
+            error = dict_get(
+                response, ('error', 'error_description', 'error_code'))
             if error:
                 fail(error)
 
@@ -117,7 +118,9 @@ class TwitchBaseIE(InfoExtractor):
         if not redirect_page:
             return
 
-        if re.search(r'(?i)<form[^>]+id="two-factor-submit"', redirect_page) is not None:
+        if re.search(
+            r'(?i)<form[^>]+id="two-factor-submit"',
+                redirect_page) is not None:
             # TODO: Add mechanism to request an SMS or phone call
             tfa_token = self._get_tfa_info('two-factor authentication token')
             login_step(redirect_page, handle, 'Submitting TFA token', {
@@ -318,12 +321,21 @@ class TwitchVodIE(TwitchBaseIE):
             'id': vod_id,
             'title': info.get('title') or 'Untitled Broadcast',
             'description': info.get('description'),
-            'duration': int_or_none(info.get('lengthSeconds')),
+            'duration': int_or_none(
+                info.get('lengthSeconds')),
             'thumbnail': thumbnail,
-            'uploader': try_get(info, lambda x: x['owner']['displayName'], compat_str),
-            'uploader_id': try_get(info, lambda x: x['owner']['login'], compat_str),
-            'timestamp': unified_timestamp(info.get('publishedAt')),
-            'view_count': int_or_none(info.get('viewCount')),
+            'uploader': try_get(
+                info,
+                lambda x: x['owner']['displayName'],
+                compat_str),
+            'uploader_id': try_get(
+                info,
+                lambda x: x['owner']['login'],
+                compat_str),
+            'timestamp': unified_timestamp(
+                info.get('publishedAt')),
+            'view_count': int_or_none(
+                info.get('viewCount')),
         }
 
     def _real_extract(self, url):
@@ -356,14 +368,12 @@ class TwitchVodIE(TwitchBaseIE):
 
         if info.get('timestamp') is not None:
             info['subtitles'] = {
-                'rechat': [{
-                    'url': update_url_query(
-                        'https://api.twitch.tv/v5/videos/%s/comments' % vod_id, {
-                            'client_id': self._CLIENT_ID,
-                        }),
-                    'ext': 'json',
-                }],
-            }
+                'rechat': [
+                    {
+                        'url': update_url_query(
+                            'https://api.twitch.tv/v5/videos/%s/comments' %
+                            vod_id, {
+                                'client_id': self._CLIENT_ID, }), 'ext': 'json', }], }
 
         return info
 
@@ -444,7 +454,9 @@ class TwitchPlaylistBaseIE(TwitchBaseIE):
             if not page:
                 break
             edges = try_get(
-                page, lambda x: x[0]['data']['user'][entries_key]['edges'], list)
+                page,
+                lambda x: x[0]['data']['user'][entries_key]['edges'],
+                list)
             if not edges:
                 break
             for edge in edges:
@@ -978,11 +990,23 @@ class TwitchClipsIE(TwitchBaseIE):
             'id': clip.get('id') or video_id,
             'title': clip.get('title') or video_id,
             'formats': formats,
-            'duration': int_or_none(clip.get('durationSeconds')),
-            'views': int_or_none(clip.get('viewCount')),
-            'timestamp': unified_timestamp(clip.get('createdAt')),
+            'duration': int_or_none(
+                clip.get('durationSeconds')),
+            'views': int_or_none(
+                clip.get('viewCount')),
+            'timestamp': unified_timestamp(
+                clip.get('createdAt')),
             'thumbnails': thumbnails,
-            'creator': try_get(clip, lambda x: x['broadcaster']['displayName'], compat_str),
-            'uploader': try_get(clip, lambda x: x['curator']['displayName'], compat_str),
-            'uploader_id': try_get(clip, lambda x: x['curator']['id'], compat_str),
+            'creator': try_get(
+                clip,
+                lambda x: x['broadcaster']['displayName'],
+                compat_str),
+            'uploader': try_get(
+                clip,
+                lambda x: x['curator']['displayName'],
+                compat_str),
+            'uploader_id': try_get(
+                clip,
+                lambda x: x['curator']['id'],
+                compat_str),
         }

@@ -112,11 +112,12 @@ class SohuIE(InfoExtractor):
         if vid_data['play'] != 1:
             if vid_data.get('status') == 12:
                 raise ExtractorError(
-                    '%s said: There\'s something wrong in the video.' % self.IE_NAME,
-                    expected=True)
+                    '%s said: There\'s something wrong in the video.' %
+                    self.IE_NAME, expected=True)
             else:
                 self.raise_geo_restricted(
-                    '%s said: The video is only licensed to users in Mainland China.' % self.IE_NAME)
+                    '%s said: The video is only licensed to users in Mainland China.' %
+                    self.IE_NAME)
 
         formats_json = {}
         for format_id in ('nor', 'high', 'super', 'ori', 'h2644k', 'h2654k'):
@@ -124,7 +125,8 @@ class SohuIE(InfoExtractor):
             if not vid_id:
                 continue
             vid_id = compat_str(vid_id)
-            formats_json[format_id] = vid_data if vid == vid_id else _fetch_data(vid_id, mytv)
+            formats_json[format_id] = vid_data if vid == vid_id else _fetch_data(
+                vid_id, mytv)
 
         part_count = vid_data['data']['totalBlocks']
 
@@ -159,9 +161,14 @@ class SohuIE(InfoExtractor):
 
                     if retries > 0:
                         download_note += ' (retry #%d)' % retries
-                    part_info = self._parse_json(self._download_webpage(
-                        'http://%s/?%s' % (allot, compat_urllib_parse_urlencode(params)),
-                        video_id, download_note), video_id)
+                    part_info = self._parse_json(
+                        self._download_webpage(
+                            'http://%s/?%s' %
+                            (allot,
+                             compat_urllib_parse_urlencode(params)),
+                            video_id,
+                            download_note),
+                        video_id)
 
                     video_url = part_info['url']
                     cdnId = part_info.get('nid')

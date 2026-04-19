@@ -52,13 +52,10 @@ class NationalGeographicVideoIE(InfoExtractor):
             webpage, 'guid')
 
         return {
-            '_type': 'url_transparent',
-            'ie_key': 'ThePlatform',
-            'url': smuggle_url(
-                'http://link.theplatform.com/s/ngs/media/guid/2423130747/%s?mbr=true' % guid,
-                {'force_smil_url': True}),
-            'id': guid,
-        }
+            '_type': 'url_transparent', 'ie_key': 'ThePlatform', 'url': smuggle_url(
+                'http://link.theplatform.com/s/ngs/media/guid/2423130747/%s?mbr=true' %
+                guid, {
+                    'force_smil_url': True}), 'id': guid, }
 
 
 class NationalGeographicTVIE(FOXIE):

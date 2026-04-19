@@ -71,7 +71,9 @@ class PornHdIE(InfoExtractor):
             message = self._html_search_regex(
                 r'(?s)<(div|p)[^>]+class="no-video"[^>]*>(?P<value>.+?)</\1',
                 webpage, 'error message', group='value')
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, message), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, message), expected=True)
 
         formats = []
         for format_id, video_url in sources.items():

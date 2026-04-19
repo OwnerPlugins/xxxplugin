@@ -74,7 +74,8 @@ class MediasetIE(ThePlatformBaseIE):
         'url': 'https://static3.mediasetplay.mediaset.it/player/index.html?appKey=5ad3966b1de1c4000d5cec48&programGuid=FAFU000000665104&id=665104',
         'only_matching': True,
     }, {
-        # embedUrl (from https://www.wittytv.it/amici/est-ce-que-tu-maimes-gabriele-5-dicembre-copia/)
+        # embedUrl (from
+        # https://www.wittytv.it/amici/est-ce-que-tu-maimes-gabriele-5-dicembre-copia/)
         'url': 'https://static3.mediasetplay.mediaset.it/player/v2/index.html?partnerId=wittytv&configId=&programGuid=FD00000000153323&autoplay=true&purl=http://www.wittytv.it/amici/est-ce-que-tu-maimes-gabriele-5-dicembre-copia/',
         'only_matching': True,
     }, {
@@ -126,10 +127,28 @@ class MediasetIE(ThePlatformBaseIE):
                 entries.append(embed_url)
         return entries
 
-    def _parse_smil_formats(self, smil, smil_url, video_id, namespace=None, f4m_params=None, transform_rtmp_url=None):
+    def _parse_smil_formats(
+            self,
+            smil,
+            smil_url,
+            video_id,
+            namespace=None,
+            f4m_params=None,
+            transform_rtmp_url=None):
         for video in smil.findall(self._xpath_ns('.//video', namespace)):
-            video.attrib['src'] = re.sub(r'(https?://vod05)t(-mediaset-it\.akamaized\.net/.+?.mpd)\?.+', r'\1\2', video.attrib['src'])
-        return super(MediasetIE, self)._parse_smil_formats(smil, smil_url, video_id, namespace, f4m_params, transform_rtmp_url)
+            video.attrib['src'] = re.sub(
+                r'(https?://vod05)t(-mediaset-it\.akamaized\.net/.+?.mpd)\?.+',
+                r'\1\2',
+                video.attrib['src'])
+        return super(
+            MediasetIE,
+            self)._parse_smil_formats(
+            smil,
+            smil_url,
+            video_id,
+            namespace,
+            f4m_params,
+            transform_rtmp_url)
 
     def _real_extract(self, url):
         guid = self._match_id(url)
@@ -162,11 +181,16 @@ class MediasetIE(ThePlatformBaseIE):
         self._sort_formats(formats)
 
         fields = []
-        for templ, repls in (('tvSeason%sNumber', ('', 'Episode')), ('mediasetprogram$%s', ('brandTitle', 'numberOfViews', 'publishInfo'))):
+        for templ, repls in (('tvSeason%sNumber', ('', 'Episode')), (
+                'mediasetprogram$%s', ('brandTitle', 'numberOfViews', 'publishInfo'))):
             fields.extend(templ % repl for repl in repls)
         feed_data = self._download_json(
-            'https://feed.entertainment.tv.theplatform.eu/f/PR1GhC/mediaset-prod-all-programs/guid/-/' + guid,
-            guid, fatal=False, query={'fields': ','.join(fields)})
+            'https://feed.entertainment.tv.theplatform.eu/f/PR1GhC/mediaset-prod-all-programs/guid/-/' +
+            guid,
+            guid,
+            fatal=False,
+            query={
+                'fields': ','.join(fields)})
         if feed_data:
             publish_info = feed_data.get('mediasetprogram$publishInfo') or {}
             info.update({

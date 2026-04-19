@@ -84,8 +84,8 @@ class HttpFD(FileDownloader):
             req.add_header('Range', range_header)
 
         def establish_connection():
-            ctx.chunk_size = (random.randint(int(chunk_size * 0.95), chunk_size)
-                              if not is_test and chunk_size else chunk_size)
+            ctx.chunk_size = (random.randint(int(chunk_size * 0.95),
+                                             chunk_size) if not is_test and chunk_size else chunk_size)
             if ctx.resume_len > 0:
                 range_start = ctx.resume_len
                 if ctx.is_resume:
@@ -109,7 +109,8 @@ class HttpFD(FileDownloader):
                 try:
                     ctx.data = self.ydl.urlopen(request)
                 except (compat_urllib_error.URLError, ) as err:
-                    # reason may not be available, e.g. for urllib2.HTTPError on python 2.6
+                    # reason may not be available, e.g. for urllib2.HTTPError
+                    # on python 2.6
                     reason = getattr(err, 'reason', None)
                     if isinstance(reason, socket.timeout):
                         raise RetryDownload(err)
@@ -122,12 +123,16 @@ class HttpFD(FileDownloader):
                 if has_range:
                     content_range = ctx.data.headers.get('Content-Range')
                     if content_range:
-                        content_range_m = re.search(r'bytes (\d+)-(\d+)?(?:/(\d+))?', content_range)
-                        # Content-Range is present and matches requested Range, resume is possible
+                        content_range_m = re.search(
+                            r'bytes (\d+)-(\d+)?(?:/(\d+))?', content_range)
+                        # Content-Range is present and matches requested Range,
+                        # resume is possible
                         if content_range_m:
                             if range_start == int(content_range_m.group(1)):
-                                content_range_end = int_or_none(content_range_m.group(2))
-                                content_len = int_or_none(content_range_m.group(3))
+                                content_range_end = int_or_none(
+                                    content_range_m.group(2))
+                                content_len = int_or_none(
+                                    content_range_m.group(3))
                                 accept_content_len = (
                                     # Non-chunked download
                                     not ctx.chunk_size
@@ -145,7 +150,9 @@ class HttpFD(FileDownloader):
                         self.report_unable_to_resume()
                     ctx.resume_len = 0
                     ctx.open_mode = 'wb'
-                ctx.data_len = int_or_none(ctx.data.info().get('Content-length', None))
+                ctx.data_len = int_or_none(
+                    ctx.data.info().get(
+                        'Content-length', None))
                 return
             except (compat_urllib_error.HTTPError, ) as err:
                 if err.code == 416:
@@ -160,8 +167,8 @@ class HttpFD(FileDownloader):
                             raise
                     else:
                         # Examine the reported length
-                        if (content_length is not None
-                                and (ctx.resume_len - 100 < int(content_length) < ctx.resume_len + 100)):
+                        if (content_length is not None and (ctx.resume_len -
+                                                            100 < int(content_length) < ctx.resume_len + 100)):
                             # The file had already been fully downloaded.
                             # Explanation to the above condition: in issue #175 it was revealed that
                             # YouTube sometimes adds or removes a few bytes from the end of the file,
@@ -179,7 +186,8 @@ class HttpFD(FileDownloader):
                             })
                             raise SucceedDownload()
                         else:
-                            # The length does not match, we start the download over
+                            # The length does not match, we start the download
+                            # over
                             self.report_unable_to_resume()
                             ctx.resume_len = 0
                             ctx.open_mode = 'wb'
@@ -202,7 +210,8 @@ class HttpFD(FileDownloader):
             # However, for a test we still would like to download just a piece of a file.
             # To achieve this we limit data_len to _TEST_FILE_SIZE and manually control
             # block size when downloading a file.
-            if is_test and (data_len is None or int(data_len) > self._TEST_FILE_SIZE):
+            if is_test and (data_len is None or int(
+                    data_len) > self._TEST_FILE_SIZE):
                 data_len = self._TEST_FILE_SIZE
 
             if data_len is not None:
@@ -210,17 +219,22 @@ class HttpFD(FileDownloader):
                 min_data_len = self.params.get('min_filesize')
                 max_data_len = self.params.get('max_filesize')
                 if min_data_len is not None and data_len < min_data_len:
-                    self.to_screen('\r[download] File is smaller than min-filesize (%s bytes < %s bytes). Aborting.' % (data_len, min_data_len))
+                    self.to_screen(
+                        '\r[download] File is smaller than min-filesize (%s bytes < %s bytes). Aborting.' %
+                        (data_len, min_data_len))
                     return False
                 if max_data_len is not None and data_len > max_data_len:
-                    self.to_screen('\r[download] File is larger than max-filesize (%s bytes > %s bytes). Aborting.' % (data_len, max_data_len))
+                    self.to_screen(
+                        '\r[download] File is larger than max-filesize (%s bytes > %s bytes). Aborting.' %
+                        (data_len, max_data_len))
                     return False
 
             byte_counter = 0 + ctx.resume_len
             block_size = ctx.block_size
             start = time.time()
 
-            # measure time over whole while-loop, so slow_down() and best_block_size() work together properly
+            # measure time over whole while-loop, so slow_down() and
+            # best_block_size() work together properly
             now = None  # needed for slow_down() in the first loop run
             before = start  # start measuring
 
@@ -230,13 +244,16 @@ class HttpFD(FileDownloader):
                     if not to_stdout:
                         ctx.stream.close()
                     ctx.stream = None
-                ctx.resume_len = byte_counter if to_stdout else os.path.getsize(encodeFilename(ctx.tmpfilename))
+                ctx.resume_len = byte_counter if to_stdout else os.path.getsize(
+                    encodeFilename(ctx.tmpfilename))
                 raise RetryDownload(e)
 
             while True:
                 try:
                     # Download and write
-                    data_block = ctx.data.read(block_size if data_len is None else min(block_size, data_len - byte_counter))
+                    data_block = ctx.data.read(
+                        block_size if data_len is None else min(
+                            block_size, data_len - byte_counter))
                 # socket.timeout is a subclass of socket.error but may not have
                 # errno set
                 except socket.timeout as e:
@@ -244,7 +261,12 @@ class HttpFD(FileDownloader):
                 except socket.error as e:
                     # SSLError on python 2 (inherits socket.error) may have
                     # no errno set but this error message
-                    if e.errno in (errno.ECONNRESET, errno.ETIMEDOUT) or getattr(e, 'message', None) == 'The read operation timed out':
+                    if e.errno in (
+                            errno.ECONNRESET,
+                            errno.ETIMEDOUT) or getattr(
+                            e,
+                            'message',
+                            None) == 'The read operation timed out':
                         retry(e)
                     raise
 
@@ -263,14 +285,22 @@ class HttpFD(FileDownloader):
                         ctx.filename = self.undo_temp_name(ctx.tmpfilename)
                         self.report_destination(ctx.filename)
                     except (OSError, IOError) as err:
-                        self.report_error('unable to open for writing: %s' % str(err))
+                        self.report_error(
+                            'unable to open for writing: %s' %
+                            str(err))
                         return False
 
-                    if self.params.get('xattr_set_filesize', False) and data_len is not None:
+                    if self.params.get(
+                        'xattr_set_filesize',
+                            False) and data_len is not None:
                         try:
-                            write_xattr(ctx.tmpfilename, 'user.ytdl.filesize', str(data_len).encode('utf-8'))
+                            write_xattr(
+                                ctx.tmpfilename,
+                                'user.ytdl.filesize',
+                                str(data_len).encode('utf-8'))
                         except (XAttrUnavailableError, XAttrMetadataError) as err:
-                            self.report_error('unable to set filesize xattr: %s' % str(err))
+                            self.report_error(
+                                'unable to set filesize xattr: %s' % str(err))
 
                 try:
                     ctx.stream.write(data_block)
@@ -288,13 +318,17 @@ class HttpFD(FileDownloader):
 
                 # Adjust block size
                 if not self.params.get('noresizebuffer', False):
-                    block_size = self.best_block_size(after - before, len(data_block))
+                    block_size = self.best_block_size(
+                        after - before, len(data_block))
 
                 before = after
 
                 # Progress message
-                speed = self.calc_speed(start, now, byte_counter - ctx.resume_len)
-                eta = self.calc_eta(speed, ctx.data_len and (ctx.data_len - byte_counter))
+                speed = self.calc_speed(
+                    start, now, byte_counter - ctx.resume_len)
+                eta = self.calc_eta(
+                    speed, ctx.data_len and (
+                        ctx.data_len - byte_counter))
 
                 self._hook_progress({
                     'status': 'downloading',
@@ -332,7 +366,9 @@ class HttpFD(FileDownloader):
 
             # Update file modification time
             if self.params.get('updatetime', True):
-                info_dict['filetime'] = self.try_utime(ctx.filename, ctx.data.info().get('last-modified', None))
+                info_dict['filetime'] = self.try_utime(
+                    ctx.filename, ctx.data.info().get(
+                        'last-modified', None))
 
             self._hook_progress({
                 'downloaded_bytes': byte_counter,

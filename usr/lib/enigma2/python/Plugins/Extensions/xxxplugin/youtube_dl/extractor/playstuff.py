@@ -56,10 +56,11 @@ class PlayStuffIE(InfoExtractor):
                 compat_str)
             if not asset_id:
                 continue
-            entries.append(self.url_result(
-                smuggle_url(
-                    self.BRIGHTCOVE_URL_TEMPLATE % (account_id, player_id, asset_id),
-                    {'geo_countries': ['NZ']}),
-                'BrightcoveNew', video_id))
+            entries.append(
+                self.url_result(
+                    smuggle_url(
+                        self.BRIGHTCOVE_URL_TEMPLATE %
+                        (account_id, player_id, asset_id), {
+                            'geo_countries': ['NZ']}), 'BrightcoveNew', video_id))
 
         return self.playlist_result(entries, video_id)

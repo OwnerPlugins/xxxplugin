@@ -89,13 +89,20 @@ class ArnesIE(InfoExtractor):
             'description': video.get('description'),
             'license': video.get('license'),
             'creator': video.get('author'),
-            'timestamp': parse_iso8601(video.get('creationTime')),
+            'timestamp': parse_iso8601(
+                video.get('creationTime')),
             'channel': channel.get('name'),
             'channel_id': channel_id,
             'channel_url': self._BASE_URL + '/?channel=' + channel_id if channel_id else None,
-            'duration': float_or_none(video.get('duration'), 1000),
-            'view_count': int_or_none(video.get('views')),
+            'duration': float_or_none(
+                video.get('duration'),
+                1000),
+            'view_count': int_or_none(
+                video.get('views')),
             'tags': video.get('hashtags'),
-            'start_time': int_or_none(compat_parse_qs(
-                compat_urllib_parse_urlparse(url).query).get('t', [None])[0]),
+            'start_time': int_or_none(
+                compat_parse_qs(
+                    compat_urllib_parse_urlparse(url).query).get(
+                    't',
+                    [None])[0]),
         }

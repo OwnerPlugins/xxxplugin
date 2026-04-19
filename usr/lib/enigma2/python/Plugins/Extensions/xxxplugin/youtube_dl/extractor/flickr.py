@@ -32,8 +32,7 @@ class FlickrIE(InfoExtractor):
             'view_count': int,
             'tags': list,
             'license': 'Attribution-ShareAlike',
-        }
-    }
+        }}
     _API_BASE_URL = 'https://api.flickr.com/services/rest?'
     # https://help.yahoo.com/kb/flickr/SLN25525.html
     _LICENSES = {
@@ -60,7 +59,11 @@ class FlickrIE(InfoExtractor):
         }
         if secret:
             query['secret'] = secret
-        data = self._download_json(self._API_BASE_URL + compat_urllib_parse_urlencode(query), video_id, note)
+        data = self._download_json(
+            self._API_BASE_URL +
+            compat_urllib_parse_urlencode(query),
+            video_id,
+            note)
         if data['stat'] != 'ok':
             raise ExtractorError(data['message'])
         return data
@@ -73,14 +76,25 @@ class FlickrIE(InfoExtractor):
             'Downloading api key')['site_key']
 
         video_info = self._call_api(
-            'photos.getInfo', video_id, api_key, 'Downloading video info')['photo']
+            'photos.getInfo',
+            video_id,
+            api_key,
+            'Downloading video info')['photo']
         if video_info['media'] == 'video':
             streams = self._call_api(
                 'video.getStreamInfo', video_id, api_key,
                 'Downloading streams info', video_info['secret'])['streams']
 
-            preference = qualities(
-                ['288p', 'iphone_wifi', '100', '300', '700', '360p', 'appletv', '720p', '1080p', 'orig'])
+            preference = qualities(['288p',
+                                    'iphone_wifi',
+                                    '100',
+                                    '300',
+                                    '700',
+                                    '360p',
+                                    'appletv',
+                                    '720p',
+                                    '1080p',
+                                    'orig'])
 
             formats = []
             for stream in streams['stream']:
@@ -100,17 +114,33 @@ class FlickrIE(InfoExtractor):
             return {
                 'id': video_id,
                 'title': video_info['title']['_content'],
-                'description': video_info.get('description', {}).get('_content'),
+                'description': video_info.get(
+                    'description',
+                    {}).get('_content'),
                 'formats': formats,
-                'timestamp': int_or_none(video_info.get('dateuploaded')),
-                'duration': int_or_none(video_info.get('video', {}).get('duration')),
+                'timestamp': int_or_none(
+                    video_info.get('dateuploaded')),
+                'duration': int_or_none(
+                    video_info.get(
+                        'video',
+                        {}).get('duration')),
                 'uploader_id': uploader_id,
                 'uploader': owner.get('realname'),
                 'uploader_url': uploader_url,
-                'comment_count': int_or_none(video_info.get('comments', {}).get('_content')),
-                'view_count': int_or_none(video_info.get('views')),
-                'tags': [tag.get('_content') for tag in video_info.get('tags', {}).get('tag', [])],
-                'license': self._LICENSES.get(video_info.get('license')),
+                'comment_count': int_or_none(
+                        video_info.get(
+                            'comments',
+                            {}).get('_content')),
+                'view_count': int_or_none(
+                    video_info.get('views')),
+                'tags': [
+                    tag.get('_content') for tag in video_info.get(
+                        'tags',
+                        {}).get(
+                        'tag',
+                        [])],
+                'license': self._LICENSES.get(
+                    video_info.get('license')),
             }
         else:
             raise ExtractorError('not a video', expected=True)

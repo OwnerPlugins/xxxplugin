@@ -42,13 +42,15 @@ print('Py3: ', PY3)
 if sys.version_info >= (2, 7, 9):
     try:
         sslContext = ssl._create_unverified_context()
-    except:
+    except BaseException:
         sslContext = None
 
 currversion = '1.0'
 title_plug = 'Wapbold'
 desc_plugin = ('..:: Wapbold by Lululla %s ::.. ' % currversion)
-PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, "Extensions/{}".format('xxxplugin'))
+PLUGIN_PATH = resolveFilename(
+    SCOPE_PLUGINS,
+    "Extensions/{}".format('xxxplugin'))
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
@@ -151,7 +153,7 @@ class main(Screen):
             try:
                 search = True
                 self.session.open(getVideos, name, url)
-            except:
+            except BaseException:
                 return
         else:
             self.resetSearch()

@@ -34,7 +34,9 @@ class TennisTVIE(InfoExtractor):
     def _login(self):
         username, password = self._get_login_info()
         if not username or not password:
-            raise ExtractorError('No login info available, needed for using %s.' % self.IE_NAME, expected=True)
+            raise ExtractorError(
+                'No login info available, needed for using %s.' %
+                self.IE_NAME, expected=True)
 
         login_form = {
             'Email': username,
@@ -55,10 +57,14 @@ class TennisTVIE(InfoExtractor):
             data=login_json)
 
         if login_result['error']['errorCode']:
-            raise ExtractorError('Login failed, %s said: %r' % (self.IE_NAME, login_result['error']['errorMessage']))
+            raise ExtractorError(
+                'Login failed, %s said: %r' %
+                (self.IE_NAME, login_result['error']['errorMessage']))
 
         if login_result['entitlement'] != 'SUBSCRIBED':
-            self.report_warning('%s may not be subscribed to %s.' % (username, self.IE_NAME))
+            self.report_warning(
+                '%s may not be subscribed to %s.' %
+                (username, self.IE_NAME))
 
         self._session_token = login_result['sessionToken']
 
@@ -69,7 +75,8 @@ class TennisTVIE(InfoExtractor):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
 
-        internal_id = self._search_regex(r'video=([0-9]+)', webpage, 'internal video id')
+        internal_id = self._search_regex(
+            r'video=([0-9]+)', webpage, 'internal video id')
 
         headers = {
             'Origin': 'https://www.tennistv.com',
@@ -84,8 +91,12 @@ class TennisTVIE(InfoExtractor):
         check_json = json.dumps(check_data).encode('utf-8')
         check_result = self._download_json(
             'https://www.tennistv.com/api/users/v1/entitlementchecknondiva',
-            video_id, note='Checking video authorization', headers=headers, data=check_json)
-        formats = self._extract_m3u8_formats(check_result['contentUrl'], video_id, ext='mp4')
+            video_id,
+            note='Checking video authorization',
+            headers=headers,
+            data=check_json)
+        formats = self._extract_m3u8_formats(
+            check_result['contentUrl'], video_id, ext='mp4')
 
         vdata_url = 'https://www.tennistv.com/api/channels/v1/de/none/video/%s' % video_id
         vdata = self._download_json(vdata_url, video_id)

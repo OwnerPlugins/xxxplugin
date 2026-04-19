@@ -74,7 +74,8 @@ class NJPWWorldIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         formats = []
-        for kind, vid in re.findall(r'if\s+\(\s*imageQualityType\s*==\s*\'([^\']+)\'\s*\)\s*{\s*video_id\s*=\s*"(\d+)"', webpage):
+        for kind, vid in re.findall(
+                r'if\s+\(\s*imageQualityType\s*==\s*\'([^\']+)\'\s*\)\s*{\s*video_id\s*=\s*"(\d+)"', webpage):
             player_path = '/intent?id=%s&type=url' % vid
             player_url = compat_urlparse.urljoin(url, player_path)
             formats.append({
@@ -94,7 +95,9 @@ class NJPWWorldIE(InfoExtractor):
 
         return {
             'id': video_id,
-            'title': get_element_by_class('article-title', webpage) or self._og_search_title(webpage),
+            'title': get_element_by_class(
+                'article-title',
+                webpage) or self._og_search_title(webpage),
             'formats': formats,
             'tags': tags,
         }

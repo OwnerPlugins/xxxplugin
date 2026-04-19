@@ -200,8 +200,7 @@ class AnvatoIE(InfoExtractor):
         'gray': 'anvato_mcp_gray_web_prod_4c10f067c393ed8fc453d3930f8ab2b159973900',
         'hearst': 'anvato_mcp_hearst_web_prod_5356c3de0fc7c90a3727b4863ca7fec3a4524a99',
         'cbs': 'anvato_mcp_cbs_web_prod_02f26581ff80e5bda7aad28226a8d369037f2cbe',
-        'telemundo': 'anvato_mcp_telemundo_web_prod_c5278d51ad46fda4b6ca3d0ea44a7846a054f582'
-    }
+        'telemundo': 'anvato_mcp_telemundo_web_prod_c5278d51ad46fda4b6ca3d0ea44a7846a054f582'}
 
     _API_KEY = '3hwbSuqqT690uxjNYBktSQpa5ZrpYYR0Iofx7NcJHyA'
 
@@ -209,7 +208,8 @@ class AnvatoIE(InfoExtractor):
     _AUTH_KEY = b'\x31\xc2\x42\x84\x9e\x73\xa0\xce'
 
     _TESTS = [{
-        # from https://www.boston25news.com/news/watch-humpback-whale-breaches-right-next-to-fishing-boat-near-nh/817484874
+        # from
+        # https://www.boston25news.com/news/watch-humpback-whale-breaches-right-next-to-fishing-boat-near-nh/817484874
         'url': 'anvato:8v9BEynrwx8EFLYpgfOWcG1qJqyXKlRM:4465496',
         'info_dict': {
             'id': '4465496',
@@ -225,7 +225,8 @@ class AnvatoIE(InfoExtractor):
             'skip_download': True,
         },
     }, {
-        # from https://sanfrancisco.cbslocal.com/2016/06/17/source-oakland-cop-on-leave-for-having-girlfriend-help-with-police-reports/
+        # from
+        # https://sanfrancisco.cbslocal.com/2016/06/17/source-oakland-cop-on-leave-for-having-girlfriend-help-with-police-reports/
         'url': 'anvato:DVzl9QRzox3ZZsP9bNu5Li3X7obQOnqP:3417601',
         'only_matching': True,
     }]
@@ -238,25 +239,33 @@ class AnvatoIE(InfoExtractor):
         if self.__server_time is not None:
             return self.__server_time
 
-        self.__server_time = int(self._download_json(
-            self._api_prefix(access_key) + 'server_time?anvack=' + access_key, video_id,
-            note='Fetching server time')['server_time'])
+        self.__server_time = int(
+            self._download_json(
+                self._api_prefix(access_key) +
+                'server_time?anvack=' +
+                access_key,
+                video_id,
+                note='Fetching server time')['server_time'])
 
         return self.__server_time
 
     def _api_prefix(self, access_key):
-        return 'https://tkx2-%s.anvato.net/rest/v2/' % ('prod' if 'prod' in access_key else 'stage')
+        return 'https://tkx2-%s.anvato.net/rest/v2/' % (
+            'prod' if 'prod' in access_key else 'stage')
 
     def _get_video_json(self, access_key, video_id):
         # See et() in anvplayer.min.js, which is an alias of getVideoJSON()
-        video_data_url = self._api_prefix(access_key) + 'mcp/video/%s?anvack=%s' % (video_id, access_key)
+        video_data_url = self._api_prefix(
+            access_key) + 'mcp/video/%s?anvack=%s' % (video_id, access_key)
         server_time = self._server_time(access_key, video_id)
-        input_data = '%d~%s~%s' % (server_time, md5_text(video_data_url), md5_text(server_time))
+        input_data = '%d~%s~%s' % (server_time, md5_text(
+            video_data_url), md5_text(server_time))
 
-        auth_secret = intlist_to_bytes(aes_encrypt(
-            bytes_to_intlist(input_data[:64]), bytes_to_intlist(self._AUTH_KEY)))
+        auth_secret = intlist_to_bytes(aes_encrypt(bytes_to_intlist(
+            input_data[:64]), bytes_to_intlist(self._AUTH_KEY)))
 
-        video_data_url += '&X-Anvato-Adst-Auth=' + base64.b64encode(auth_secret).decode('ascii')
+        video_data_url += '&X-Anvato-Adst-Auth=' + \
+            base64.b64encode(auth_secret).decode('ascii')
         anvrid = md5_text(time.time() * 1000 * random.random())[:30]
         api = {
             'anvrid': anvrid,
@@ -324,13 +333,16 @@ class AnvatoIE(InfoExtractor):
             'formats': formats,
             'title': video_data.get('def_title'),
             'description': video_data.get('def_description'),
-            'tags': video_data.get('def_tags', '').split(','),
+            'tags': video_data.get(
+                'def_tags',
+                '').split(','),
             'categories': video_data.get('categories'),
             'thumbnail': video_data.get('src_image_url') or video_data.get('thumbnail'),
-            'timestamp': int_or_none(video_data.get(
-                'ts_published') or video_data.get('ts_added')),
+            'timestamp': int_or_none(
+                video_data.get('ts_published') or video_data.get('ts_added')),
             'uploader': video_data.get('mcp_id'),
-            'duration': int_or_none(video_data.get('duration')),
+            'duration': int_or_none(
+                video_data.get('duration')),
             'subtitles': subtitles,
         }
 

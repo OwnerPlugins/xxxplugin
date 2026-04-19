@@ -52,7 +52,8 @@ class CanvasIE(InfoExtractor):
 
         data = None
         if site_id != 'vrtvideo':
-            # Old API endpoint, serves more formats but may fail for some videos
+            # Old API endpoint, serves more formats but may fail for some
+            # videos
             data = self._download_json(
                 'https://mediazone.vrt.be/api/v1/%s/assets/%s'
                 % (site_id, video_id), video_id, 'Downloading asset JSON',
@@ -63,8 +64,12 @@ class CanvasIE(InfoExtractor):
             headers = self.geo_verification_headers()
             headers.update({'Content-Type': 'application/json'})
             token = self._download_json(
-                '%s/tokens' % self._REST_API_BASE, video_id,
-                'Downloading token', data=b'', headers=headers)['vrtPlayerToken']
+                '%s/tokens' %
+                self._REST_API_BASE,
+                video_id,
+                'Downloading token',
+                data=b'',
+                headers=headers)['vrtPlayerToken']
             data = self._download_json(
                 '%s/videos/%s' % (self._REST_API_BASE, video_id),
                 video_id, 'Downloading video JSON', query={
@@ -77,21 +82,29 @@ class CanvasIE(InfoExtractor):
                     self.raise_login_required()
                 elif code == 'INVALID_LOCATION':
                     self.raise_geo_restricted(countries=['BE'])
-                raise ExtractorError(data.get('message') or code, expected=True)
+                raise ExtractorError(
+                    data.get('message') or code, expected=True)
 
         title = data['title']
         description = data.get('description')
 
         formats = []
         for target in data['targetUrls']:
-            format_url, format_type = url_or_none(target.get('url')), str_or_none(target.get('type'))
+            format_url, format_type = url_or_none(
+                target.get('url')), str_or_none(
+                target.get('type'))
             if not format_url or not format_type:
                 continue
             format_type = format_type.upper()
             if format_type in self._HLS_ENTRY_PROTOCOLS_MAP:
-                formats.extend(self._extract_m3u8_formats(
-                    format_url, video_id, 'mp4', self._HLS_ENTRY_PROTOCOLS_MAP[format_type],
-                    m3u8_id=format_type, fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        format_url,
+                        video_id,
+                        'mp4',
+                        self._HLS_ENTRY_PROTOCOLS_MAP[format_type],
+                        m3u8_id=format_type,
+                        fatal=False))
             elif format_type == 'HDS':
                 formats.extend(self._extract_f4m_formats(
                     format_url, video_id, f4m_id=format_type, fatal=False))
@@ -114,7 +127,8 @@ class CanvasIE(InfoExtractor):
             for subtitle in subtitle_urls:
                 subtitle_url = subtitle.get('url')
                 if subtitle_url and subtitle.get('type') == 'CLOSED':
-                    subtitles.setdefault('nl', []).append({'url': subtitle_url})
+                    subtitles.setdefault('nl', []).append(
+                        {'url': subtitle_url})
 
         return {
             'id': video_id,
@@ -300,10 +314,12 @@ class VrtNUIE(GigyaBaseIE):
                         'email': auth_info['profile']['email'],
                     }).encode('utf-8'))
             except ExtractorError as e:
-                if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
+                if isinstance(e.cause,
+                              compat_HTTPError) and e.cause.code == 401:
                     login_attempt += 1
                     self.report_warning('Authentication failed')
-                    self._sleep(1, None, msg_template='Waiting for %(timeout)s seconds before trying again')
+                    self._sleep(
+                        1, None, msg_template='Waiting for %(timeout)s seconds before trying again')
                 else:
                     raise e
             else:

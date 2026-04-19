@@ -31,10 +31,8 @@ class TheSceneIE(InfoExtractor):
 
         webpage = self._download_webpage(url, display_id)
 
-        player_url = compat_urlparse.urljoin(
-            url,
-            self._html_search_regex(
-                r'id=\'js-player-script\'[^>]+src=\'(.+?)\'', webpage, 'player url'))
+        player_url = compat_urlparse.urljoin(url, self._html_search_regex(
+            r'id=\'js-player-script\'[^>]+src=\'(.+?)\'', webpage, 'player url'))
 
         return {
             '_type': 'url_transparent',

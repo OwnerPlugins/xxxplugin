@@ -38,15 +38,18 @@ class DRBonanzaIE(InfoExtractor):
 
         asset = self._parse_json(
             self._search_regex(
-                r'(?s)currentAsset\s*=\s*({.+?})\s*</script', webpage, 'asset'),
-            display_id, transform_source=js_to_json)
+                r'(?s)currentAsset\s*=\s*({.+?})\s*</script',
+                webpage,
+                'asset'),
+            display_id,
+            transform_source=js_to_json)
 
         title = unescapeHTML(asset['AssetTitle']).strip()
 
         def extract(field):
             return self._search_regex(
-                r'<div[^>]+>\s*<p>%s:<p>\s*</div>\s*<div[^>]+>\s*<p>([^<]+)</p>' % field,
-                webpage, field, default=None)
+                r'<div[^>]+>\s*<p>%s:<p>\s*</div>\s*<div[^>]+>\s*<p>([^<]+)</p>' %
+                field, webpage, field, default=None)
 
         info.update({
             'id': asset.get('AssetId') or video_id,

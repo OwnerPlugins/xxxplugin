@@ -14,40 +14,37 @@ from ..utils import (
 
 class SonyLIVIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?sonyliv\.com/(?:s(?:how|port)s/[^/]+|movies|clip|trailer|music-videos)/[^/?#&]+-(?P<id>\d+)'
-    _TESTS = [{
-        'url': 'https://www.sonyliv.com/shows/bachelors-delight-1700000113/achaari-cheese-toast-1000022678?watch=true',
-        'info_dict': {
-            'title': 'Bachelors Delight - Achaari Cheese Toast',
-            'id': '1000022678',
-            'ext': 'mp4',
-            'upload_date': '20200411',
-            'description': 'md5:3957fa31d9309bf336ceb3f37ad5b7cb',
-            'timestamp': 1586632091,
-            'duration': 185,
-            'season_number': 1,
-            'episode': 'Achaari Cheese Toast',
-            'episode_number': 1,
-            'release_year': 2016,
-        },
-        'params': {
-            'skip_download': True,
-        },
-    }, {
-        'url': 'https://www.sonyliv.com/movies/tahalka-1000050121?watch=true',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.sonyliv.com/clip/jigarbaaz-1000098925',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.sonyliv.com/trailer/sandwiched-forever-1000100286?watch=true',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.sonyliv.com/sports/india-tour-of-australia-2020-21-1700000286/cricket-hls-day-3-1st-test-aus-vs-ind-19-dec-2020-1000100959?watch=true',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.sonyliv.com/music-videos/yeh-un-dinon-ki-baat-hai-1000018779',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.sonyliv.com/shows/bachelors-delight-1700000113/achaari-cheese-toast-1000022678?watch=true',
+               'info_dict': {'title': 'Bachelors Delight - Achaari Cheese Toast',
+                             'id': '1000022678',
+                             'ext': 'mp4',
+                             'upload_date': '20200411',
+                             'description': 'md5:3957fa31d9309bf336ceb3f37ad5b7cb',
+                             'timestamp': 1586632091,
+                             'duration': 185,
+                             'season_number': 1,
+                             'episode': 'Achaari Cheese Toast',
+                             'episode_number': 1,
+                             'release_year': 2016,
+                             },
+               'params': {'skip_download': True,
+                          },
+               },
+              {'url': 'https://www.sonyliv.com/movies/tahalka-1000050121?watch=true',
+               'only_matching': True,
+               },
+              {'url': 'https://www.sonyliv.com/clip/jigarbaaz-1000098925',
+               'only_matching': True,
+               },
+              {'url': 'https://www.sonyliv.com/trailer/sandwiched-forever-1000100286?watch=true',
+               'only_matching': True,
+               },
+              {'url': 'https://www.sonyliv.com/sports/india-tour-of-australia-2020-21-1700000286/cricket-hls-day-3-1st-test-aus-vs-ind-19-dec-2020-1000100959?watch=true',
+               'only_matching': True,
+               },
+              {'url': 'https://www.sonyliv.com/music-videos/yeh-un-dinon-ki-baat-hai-1000018779',
+               'only_matching': True,
+               }]
     _GEO_COUNTRIES = ['IN']
     _TOKEN = None
 
@@ -57,8 +54,8 @@ class SonyLIVIE(InfoExtractor):
             headers['security_token'] = self._TOKEN
         try:
             return self._download_json(
-                'https://apiv2.sonyliv.com/AGL/%s/A/ENG/WEB/%s' % (version, path),
-                video_id, headers=headers)['resultObj']
+                'https://apiv2.sonyliv.com/AGL/%s/A/ENG/WEB/%s' %
+                (version, path), video_id, headers=headers)['resultObj']
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 403:
                 message = self._parse_json(
@@ -79,8 +76,8 @@ class SonyLIVIE(InfoExtractor):
             raise ExtractorError('This video is DRM protected.', expected=True)
         dash_url = content['videoURL']
         headers = {
-            'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
-        }
+            'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex,
+                                                time.time() * 1000)}
         formats = self._extract_mpd_formats(
             dash_url, video_id, mpd_id='dash', headers=headers, fatal=False)
         formats.extend(self._extract_m3u8_formats(
@@ -91,7 +88,9 @@ class SonyLIVIE(InfoExtractor):
         self._sort_formats(formats)
 
         metadata = self._call_api(
-            '1.6', 'IN/DETAIL/' + video_id, video_id)['containers'][0]['metadata']
+            '1.6',
+            'IN/DETAIL/' + video_id,
+            video_id)['containers'][0]['metadata']
         title = metadata['title']
         episode = metadata.get('episodeTitle')
         if episode and title != episode:
@@ -103,10 +102,16 @@ class SonyLIVIE(InfoExtractor):
             'formats': formats,
             'thumbnail': content.get('posterURL'),
             'description': metadata.get('longDescription') or metadata.get('shortDescription'),
-            'timestamp': int_or_none(metadata.get('creationDate'), 1000),
-            'duration': int_or_none(metadata.get('duration')),
-            'season_number': int_or_none(metadata.get('season')),
+            'timestamp': int_or_none(
+                metadata.get('creationDate'),
+                1000),
+            'duration': int_or_none(
+                metadata.get('duration')),
+            'season_number': int_or_none(
+                metadata.get('season')),
             'episode': episode,
-            'episode_number': int_or_none(metadata.get('episodeNumber')),
-            'release_year': int_or_none(metadata.get('year')),
+            'episode_number': int_or_none(
+                metadata.get('episodeNumber')),
+            'release_year': int_or_none(
+                metadata.get('year')),
         }

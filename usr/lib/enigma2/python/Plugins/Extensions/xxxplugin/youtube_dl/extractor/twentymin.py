@@ -49,9 +49,10 @@ class TwentyMinutenIE(InfoExtractor):
 
     @staticmethod
     def _extract_urls(webpage):
-        return [m.group('url') for m in re.finditer(
-            r'<iframe[^>]+src=(["\'])(?P<url>(?:(?:https?:)?//)?(?:www\.)?20min\.ch/videoplayer/videoplayer.html\?.*?\bvideoId@\d+.*?)\1',
-            webpage)]
+        return [
+            m.group('url') for m in re.finditer(
+                r'<iframe[^>]+src=(["\'])(?P<url>(?:(?:https?:)?//)?(?:www\.)?20min\.ch/videoplayer/videoplayer.html\?.*?\bvideoId@\d+.*?)\1',
+                webpage)]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -73,9 +74,8 @@ class TwentyMinutenIE(InfoExtractor):
         thumbnail = video.get('thumbnail')
 
         def extract_count(kind):
-            return try_get(
-                video,
-                lambda x: int_or_none(x['communityobject']['thumbs_%s' % kind]))
+            return try_get(video, lambda x: int_or_none(
+                x['communityobject']['thumbs_%s' % kind]))
 
         like_count = extract_count('up')
         dislike_count = extract_count('down')

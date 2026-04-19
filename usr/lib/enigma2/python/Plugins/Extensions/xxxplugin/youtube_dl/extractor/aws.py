@@ -30,12 +30,15 @@ class AWSIE(InfoExtractor):
         def aws_hash(s):
             return hashlib.sha256(s.encode('utf-8')).hexdigest()
 
-        # Task 1: http://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html
+        # Task 1:
+        # http://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html
         canonical_querystring = compat_urllib_parse_urlencode(query)
         canonical_headers = ''
         for header_name, header_value in sorted(headers.items()):
-            canonical_headers += '%s:%s\n' % (header_name.lower(), header_value)
-        signed_headers = ';'.join([header.lower() for header in sorted(headers.keys())])
+            canonical_headers += '%s:%s\n' % (
+                header_name.lower(), header_value)
+        signed_headers = ';'.join([header.lower()
+                                  for header in sorted(headers.keys())])
         canonical_request = '\n'.join([
             'GET',
             aws_dict['uri'],
@@ -45,12 +48,19 @@ class AWSIE(InfoExtractor):
             aws_hash('')
         ])
 
-        # Task 2: http://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html
-        credential_scope_list = [date, self._AWS_REGION, 'execute-api', 'aws4_request']
+        # Task 2:
+        # http://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html
+        credential_scope_list = [
+            date,
+            self._AWS_REGION,
+            'execute-api',
+            'aws4_request']
         credential_scope = '/'.join(credential_scope_list)
-        string_to_sign = '\n'.join([self._AWS_ALGORITHM, amz_date, credential_scope, aws_hash(canonical_request)])
+        string_to_sign = '\n'.join(
+            [self._AWS_ALGORITHM, amz_date, credential_scope, aws_hash(canonical_request)])
 
-        # Task 3: http://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
+        # Task 3:
+        # http://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
         def aws_hmac(key, msg):
             return hmac.new(key, msg.encode('utf-8'), hashlib.sha256)
 
@@ -66,13 +76,25 @@ class AWSIE(InfoExtractor):
 
         signature = aws_hmac_hexdigest(k_signing, string_to_sign)
 
-        # Task 4: http://docs.aws.amazon.com/general/latest/gr/sigv4-add-signature-to-request.html
-        headers['Authorization'] = ', '.join([
-            '%s Credential=%s/%s' % (self._AWS_ALGORITHM, aws_dict['access_key'], credential_scope),
-            'SignedHeaders=%s' % signed_headers,
-            'Signature=%s' % signature,
-        ])
+        # Task 4:
+        # http://docs.aws.amazon.com/general/latest/gr/sigv4-add-signature-to-request.html
+        headers['Authorization'] = ', '.join(
+            [
+                '%s Credential=%s/%s' %
+                (self._AWS_ALGORITHM,
+                 aws_dict['access_key'],
+                 credential_scope),
+                'SignedHeaders=%s' %
+                signed_headers,
+                'Signature=%s' %
+                signature,
+            ])
 
         return self._download_json(
-            'https://%s%s%s' % (self._AWS_PROXY_HOST, aws_dict['uri'], '?' + canonical_querystring if canonical_querystring else ''),
-            video_id, headers=headers)
+            'https://%s%s%s' %
+            (self._AWS_PROXY_HOST,
+             aws_dict['uri'],
+             '?' +
+             canonical_querystring if canonical_querystring else ''),
+            video_id,
+            headers=headers)

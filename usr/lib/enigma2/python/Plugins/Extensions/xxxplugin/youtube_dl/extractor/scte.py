@@ -50,7 +50,9 @@ class SCTEBaseIE(InfoExtractor):
                 r'(?s)<[^>]+class=["\']AsiError["\'][^>]*>(.+?)</',
                 response, 'error message', default=None)
             if error:
-                raise ExtractorError('Unable to login: %s' % error, expected=True)
+                raise ExtractorError(
+                    'Unable to login: %s' %
+                    error, expected=True)
             raise ExtractorError('Unable to log in')
 
 
@@ -80,7 +82,11 @@ class SCTEIE(SCTEBaseIE):
 
         data = self._parse_xml(
             self._search_regex(
-                r'CreateData\(\s*"(.+?)"', context, 'data').replace(r"\'", "'"),
+                r'CreateData\(\s*"(.+?)"',
+                context,
+                'data').replace(
+                r"\'",
+                "'"),
             video_id)
 
         entries = []

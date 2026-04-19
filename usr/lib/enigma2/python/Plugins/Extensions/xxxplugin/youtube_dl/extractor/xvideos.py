@@ -86,7 +86,12 @@ class XVideosIE(InfoExtractor):
 
         mobj = re.search(r'<h1 class="inlineError">(.+?)</h1>', webpage)
         if mobj:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, clean_html(mobj.group(1))), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME,
+                 clean_html(
+                     mobj.group(1))),
+                expected=True)
 
         title = self._html_search_regex(
             (r'<title>(?P<title>.+?)\s+-\s+XVID',
@@ -97,8 +102,8 @@ class XVideosIE(InfoExtractor):
         thumbnails = []
         for preference, thumbnail in enumerate(('', '169')):
             thumbnail_url = self._search_regex(
-                r'setThumbUrl%s\(\s*(["\'])(?P<thumbnail>(?:(?!\1).)+)\1' % thumbnail,
-                webpage, 'thumbnail', default=None, group='thumbnail')
+                r'setThumbUrl%s\(\s*(["\'])(?P<thumbnail>(?:(?!\1).)+)\1' %
+                thumbnail, webpage, 'thumbnail', default=None, group='thumbnail')
             if thumbnail_url:
                 thumbnails.append({
                     'url': thumbnail_url,

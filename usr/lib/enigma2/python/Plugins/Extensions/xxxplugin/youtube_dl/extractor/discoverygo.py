@@ -46,9 +46,14 @@ class DiscoveryGoBaseIE(InfoExtractor):
             if not stream_url:
                 continue
             if stream_kind == '':
-                formats.extend(self._extract_m3u8_formats(
-                    stream_url, display_id, 'mp4', entry_protocol='m3u8_native',
-                    m3u8_id='hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        stream_url,
+                        display_id,
+                        'mp4',
+                        entry_protocol='m3u8_native',
+                        m3u8_id='hls',
+                        fatal=False))
             elif stream_kind == 'hds':
                 formats.extend(self._extract_f4m_formats(
                     stream_url, display_id, f4m_id=stream_kind, fatal=False))
@@ -155,7 +160,9 @@ class DiscoveryGoPlaylistIE(DiscoveryGoBaseIE):
         webpage = self._download_webpage(url, display_id)
 
         entries = []
-        for mobj in re.finditer(r'data-json=(["\'])(?P<json>{.+?})\1', webpage):
+        for mobj in re.finditer(
+            r'data-json=(["\'])(?P<json>{.+?})\1',
+                webpage):
             data = self._parse_json(
                 mobj.group('json'), display_id,
                 transform_source=unescapeHTML, fatal=False)

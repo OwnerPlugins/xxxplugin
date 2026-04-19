@@ -80,7 +80,8 @@ class OdnoklassnikiIE(InfoExtractor):
             'age_limit': 0,
         },
     }, {
-        # YouTube embed (metadata, provider == USER_YOUTUBE, no metadata.movie.title field)
+        # YouTube embed (metadata, provider == USER_YOUTUBE, no
+        # metadata.movie.title field)
         'url': 'http://ok.ru/video/62036049272859-0',
         'info_dict': {
             'id': '62036049272859-0',
@@ -126,13 +127,16 @@ class OdnoklassnikiIE(InfoExtractor):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+src=(["\'])(?P<url>(?:https?:)?//(?:odnoklassniki|ok)\.ru/videoembed/.+?)\1', webpage)
+            r'<iframe[^>]+src=(["\'])(?P<url>(?:https?:)?//(?:odnoklassniki|ok)\.ru/videoembed/.+?)\1',
+            webpage)
         if mobj:
             return mobj.group('url')
 
     def _real_extract(self, url):
-        start_time = int_or_none(compat_parse_qs(
-            compat_urllib_parse_urlparse(url).query).get('fromTime', [None])[0])
+        start_time = int_or_none(
+            compat_parse_qs(
+                compat_urllib_parse_urlparse(url).query).get(
+                'fromTime', [None])[0])
 
         video_id = self._match_id(url)
 
@@ -146,9 +150,13 @@ class OdnoklassnikiIE(InfoExtractor):
             raise ExtractorError(error, expected=True)
 
         player = self._parse_json(
-            unescapeHTML(self._search_regex(
-                r'data-options=(?P<quote>["\'])(?P<player>{.+?%s.+?})(?P=quote)' % video_id,
-                webpage, 'player', group='player')),
+            unescapeHTML(
+                self._search_regex(
+                    r'data-options=(?P<quote>["\'])(?P<player>{.+?%s.+?})(?P=quote)' %
+                    video_id,
+                    webpage,
+                    'player',
+                    group='player')),
             video_id)
 
         flashvars = player['flashvars']
@@ -173,7 +181,8 @@ class OdnoklassnikiIE(InfoExtractor):
         # here and it's going to be extracted later by an extractor that
         # will process the actual embed.
         provider = metadata.get('provider')
-        title = movie['title'] if provider == 'UPLOADED_ODKL' else movie.get('title')
+        title = movie['title'] if provider == 'UPLOADED_ODKL' else movie.get(
+            'title')
 
         thumbnail = movie.get('poster')
         duration = int_or_none(movie.get('duration'))
@@ -260,7 +269,9 @@ class OdnoklassnikiIE(InfoExtractor):
         if not formats:
             payment_info = metadata.get('paymentInfo')
             if payment_info:
-                raise ExtractorError('This video is paid, subscribe to download it', expected=True)
+                raise ExtractorError(
+                    'This video is paid, subscribe to download it',
+                    expected=True)
 
         self._sort_formats(formats)
 

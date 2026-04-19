@@ -51,16 +51,24 @@ class LiTVIE(InfoExtractor):
         'skip': 'Georestricted to Taiwan',
     }]
 
-    def _extract_playlist(self, season_list, video_id, program_info, prompt=True):
+    def _extract_playlist(
+            self,
+            season_list,
+            video_id,
+            program_info,
+            prompt=True):
         episode_title = program_info['title']
         content_id = season_list['contentId']
 
         if prompt:
-            self.to_screen('Downloading playlist %s - add --no-playlist to just download video %s' % (content_id, video_id))
+            self.to_screen(
+                'Downloading playlist %s - add --no-playlist to just download video %s' %
+                (content_id, video_id))
 
         all_episodes = [
             self.url_result(smuggle_url(
-                self._URL_TEMPLATE % (program_info['contentType'], episode['contentId']),
+                self._URL_TEMPLATE % (
+                    program_info['contentType'], episode['contentId']),
                 {'force_noplaylist': True}))  # To prevent infinite recursion
             for episode in season_list['episode']]
 
@@ -79,8 +87,12 @@ class LiTVIE(InfoExtractor):
 
         webpage = self._download_webpage(url, video_id)
 
-        program_info = self._parse_json(self._search_regex(
-            r'var\s+programInfo\s*=\s*([^;]+)', webpage, 'VOD data', default='{}'),
+        program_info = self._parse_json(
+            self._search_regex(
+                r'var\s+programInfo\s*=\s*([^;]+)',
+                webpage,
+                'VOD data',
+                default='{}'),
             video_id)
 
         season_list = list(program_info.get('seasonList', {}).values())
@@ -91,7 +103,9 @@ class LiTVIE(InfoExtractor):
                     prompt=noplaylist_prompt)
 
             if noplaylist_prompt:
-                self.to_screen('Downloading just video %s because of --no-playlist' % video_id)
+                self.to_screen(
+                    'Downloading just video %s because of --no-playlist' %
+                    video_id)
 
         # In browsers `getMainUrl` request is always issued. Usually this
         # endpoint gives the same result as the data embedded in the webpage.
@@ -119,9 +133,12 @@ class LiTVIE(InfoExtractor):
         if not video_data.get('fullpath'):
             error_msg = video_data.get('errorMessage')
             if error_msg == 'vod.error.outsideregionerror':
-                self.raise_geo_restricted('This video is available in Taiwan only')
+                self.raise_geo_restricted(
+                    'This video is available in Taiwan only')
             if error_msg:
-                raise ExtractorError('%s said: %s' % (self.IE_NAME, error_msg), expected=True)
+                raise ExtractorError(
+                    '%s said: %s' %
+                    (self.IE_NAME, error_msg), expected=True)
             raise ExtractorError('Unexpected result from %s' % self.IE_NAME)
 
         formats = self._extract_m3u8_formats(
@@ -129,12 +146,14 @@ class LiTVIE(InfoExtractor):
             entry_protocol='m3u8_native', m3u8_id='hls')
         for a_format in formats:
             # LiTV HLS segments doesn't like compressions
-            a_format.setdefault('http_headers', {})['Youtubedl-no-compression'] = True
+            a_format.setdefault('http_headers', {})[
+                'Youtubedl-no-compression'] = True
 
         title = program_info['title'] + program_info.get('secondaryMark', '')
         description = program_info.get('description')
         thumbnail = program_info.get('imageFile')
-        categories = [item['name'] for item in program_info.get('category', [])]
+        categories = [item['name']
+                      for item in program_info.get('category', [])]
         episode = int_or_none(program_info.get('episode'))
 
         return {

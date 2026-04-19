@@ -75,7 +75,8 @@ class UstreamIE(InfoExtractor):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+?src=(["\'])(?P<url>https?://(?:www\.)?(?:ustream\.tv|video\.ibm\.com)/embed/.+?)\1', webpage)
+            r'<iframe[^>]+?src=(["\'])(?P<url>https?://(?:www\.)?(?:ustream\.tv|video\.ibm\.com)/embed/.+?)\1',
+            webpage)
         if mobj is not None:
             return mobj.group('url')
 
@@ -112,25 +113,27 @@ class UstreamIE(InfoExtractor):
         # Sometimes the return dict does not have 'stream'
         for trial_count in range(3):
             stream_info = self._get_stream_info(
-                url, video_id, app_id_ver,
-                extra_note=' (try %d)' % (trial_count + 1) if trial_count > 0 else '')
+                url, video_id, app_id_ver, extra_note=' (try %d)' %
+                (trial_count + 1) if trial_count > 0 else '')
             if 'stream' in stream_info[0]['args'][0]:
                 return stream_info[0]['args'][0]['stream']
         return []
 
     def _parse_segmented_mp4(self, dash_stream_info):
         def resolve_dash_template(template, idx, chunk_hash):
-            return template.replace('%', compat_str(idx), 1).replace('%', chunk_hash)
+            return template.replace(
+                '%', compat_str(idx), 1).replace(
+                '%', chunk_hash)
 
         formats = []
         for stream in dash_stream_info['streams']:
             # Use only one provider to avoid too many formats
             provider = dash_stream_info['providers'][0]
-            fragments = [{
-                'url': resolve_dash_template(
-                    provider['url'] + stream['initUrl'], 0, dash_stream_info['hashes']['0'])
-            }]
-            for idx in range(dash_stream_info['videoLength'] // dash_stream_info['chunkTime']):
+            fragments = [{'url': resolve_dash_template(
+                provider['url'] + stream['initUrl'], 0, dash_stream_info['hashes']['0'])}]
+            for idx in range(
+                    dash_stream_info['videoLength'] //
+                    dash_stream_info['chunkTime']):
                 fragments.append({
                     'url': resolve_dash_template(
                         provider['url'] + stream['segmentUrl'], idx,
@@ -168,7 +171,8 @@ class UstreamIE(InfoExtractor):
         m = re.match(self._VALID_URL, url)
         video_id = m.group('id')
 
-        # some sites use this embed format (see: https://github.com/ytdl-org/youtube-dl/issues/2990)
+        # some sites use this embed format (see:
+        # https://github.com/ytdl-org/youtube-dl/issues/2990)
         if m.group('type') == 'embed/recorded':
             video_id = m.group('id')
             desktop_url = 'http://www.ustream.tv/recorded/' + video_id
@@ -179,9 +183,8 @@ class UstreamIE(InfoExtractor):
             content_video_ids = self._parse_json(self._search_regex(
                 r'ustream\.vars\.offAirContentVideoIds=([^;]+);', webpage,
                 'content video IDs'), video_id)
-            return self.playlist_result(
-                map(lambda u: self.url_result('http://www.ustream.tv/recorded/' + u, 'Ustream'), content_video_ids),
-                video_id)
+            return self.playlist_result(map(lambda u: self.url_result(
+                'http://www.ustream.tv/recorded/' + u, 'Ustream'), content_video_ids), video_id)
 
         params = self._download_json(
             'https://api.ustream.tv/videos/%s.json' % video_id, video_id)
@@ -268,9 +271,13 @@ class UstreamChannelIE(InfoExtractor):
         video_ids = []
         while next_url:
             reply = self._download_json(
-                compat_urlparse.urljoin(BASE, next_url), display_id,
-                note='Downloading video information (next: %d)' % (len(video_ids) + 1))
-            video_ids.extend(re.findall(r'data-content-id="(\d.*)"', reply['data']))
+                compat_urlparse.urljoin(
+                    BASE, next_url), display_id, note='Downloading video information (next: %d)' %
+                (len(video_ids) + 1))
+            video_ids.extend(
+                re.findall(
+                    r'data-content-id="(\d.*)"',
+                    reply['data']))
             next_url = reply['nextUrl']
 
         entries = [

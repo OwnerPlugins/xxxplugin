@@ -231,7 +231,8 @@ class CrunchyrollIE(CrunchyrollBaseIE, VRVIE):
         },
         'skip': 'Video gone',
     }, {
-        # A video with a vastly different season name compared to the series name
+        # A video with a vastly different season name compared to the series
+        # name
         'url': 'http://www.crunchyroll.com/nyarko-san-another-crawling-chaos/episode-1-test-590532',
         'info_dict': {
             'id': '590532',
@@ -264,17 +265,26 @@ class CrunchyrollIE(CrunchyrollBaseIE, VRVIE):
     }
 
     def _download_webpage(self, url_or_request, *args, **kwargs):
-        request = (url_or_request if isinstance(url_or_request, compat_urllib_request.Request)
-                   else sanitized_Request(url_or_request))
+        request = (
+            url_or_request if isinstance(
+                url_or_request,
+                compat_urllib_request.Request) else sanitized_Request(url_or_request))
         # Accept-Language must be set explicitly to accept any language to avoid issues
         # similar to https://github.com/ytdl-org/youtube-dl/issues/6797.
         # Along with IP address Crunchyroll uses Accept-Language to guess whether georestriction
         # should be imposed or not (from what I can see it just takes the first language
         # ignoring the priority and requires it to correspond the IP). By the way this causes
         # Crunchyroll to not work in georestriction cases in some browsers that don't place
-        # the locale lang first in header. However allowing any language seems to workaround the issue.
+        # the locale lang first in header. However allowing any language seems
+        # to workaround the issue.
         request.add_header('Accept-Language', '*')
-        return super(CrunchyrollBaseIE, self)._download_webpage(request, *args, **kwargs)
+        return super(
+            CrunchyrollBaseIE,
+            self)._download_webpage(
+            request,
+            *
+            args,
+            **kwargs)
 
     def _decrypt_subtitles(self, data, iv, id):
         data = bytes_to_intlist(compat_b64decode(data))
@@ -296,7 +306,8 @@ class CrunchyrollIE(CrunchyrollBaseIE, VRVIE):
             num3 = key ^ num1
             num4 = num3 ^ (num3 >> 3) ^ num2
             prefix = intlist_to_bytes(obfuscate_key_aux(20, 97, (1, 2)))
-            shaHash = bytes_to_intlist(sha1(prefix + str(num4).encode('ascii')).digest())
+            shaHash = bytes_to_intlist(
+                sha1(prefix + str(num4).encode('ascii')).digest())
             # Extend 160 Bit hash to 256 Bit
             return shaHash + [0] * 12
 
@@ -391,7 +402,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
     def _get_subtitles(self, video_id, webpage):
         subtitles = {}
-        for sub_id, sub_name in re.findall(r'\bssid=([0-9]+)"[^>]+?\btitle="([^"]+)', webpage):
+        for sub_id, sub_name in re.findall(
+                r'\bssid=([0-9]+)"[^>]+?\btitle="([^"]+)', webpage):
             sub_doc = self._call_rpc_api(
                 'Subtitle_GetXml', video_id,
                 'Downloading subtitles for ' + sub_name, data={
@@ -405,7 +417,11 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             if not sid or not iv or not data:
                 continue
             subtitle = self._decrypt_subtitles(data, iv, sid).decode('utf-8')
-            lang_code = self._search_regex(r'lang_code=["\']([^"\']+)', subtitle, 'subtitle_lang_code', fatal=False)
+            lang_code = self._search_regex(
+                r'lang_code=["\']([^"\']+)',
+                subtitle,
+                'subtitle_lang_code',
+                fatal=False)
             if not lang_code:
                 continue
             subtitles[lang_code] = self._extract_subtitles(subtitle)
@@ -416,8 +432,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         video_id = mobj.group('video_id')
 
         if mobj.group('prefix') == 'm':
-            mobile_webpage = self._download_webpage(url, video_id, 'Downloading mobile webpage')
-            webpage_url = self._search_regex(r'<link rel="canonical" href="([^"]+)" />', mobile_webpage, 'webpage_url')
+            mobile_webpage = self._download_webpage(
+                url, video_id, 'Downloading mobile webpage')
+            webpage_url = self._search_regex(
+                r'<link rel="canonical" href="([^"]+)" />',
+                mobile_webpage,
+                'webpage_url')
         else:
             webpage_url = 'http://www.' + mobj.group('url')
 
@@ -430,11 +450,15 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         if note_m:
             raise ExtractorError(note_m)
 
-        mobj = re.search(r'Page\.messaging_box_controller\.addItems\(\[(?P<msg>{.+?})\]\)', webpage)
+        mobj = re.search(
+            r'Page\.messaging_box_controller\.addItems\(\[(?P<msg>{.+?})\]\)',
+            webpage)
         if mobj:
             msg = json.loads(mobj.group('msg'))
             if msg.get('type') == 'error':
-                raise ExtractorError('crunchyroll returned error: %s' % msg['message_body'], expected=True)
+                raise ExtractorError(
+                    'crunchyroll returned error: %s' %
+                    msg['message_body'], expected=True)
 
         if 'To view this, please log in to verify you are 18 or older.' in webpage:
             self.raise_login_required()
@@ -453,16 +477,26 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
              r'<title>(.+?),\s+-\s+.+? Crunchyroll'),
             webpage, 'video_title', default=None)
         if not video_title:
-            video_title = re.sub(r'^Watch\s+', '', self._og_search_description(webpage))
+            video_title = re.sub(
+                r'^Watch\s+', '', self._og_search_description(webpage))
         video_title = re.sub(r' {2,}', ' ', video_title)
-        video_description = (self._parse_json(self._html_search_regex(
-            r'<script[^>]*>\s*.+?\[media_id=%s\].+?({.+?"description"\s*:.+?})\);' % video_id,
-            webpage, 'description', default='{}'), video_id) or media_metadata).get('description')
+        video_description = (
+            self._parse_json(
+                self._html_search_regex(
+                    r'<script[^>]*>\s*.+?\[media_id=%s\].+?({.+?"description"\s*:.+?})\);' %
+                    video_id,
+                    webpage,
+                    'description',
+                    default='{}'),
+                video_id) or media_metadata).get('description')
         if video_description:
-            video_description = lowercase_escape(video_description.replace(r'\r\n', '\n'))
+            video_description = lowercase_escape(
+                video_description.replace(r'\r\n', '\n'))
         video_uploader = self._html_search_regex(
             # try looking for both an uploader that's a link and one that's not
-            [r'<a[^>]+href="/publisher/[^"]+"[^>]*>([^<]+)</a>', r'<div>\s*Publisher:\s*<span>\s*(.+?)\s*</span>\s*</div>'],
+            [
+                r'<a[^>]+href="/publisher/[^"]+"[^>]*>([^<]+)</a>',
+                r'<div>\s*Publisher:\s*<span>\s*(.+?)\s*</span>\s*</div>'],
             webpage, 'video_uploader', default=False)
 
         formats = []
@@ -485,14 +519,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             formats.extend(vrv_formats)
         if not formats:
             available_fmts = []
-            for a, fmt in re.findall(r'(<a[^>]+token=["\']showmedia\.([0-9]{3,4})p["\'][^>]+>)', webpage):
+            for a, fmt in re.findall(
+                    r'(<a[^>]+token=["\']showmedia\.([0-9]{3,4})p["\'][^>]+>)', webpage):
                 attrs = extract_attributes(a)
                 href = attrs.get('href')
                 if href and '/freetrial' in href:
                     continue
                 available_fmts.append(fmt)
             if not available_fmts:
-                for p in (r'token=["\']showmedia\.([0-9]{3,4})p"', r'showmedia\.([0-9]{3,4})p'):
+                for p in (
+                    r'token=["\']showmedia\.([0-9]{3,4})p"',
+                        r'showmedia\.([0-9]{3,4})p'):
                     available_fmts = re.findall(p, webpage)
                     if available_fmts:
                         break
@@ -513,7 +550,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                         'current_page': url,
                     })
                 if isinstance(streamdata, compat_etree_Element):
-                    stream_info = streamdata.find('./{default}preload/stream_info')
+                    stream_info = streamdata.find(
+                        './{default}preload/stream_info')
                     if stream_info is not None:
                         stream_infos.append(stream_info)
                 stream_info = self._call_rpc_api(
@@ -526,7 +564,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 if isinstance(stream_info, compat_etree_Element):
                     stream_infos.append(stream_info)
                 for stream_info in stream_infos:
-                    video_encode_id = xpath_text(stream_info, './video_encode_id')
+                    video_encode_id = xpath_text(
+                        stream_info, './video_encode_id')
                     if video_encode_id in video_encode_ids:
                         continue
                     video_encode_ids.append(video_encode_id)
@@ -535,9 +574,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     if not video_file:
                         continue
                     if video_file.startswith('http'):
-                        formats.extend(self._extract_m3u8_formats(
-                            video_file, video_id, 'mp4', entry_protocol='m3u8_native',
-                            m3u8_id='hls', fatal=False))
+                        formats.extend(
+                            self._extract_m3u8_formats(
+                                video_file,
+                                video_id,
+                                'mp4',
+                                entry_protocol='m3u8_native',
+                                m3u8_id='hls',
+                                fatal=False))
                         continue
 
                     video_url = xpath_text(stream_info, './host')
@@ -546,17 +590,25 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     metadata = stream_info.find('./metadata')
                     format_info = {
                         'format': video_format,
-                        'height': int_or_none(xpath_text(metadata, './height')),
-                        'width': int_or_none(xpath_text(metadata, './width')),
+                        'height': int_or_none(
+                            xpath_text(
+                                metadata,
+                                './height')),
+                        'width': int_or_none(
+                            xpath_text(
+                                metadata,
+                                './width')),
                     }
 
                     if '.fplive.net/' in video_url:
-                        video_url = re.sub(r'^rtmpe?://', 'http://', video_url.strip())
+                        video_url = re.sub(
+                            r'^rtmpe?://', 'http://', video_url.strip())
                         parsed_video_url = compat_urlparse.urlparse(video_url)
                         direct_video_url = compat_urlparse.urlunparse(parsed_video_url._replace(
                             netloc='v.lvlt.crcdn.net',
                             path='%s/%s' % (remove_end(parsed_video_url.path, '/'), video_file.split(':')[-1])))
-                        if self._is_valid_url(direct_video_url, video_id, video_format):
+                        if self._is_valid_url(
+                                direct_video_url, video_id, video_format):
                             format_info.update({
                                 'format_id': 'http-' + video_format,
                                 'url': direct_video_url,
@@ -571,7 +623,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                         'ext': 'flv',
                     })
                     formats.append(format_info)
-        self._sort_formats(formats, ('preference', 'language_preference', 'height', 'width', 'tbr', 'fps'))
+        self._sort_formats(
+            formats,
+            ('preference',
+             'language_preference',
+             'height',
+             'width',
+             'tbr',
+             'fps'))
 
         metadata = self._call_rpc_api(
             'VideoPlayer_GetMediaMetadata', video_id,
@@ -601,7 +660,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         if isinstance(metadata, compat_etree_Element):
             season = xpath_text(metadata, 'series_title')
             episode = xpath_text(metadata, 'episode_title')
-            episode_number = int_or_none(xpath_text(metadata, 'episode_number'))
+            episode_number = int_or_none(
+                xpath_text(metadata, 'episode_number'))
             duration = float_or_none(media_metadata.get('duration'), 1000)
             thumbnail = xpath_text(metadata, 'episode_image_url')
 
@@ -612,9 +672,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         if not thumbnail:
             thumbnail = media_metadata.get('thumbnail', {}).get('url')
 
-        season_number = int_or_none(self._search_regex(
-            r'(?s)<h\d[^>]+id=["\']showmedia_about_episode_num[^>]+>.+?</h\d>\s*<h4>\s*Season (\d+)',
-            webpage, 'season number', default=None))
+        season_number = int_or_none(
+            self._search_regex(
+                r'(?s)<h\d[^>]+id=["\']showmedia_about_episode_num[^>]+>.+?</h\d>\s*<h4>\s*Season (\d+)',
+                webpage,
+                'season number',
+                default=None))
 
         info = self._search_json_ld(webpage, video_id, default={})
 
@@ -656,7 +719,8 @@ class CrunchyrollShowPlaylistIE(CrunchyrollBaseIE):
         'playlist_count': 3,
         'skip': 'Georestricted',
     }, {
-        # geo-restricted (US), 18+ maturity wall, non-premium will be available since 2015.11.14
+        # geo-restricted (US), 18+ maturity wall, non-premium will be available
+        # since 2015.11.14
         'url': 'http://www.crunchyroll.com/ladies-versus-butlers?skip_wall=1',
         'only_matching': True,
     }]

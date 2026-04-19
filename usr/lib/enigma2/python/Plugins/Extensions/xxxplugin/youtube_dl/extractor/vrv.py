@@ -49,17 +49,23 @@ class VRVBaseIE(InfoExtractor):
             'POST' if data else 'GET',
             compat_urllib_parse.quote(base_url, ''),
             compat_urllib_parse.quote(encoded_query, '')])
-        oauth_signature = base64.b64encode(hmac.new(
-            (self._API_PARAMS['oAuthSecret'] + '&' + self._TOKEN_SECRET).encode('ascii'),
-            base_string.encode(), hashlib.sha1).digest()).decode()
-        encoded_query += '&oauth_signature=' + compat_urllib_parse.quote(oauth_signature, '')
+        oauth_signature = base64.b64encode(
+            hmac.new(
+                (self._API_PARAMS['oAuthSecret'] + '&' + self._TOKEN_SECRET).encode('ascii'),
+                base_string.encode(),
+                hashlib.sha1).digest()).decode()
+        encoded_query += '&oauth_signature=' + \
+            compat_urllib_parse.quote(oauth_signature, '')
         try:
             return self._download_json(
                 '?'.join([base_url, encoded_query]), video_id,
                 note='Downloading %s JSON metadata' % note, headers=headers, data=data)
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 401:
-                raise ExtractorError(json.loads(e.cause.read().decode())['message'], expected=True)
+                raise ExtractorError(
+                    json.loads(
+                        e.cause.read().decode())['message'],
+                    expected=True)
             raise
 
     def _call_cms(self, path, video_id, note):
@@ -70,12 +76,18 @@ class VRVBaseIE(InfoExtractor):
                 for signing_policy in index.get('signing_policies', []):
                     signing_path = signing_policy.get('path')
                     if signing_path and signing_path.startswith('/cms/'):
-                        name, value = signing_policy.get('name'), signing_policy.get('value')
+                        name, value = signing_policy.get(
+                            'name'), signing_policy.get('value')
                         if name and value:
                             self._CMS_SIGNING[name] = value
         return self._download_json(
-            self._API_DOMAIN + path, video_id, query=self._CMS_SIGNING,
-            note='Downloading %s JSON metadata' % note, headers=self.geo_verification_headers())
+            self._API_DOMAIN +
+            path,
+            video_id,
+            query=self._CMS_SIGNING,
+            note='Downloading %s JSON metadata' %
+            note,
+            headers=self.geo_verification_headers())
 
     def _get_cms_resource(self, resource_key, video_id):
         return self._call_api(
@@ -91,7 +103,8 @@ class VRVBaseIE(InfoExtractor):
                 r'window\.__APP_CONFIG__\s*=\s*({.+?})(?:</script>|;)',
                 r'window\.__APP_CONFIG__\s*=\s*({.+})'
             ], webpage, 'app config'), None)['cxApiParams']
-        self._API_DOMAIN = self._API_PARAMS.get('apiDomain', 'https://api.vrv.co')
+        self._API_DOMAIN = self._API_PARAMS.get(
+            'apiDomain', 'https://api.vrv.co')
 
 
 class VRVIE(VRVBaseIE):
@@ -137,7 +150,13 @@ class VRVIE(VRVBaseIE):
         self._TOKEN = token_credentials['oauth_token']
         self._TOKEN_SECRET = token_credentials['oauth_token_secret']
 
-    def _extract_vrv_formats(self, url, video_id, stream_format, audio_lang, hardsub_lang):
+    def _extract_vrv_formats(
+            self,
+            url,
+            video_id,
+            stream_format,
+            audio_lang,
+            hardsub_lang):
         if not url or stream_format not in ('hls', 'dash', 'adaptive_hls'):
             return []
         stream_id_list = []
@@ -167,8 +186,13 @@ class VRVIE(VRVBaseIE):
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
-        object_data = self._call_cms(self._get_cms_resource(
-            'cms:/objects/' + video_id, video_id), video_id, 'object')['items'][0]
+        object_data = self._call_cms(
+            self._get_cms_resource(
+                'cms:/objects/' +
+                video_id,
+                video_id),
+            video_id,
+            'object')['items'][0]
         resource_path = object_data['__links__']['resource']['href']
         video_data = self._call_cms(resource_path, video_id, 'video')
         title = video_data['title']
@@ -187,7 +211,8 @@ class VRVIE(VRVBaseIE):
                     entries.append(self.url_result(
                         'https://vrv.co/watch/' + item_id,
                         self.ie_key(), item_id, item.get('title')))
-                return self.playlist_result(entries, video_id, title, description)
+                return self.playlist_result(
+                    entries, video_id, title, description)
             video_data = items[0]
 
         streams_path = video_data['__links__'].get('streams', {}).get('href')

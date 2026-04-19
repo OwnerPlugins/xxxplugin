@@ -26,7 +26,8 @@ class StitcherBaseIE(InfoExtractor):
         return resp['data']
 
     def _extract_description(self, data):
-        return clean_html(data.get('html_description') or data.get('description'))
+        return clean_html(data.get('html_description')
+                          or data.get('description'))
 
     def _extract_audio_url(self, episode):
         return url_or_none(episode.get('audio_url') or episode.get('guid'))
@@ -55,7 +56,8 @@ class StitcherBaseIE(InfoExtractor):
 
 
 class StitcherIE(StitcherBaseIE):
-    _VALID_URL = StitcherBaseIE._VALID_URL_BASE + r'(?:[^/]+/)+e(?:pisode)?/(?:[^/#?&]+-)?(?P<id>\d+)'
+    _VALID_URL = StitcherBaseIE._VALID_URL_BASE + \
+        r'(?:[^/]+/)+e(?:pisode)?/(?:[^/#?&]+-)?(?P<id>\d+)'
     _TESTS = [{
         'url': 'http://www.stitcher.com/podcast/the-talking-machines/e/40789481?autoplay=true',
         'md5': 'e9635098e0da10b21a0e2b85585530f6',
@@ -111,7 +113,8 @@ class StitcherIE(StitcherBaseIE):
 
 
 class StitcherShowIE(StitcherBaseIE):
-    _VALID_URL = StitcherBaseIE._VALID_URL_BASE + r'(?P<id>[^/#?&]+)/?(?:[?#&]|$)'
+    _VALID_URL = StitcherBaseIE._VALID_URL_BASE + \
+        r'(?P<id>[^/#?&]+)/?(?:[?#&]|$)'
     _TESTS = [{
         'url': 'http://www.stitcher.com/podcast/the-talking-machines',
         'info_dict': {
@@ -128,7 +131,9 @@ class StitcherShowIE(StitcherBaseIE):
     def _real_extract(self, url):
         show_slug = self._match_id(url)
         data = self._call_api(
-            'search/show/%s/allEpisodes' % show_slug, show_slug, {'count': 10000})
+            'search/show/%s/allEpisodes' %
+            show_slug, show_slug, {
+                'count': 10000})
         show = try_get(data, lambda x: x['shows'][0], dict) or {}
         show_info = self._extract_show_info(show)
 
@@ -137,7 +142,11 @@ class StitcherShowIE(StitcherBaseIE):
             audio_url = self._extract_audio_url(episode)
             if not audio_url:
                 continue
-            entries.append(self._extract_episode(episode, audio_url, show_info))
+            entries.append(
+                self._extract_episode(
+                    episode,
+                    audio_url,
+                    show_info))
 
         return self.playlist_result(
             entries, show_slug, show.get('title'),

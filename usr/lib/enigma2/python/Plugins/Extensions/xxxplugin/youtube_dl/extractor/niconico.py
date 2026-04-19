@@ -211,72 +211,90 @@ class NiconicoIE(InfoExtractor):
             login_ok = False
         else:
             parts = compat_urllib_parse_urlparse(urlh.geturl())
-            if compat_parse_qs(parts.query).get('message', [None])[0] == 'cant_login':
+            if compat_parse_qs(
+                    parts.query).get(
+                    'message',
+                    [None])[0] == 'cant_login':
                 login_ok = False
         if not login_ok:
-            self._downloader.report_warning('unable to log in: bad username or password')
+            self._downloader.report_warning(
+                'unable to log in: bad username or password')
         return login_ok
 
     def _get_heartbeat_info(self, info_dict):
 
-        video_id, video_src_id, audio_src_id = info_dict['url'].split(':')[1].split('/')
+        video_id, video_src_id, audio_src_id = info_dict['url'].split(':')[
+            1].split('/')
 
         api_data = (
-            info_dict.get('_api_data')
-            or self._parse_json(
+            info_dict.get('_api_data') or self._parse_json(
                 self._html_search_regex(
                     'data-api-data="([^"]+)"',
-                    self._download_webpage('http://www.nicovideo.jp/watch/' + video_id, video_id),
-                    'API data', default='{}'),
+                    self._download_webpage(
+                        'http://www.nicovideo.jp/watch/' +
+                        video_id,
+                        video_id),
+                    'API data',
+                    default='{}'),
                 video_id))
 
-        session_api_data = try_get(api_data, lambda x: x['media']['delivery']['movie']['session'])
-        session_api_endpoint = try_get(session_api_data, lambda x: x['urls'][0])
+        session_api_data = try_get(
+            api_data, lambda x: x['media']['delivery']['movie']['session'])
+        session_api_endpoint = try_get(
+            session_api_data, lambda x: x['urls'][0])
 
         def ping():
             status = try_get(
                 self._download_json(
-                    'https://nvapi.nicovideo.jp/v1/2ab0cbaa/watch', video_id,
-                    query={'t': try_get(api_data, lambda x: x['media']['delivery']['trackingId'])},
+                    'https://nvapi.nicovideo.jp/v1/2ab0cbaa/watch',
+                    video_id,
+                    query={
+                        't': try_get(
+                            api_data,
+                            lambda x: x['media']['delivery']['trackingId'])},
                     note='Acquiring permission for downloading video',
                     headers=self._API_HEADERS),
                 lambda x: x['meta']['status'])
             if status != 200:
-                self.report_warning('Failed to acquire permission for playing video. The video may not download.')
+                self.report_warning(
+                    'Failed to acquire permission for playing video. The video may not download.')
 
-        yesno = lambda x: 'yes' if x else 'no'
+        def yesno(x): return 'yes' if x else 'no'
 
         # m3u8 (encryption)
-        if try_get(api_data, lambda x: x['media']['delivery']['encryption']) is not None:
+        if try_get(api_data, lambda x: x['media']
+                   ['delivery']['encryption']) is not None:
             protocol = 'm3u8'
-            encryption = self._parse_json(session_api_data['token'], video_id)['hls_encryption']
+            encryption = self._parse_json(
+                session_api_data['token'],
+                video_id)['hls_encryption']
             session_api_http_parameters = {
                 'parameters': {
                     'hls_parameters': {
                         'encryption': {
                             encryption: {
-                                'encrypted_key': try_get(api_data, lambda x: x['media']['delivery']['encryption']['encryptedKey']),
-                                'key_uri': try_get(api_data, lambda x: x['media']['delivery']['encryption']['keyUri'])
-                            }
-                        },
+                                'encrypted_key': try_get(
+                                    api_data,
+                                    lambda x: x['media']['delivery']['encryption']['encryptedKey']),
+                                'key_uri': try_get(
+                                    api_data,
+                                    lambda x: x['media']['delivery']['encryption']['keyUri'])}},
                         'transfer_preset': '',
-                        'use_ssl': yesno(session_api_endpoint['isSsl']),
-                        'use_well_known_port': yesno(session_api_endpoint['isWellKnownPort']),
+                        'use_ssl': yesno(
+                            session_api_endpoint['isSsl']),
+                        'use_well_known_port': yesno(
+                            session_api_endpoint['isWellKnownPort']),
                         'segment_duration': 6000,
-                    }
-                }
-            }
+                    }}}
         # http
         else:
             protocol = 'http'
             session_api_http_parameters = {
                 'parameters': {
                     'http_output_download_parameters': {
-                        'use_ssl': yesno(session_api_endpoint['isSsl']),
-                        'use_well_known_port': yesno(session_api_endpoint['isWellKnownPort']),
-                    }
-                }
-            }
+                        'use_ssl': yesno(
+                            session_api_endpoint['isSsl']), 'use_well_known_port': yesno(
+                            session_api_endpoint['isWellKnownPort']), }}}
 
         session_response = self._download_json(
             session_api_endpoint['url'], video_id,
@@ -335,14 +353,20 @@ class NiconicoIE(InfoExtractor):
         heartbeat_info_dict = {
             'url': session_api_endpoint['url'] + '/' + session_response['data']['session']['id'] + '?_format=json&_method=PUT',
             'data': json.dumps(session_response['data']),
-            # interval, convert milliseconds to seconds, then halve to make a buffer.
+            # interval, convert milliseconds to seconds, then halve to make a
+            # buffer.
             'interval': float_or_none(session_api_data.get('heartbeatLifetime'), scale=3000),
             'ping': ping
         }
 
         return info_dict, heartbeat_info_dict
 
-    def _extract_format_for_quality(self, api_data, video_id, audio_quality, video_quality):
+    def _extract_format_for_quality(
+            self,
+            api_data,
+            video_id,
+            audio_quality,
+            video_quality):
         def parse_format_id(id_code):
             mobj = re.match(r'''(?x)
                     (?:archive_)?
@@ -353,10 +377,13 @@ class NiconicoIE(InfoExtractor):
             return mobj.groupdict() if mobj else {}
 
         protocol = 'niconico_dmc'
-        format_id = '-'.join(map(lambda s: remove_start(s['id'], 'archive_'), [video_quality, audio_quality]))
+        format_id = '-'.join(map(lambda s: remove_start(
+            s['id'], 'archive_'), [video_quality, audio_quality]))
         vdict = parse_format_id(video_quality['id'])
         adict = parse_format_id(audio_quality['id'])
-        resolution = try_get(video_quality, lambda x: x['metadata']['resolution'], dict) or {'height': vdict.get('res')}
+        resolution = try_get(video_quality,
+                             lambda x: x['metadata']['resolution'],
+                             dict) or {'height': vdict.get('res')}
         vbr = try_get(video_quality, lambda x: x['metadata']['bitrate'], float)
 
         return {
@@ -417,42 +444,56 @@ class NiconicoIE(InfoExtractor):
                 raise ExtractorError('The video is not found.',
                                      expected=True)
             elif error_code == 'COMMUNITY':
-                self.to_screen('%s: The video is community members only.' % video_id)
+                self.to_screen(
+                    '%s: The video is community members only.' %
+                    video_id)
             else:
-                raise ExtractorError('%s reports error: %s' % (self.IE_NAME, error_code))
+                raise ExtractorError(
+                    '%s reports error: %s' %
+                    (self.IE_NAME, error_code))
 
         # Start extracting video formats
         formats = []
 
         # Get HTML5 videos info
-        quality_info = try_get(api_data, lambda x: x['media']['delivery']['movie'])
+        quality_info = try_get(
+            api_data, lambda x: x['media']['delivery']['movie'])
         if not quality_info:
-            raise ExtractorError('The video can\'t be downloaded', expected=True)
+            raise ExtractorError(
+                'The video can\'t be downloaded',
+                expected=True)
 
         for audio_quality in quality_info.get('audios') or {}:
             for video_quality in quality_info.get('videos') or {}:
-                if not audio_quality.get('isAvailable') or not video_quality.get('isAvailable'):
+                if not audio_quality.get(
+                        'isAvailable') or not video_quality.get('isAvailable'):
                     continue
                 formats.append(self._extract_format_for_quality(
                     api_data, video_id, audio_quality, video_quality))
 
         # Get flv/swf info
         timestamp = None
-        video_real_url = try_get(api_data, lambda x: x['video']['smileInfo']['url'])
+        video_real_url = try_get(
+            api_data, lambda x: x['video']['smileInfo']['url'])
         if video_real_url:
             is_economy = video_real_url.endswith('low')
 
             if is_economy:
-                self.report_warning('Site is currently in economy mode! You will only have access to lower quality streams')
+                self.report_warning(
+                    'Site is currently in economy mode! You will only have access to lower quality streams')
 
             # Invoking ffprobe to determine resolution
             pp = FFmpegPostProcessor(self._downloader)
-            cookies = self._get_cookies('https://nicovideo.jp').output(header='', sep='; path=/; domain=nicovideo.jp;\n')
+            cookies = self._get_cookies(
+                'https://nicovideo.jp').output(header='', sep='; path=/; domain=nicovideo.jp;\n')
 
-            self.to_screen('%s: %s' % (video_id, 'Checking smile format with ffprobe'))
+            self.to_screen(
+                '%s: %s' %
+                (video_id, 'Checking smile format with ffprobe'))
 
             try:
-                metadata = pp.get_metadata_object(video_real_url, ['-cookies', cookies])
+                metadata = pp.get_metadata_object(
+                    video_real_url, ['-cookies', cookies])
             except PostProcessingError as err:
                 raise ExtractorError(err.msg, expected=True)
 
@@ -465,7 +506,8 @@ class NiconicoIE(InfoExtractor):
                 elif stream['codec_type'] == 'audio':
                     a_stream = stream
 
-            # Community restricted videos seem to have issues with the thumb API not returning anything at all
+            # Community restricted videos seem to have issues with the thumb
+            # API not returning anything at all
             filesize = int(
                 (get_video_info_xml('size_high') if not is_economy else get_video_info_xml('size_low'))
                 or metadata['format']['size']
@@ -485,12 +527,15 @@ class NiconicoIE(InfoExtractor):
                 or timestamp if extension != 'mp4' else 0
             )
 
-            # According to compconf, smile videos from pre-2017 are always better quality than their DMC counterparts
-            smile_threshold_timestamp = parse_iso8601('2016-12-08T00:00:00+09:00')
+            # According to compconf, smile videos from pre-2017 are always
+            # better quality than their DMC counterparts
+            smile_threshold_timestamp = parse_iso8601(
+                '2016-12-08T00:00:00+09:00')
 
             is_source = timestamp < smile_threshold_timestamp or metadata_timestamp > 0
 
-            # If movie file size is unstable, old server movie is not source movie.
+            # If movie file size is unstable, old server movie is not source
+            # movie.
             if filesize > 1:
                 formats.append({
                     'url': video_real_url,
@@ -500,7 +545,8 @@ class NiconicoIE(InfoExtractor):
                     'container': extension,
                     'vcodec': v_stream.get('codec_name'),
                     'acodec': a_stream.get('codec_name'),
-                    # Some complex swf files doesn't have total bit rate metadata (e.g. nm6049209)
+                    # Some complex swf files doesn't have total bit rate
+                    # metadata (e.g. nm6049209)
                     'tbr': int_or_none(metadata['format'].get('bit_rate'), scale=1000),
                     'vbr': int_or_none(v_stream.get('bit_rate'), scale=1000),
                     'abr': int_or_none(a_stream.get('bit_rate'), scale=1000),
@@ -515,7 +561,8 @@ class NiconicoIE(InfoExtractor):
 
         # Start extracting information
         title = (
-            get_video_info_xml('title')  # prefer to get the untranslated original title
+            # prefer to get the untranslated original title
+            get_video_info_xml('title')
             or get_video_info_web(['originalTitle', 'title'])
             or self._og_search_title(webpage, default=None)
             or self._html_search_regex(
@@ -525,11 +572,17 @@ class NiconicoIE(InfoExtractor):
         watch_api_data_string = self._html_search_regex(
             r'<div[^>]+id="watchAPIDataContainer"[^>]+>([^<]+)</div>',
             webpage, 'watch api data', default=None)
-        watch_api_data = self._parse_json(watch_api_data_string, video_id) if watch_api_data_string else {}
+        watch_api_data = self._parse_json(
+            watch_api_data_string,
+            video_id) if watch_api_data_string else {}
         video_detail = watch_api_data.get('videoDetail', {})
 
         thumbnail = (
-            self._html_search_regex(r'<meta property="og:image" content="([^"]+)">', webpage, 'thumbnail data', default=None)
+            self._html_search_regex(
+                r'<meta property="og:image" content="([^"]+)">',
+                webpage,
+                'thumbnail data',
+                default=None)
             or dict_get(  # choose highest from 720p to 240p
                 get_video_info_web('thumbnail'),
                 ['ogp', 'player', 'largeUrl', 'middleUrl', 'url'])
@@ -539,16 +592,20 @@ class NiconicoIE(InfoExtractor):
         description = get_video_info_web('description')
 
         if not timestamp:
-            match = self._html_search_meta('datePublished', webpage, 'date published', default=None)
+            match = self._html_search_meta(
+                'datePublished', webpage, 'date published', default=None)
             if match:
                 timestamp = parse_iso8601(match.replace('+', ':00+'))
         if not timestamp and video_detail.get('postedAt'):
             timestamp = parse_iso8601(
                 video_detail['postedAt'].replace('/', '-'),
                 delimiter=' ', timezone=datetime.timedelta(hours=9))
-        timestamp = timestamp or try_get(api_data, lambda x: parse_iso8601(x['video']['registeredAt']))
+        timestamp = timestamp or try_get(
+            api_data, lambda x: parse_iso8601(
+                x['video']['registeredAt']))
 
-        view_count = int_or_none(get_video_info_web(['view_counter', 'viewCount']))
+        view_count = int_or_none(
+            get_video_info_web(['view_counter', 'viewCount']))
         if not view_count:
             match = self._html_search_regex(
                 r'>Views: <strong[^>]*>([^<]+)</strong>',
@@ -683,20 +740,30 @@ class NiconicoPlaylistIE(InfoExtractor):
 class NicovideoSearchBaseIE(InfoExtractor):
     _MAX_RESULTS = float('inf')
 
-    def _entries(self, url, item_id, query=None, note='Downloading page %(page)s'):
+    def _entries(self, url, item_id, query=None,
+                 note='Downloading page %(page)s'):
         query = query or {}
         pages = [query['page']] if 'page' in query else itertools.count(1)
         for page_num in pages:
             query['page'] = str(page_num)
-            webpage = self._download_webpage(url, item_id, query=query, note=note % {'page': page_num})
-            results = re.findall(r'(?<=data-video-id=)["\']?(?P<videoid>.+?)(?=["\'])', webpage)
+            webpage = self._download_webpage(
+                url,
+                item_id,
+                query=query,
+                note=note % {
+                    'page': page_num})
+            results = re.findall(
+                r'(?<=data-video-id=)["\']?(?P<videoid>.+?)(?=["\'])', webpage)
             for item in results:
                 yield self.url_result('http://www.nicovideo.jp/watch/%s' % item, 'Niconico', item)
             if not results:
                 break
 
     def _get_n_results(self, query, n):
-        entries = self._entries(self._proto_relative_url('//www.nicovideo.jp/search/%s' % query), query)
+        entries = self._entries(
+            self._proto_relative_url(
+                '//www.nicovideo.jp/search/%s' %
+                query), query)
         if n < self._MAX_RESULTS:
             entries = itertools.islice(entries, 0, n)
         return self.playlist_result(entries, query, query)
@@ -709,7 +776,9 @@ class NicovideoSearchIE(NicovideoSearchBaseIE, SearchInfoExtractor):
 
     def _search_results(self, query):
         return self._entries(
-            self._proto_relative_url('//www.nicovideo.jp/search/%s' % query), query)
+            self._proto_relative_url(
+                '//www.nicovideo.jp/search/%s' %
+                query), query)
 
 
 class NicovideoSearchURLIE(NicovideoSearchBaseIE):
@@ -758,10 +827,19 @@ class NicovideoSearchDateIE(NicovideoSearchBaseIE, SearchInfoExtractor):
     def _entries(self, url, item_id, start_date=None, end_date=None):
         start_date, end_date = start_date or self._START_DATE, end_date or datetime.datetime.now().date()
 
-        # If the last page has a full page of videos, we need to break down the query interval further
-        last_page_len = len(list(self._get_entries_for_date(
-            url, item_id, start_date, end_date, self._MAX_PAGES,
-            note='Checking number of videos from {0} to {1}'.format(start_date, end_date))))
+        # If the last page has a full page of videos, we need to break down the
+        # query interval further
+        last_page_len = len(
+            list(
+                self._get_entries_for_date(
+                    url,
+                    item_id,
+                    start_date,
+                    end_date,
+                    self._MAX_PAGES,
+                    note='Checking number of videos from {0} to {1}'.format(
+                        start_date,
+                        end_date))))
         if (last_page_len == self._RESULTS_PER_PAGE and start_date != end_date):
             midpoint = start_date + ((end_date - start_date) // 2)
             for entry in itertools.chain(
@@ -769,12 +847,26 @@ class NicovideoSearchDateIE(NicovideoSearchBaseIE, SearchInfoExtractor):
                     iter(self._entries(url, item_id, start_date, midpoint))):
                 yield entry
         else:
-            self.to_screen('{0}: Downloading results from {1} to {2}'.format(item_id, start_date, end_date))
-            for entry in iter(self._get_entries_for_date(
-                    url, item_id, start_date, end_date, note='    Downloading page %(page)s')):
+            self.to_screen(
+                '{0}: Downloading results from {1} to {2}'.format(
+                    item_id, start_date, end_date))
+            for entry in iter(
+                self._get_entries_for_date(
+                    url,
+                    item_id,
+                    start_date,
+                    end_date,
+                    note='    Downloading page %(page)s')):
                 yield entry
 
-    def _get_entries_for_date(self, url, item_id, start_date, end_date=None, page_num=None, note=None):
+    def _get_entries_for_date(
+            self,
+            url,
+            item_id,
+            start_date,
+            end_date=None,
+            page_num=None,
+            note=None):
         query = {
             'start': compat_str(start_date),
             'end': compat_str(end_date or start_date),
@@ -784,7 +876,14 @@ class NicovideoSearchDateIE(NicovideoSearchBaseIE, SearchInfoExtractor):
         if page_num:
             query['page'] = compat_str(page_num)
 
-        for entry in iter(super(NicovideoSearchDateIE, self)._entries(url, item_id, query=query, note=note)):
+        for entry in iter(
+            super(
+                NicovideoSearchDateIE,
+                self)._entries(
+                url,
+                item_id,
+                query=query,
+                note=note)):
             yield entry
 
 
@@ -810,11 +909,19 @@ class NiconicoUserIE(InfoExtractor):
         count = page_num = 0
         while count < total_count:
             json_parsed = self._download_json(
-                self._API_URL % (list_id, self._PAGE_SIZE, page_num + 1), list_id,
+                self._API_URL %
+                (list_id,
+                 self._PAGE_SIZE,
+                 page_num +
+                 1),
+                list_id,
                 headers=self._API_HEADERS,
-                note='Downloading JSON metadata%s' % (' page %d' % page_num if page_num else ''))
+                note='Downloading JSON metadata%s' %
+                (' page %d' %
+                 page_num if page_num else ''))
             if not page_num:
-                total_count = int_or_none(json_parsed['data'].get('totalCount'))
+                total_count = int_or_none(
+                    json_parsed['data'].get('totalCount'))
             for entry in json_parsed["data"]["items"]:
                 count += 1
                 yield self.url_result('https://www.nicovideo.jp/watch/%s' % entry['id'])

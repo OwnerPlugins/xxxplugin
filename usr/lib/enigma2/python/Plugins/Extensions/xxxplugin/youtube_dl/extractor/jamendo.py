@@ -190,6 +190,5 @@ class JamendoAlbumIE(JamendoIE):
                 'album': album_name,
             })
 
-        return self.playlist_result(
-            entries, album_id, album_name,
-            clean_html(try_get(album, lambda x: x['description']['en'], compat_str)))
+        return self.playlist_result(entries, album_id, album_name, clean_html(
+            try_get(album, lambda x: x['description']['en'], compat_str)))

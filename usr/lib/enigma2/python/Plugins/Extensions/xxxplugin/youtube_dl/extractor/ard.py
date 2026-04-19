@@ -156,7 +156,8 @@ class ARDMediathekIE(ARDMediathekBaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if ARDBetaMediathekIE.suitable(url) else super(ARDMediathekIE, cls).suitable(url)
+        return False if ARDBetaMediathekIE.suitable(
+            url) else super(ARDMediathekIE, cls).suitable(url)
 
     def _real_extract(self, url):
         # determine video id from url
@@ -193,7 +194,8 @@ class ARDMediathekIE(ARDMediathekBaseIE):
              r'<h4 class="headline">(.*?)</h4>',
              r'<title[^>]*>(.*?)</title>'],
             webpage, 'title')
-        description = self._og_search_description(webpage, default=None) or self._html_search_meta(
+        description = self._og_search_description(
+            webpage, default=None) or self._html_search_meta(
             'dcterms.abstract', webpage, 'description', default=None)
         if description is None:
             description = self._html_search_meta(
@@ -301,9 +303,14 @@ class ARDIE(InfoExtractor):
             if format_url:
                 ext = determine_ext(file_name)
                 if ext == 'm3u8':
-                    formats.extend(self._extract_m3u8_formats(
-                        format_url, display_id, 'mp4', entry_protocol='m3u8_native',
-                        m3u8_id=format_type or 'hls', fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            format_url,
+                            display_id,
+                            'mp4',
+                            entry_protocol='m3u8_native',
+                            m3u8_id=format_type or 'hls',
+                            fatal=False))
                     continue
                 elif ext == 'f4m':
                     formats.extend(self._extract_f4m_formats(
@@ -360,42 +367,40 @@ class ARDIE(InfoExtractor):
 
 class ARDBetaMediathekIE(ARDMediathekBaseIE):
     _VALID_URL = r'https://(?:(?:beta|www)\.)?ardmediathek\.de/(?:[^/]+/)?(?:player|live|video)/(?:[^/]+/)*(?P<id>Y3JpZDovL[a-zA-Z0-9]+)'
-    _TESTS = [{
-        'url': 'https://www.ardmediathek.de/mdr/video/die-robuste-roswita/Y3JpZDovL21kci5kZS9iZWl0cmFnL2Ntcy84MWMxN2MzZC0wMjkxLTRmMzUtODk4ZS0wYzhlOWQxODE2NGI/',
-        'md5': 'a1dc75a39c61601b980648f7c9f9f71d',
-        'info_dict': {
-            'display_id': 'die-robuste-roswita',
-            'id': '78566716',
-            'title': 'Die robuste Roswita',
-            'description': r're:^Der Mord.*totgeglaubte Ehefrau Roswita',
-            'duration': 5316,
-            'thumbnail': 'https://img.ardmediathek.de/standard/00/78/56/67/84/575672121/16x9/960?mandant=ard',
-            'timestamp': 1596658200,
-            'upload_date': '20200805',
-            'ext': 'mp4',
-        },
-    }, {
-        'url': 'https://beta.ardmediathek.de/ard/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhdG9ydC9mYmM4NGM1NC0xNzU4LTRmZGYtYWFhZS0wYzcyZTIxNGEyMDE',
-        'only_matching': True,
-    }, {
-        'url': 'https://ardmediathek.de/ard/video/saartalk/saartalk-gesellschaftsgift-haltung-gegen-hass/sr-fernsehen/Y3JpZDovL3NyLW9ubGluZS5kZS9TVF84MTY4MA/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.ardmediathek.de/ard/video/trailer/private-eyes-s01-e01/one/Y3JpZDovL3dkci5kZS9CZWl0cmFnLTE1MTgwYzczLWNiMTEtNGNkMS1iMjUyLTg5MGYzOWQxZmQ1YQ/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.ardmediathek.de/ard/player/Y3JpZDovL3N3ci5kZS9hZXgvbzEwNzE5MTU/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.ardmediathek.de/swr/live/Y3JpZDovL3N3ci5kZS8xMzQ4MTA0Mg',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.ardmediathek.de/video/coronavirus-update-ndr-info/astrazeneca-kurz-lockdown-und-pims-syndrom-81/ndr/Y3JpZDovL25kci5kZS84NzE0M2FjNi0wMWEwLTQ5ODEtOTE5NS1mOGZhNzdhOTFmOTI/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.ardmediathek.de/ard/player/Y3JpZDovL3dkci5kZS9CZWl0cmFnLWQ2NDJjYWEzLTMwZWYtNGI4NS1iMTI2LTU1N2UxYTcxOGIzOQ/tatort-duo-koeln-leipzig-ihr-kinderlein-kommet',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.ardmediathek.de/mdr/video/die-robuste-roswita/Y3JpZDovL21kci5kZS9iZWl0cmFnL2Ntcy84MWMxN2MzZC0wMjkxLTRmMzUtODk4ZS0wYzhlOWQxODE2NGI/',
+               'md5': 'a1dc75a39c61601b980648f7c9f9f71d',
+               'info_dict': {'display_id': 'die-robuste-roswita',
+                             'id': '78566716',
+                             'title': 'Die robuste Roswita',
+                             'description': r're:^Der Mord.*totgeglaubte Ehefrau Roswita',
+                             'duration': 5316,
+                             'thumbnail': 'https://img.ardmediathek.de/standard/00/78/56/67/84/575672121/16x9/960?mandant=ard',
+                             'timestamp': 1596658200,
+                             'upload_date': '20200805',
+                             'ext': 'mp4',
+                             },
+               },
+              {'url': 'https://beta.ardmediathek.de/ard/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhdG9ydC9mYmM4NGM1NC0xNzU4LTRmZGYtYWFhZS0wYzcyZTIxNGEyMDE',
+               'only_matching': True,
+               },
+              {'url': 'https://ardmediathek.de/ard/video/saartalk/saartalk-gesellschaftsgift-haltung-gegen-hass/sr-fernsehen/Y3JpZDovL3NyLW9ubGluZS5kZS9TVF84MTY4MA/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.ardmediathek.de/ard/video/trailer/private-eyes-s01-e01/one/Y3JpZDovL3dkci5kZS9CZWl0cmFnLTE1MTgwYzczLWNiMTEtNGNkMS1iMjUyLTg5MGYzOWQxZmQ1YQ/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.ardmediathek.de/ard/player/Y3JpZDovL3N3ci5kZS9hZXgvbzEwNzE5MTU/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.ardmediathek.de/swr/live/Y3JpZDovL3N3ci5kZS8xMzQ4MTA0Mg',
+               'only_matching': True,
+               },
+              {'url': 'https://www.ardmediathek.de/video/coronavirus-update-ndr-info/astrazeneca-kurz-lockdown-und-pims-syndrom-81/ndr/Y3JpZDovL25kci5kZS84NzE0M2FjNi0wMWEwLTQ5ODEtOTE5NS1mOGZhNzdhOTFmOTI/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.ardmediathek.de/ard/player/Y3JpZDovL3dkci5kZS9CZWl0cmFnLWQ2NDJjYWEzLTMwZWYtNGI4NS1iMTI2LTU1N2UxYTcxOGIzOQ/tatort-duo-koeln-leipzig-ihr-kinderlein-kommet',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -439,8 +444,10 @@ class ARDBetaMediathekIE(ARDMediathekBaseIE):
                 'Content-Type': 'application/json'
             })['data']['playerPage']
         title = player_page['title']
-        content_id = str_or_none(try_get(
-            player_page, lambda x: x['tracking']['atiCustomVars']['contentId']))
+        content_id = str_or_none(
+            try_get(
+                player_page,
+                lambda x: x['tracking']['atiCustomVars']['contentId']))
         media_collection = player_page.get('mediaCollection') or {}
         if not media_collection and content_id:
             media_collection = self._download_json(
@@ -455,8 +462,12 @@ class ARDBetaMediathekIE(ARDMediathekBaseIE):
         if maturity_content_rating:
             age_limit = int_or_none(maturity_content_rating.lstrip('FSK'))
         if not age_limit and description:
-            age_limit = int_or_none(self._search_regex(
-                r'\(FSK\s*(\d+)\)\s*$', description, 'age limit', default=None))
+            age_limit = int_or_none(
+                self._search_regex(
+                    r'\(FSK\s*(\d+)\)\s*$',
+                    description,
+                    'age limit',
+                    default=None))
         info.update({
             'age_limit': age_limit,
             'title': title,

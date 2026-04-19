@@ -93,7 +93,10 @@ class CCMAIE(InfoExtractor):
         informacio = media['informacio']
         title = informacio['titol']
         durada = informacio.get('durada') or {}
-        duration = int_or_none(durada.get('milisegons'), 1000) or parse_duration(durada.get('text'))
+        duration = int_or_none(
+            durada.get('milisegons'),
+            1000) or parse_duration(
+            durada.get('text'))
         tematica = try_get(informacio, lambda x: x['tematica']['text'])
 
         timestamp = None

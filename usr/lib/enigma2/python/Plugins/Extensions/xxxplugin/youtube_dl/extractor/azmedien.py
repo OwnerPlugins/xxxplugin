@@ -51,7 +51,8 @@ class AZMedienIE(InfoExtractor):
     _PARTNER_ID = '1719221'
 
     def _real_extract(self, url):
-        host, display_id, article_id, entry_id = re.match(self._VALID_URL, url).groups()
+        host, display_id, article_id, entry_id = re.match(
+            self._VALID_URL, url).groups()
 
         if not entry_id:
             entry_id = self._download_json(

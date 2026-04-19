@@ -77,15 +77,19 @@ class Tele5IE(DPlayIE):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
-        player_element = self._search_regex(r'(<hyoga-player\b[^>]+?>)', webpage, 'video player')
+        player_element = self._search_regex(
+            r'(<hyoga-player\b[^>]+?>)', webpage, 'video player')
         player_info = extract_attributes(player_element)
-        asset_id, country, realm = (player_info[x] for x in ('assetid', 'locale', 'realm', ))
+        asset_id, country, realm = (
+            player_info[x] for x in (
+                'assetid', 'locale', 'realm', ))
         endpoint = compat_urlparse.urlparse(player_info['endpoint']).hostname
         source_type = player_info.get('sourcetype')
         if source_type:
             endpoint = '%s-%s' % (source_type, endpoint)
         try:
-            return self._get_disco_api_info(url, asset_id, endpoint, realm, country)
+            return self._get_disco_api_info(
+                url, asset_id, endpoint, realm, country)
         except ExtractorError as e:
             if getattr(e, 'message', '') == 'Missing deviceId in context':
                 raise ExtractorError('DRM protected', cause=e, expected=True)

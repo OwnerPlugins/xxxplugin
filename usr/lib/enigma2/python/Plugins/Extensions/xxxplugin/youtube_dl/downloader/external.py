@@ -53,12 +53,14 @@ class ExternalFD(FileDownloader):
             retval = 0
             self.to_screen('[%s] Interrupted by user' % self.get_basename())
         finally:
-            if self._cookies_tempfile and os.path.isfile(self._cookies_tempfile):
+            if self._cookies_tempfile and os.path.isfile(
+                    self._cookies_tempfile):
                 try:
                     os.remove(self._cookies_tempfile)
                 except OSError:
                     self.report_warning(
-                        'Unable to delete temporary cookies file "{0}"'.format(self._cookies_tempfile))
+                        'Unable to delete temporary cookies file "{0}"'.format(
+                            self._cookies_tempfile))
 
         if retval == 0:
             status = {
@@ -68,7 +70,9 @@ class ExternalFD(FileDownloader):
             }
             if filename != '-':
                 fsize = os.path.getsize(encodeFilename(tmpfilename))
-                self.to_screen('\r[%s] Downloaded %s bytes' % (self.get_basename(), fsize))
+                self.to_screen(
+                    '\r[%s] Downloaded %s bytes' %
+                    (self.get_basename(), fsize))
                 self.try_rename(tmpfilename, filename)
                 status.update({
                     'downloaded_bytes': fsize,
@@ -105,28 +109,50 @@ class ExternalFD(FileDownloader):
     def _option(self, command_option, param):
         return cli_option(self.params, command_option, param)
 
-    def _bool_option(self, command_option, param, true_value='true', false_value='false', separator=None):
-        return cli_bool_option(self.params, command_option, param, true_value, false_value, separator)
+    def _bool_option(
+            self,
+            command_option,
+            param,
+            true_value='true',
+            false_value='false',
+            separator=None):
+        return cli_bool_option(
+            self.params,
+            command_option,
+            param,
+            true_value,
+            false_value,
+            separator)
 
     def _valueless_option(self, command_option, param, expected_value=True):
-        return cli_valueless_option(self.params, command_option, param, expected_value)
+        return cli_valueless_option(
+            self.params, command_option, param, expected_value)
 
     def _configuration_args(self, default=[]):
-        return cli_configuration_args(self.params, 'external_downloader_args', default)
+        return cli_configuration_args(
+            self.params, 'external_downloader_args', default)
 
     def _write_cookies(self):
         if not self.ydl.cookiejar.filename:
-            tmp_cookies = tempfile.NamedTemporaryFile(suffix='.cookies', delete=False)
+            tmp_cookies = tempfile.NamedTemporaryFile(
+                suffix='.cookies', delete=False)
             tmp_cookies.close()
             self._cookies_tempfile = tmp_cookies.name
-            self.to_screen('[download] Writing temporary cookies file to "{0}"'.format(self._cookies_tempfile))
-        # real_download resets _cookies_tempfile; if it's None, save() will write to cookiejar.filename
-        self.ydl.cookiejar.save(self._cookies_tempfile, ignore_discard=True, ignore_expires=True)
+            self.to_screen(
+                '[download] Writing temporary cookies file to "{0}"'.format(
+                    self._cookies_tempfile))
+        # real_download resets _cookies_tempfile; if it's None, save() will
+        # write to cookiejar.filename
+        self.ydl.cookiejar.save(
+            self._cookies_tempfile,
+            ignore_discard=True,
+            ignore_expires=True)
         return self.ydl.cookiejar.filename or self._cookies_tempfile
 
     def _call_downloader(self, tmpfilename, info_dict):
         """ Either overwrite this or implement _make_cmd """
-        cmd = [encodeArgument(a) for a in self._make_cmd(tmpfilename, info_dict)]
+        cmd = [encodeArgument(a)
+               for a in self._make_cmd(tmpfilename, info_dict)]
 
         self._debug_cmd(cmd)
 
@@ -171,7 +197,8 @@ class CurlFD(ExternalFD):
         return cmd
 
     def _call_downloader(self, tmpfilename, info_dict):
-        cmd = [encodeArgument(a) for a in self._make_cmd(tmpfilename, info_dict)]
+        cmd = [encodeArgument(a)
+               for a in self._make_cmd(tmpfilename, info_dict)]
 
         self._debug_cmd(cmd)
 
@@ -190,7 +217,9 @@ class AxelFD(ExternalFD):
             cmd += ['-H', '%s: %s' % (key, val)]
         cookie_header = self.ydl.cookiejar.get_cookie_header(info_dict['url'])
         if cookie_header:
-            cmd += ['-H', 'Cookie: {0}'.format(cookie_header), '--max-redirect=0']
+            cmd += ['-H',
+                    'Cookie: {0}'.format(cookie_header),
+                    '--max-redirect=0']
         cmd += self._configuration_args()
         cmd += ['--', info_dict['url']]
         return cmd
@@ -216,7 +245,8 @@ class WgetFD(ExternalFD):
         if proxy:
             for var in ('http_proxy', 'https_proxy'):
                 cmd += ['--execute', '%s=%s' % (var, proxy)]
-        cmd += self._valueless_option('--no-check-certificate', 'nocheckcertificate')
+        cmd += self._valueless_option('--no-check-certificate',
+                                      'nocheckcertificate')
         cmd += self._configuration_args()
         cmd += ['--', info_dict['url']]
         return cmd
@@ -230,11 +260,20 @@ class Aria2cFD(ExternalFD):
         return fn if os.path.isabs(fn) else os.path.join('.', fn)
 
     def _make_cmd(self, tmpfilename, info_dict):
-        cmd = [self.exe, '-c',
-               '--console-log-level=warn', '--summary-interval=0', '--download-result=hide',
-               '--http-accept-gzip=true', '--file-allocation=none', '-x16', '-j16', '-s16']
+        cmd = [
+            self.exe,
+            '-c',
+            '--console-log-level=warn',
+            '--summary-interval=0',
+            '--download-result=hide',
+            '--http-accept-gzip=true',
+            '--file-allocation=none',
+            '-x16',
+            '-j16',
+            '-s16']
         if 'fragments' in info_dict:
-            cmd += ['--allow-overwrite=true', '--allow-piece-length-change=true']
+            cmd += ['--allow-overwrite=true',
+                    '--allow-piece-length-change=true']
         else:
             cmd += ['--min-split-size', '1M']
 
@@ -247,9 +286,12 @@ class Aria2cFD(ExternalFD):
         cmd += self._option('--max-overall-download-limit', 'ratelimit')
         cmd += self._option('--interface', 'source_address')
         cmd += self._option('--all-proxy', 'proxy')
-        cmd += self._bool_option('--check-certificate', 'nocheckcertificate', 'false', 'true', '=')
-        cmd += self._bool_option('--remote-time', 'updatetime', 'true', 'false', '=')
-        cmd += self._bool_option('--show-console-readout', 'noprogress', 'false', 'true', '=')
+        cmd += self._bool_option('--check-certificate',
+                                 'nocheckcertificate', 'false', 'true', '=')
+        cmd += self._bool_option('--remote-time',
+                                 'updatetime', 'true', 'false', '=')
+        cmd += self._bool_option('--show-console-readout',
+                                 'noprogress', 'false', 'true', '=')
         cmd += self._configuration_args()
 
         # aria2c strips out spaces from the beginning/end of filenames and paths.
@@ -262,15 +304,19 @@ class Aria2cFD(ExternalFD):
         if dn:
             cmd += ['--dir', self._aria2c_filename(dn) + os.path.sep]
         if 'fragments' not in info_dict:
-            cmd += ['--out', self._aria2c_filename(os.path.basename(tmpfilename))]
+            cmd += ['--out',
+                    self._aria2c_filename(os.path.basename(tmpfilename))]
         cmd += ['--auto-file-renaming=false']
         if 'fragments' in info_dict:
             cmd += ['--file-allocation=none', '--uri-selector=inorder']
             url_list_file = '%s.frag.urls' % (tmpfilename, )
             url_list = []
             for frag_index, fragment in enumerate(info_dict['fragments']):
-                fragment_filename = '%s-Frag%d' % (os.path.basename(tmpfilename), frag_index)
-                url_list.append('%s\n\tout=%s' % (fragment['url'], self._aria2c_filename(fragment_filename)))
+                fragment_filename = '%s-Frag%d' % (
+                    os.path.basename(tmpfilename), frag_index)
+                url_list.append(
+                    '%s\n\tout=%s' %
+                    (fragment['url'], self._aria2c_filename(fragment_filename)))
             stream, _ = self.sanitize_open(url_list_file, 'wb')
             stream.write('\n'.join(url_list).encode())
             stream.close()
@@ -363,7 +409,16 @@ class HttpieFD(ExternalFD):
 class FFmpegFD(ExternalFD):
     @classmethod
     def supports(cls, info_dict):
-        return info_dict['protocol'] in ('http', 'https', 'ftp', 'ftps', 'm3u8', 'rtsp', 'rtmp', 'mms', 'http_dash_segments')
+        return info_dict['protocol'] in (
+            'http',
+            'https',
+            'ftp',
+            'ftps',
+            'm3u8',
+            'rtsp',
+            'rtmp',
+            'mms',
+            'http_dash_segments')
 
     @classmethod
     def available(cls):
@@ -374,7 +429,8 @@ class FFmpegFD(ExternalFD):
         # `downloader` means the parent `YoutubeDL`
         ffpp = FFmpegPostProcessor(downloader=self.ydl)
         if not ffpp.available:
-            self.report_error('ffmpeg required for download but no ffmpeg (nor avconv) executable could be found. Please install one.')
+            self.report_error(
+                'ffmpeg required for download but no ffmpeg (nor avconv) executable could be found. Please install one.')
             return False
         ffpp.check_version()
 
@@ -415,9 +471,8 @@ class FFmpegFD(ExternalFD):
             # Trailing \r\n after each HTTP header is important to prevent warning from ffmpeg/avconv:
             # [http @ 00000000003d2fa0] No trailing CRLF found in HTTP header.
             headers = handle_youtubedl_headers(info_dict['http_headers'])
-            args += [
-                '-headers',
-                ''.join('%s: %s\r\n' % (key, val) for key, val in headers.items())]
+            args += ['-headers', ''.join('%s: %s\r\n' %
+                                         (key, val) for key, val in headers.items())]
 
         env = None
         proxy = self.params.get('proxy')
@@ -428,7 +483,8 @@ class FFmpegFD(ExternalFD):
             if proxy.startswith('socks'):
                 self.report_warning(
                     '%s does not support SOCKS proxies. Downloading is likely to fail. '
-                    'Consider adding --hls-prefer-native to your command.' % self.get_basename())
+                    'Consider adding --hls-prefer-native to your command.' %
+                    self.get_basename())
 
             # Since December 2015 ffmpeg supports -http_proxy option (see
             # http://git.videolan.org/?p=ffmpeg.git;a=commit;h=b4eb1f29ebddd60c41a2eb39f5af701e38e0d3fd)
@@ -479,15 +535,21 @@ class FFmpegFD(ExternalFD):
                 args += ['-f', 'mpegts']
             else:
                 args += ['-f', 'mp4']
-                if (ffpp.basename == 'ffmpeg' and is_outdated_version(ffpp._versions['ffmpeg'], '3.2', False)) and (not info_dict.get('acodec') or info_dict['acodec'].split('.')[0] in ('aac', 'mp4a')):
+                if (ffpp.basename == 'ffmpeg' and is_outdated_version(ffpp._versions['ffmpeg'], '3.2', False)) and (
+                        not info_dict.get('acodec') or info_dict['acodec'].split('.')[0] in ('aac', 'mp4a')):
                     args += ['-bsf:a', 'aac_adtstoasc']
         elif protocol == 'rtmp':
             args += ['-f', 'flv']
         else:
-            args += ['-f', EXT_TO_OUT_FORMATS.get(info_dict['ext'], info_dict['ext'])]
+            args += ['-f',
+                     EXT_TO_OUT_FORMATS.get(info_dict['ext'],
+                                            info_dict['ext'])]
 
         args = [encodeArgument(opt) for opt in args]
-        args.append(encodeFilename(ffpp._ffmpeg_filename_argument(tmpfilename), True))
+        args.append(
+            encodeFilename(
+                ffpp._ffmpeg_filename_argument(tmpfilename),
+                True))
 
         self._debug_cmd(args)
 
@@ -504,8 +566,10 @@ class FFmpegFD(ExternalFD):
                 # mp4 file couldn't be played, but if we ask ffmpeg to quit it
                 # produces a file that is playable (this is mostly useful for live
                 # streams). Note that Windows is not affected and produces playable
-                # files (see https://github.com/ytdl-org/youtube-dl/issues/8300).
-                if isinstance(e, KeyboardInterrupt) and sys.platform != 'win32':
+                # files (see
+                # https://github.com/ytdl-org/youtube-dl/issues/8300).
+                if isinstance(
+                        e, KeyboardInterrupt) and sys.platform != 'win32':
                     process_communicate_or_kill(proc, b'q')
                 else:
                     proc.kill()

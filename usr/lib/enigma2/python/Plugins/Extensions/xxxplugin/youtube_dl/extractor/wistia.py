@@ -21,7 +21,8 @@ class WistiaBaseIE(InfoExtractor):
         base_url = self._EMBED_BASE_URL + '%ss/%s' % (config_type, config_id)
         embed_config = self._download_json(
             base_url + '.json', config_id, headers={
-                'Referer': referer if referer.startswith('http') else base_url,  # Some videos require this.
+                # Some videos require this.
+                'Referer': referer if referer.startswith('http') else base_url,
             })
 
         if isinstance(embed_config, dict) and embed_config.get('error'):
@@ -43,7 +44,8 @@ class WistiaBaseIE(InfoExtractor):
                 continue
             astatus = a.get('status')
             atype = a.get('type')
-            if (astatus is not None and astatus != 2) or atype in ('preview', 'storyboard'):
+            if (astatus is not None and astatus != 2) or atype in (
+                    'preview', 'storyboard'):
                 continue
             elif atype in ('still', 'still_image'):
                 thumbnails.append({
@@ -101,9 +103,8 @@ class WistiaBaseIE(InfoExtractor):
             language = caption.get('language')
             if not language:
                 continue
-            subtitles[language] = [{
-                'url': self._EMBED_BASE_URL + 'captions/' + video_id + '.vtt?language=' + language,
-            }]
+            subtitles[language] = [{'url': self._EMBED_BASE_URL +
+                                    'captions/' + video_id + '.vtt?language=' + language, }]
 
         return {
             'id': video_id,
@@ -118,7 +119,8 @@ class WistiaBaseIE(InfoExtractor):
 
 
 class WistiaIE(WistiaBaseIE):
-    _VALID_URL = r'(?:wistia:|%s(?:iframe|medias)/)%s' % (WistiaBaseIE._VALID_URL_BASE, WistiaBaseIE._VALID_ID_REGEX)
+    _VALID_URL = r'(?:wistia:|%s(?:iframe|medias)/)%s' % (
+        WistiaBaseIE._VALID_URL_BASE, WistiaBaseIE._VALID_ID_REGEX)
 
     _TESTS = [{
         # with hls video
@@ -157,14 +159,17 @@ class WistiaIE(WistiaBaseIE):
     def _extract_urls(webpage):
         urls = []
         for match in re.finditer(
-                r'<(?:meta[^>]+?content|(?:iframe|script)[^>]+?src)=["\'](?P<url>(?:https?:)?//(?:fast\.)?wistia\.(?:net|com)/embed/(?:iframe|medias)/[a-z0-9]{10})', webpage):
+            r'<(?:meta[^>]+?content|(?:iframe|script)[^>]+?src)=["\'](?P<url>(?:https?:)?//(?:fast\.)?wistia\.(?:net|com)/embed/(?:iframe|medias)/[a-z0-9]{10})',
+                webpage):
             urls.append(unescapeHTML(match.group('url')))
         for match in re.finditer(
                 r'''(?sx)
                     <div[^>]+class=(["'])(?:(?!\1).)*?\bwistia_async_(?P<id>[a-z0-9]{10})\b(?:(?!\1).)*?\1
                 ''', webpage):
             urls.append('wistia:%s' % match.group('id'))
-        for match in re.finditer(r'(?:data-wistia-?id=["\']|Wistia\.embed\(["\']|id=["\']wistia_)(?P<id>[a-z0-9]{10})', webpage):
+        for match in re.finditer(
+            r'(?:data-wistia-?id=["\']|Wistia\.embed\(["\']|id=["\']wistia_)(?P<id>[a-z0-9]{10})',
+                webpage):
             urls.append('wistia:%s' % match.group('id'))
         return urls
 
@@ -175,7 +180,8 @@ class WistiaIE(WistiaBaseIE):
 
 
 class WistiaPlaylistIE(WistiaBaseIE):
-    _VALID_URL = r'%splaylists/%s' % (WistiaIE._VALID_URL_BASE, WistiaIE._VALID_ID_REGEX)
+    _VALID_URL = r'%splaylists/%s' % (WistiaIE._VALID_URL_BASE,
+                                      WistiaIE._VALID_ID_REGEX)
 
     _TEST = {
         'url': 'https://fast.wistia.net/embed/playlists/aodt9etokc',

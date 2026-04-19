@@ -33,8 +33,8 @@ class EitbIE(InfoExtractor):
         video_id = self._match_id(url)
 
         video = self._download_json(
-            'http://mam.eitb.eus/mam/REST/ServiceMultiweb/Video/MULTIWEBTV/%s/' % video_id,
-            video_id, 'Downloading video JSON')
+            'http://mam.eitb.eus/mam/REST/ServiceMultiweb/Video/MULTIWEBTV/%s/' %
+            video_id, video_id, 'Downloading video JSON')
 
         media = video['web_media'][0]
 
@@ -65,8 +65,10 @@ class EitbIE(InfoExtractor):
             if token_data:
                 token = token_data.get('token')
                 if token:
-                    formats.extend(self._extract_m3u8_formats(
-                        '%s?hdnts=%s' % (hls_url, token), video_id, m3u8_id='hls', fatal=False))
+                    formats.extend(
+                        self._extract_m3u8_formats(
+                            '%s?hdnts=%s' %
+                            (hls_url, token), video_id, m3u8_id='hls', fatal=False))
 
         hds_url = media.get('HDS_SURL')
         if hds_url:
@@ -81,8 +83,12 @@ class EitbIE(InfoExtractor):
             'title': media.get('NAME_ES') or media.get('name') or media['NAME_EU'],
             'description': media.get('SHORT_DESC_ES') or video.get('desc_group') or media.get('SHORT_DESC_EU'),
             'thumbnail': media.get('STILL_URL') or media.get('THUMBNAIL_URL'),
-            'duration': float_or_none(media.get('LENGTH'), 1000),
-            'timestamp': parse_iso8601(media.get('BROADCST_DATE'), ' '),
+            'duration': float_or_none(
+                media.get('LENGTH'),
+                1000),
+            'timestamp': parse_iso8601(
+                media.get('BROADCST_DATE'),
+                ' '),
             'tags': media.get('TAGS'),
             'formats': formats,
         }

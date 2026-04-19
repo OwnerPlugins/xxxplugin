@@ -151,7 +151,8 @@ class TumblrIE(InfoExtractor):
         webpage, urlh = self._download_webpage_handle(url, video_id)
 
         redirect_url = urlh.geturl()
-        if 'tumblr.com/safe-mode' in redirect_url or redirect_url.startswith('/safe-mode'):
+        if 'tumblr.com/safe-mode' in redirect_url or redirect_url.startswith(
+                '/safe-mode'):
             raise ExtractorError(
                 'This Tumblr may contain sensitive media. '
                 'Disable safe mode in your account settings '
@@ -164,7 +165,8 @@ class TumblrIE(InfoExtractor):
         if iframe_url is None:
             return self.url_result(redirect_url, 'Generic')
 
-        iframe = self._download_webpage(iframe_url, video_id, 'Downloading iframe page')
+        iframe = self._download_webpage(
+            iframe_url, video_id, 'Downloading iframe page')
 
         duration = None
         sources = []

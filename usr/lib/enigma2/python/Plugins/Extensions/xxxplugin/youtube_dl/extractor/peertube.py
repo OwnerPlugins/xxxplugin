@@ -486,7 +486,8 @@ class PeerTubeIE(InfoExtractor):
         mobj = re.match(
             r'https?://(?P<host>[^/]+)/videos/(?:watch|embed)/(?P<id>%s)'
             % PeerTubeIE._UUID_RE, source_url)
-        if mobj and any(p in webpage for p in (
+        if mobj and any(
+            p in webpage for p in (
                 '<title>PeerTube<',
                 'There will be other non JS-based clients to access PeerTube',
                 '>We are sorry but it seems that PeerTube is not compatible with your web browser.<')):
@@ -495,15 +496,23 @@ class PeerTubeIE(InfoExtractor):
     @staticmethod
     def _extract_urls(webpage, source_url):
         entries = re.findall(
-            r'''(?x)<iframe[^>]+\bsrc=["\'](?P<url>(?:https?:)?//%s/videos/embed/%s)'''
-            % (PeerTubeIE._INSTANCES_RE, PeerTubeIE._UUID_RE), webpage)
+            r'''(?x)<iframe[^>]+\bsrc=["\'](?P<url>(?:https?:)?//%s/videos/embed/%s)''' %
+            (PeerTubeIE._INSTANCES_RE, PeerTubeIE._UUID_RE), webpage)
         if not entries:
-            peertube_url = PeerTubeIE._extract_peertube_url(webpage, source_url)
+            peertube_url = PeerTubeIE._extract_peertube_url(
+                webpage, source_url)
             if peertube_url:
                 entries = [peertube_url]
         return entries
 
-    def _call_api(self, host, video_id, path, note=None, errnote=None, fatal=True):
+    def _call_api(
+            self,
+            host,
+            video_id,
+            path,
+            note=None,
+            errnote=None,
+            fatal=True):
         return self._download_json(
             self._API_BASE % (host, video_id, path), video_id,
             note=note, errnote=errnote, fatal=fatal)
@@ -573,11 +582,15 @@ class PeerTubeIE(InfoExtractor):
         if len(description) >= 250:
             # description is shortened
             full_description = self._call_api(
-                host, video_id, 'description', note='Downloading description JSON',
+                host,
+                video_id,
+                'description',
+                note='Downloading description JSON',
                 fatal=False)
 
             if isinstance(full_description, dict):
-                description = str_or_none(full_description.get('description')) or description
+                description = str_or_none(
+                    full_description.get('description')) or description
 
         subtitles = self.extract_subtitles(host, video_id)
 

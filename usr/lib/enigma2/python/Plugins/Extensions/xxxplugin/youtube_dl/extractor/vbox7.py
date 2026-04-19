@@ -33,7 +33,8 @@ class Vbox7IE(InfoExtractor):
                         )
                         (?P<id>[\da-fA-F]+)
                     '''
-    _EMBED_REGEX = [r'<iframe[^>]+src=(?P<q>["\'])(?P<url>(?:https?:)?//vbox7\.com/emb/external\.php.+?)(?P=q)']
+    _EMBED_REGEX = [
+        r'<iframe[^>]+src=(?P<q>["\'])(?P<url>(?:https?:)?//vbox7\.com/emb/external\.php.+?)(?P=q)']
     _GEO_COUNTRIES = ['BG']
     _TESTS = [{
         # the http: URL just redirects here
@@ -91,13 +92,19 @@ class Vbox7IE(InfoExtractor):
     def _parse_json(self, json_string, video_id, *args, **kwargs):
         if '"@context"' in json_string[:30]:
             # this is ld+json, or that's the way to bet
-            transform_source = args[0] if len(args) > 0 else kwargs.get('transform_source')
+            transform_source = args[0] if len(
+                args) > 0 else kwargs.get('transform_source')
             if not transform_source:
 
                 def fix_chars(src):
                     # fix malformed ld+json: replace raw CRLFs with escaped LFs
                     return re.sub(
-                        r'"[^"]+"', lambda m: re.sub(r'\r?\n', r'\\n', m.group(0)), src)
+                        r'"[^"]+"',
+                        lambda m: re.sub(
+                            r'\r?\n',
+                            r'\\n',
+                            m.group(0)),
+                        src)
 
                 if len(args) > 0:
                     args = (fix_chars,) + args[1:]
@@ -121,9 +128,11 @@ class Vbox7IE(InfoExtractor):
 
         if traverse_obj(response, 'error'):
             raise ExtractorError(
-                '%s said: %s' % (self.IE_NAME, response['error']), expected=True)
+                '%s said: %s' %
+                (self.IE_NAME, response['error']), expected=True)
 
-        src_url = traverse_obj(response, ('options', 'src', T(url_or_none))) or ''
+        src_url = traverse_obj(
+            response, ('options', 'src', T(url_or_none))) or ''
 
         fmt_base = url_basename(src_url).rsplit('.', 1)[0].rsplit('_', 1)[0]
         if fmt_base in ('na', 'vn'):
@@ -145,7 +154,8 @@ class Vbox7IE(InfoExtractor):
             subtitles = {}
 
         if src_url:
-            # possibly extract HLS, based on https://github.com/yt-dlp/yt-dlp/pull/9100
+            # possibly extract HLS, based on
+            # https://github.com/yt-dlp/yt-dlp/pull/9100
             fmt_base = base_url(src_url) + fmt_base
             # prepare for _extract_m3u8_formats_and_subtitles()
             # hls_formats, hls_subs = self._extract_m3u8_formats_and_subtitles(
@@ -160,8 +170,8 @@ class Vbox7IE(InfoExtractor):
             resolutions = (1080, 720, 480, 240, 144)
             highest_res = traverse_obj(video, (
                 'highestRes', T(int))) or resolutions[0]
-            resolutions = traverse_obj(video, (
-                'resolutions', lambda _, r: highest_res >= int(r) > 0)) or resolutions
+            resolutions = traverse_obj(
+                video, ('resolutions', lambda _, r: highest_res >= int(r) > 0)) or resolutions
             mp4_formats = traverse_obj(resolutions, (
                 Ellipsis, T(lambda res: {
                     'url': '{0}_{1}.mp4'.format(fmt_base, res),
@@ -181,21 +191,25 @@ class Vbox7IE(InfoExtractor):
             fatal=False) if webpage else {}
 
         if not info.get('title'):
-            info['title'] = traverse_obj(response, (
-                'options', 'title', T(txt_or_none))) or self._og_search_title(webpage)
+            info['title'] = traverse_obj(response, ('options', 'title', T(
+                txt_or_none))) or self._og_search_title(webpage)
 
         def if_missing(k):
             return lambda x: None if k in info else x
 
-        info = merge_dicts(info, {
-            'id': video_id,
-            'formats': formats,
-            'subtitles': subtitles or None,
-        }, info, traverse_obj(response, ('options', {
-            'uploader': ('uploader', T(txt_or_none)),
-            'timestamp': ('ago', T(if_missing('timestamp')), T(lambda t: int(round((now - t) / 60.0)) * 60)),
-            'duration': ('duration', T(if_missing('duration')), T(float_or_none)),
-        })))
+        info = merge_dicts(
+            info, {
+                'id': video_id, 'formats': formats, 'subtitles': subtitles or None, }, info, traverse_obj(
+                response, ('options', {
+                    'uploader': (
+                        'uploader', T(txt_or_none)), 'timestamp': (
+                        'ago', T(
+                            if_missing('timestamp')), T(
+                                lambda t: int(
+                                    round(
+                                        (now - t) / 60.0)) * 60)), 'duration': (
+                                            'duration', T(
+                                                if_missing('duration')), T(float_or_none)), })))
         if 'thumbnail' not in info:
             info['thumbnail'] = self._proto_relative_url(
                 info.get('thumbnail') or self._og_search_thumbnail(webpage),

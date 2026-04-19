@@ -83,7 +83,8 @@ class SlidesLiveIE(InfoExtractor):
             else:
                 formats = []
                 _MANIFEST_PATTERN = 'https://01.cdn.yoda.slideslive.com/%s/master.%s'
-                # use `m3u8` entry_protocol until EXT-X-MAP is properly supported by `m3u8_native` entry_protocol
+                # use `m3u8` entry_protocol until EXT-X-MAP is properly
+                # supported by `m3u8_native` entry_protocol
                 formats.extend(self._extract_m3u8_formats(
                     _MANIFEST_PATTERN % (service_id, 'm3u8'),
                     service_id, 'mp4', m3u8_id='hls', fatal=False))

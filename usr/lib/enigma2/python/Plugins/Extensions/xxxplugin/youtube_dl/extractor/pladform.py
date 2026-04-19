@@ -27,29 +27,28 @@ class PladformIE(InfoExtractor):
                         )
                         (?P<id>\d+)
                     '''
-    _TESTS = [{
-        'url': 'https://out.pladform.ru/player?pl=64471&videoid=3777899&vk_puid15=0&vk_puid34=0',
-        'md5': '53362fac3a27352da20fa2803cc5cd6f',
-        'info_dict': {
-            'id': '3777899',
-            'ext': 'mp4',
-            'title': 'СТУДИЯ СОЮЗ • Шоу Студия Союз, 24 выпуск (01.02.2018) Нурлан Сабуров и Слава Комиссаренко',
-            'description': 'md5:05140e8bf1b7e2d46e7ba140be57fd95',
-            'thumbnail': r're:^https?://.*\.jpg$',
-            'duration': 3190,
-        },
-    }, {
-        'url': 'http://static.pladform.ru/player.swf?pl=21469&videoid=100183293&vkcid=0',
-        'only_matching': True,
-    }, {
-        'url': 'http://video.pladform.ru/catalog/video/videoid/100183293/vkcid/0',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://out.pladform.ru/player?pl=64471&videoid=3777899&vk_puid15=0&vk_puid34=0',
+               'md5': '53362fac3a27352da20fa2803cc5cd6f',
+               'info_dict': {'id': '3777899',
+                             'ext': 'mp4',
+                             'title': 'СТУДИЯ СОЮЗ • Шоу Студия Союз, 24 выпуск (01.02.2018) Нурлан Сабуров и Слава Комиссаренко',
+                             'description': 'md5:05140e8bf1b7e2d46e7ba140be57fd95',
+                             'thumbnail': r're:^https?://.*\.jpg$',
+                             'duration': 3190,
+                             },
+               },
+              {'url': 'http://static.pladform.ru/player.swf?pl=21469&videoid=100183293&vkcid=0',
+               'only_matching': True,
+               },
+              {'url': 'http://video.pladform.ru/catalog/video/videoid/100183293/vkcid/0',
+               'only_matching': True,
+               }]
 
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'<iframe[^>]+src=(["\'])(?P<url>(?:https?:)?//out\.pladform\.ru/player\?.+?)\1', webpage)
+            r'<iframe[^>]+src=(["\'])(?P<url>(?:https?:)?//out\.pladform\.ru/player\?.+?)\1',
+            webpage)
         if mobj:
             return mobj.group('url')
 

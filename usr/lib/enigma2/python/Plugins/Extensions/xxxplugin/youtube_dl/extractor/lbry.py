@@ -55,21 +55,33 @@ class LBRYBaseIE(InfoExtractor):
         channel_claim_id = signing_channel.get('claim_id')
         channel_url = None
         if channel_name and channel_claim_id:
-            channel_url = self._permanent_url(url, channel_name, channel_claim_id)
+            channel_url = self._permanent_url(
+                url, channel_name, channel_claim_id)
 
         info = {
-            'thumbnail': try_get(stream_value, lambda x: x['thumbnail']['url'], compat_str),
+            'thumbnail': try_get(
+                stream_value,
+                lambda x: x['thumbnail']['url'],
+                compat_str),
             'description': stream_value.get('description'),
             'license': stream_value.get('license'),
-            'timestamp': int_or_none(stream.get('timestamp')),
-            'release_timestamp': int_or_none(stream_value.get('release_time')),
+            'timestamp': int_or_none(
+                stream.get('timestamp')),
+            'release_timestamp': int_or_none(
+                stream_value.get('release_time')),
             'tags': stream_value.get('tags'),
-            'duration': int_or_none(media.get('duration')),
-            'channel': try_get(signing_channel, lambda x: x['value']['title']),
+            'duration': int_or_none(
+                media.get('duration')),
+            'channel': try_get(
+                signing_channel,
+                lambda x: x['value']['title']),
             'channel_id': channel_claim_id,
             'channel_url': channel_url,
-            'ext': determine_ext(source.get('name')) or mimetype2ext(source.get('media_type')),
-            'filesize': int_or_none(source.get('size')),
+            'ext': determine_ext(
+                source.get('name')) or mimetype2ext(
+                source.get('media_type')),
+            'filesize': int_or_none(
+                source.get('size')),
         }
         if stream_type == 'audio':
             info['vcodec'] = 'none'
@@ -83,7 +95,8 @@ class LBRYBaseIE(InfoExtractor):
 
 class LBRYIE(LBRYBaseIE):
     IE_NAME = 'lbry'
-    _VALID_URL = LBRYBaseIE._BASE_URL_REGEX + r'(?P<id>\$/[^/]+/[^/]+/{1}|@{0}/{0}|(?!@){0})'.format(LBRYBaseIE._OPT_CLAIM_ID, LBRYBaseIE._CLAIM_ID_REGEX)
+    _VALID_URL = LBRYBaseIE._BASE_URL_REGEX + \
+        r'(?P<id>\$/[^/]+/[^/]+/{1}|@{0}/{0}|(?!@){0})'.format(LBRYBaseIE._OPT_CLAIM_ID, LBRYBaseIE._CLAIM_ID_REGEX)
     _TESTS = [{
         # Video
         'url': 'https://lbry.tv/@Mantega:1/First-day-LBRY:1',
@@ -184,7 +197,9 @@ class LBRYIE(LBRYBaseIE):
             'get', claim_id, {'uri': uri}, 'streaming url')['streaming_url']
         info = self._parse_stream(result, url)
         urlh = self._request_webpage(
-            streaming_url, display_id, note='Downloading streaming redirect url info')
+            streaming_url,
+            display_id,
+            note='Downloading streaming redirect url info')
         if determine_ext(urlh.geturl()) == 'm3u8':
             info['formats'] = self._extract_m3u8_formats(
                 urlh.geturl(), display_id, 'mp4', entry_protocol='m3u8_native',
@@ -201,7 +216,8 @@ class LBRYIE(LBRYBaseIE):
 
 class LBRYChannelIE(LBRYBaseIE):
     IE_NAME = 'lbry:channel'
-    _VALID_URL = LBRYBaseIE._BASE_URL_REGEX + r'(?P<id>@%s)/?(?:[?#&]|$)' % LBRYBaseIE._OPT_CLAIM_ID
+    _VALID_URL = LBRYBaseIE._BASE_URL_REGEX + \
+        r'(?P<id>@%s)/?(?:[?#&]|$)' % LBRYBaseIE._OPT_CLAIM_ID
     _TESTS = [{
         'url': 'https://lbry.tv/@LBRYFoundation:0',
         'info_dict': {
@@ -251,14 +267,13 @@ class LBRYChannelIE(LBRYBaseIE):
         qs = compat_parse_qs(compat_urllib_parse_urlparse(url).query)
         content = qs.get('content', [None])[0]
         params = {
-            'fee_amount': qs.get('fee_amount', ['>=0'])[0],
-            'order_by': {
-                'new': ['release_time'],
-                'top': ['effective_amount'],
-                'trending': ['trending_group', 'trending_mixed'],
-            }[qs.get('order', ['new'])[0]],
-            'stream_types': [content] if content in ['audio', 'video'] else self._SUPPORTED_STREAM_TYPES,
-        }
+            'fee_amount': qs.get(
+                'fee_amount', ['>=0'])[0], 'order_by': {
+                'new': ['release_time'], 'top': ['effective_amount'], 'trending': [
+                    'trending_group', 'trending_mixed'], }[
+                    qs.get(
+                        'order', ['new'])[0]], 'stream_types': [content] if content in [
+                            'audio', 'video'] else self._SUPPORTED_STREAM_TYPES, }
         duration = qs.get('duration', [None])[0]
         if duration:
             params['duration'] = {

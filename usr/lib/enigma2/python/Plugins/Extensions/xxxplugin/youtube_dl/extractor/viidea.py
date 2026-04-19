@@ -117,7 +117,8 @@ class ViideaIE(InfoExtractor):
     }]
 
     def _real_extract(self, url):
-        lecture_slug, explicit_part_id = re.match(self._VALID_URL, url).groups()
+        lecture_slug, explicit_part_id = re.match(
+            self._VALID_URL, url).groups()
 
         webpage = self._download_webpage(url, lecture_slug)
 
@@ -157,12 +158,15 @@ class ViideaIE(InfoExtractor):
             multipart = len(parts) > 1
 
             def extract_part(part_id):
-                smil_url = '%s/%s/video/%s/smil.xml' % (base_url, lecture_slug, part_id)
+                smil_url = '%s/%s/video/%s/smil.xml' % (
+                    base_url, lecture_slug, part_id)
                 smil = self._download_smil(smil_url, lecture_id)
                 info = self._parse_smil(smil, smil_url, lecture_id)
                 self._sort_formats(info['formats'])
-                info['id'] = lecture_id if not multipart else '%s_part%s' % (lecture_id, part_id)
-                info['display_id'] = lecture_slug if not multipart else '%s_part%s' % (lecture_slug, part_id)
+                info['id'] = lecture_id if not multipart else '%s_part%s' % (
+                    lecture_id, part_id)
+                info['display_id'] = lecture_slug if not multipart else '%s_part%s' % (
+                    lecture_slug, part_id)
                 if multipart:
                     info['title'] += ' (Part %s)' % part_id
                 switch = smil.find('.//switch')
@@ -190,7 +194,8 @@ class ViideaIE(InfoExtractor):
         # It's probably a playlist
         if not parts or lecture_type == 'evt':
             playlist_webpage = self._download_webpage(
-                '%s/site/ajax/drilldown/?id=%s' % (base_url, lecture_id), lecture_id)
+                '%s/site/ajax/drilldown/?id=%s' %
+                (base_url, lecture_id), lecture_id)
             entries = [
                 self.url_result(compat_urlparse.urljoin(url, video_url), 'Viidea')
                 for _, video_url in re.findall(

@@ -27,45 +27,43 @@ class TwentyFourVideoIE(InfoExtractor):
                         (?P<id>\d+)
                     '''
 
-    _TESTS = [{
-        'url': 'http://www.24video.net/video/view/1044982',
-        'md5': 'e09fc0901d9eaeedac872f154931deeb',
-        'info_dict': {
-            'id': '1044982',
-            'ext': 'mp4',
-            'title': 'Эротика каменного века',
-            'description': 'Как смотрели порно в каменном веке.',
-            'thumbnail': r're:^https?://.*\.jpg$',
-            'uploader': 'SUPERTELO',
-            'duration': 31,
-            'timestamp': 1275937857,
-            'upload_date': '20100607',
-            'age_limit': 18,
-            'like_count': int,
-            'dislike_count': int,
-        },
-    }, {
-        'url': 'http://www.24video.net/player/new24_play.swf?id=1044982',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.24video.me/video/view/1044982',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.24video.tube/video/view/2363750',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.24video.site/video/view/2640421',
-        'only_matching': True,
-    }, {
-        'url': 'https://porno.24video.net/video/2640421-vsya-takaya-gibkaya-i-v-masle',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.24video.vip/video/view/1044982',
-        'only_matching': True,
-    }, {
-        'url': 'https://porn.24video.net/video/2640421-vsya-takay',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.24video.net/video/view/1044982',
+               'md5': 'e09fc0901d9eaeedac872f154931deeb',
+               'info_dict': {'id': '1044982',
+                             'ext': 'mp4',
+                             'title': 'Эротика каменного века',
+                             'description': 'Как смотрели порно в каменном веке.',
+                             'thumbnail': r're:^https?://.*\.jpg$',
+                             'uploader': 'SUPERTELO',
+                             'duration': 31,
+                             'timestamp': 1275937857,
+                             'upload_date': '20100607',
+                             'age_limit': 18,
+                             'like_count': int,
+                             'dislike_count': int,
+                             },
+               },
+              {'url': 'http://www.24video.net/player/new24_play.swf?id=1044982',
+               'only_matching': True,
+               },
+              {'url': 'http://www.24video.me/video/view/1044982',
+               'only_matching': True,
+               },
+              {'url': 'http://www.24video.tube/video/view/2363750',
+               'only_matching': True,
+               },
+              {'url': 'https://www.24video.site/video/view/2640421',
+               'only_matching': True,
+               },
+              {'url': 'https://porno.24video.net/video/2640421-vsya-takaya-gibkaya-i-v-masle',
+               'only_matching': True,
+               },
+              {'url': 'https://www.24video.vip/video/view/1044982',
+               'only_matching': True,
+               },
+              {'url': 'https://porn.24video.net/video/2640421-vsya-takay',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

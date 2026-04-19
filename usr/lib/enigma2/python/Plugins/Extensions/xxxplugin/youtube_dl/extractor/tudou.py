@@ -19,7 +19,8 @@ class TudouPlaylistIE(InfoExtractor):
     def _real_extract(self, url):
         playlist_id = self._match_id(url)
         playlist_data = self._download_json(
-            'http://www.tudou.com/tvp/plist.action?lcode=%s' % playlist_id, playlist_id)
+            'http://www.tudou.com/tvp/plist.action?lcode=%s' %
+            playlist_id, playlist_id)
         entries = [self.url_result(
             'http://www.tudou.com/programs/view/%s' % item['icode'],
             'Tudou', item['icode'],
@@ -41,7 +42,8 @@ class TudouAlbumIE(InfoExtractor):
     def _real_extract(self, url):
         album_id = self._match_id(url)
         album_data = self._download_json(
-            'http://www.tudou.com/tvp/alist.action?acode=%s' % album_id, album_id)
+            'http://www.tudou.com/tvp/alist.action?acode=%s' %
+            album_id, album_id)
         entries = [self.url_result(
             'http://www.tudou.com/programs/view/%s' % item['icode'],
             'Tudou', item['icode'],

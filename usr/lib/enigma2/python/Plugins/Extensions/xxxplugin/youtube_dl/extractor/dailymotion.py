@@ -42,13 +42,23 @@ class DailymotionBaseInfoExtractor(InfoExtractor):
     def _real_initialize(self):
         cookies = self._get_dailymotion_cookies()
         ff = self._get_cookie_value(cookies, 'ff')
-        self._FAMILY_FILTER = ff == 'on' if ff else age_restricted(18, self._downloader.params.get('age_limit'))
-        self._set_dailymotion_cookie('ff', 'on' if self._FAMILY_FILTER else 'off')
+        self._FAMILY_FILTER = ff == 'on' if ff else age_restricted(
+            18, self._downloader.params.get('age_limit'))
+        self._set_dailymotion_cookie(
+            'ff', 'on' if self._FAMILY_FILTER else 'off')
 
-    def _call_api(self, object_type, xid, object_fields, note, filter_extra=None):
+    def _call_api(
+            self,
+            object_type,
+            xid,
+            object_fields,
+            note,
+            filter_extra=None):
         if not self._HEADERS.get('Authorization'):
             cookies = self._get_dailymotion_cookies()
-            token = self._get_cookie_value(cookies, 'access_token') or self._get_cookie_value(cookies, 'client_token')
+            token = self._get_cookie_value(
+                cookies, 'access_token') or self._get_cookie_value(
+                cookies, 'client_token')
             if not token:
                 data = {
                     'client_id': 'f1a362d288c1b98099c7',
@@ -69,21 +79,36 @@ class DailymotionBaseInfoExtractor(InfoExtractor):
                         None, 'Downloading Access Token',
                         data=urlencode_postdata(data))['access_token']
                 except ExtractorError as e:
-                    if isinstance(e.cause, compat_HTTPError) and e.cause.code == 400:
-                        raise ExtractorError(self._parse_json(
-                            e.cause.read().decode(), xid)['error_description'], expected=True)
+                    if isinstance(e.cause,
+                                  compat_HTTPError) and e.cause.code == 400:
+                        raise ExtractorError(
+                            self._parse_json(
+                                e.cause.read().decode(),
+                                xid)['error_description'],
+                            expected=True)
                     raise
-                self._set_dailymotion_cookie('access_token' if username else 'client_token', token)
+                self._set_dailymotion_cookie(
+                    'access_token' if username else 'client_token', token)
             self._HEADERS['Authorization'] = 'Bearer ' + token
 
         resp = self._download_json(
-            'https://graphql.api.dailymotion.com/', xid, note, data=json.dumps({
-                'query': '''{
+            'https://graphql.api.dailymotion.com/',
+            xid,
+            note,
+            data=json.dumps(
+                {
+                    'query': '''{
   %s(xid: "%s"%s) {
     %s
   }
-}''' % (object_type, xid, ', ' + filter_extra if filter_extra else '', object_fields),
-            }).encode(), headers=self._HEADERS)
+}''' %
+                    (object_type,
+                     xid,
+                     ', ' +
+                     filter_extra if filter_extra else '',
+                     object_fields),
+                }).encode(),
+            headers=self._HEADERS)
         obj = resp['data'][object_type]
         if not obj:
             raise ExtractorError(resp['errors'][0]['message'], expected=True)
@@ -196,11 +221,15 @@ class DailymotionIE(DailymotionBaseInfoExtractor):
         # Look for embedded Dailymotion player
         # https://developer.dailymotion.com/player#player-parameters
         for mobj in re.finditer(
-                r'<(?:(?:embed|iframe)[^>]+?src=|input[^>]+id=[\'"]dmcloudUrlEmissionSelect[\'"][^>]+value=)(["\'])(?P<url>(?:https?:)?//(?:www\.)?dailymotion\.com/(?:embed|swf)/video/.+?)\1', webpage):
+            r'<(?:(?:embed|iframe)[^>]+?src=|input[^>]+id=[\'"]dmcloudUrlEmissionSelect[\'"][^>]+value=)(["\'])(?P<url>(?:https?:)?//(?:www\.)?dailymotion\.com/(?:embed|swf)/video/.+?)\1',
+                webpage):
             urls.append(unescapeHTML(mobj.group('url')))
         for mobj in re.finditer(
-                r'(?s)DM\.player\([^,]+,\s*{.*?video[\'"]?\s*:\s*["\']?(?P<id>[0-9a-zA-Z]+).+?}\s*\);', webpage):
-            urls.append('https://www.dailymotion.com/embed/video/' + mobj.group('id'))
+            r'(?s)DM\.player\([^,]+,\s*{.*?video[\'"]?\s*:\s*["\']?(?P<id>[0-9a-zA-Z]+).+?}\s*\);',
+                webpage):
+            urls.append(
+                'https://www.dailymotion.com/embed/video/' +
+                mobj.group('id'))
         return urls
 
     def _real_extract(self, url):
@@ -208,15 +237,21 @@ class DailymotionIE(DailymotionBaseInfoExtractor):
 
         if playlist_id:
             if not self._downloader.params.get('noplaylist'):
-                self.to_screen('Downloading playlist %s - add --no-playlist to just download video' % playlist_id)
+                self.to_screen(
+                    'Downloading playlist %s - add --no-playlist to just download video' %
+                    playlist_id)
                 return self.url_result(
                     'http://www.dailymotion.com/playlist/' + playlist_id,
                     'DailymotionPlaylist', playlist_id)
-            self.to_screen('Downloading just video %s because of --no-playlist' % video_id)
+            self.to_screen(
+                'Downloading just video %s because of --no-playlist' %
+                video_id)
 
         password = self._downloader.params.get('videopassword')
         media = self._call_api(
-            'media', video_id, '''... on Video {
+            'media',
+            video_id,
+            '''... on Video {
       %s
       stats {
         likes {
@@ -231,8 +266,12 @@ class DailymotionIE(DailymotionBaseInfoExtractor):
       %s
       audienceCount
       isOnAir
-    }''' % (self._COMMON_MEDIA_FIELDS, self._COMMON_MEDIA_FIELDS), 'Downloading media JSON metadata',
-            'password: "%s"' % self._downloader.params.get('videopassword') if password else None)
+    }''' %
+            (self._COMMON_MEDIA_FIELDS,
+             self._COMMON_MEDIA_FIELDS),
+            'Downloading media JSON metadata',
+            'password: "%s"' %
+            self._downloader.params.get('videopassword') if password else None)
         xid = media['xid']
 
         metadata = self._download_json(
@@ -245,8 +284,10 @@ class DailymotionIE(DailymotionBaseInfoExtractor):
             title = error.get('title') or error['raw_message']
             # See https://developer.dailymotion.com/api#access-error
             if error.get('code') == 'DM007':
-                allowed_countries = try_get(media, lambda x: x['geoblockedCountries']['allowed'], list)
-                self.raise_geo_restricted(msg=title, countries=allowed_countries)
+                allowed_countries = try_get(
+                    media, lambda x: x['geoblockedCountries']['allowed'], list)
+                self.raise_geo_restricted(
+                    msg=title, countries=allowed_countries)
             raise ExtractorError(
                 '%s said: %s' % (self.IE_NAME, title), expected=True)
 
@@ -285,7 +326,10 @@ class DailymotionIE(DailymotionBaseInfoExtractor):
         self._sort_formats(formats)
 
         subtitles = {}
-        subtitles_data = try_get(metadata, lambda x: x['subtitles']['data'], dict) or {}
+        subtitles_data = try_get(
+            metadata,
+            lambda x: x['subtitles']['data'],
+            dict) or {}
         for subtitle_lang, subtitle in subtitles_data.items():
             subtitles[subtitle_lang] = [{
                 'url': subtitle_url,
@@ -301,20 +345,25 @@ class DailymotionIE(DailymotionBaseInfoExtractor):
 
         owner = metadata.get('owner') or {}
         stats = media.get('stats') or {}
-        get_count = lambda x: int_or_none(try_get(stats, lambda y: y[x + 's']['total']))
+        def get_count(x): return int_or_none(
+            try_get(stats, lambda y: y[x + 's']['total']))
 
         return {
             'id': video_id,
             'title': self._live_title(title) if is_live else title,
-            'description': clean_html(media.get('description')),
+            'description': clean_html(
+                media.get('description')),
             'thumbnails': thumbnails,
-            'duration': int_or_none(metadata.get('duration')) or None,
-            'timestamp': int_or_none(metadata.get('created_time')),
+            'duration': int_or_none(
+                metadata.get('duration')) or None,
+            'timestamp': int_or_none(
+                metadata.get('created_time')),
             'uploader': owner.get('screenname'),
             'uploader_id': owner.get('id') or metadata.get('screenname'),
             'age_limit': 18 if metadata.get('explicit') else 0,
             'tags': metadata.get('tags'),
-            'view_count': get_count('view') or int_or_none(media.get('audienceCount')),
+            'view_count': get_count('view') or int_or_none(
+                media.get('audienceCount')),
             'like_count': get_count('like'),
             'formats': formats,
             'subtitles': subtitles,

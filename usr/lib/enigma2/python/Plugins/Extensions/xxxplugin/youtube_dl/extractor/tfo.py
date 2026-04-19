@@ -23,22 +23,30 @@ class TFOIE(InfoExtractor):
             'ext': 'mp4',
             'title': 'Video Game Hackathon',
             'description': 'md5:558afeba217c6c8d96c60e5421795c07',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
         self._request_webpage(HEADRequest('http://www.tfo.org/'), video_id)
         infos = self._download_json(
-            'http://www.tfo.org/api/web/video/get_infos', video_id, data=json.dumps({
-                'product_id': video_id,
-            }).encode(), headers={
+            'http://www.tfo.org/api/web/video/get_infos',
+            video_id,
+            data=json.dumps(
+                {
+                    'product_id': video_id,
+                }).encode(),
+            headers={
                 'X-tfo-session': self._get_cookies('http://www.tfo.org/')['tfo-session'].value,
             })
         if infos.get('success') == 0:
             if infos.get('code') == 'ErrGeoBlocked':
                 self.raise_geo_restricted(countries=self._GEO_COUNTRIES)
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, clean_html(infos['msg'])), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME,
+                 clean_html(
+                     infos['msg'])),
+                expected=True)
         video_data = infos['data']
 
         return {

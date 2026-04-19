@@ -18,28 +18,25 @@ class TunePkIE(InfoExtractor):
                         )
                         (?P<id>\d+)
                     '''
-    _TESTS = [{
-        'url': 'https://tune.pk/video/6919541/maudie-2017-international-trailer-1-ft-ethan-hawke-sally-hawkins',
-        'md5': '0c537163b7f6f97da3c5dd1e3ef6dd55',
-        'info_dict': {
-            'id': '6919541',
-            'ext': 'mp4',
-            'title': 'Maudie (2017) | International Trailer # 1 ft Ethan Hawke, Sally Hawkins',
-            'description': 'md5:eb5a04114fafef5cec90799a93a2d09c',
-            'thumbnail': r're:^https?://.*\.jpg$',
-            'timestamp': 1487327564,
-            'upload_date': '20170217',
-            'uploader': 'Movie Trailers',
-            'duration': 107,
-            'view_count': int,
-        }
-    }, {
-        'url': 'https://tune.pk/player/embed_player.php?vid=6919541&folder=2017/02/17/&width=600&height=350&autoplay=no',
-        'only_matching': True,
-    }, {
-        'url': 'https://embed.tune.pk/play/6919541?autoplay=no&ssl=yes&inline=true',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://tune.pk/video/6919541/maudie-2017-international-trailer-1-ft-ethan-hawke-sally-hawkins',
+               'md5': '0c537163b7f6f97da3c5dd1e3ef6dd55',
+               'info_dict': {'id': '6919541',
+                             'ext': 'mp4',
+                             'title': 'Maudie (2017) | International Trailer # 1 ft Ethan Hawke, Sally Hawkins',
+                             'description': 'md5:eb5a04114fafef5cec90799a93a2d09c',
+                             'thumbnail': r're:^https?://.*\.jpg$',
+                             'timestamp': 1487327564,
+                             'upload_date': '20170217',
+                             'uploader': 'Movie Trailers',
+                             'duration': 107,
+                             'view_count': int,
+                             }},
+              {'url': 'https://tune.pk/player/embed_player.php?vid=6919541&folder=2017/02/17/&width=600&height=350&autoplay=no',
+               'only_matching': True,
+               },
+              {'url': 'https://embed.tune.pk/play/6919541?autoplay=no&ssl=yes&inline=true',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -49,7 +46,9 @@ class TunePkIE(InfoExtractor):
 
         details = self._parse_json(
             self._search_regex(
-                r'new\s+TunePlayer\(({.+?})\)\s*;\s*\n', webpage, 'tune player'),
+                r'new\s+TunePlayer\(({.+?})\)\s*;\s*\n',
+                webpage,
+                'tune player'),
             video_id)['details']
 
         video = details['video']

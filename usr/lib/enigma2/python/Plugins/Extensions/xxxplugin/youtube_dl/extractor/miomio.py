@@ -59,16 +59,19 @@ class MioMioIE(InfoExtractor):
             r'flashvars="type=(?:sina|video)&amp;(.+?)&amp;',
             webpage, 'xml config')
 
-        # skipping the following page causes lags and eventually connection drop-outs
+        # skipping the following page causes lags and eventually connection
+        # drop-outs
         self._request_webpage(
-            'http://www.miomio.tv/mioplayer/mioplayerconfigfiles/xml.php?id=%s&r=%s' % (id, random.randint(100, 999)),
-            video_id)
+            'http://www.miomio.tv/mioplayer/mioplayerconfigfiles/xml.php?id=%s&r=%s' %
+            (id, random.randint(
+                100, 999)), video_id)
 
         vid_config_request = sanitized_Request(
             'http://www.miomio.tv/mioplayer/mioplayerconfigfiles/sina.php?{0}'.format(xml_config),
             headers=http_headers)
 
-        # the following xml contains the actual configuration information on the video file(s)
+        # the following xml contains the actual configuration information on
+        # the video file(s)
         vid_config = self._download_xml(vid_config_request, video_id)
 
         if not int_or_none(xpath_text(vid_config, 'timelength')):
@@ -119,11 +122,14 @@ class MioMioIE(InfoExtractor):
             player_webpage = self._download_chinese_webpage(
                 player_url, video_id,
                 note='Downloading player webpage', headers={'Referer': url})
-            entries = self._parse_html5_media_entries(player_url, player_webpage, video_id)
+            entries = self._parse_html5_media_entries(
+                player_url, player_webpage, video_id)
             http_headers = {'Referer': player_url}
         else:
-            http_headers = {'Referer': 'http://www.miomio.tv%s' % mioplayer_path}
-            entries = self._extract_mioplayer(webpage, video_id, title, http_headers)
+            http_headers = {
+                'Referer': 'http://www.miomio.tv%s' % mioplayer_path}
+            entries = self._extract_mioplayer(
+                webpage, video_id, title, http_headers)
 
         if len(entries) == 1:
             segment = entries[0]

@@ -304,7 +304,8 @@ class FacebookIE(InfoExtractor):
                 webpage):
             urls.append(mobj.group('url'))
         # Facebook API embed
-        # see https://developers.facebook.com/docs/plugins/embedded-video-player
+        # see
+        # https://developers.facebook.com/docs/plugins/embedded-video-player
         for mobj in re.finditer(r'''(?x)<div[^>]+
                 class=(?P<q1>[\'"])[^\'"]*\bfb-(?:video|post)\b[^\'"]*(?P=q1)[^>]+
                 data-href=(?P<q2>[\'"])(?P<url>(?:https?:)?//(?:www\.)?facebook.com/.+?)(?P=q2)''', webpage):
@@ -318,13 +319,16 @@ class FacebookIE(InfoExtractor):
 
         login_page_req = sanitized_Request(self._LOGIN_URL)
         self._set_cookie('facebook.com', 'locale', 'en_US')
-        login_page = self._download_webpage(login_page_req, None,
-                                            note='Downloading login page',
-                                            errnote='Unable to download login page')
+        login_page = self._download_webpage(
+            login_page_req,
+            None,
+            note='Downloading login page',
+            errnote='Unable to download login page')
         lsd = self._search_regex(
             r'<input type="hidden" name="lsd" value="([^"]*)"',
             login_page, 'lsd')
-        lgnrnd = self._search_regex(r'name="lgnrnd" value="([^"]*?)"', login_page, 'lgnrnd')
+        lgnrnd = self._search_regex(
+            r'name="lgnrnd" value="([^"]*?)"', login_page, 'lgnrnd')
 
         login_form = {
             'email': useremail,
@@ -337,24 +341,36 @@ class FacebookIE(InfoExtractor):
             'timezone': '-60',
             'trynum': '1',
         }
-        request = sanitized_Request(self._LOGIN_URL, urlencode_postdata(login_form))
+        request = sanitized_Request(
+            self._LOGIN_URL, urlencode_postdata(login_form))
         request.add_header('Content-Type', 'application/x-www-form-urlencoded')
         try:
-            login_results = self._download_webpage(request, None,
-                                                   note='Logging in', errnote='unable to fetch login page')
-            if re.search(r'<form(.*)name="login"(.*)</form>', login_results) is not None:
+            login_results = self._download_webpage(
+                request, None, note='Logging in', errnote='unable to fetch login page')
+            if re.search(
+                r'<form(.*)name="login"(.*)</form>',
+                    login_results) is not None:
                 error = self._html_search_regex(
                     r'(?s)<div[^>]+class=(["\']).*?login_error_box.*?\1[^>]*><div[^>]*>.*?</div><div[^>]*>(?P<error>.+?)</div>',
                     login_results, 'login error', default=None, group='error')
                 if error:
-                    raise ExtractorError('Unable to login: %s' % error, expected=True)
-                self._downloader.report_warning('unable to log in: bad username/password, or exceeded login rate limit (~3/min). Check credentials or wait.')
+                    raise ExtractorError(
+                        'Unable to login: %s' %
+                        error, expected=True)
+                self._downloader.report_warning(
+                    'unable to log in: bad username/password, or exceeded login rate limit (~3/min). Check credentials or wait.')
                 return
 
             fb_dtsg = self._search_regex(
-                r'name="fb_dtsg" value="(.+?)"', login_results, 'fb_dtsg', default=None)
+                r'name="fb_dtsg" value="(.+?)"',
+                login_results,
+                'fb_dtsg',
+                default=None)
             h = self._search_regex(
-                r'name="h"\s+(?:\w+="[^"]+"\s+)*?value="([^"]+)"', login_results, 'h', default=None)
+                r'name="h"\s+(?:\w+="[^"]+"\s+)*?value="([^"]+)"',
+                login_results,
+                'h',
+                default=None)
 
             if not fb_dtsg or not h:
                 return
@@ -364,14 +380,22 @@ class FacebookIE(InfoExtractor):
                 'h': h,
                 'name_action_selected': 'dont_save',
             }
-            check_req = sanitized_Request(self._CHECKPOINT_URL, urlencode_postdata(check_form))
-            check_req.add_header('Content-Type', 'application/x-www-form-urlencoded')
+            check_req = sanitized_Request(
+                self._CHECKPOINT_URL, urlencode_postdata(check_form))
+            check_req.add_header(
+                'Content-Type',
+                'application/x-www-form-urlencoded')
             check_response = self._download_webpage(check_req, None,
                                                     note='Confirming login')
-            if re.search(r'id="checkpointSubmitButton"', check_response) is not None:
-                self._downloader.report_warning('Unable to confirm login, you have to login in your browser and authorize the login.')
+            if re.search(
+                r'id="checkpointSubmitButton"',
+                    check_response) is not None:
+                self._downloader.report_warning(
+                    'Unable to confirm login, you have to login in your browser and authorize the login.')
         except (compat_urllib_error.URLError, compat_http_client.HTTPException, socket.error) as err:
-            self._downloader.report_warning('unable to log in: %s' % error_to_compat_str(err))
+            self._downloader.report_warning(
+                'unable to log in: %s' %
+                error_to_compat_str(err))
             return
 
     def _real_initialize(self):
@@ -379,7 +403,10 @@ class FacebookIE(InfoExtractor):
 
     def _extract_from_url(self, url, video_id):
         webpage = self._download_webpage(
-            url.replace('://m.facebook.com/', '://www.facebook.com/'), video_id)
+            url.replace(
+                '://m.facebook.com/',
+                '://www.facebook.com/'),
+            video_id)
 
         video_data = None
 
@@ -397,7 +424,8 @@ class FacebookIE(InfoExtractor):
             webpage, 'server js data', default='{}'), video_id, fatal=False)
 
         if server_js_data:
-            video_data = extract_video_data(server_js_data.get('instances', []))
+            video_data = extract_video_data(
+                server_js_data.get('instances', []))
 
         def extract_from_jsmods_instances(js_data):
             if js_data:
@@ -407,33 +435,54 @@ class FacebookIE(InfoExtractor):
         def extract_dash_manifest(video, formats):
             dash_manifest = video.get('dash_manifest')
             if dash_manifest:
-                formats.extend(self._parse_mpd_formats(
-                    compat_etree_fromstring(compat_urllib_parse_unquote_plus(dash_manifest))))
+                formats.extend(
+                    self._parse_mpd_formats(
+                        compat_etree_fromstring(
+                            compat_urllib_parse_unquote_plus(dash_manifest))))
 
         def process_formats(formats):
             # Downloads with browser's User-Agent are rate limited. Working around
             # with non-browser User-Agent.
             for f in formats:
-                f.setdefault('http_headers', {})['User-Agent'] = 'facebookexternalhit/1.1'
+                f.setdefault('http_headers', {})[
+                    'User-Agent'] = 'facebookexternalhit/1.1'
 
             self._sort_formats(formats)
 
         def extract_relay_data(_filter):
-            return self._parse_json(self._search_regex(
-                r'handleWithCustomApplyEach\([^,]+,\s*({.*?%s.*?})\);' % _filter,
-                webpage, 'replay data', default='{}'), video_id, fatal=False) or {}
+            return self._parse_json(
+                self._search_regex(
+                    r'handleWithCustomApplyEach\([^,]+,\s*({.*?%s.*?})\);' %
+                    _filter,
+                    webpage,
+                    'replay data',
+                    default='{}'),
+                video_id,
+                fatal=False) or {}
 
         def extract_relay_prefetched_data(_filter):
             replay_data = extract_relay_data(_filter)
             for require in (replay_data.get('require') or []):
                 if require[0] == 'RelayPrefetchedStreamCache':
-                    return try_get(require, lambda x: x[3][1]['__bbox']['result']['data'], dict) or {}
+                    return try_get(
+                        require,
+                        lambda x: x[3][1]['__bbox']['result']['data'],
+                        dict) or {}
 
         if not video_data:
-            server_js_data = self._parse_json(self._search_regex([
-                r'bigPipe\.onPageletArrive\(({.+?})\)\s*;\s*}\s*\)\s*,\s*["\']onPageletArrive\s+' + self._SUPPORTED_PAGLETS_REGEX,
-                r'bigPipe\.onPageletArrive\(({.*?id\s*:\s*"%s".*?})\);' % self._SUPPORTED_PAGLETS_REGEX
-            ], webpage, 'js data', default='{}'), video_id, js_to_json, False)
+            server_js_data = self._parse_json(
+                self._search_regex(
+                    [
+                        r'bigPipe\.onPageletArrive\(({.+?})\)\s*;\s*}\s*\)\s*,\s*["\']onPageletArrive\s+' +
+                        self._SUPPORTED_PAGLETS_REGEX,
+                        r'bigPipe\.onPageletArrive\(({.*?id\s*:\s*"%s".*?})\);' %
+                        self._SUPPORTED_PAGLETS_REGEX],
+                    webpage,
+                    'js data',
+                    default='{}'),
+                video_id,
+                js_to_json,
+                False)
             video_data = extract_from_jsmods_instances(server_js_data)
 
         if not video_data:
@@ -445,7 +494,8 @@ class FacebookIE(InfoExtractor):
                 def parse_graphql_video(video):
                     formats = []
                     q = qualities(['sd', 'hd'])
-                    for (suffix, format_id) in [('', 'sd'), ('_quality_hd', 'hd')]:
+                    for (suffix, format_id) in [
+                            ('', 'sd'), ('_quality_hd', 'hd')]:
                         playable_url = video.get('playable_url' + suffix)
                         if not playable_url:
                             continue
@@ -458,14 +508,13 @@ class FacebookIE(InfoExtractor):
                     process_formats(formats)
                     v_id = video.get('videoId') or video.get('id') or video_id
                     info = {
-                        'id': v_id,
-                        'formats': formats,
-                        'thumbnail': try_get(video, lambda x: x['thumbnailImage']['uri']),
-                        'uploader_id': try_get(video, lambda x: x['owner']['id']),
-                        'timestamp': int_or_none(video.get('publish_time')),
-                        'duration': float_or_none(video.get('playable_duration_in_ms'), 1000),
-                    }
-                    description = try_get(video, lambda x: x['savable_description']['text'])
+                        'id': v_id, 'formats': formats, 'thumbnail': try_get(
+                            video, lambda x: x['thumbnailImage']['uri']), 'uploader_id': try_get(
+                            video, lambda x: x['owner']['id']), 'timestamp': int_or_none(
+                            video.get('publish_time')), 'duration': float_or_none(
+                            video.get('playable_duration_in_ms'), 1000), }
+                    description = try_get(
+                        video, lambda x: x['savable_description']['text'])
                     title = video.get('name')
                     if title:
                         info.update({
@@ -486,19 +535,27 @@ class FacebookIE(InfoExtractor):
                 if not nodes and node:
                     nodes.append(node)
                 for node in nodes:
-                    story = try_get(node, lambda x: x['comet_sections']['content']['story'], dict) or {}
+                    story = try_get(
+                        node, lambda x: x['comet_sections']['content']['story'], dict) or {}
                     attachments = try_get(story, [
                         lambda x: x['attached_story']['attachments'],
                         lambda x: x['attachments']
                     ], list) or []
                     for attachment in attachments:
-                        attachment = try_get(attachment, lambda x: x['style_type_renderer']['attachment'], dict)
-                        ns = try_get(attachment, lambda x: x['all_subattachments']['nodes'], list) or []
+                        attachment = try_get(
+                            attachment, lambda x: x['style_type_renderer']['attachment'], dict)
+                        ns = try_get(
+                            attachment,
+                            lambda x: x['all_subattachments']['nodes'],
+                            list) or []
                         for n in ns:
                             parse_attachment(n)
                         parse_attachment(attachment)
 
-                edges = try_get(data, lambda x: x['mediaset']['currMedia']['edges'], list) or []
+                edges = try_get(
+                    data,
+                    lambda x: x['mediaset']['currMedia']['edges'],
+                    list) or []
                 for edge in edges:
                     parse_attachment(edge, key='node')
 
@@ -516,11 +573,13 @@ class FacebookIE(InfoExtractor):
                 return self.playlist_result(entries, video_id)
 
         if not video_data:
-            m_msg = re.search(r'class="[^"]*uiInterstitialContent[^"]*"><div>(.*?)</div>', webpage)
+            m_msg = re.search(
+                r'class="[^"]*uiInterstitialContent[^"]*"><div>(.*?)</div>',
+                webpage)
             if m_msg is not None:
                 raise ExtractorError(
-                    'The video is not available, Facebook said: "%s"' % m_msg.group(1),
-                    expected=True)
+                    'The video is not available, Facebook said: "%s"' %
+                    m_msg.group(1), expected=True)
             elif any(p in webpage for p in (
                     '>You must log in to continue',
                     'id="login_form"',
@@ -535,13 +594,18 @@ class FacebookIE(InfoExtractor):
                 }),
             }
 
-            prefetched_data = extract_relay_prefetched_data(r'"login_data"\s*:\s*{')
+            prefetched_data = extract_relay_prefetched_data(
+                r'"login_data"\s*:\s*{')
             if prefetched_data:
-                lsd = try_get(prefetched_data, lambda x: x['login_data']['lsd'], dict)
+                lsd = try_get(
+                    prefetched_data,
+                    lambda x: x['login_data']['lsd'],
+                    dict)
                 if lsd:
                     post_data[lsd['name']] = lsd['value']
 
-            relay_data = extract_relay_data(r'\[\s*"RelayAPIConfigDefaults"\s*,')
+            relay_data = extract_relay_data(
+                r'\[\s*"RelayAPIConfigDefaults"\s*,')
             for define in (relay_data.get('define') or []):
                 if define[0] == 'RelayAPIConfigDefaults':
                     self._api_config = define[2]
@@ -551,7 +615,10 @@ class FacebookIE(InfoExtractor):
                 data=urlencode_postdata(post_data))['data']['living_room']
 
             entries = []
-            for edge in (try_get(living_room, lambda x: x['recap']['watched_content']['edges']) or []):
+            for edge in (
+                try_get(
+                    living_room,
+                    lambda x: x['recap']['watched_content']['edges']) or []):
                 video = try_get(edge, lambda x: x['node']['video']) or {}
                 v_id = video.get('id')
                 if not v_id:
@@ -654,7 +721,8 @@ class FacebookIE(InfoExtractor):
         timestamp = int_or_none(self._search_regex(
             r'<abbr[^>]+data-utime=["\'](\d+)', webpage,
             'timestamp', default=None))
-        thumbnail = self._html_search_meta(['og:image', 'twitter:image'], webpage)
+        thumbnail = self._html_search_meta(
+            ['og:image', 'twitter:image'], webpage)
 
         view_count = parse_count(self._search_regex(
             r'\bviewCount\s*:\s*["\']([\d,.]+)', webpage, 'view count',
@@ -676,7 +744,8 @@ class FacebookIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
-        real_url = self._VIDEO_PAGE_TEMPLATE % video_id if url.startswith('facebook:') else url
+        real_url = self._VIDEO_PAGE_TEMPLATE % video_id if url.startswith(
+            'facebook:') else url
         return self._extract_from_url(real_url, video_id)
 
 

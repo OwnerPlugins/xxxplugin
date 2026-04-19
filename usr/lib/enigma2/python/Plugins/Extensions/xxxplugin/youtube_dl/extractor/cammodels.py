@@ -20,7 +20,8 @@ class CamModelsIE(InfoExtractor):
         user_id = self._match_id(url)
 
         manifest = self._download_json(
-            'https://manifest-server.naiadsystems.com/live/s:%s.json' % user_id, user_id)
+            'https://manifest-server.naiadsystems.com/live/s:%s.json' %
+            user_id, user_id)
 
         formats = []
         thumbnails = []

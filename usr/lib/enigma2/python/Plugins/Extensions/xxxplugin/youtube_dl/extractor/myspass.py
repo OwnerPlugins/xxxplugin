@@ -29,7 +29,8 @@ class MySpassIE(InfoExtractor):
         video_id = self._match_id(url)
 
         metadata = self._download_xml(
-            'http://www.myspass.de/myspass/includes/apps/video/getvideometadataxml.php?id=' + video_id,
+            'http://www.myspass.de/myspass/includes/apps/video/getvideometadataxml.php?id=' +
+            video_id,
             video_id)
 
         title = xpath_text(metadata, 'title', fatal=True)

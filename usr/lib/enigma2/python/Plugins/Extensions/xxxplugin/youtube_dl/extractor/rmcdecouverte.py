@@ -41,7 +41,8 @@ class RMCDecouverteIE(InfoExtractor):
         mobj = re.match(self._VALID_URL, url)
         display_id = mobj.group('id') or mobj.group('live_id')
         webpage = self._download_webpage(url, display_id)
-        brightcove_legacy_url = BrightcoveLegacyIE._extract_brightcove_url(webpage)
+        brightcove_legacy_url = BrightcoveLegacyIE._extract_brightcove_url(
+            webpage)
         if brightcove_legacy_url:
             brightcove_id = compat_parse_qs(compat_urlparse.urlparse(
                 brightcove_legacy_url).query)['@videoPlayer'][0]

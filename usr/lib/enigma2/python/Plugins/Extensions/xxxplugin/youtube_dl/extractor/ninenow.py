@@ -59,7 +59,9 @@ class NineNowIE(InfoExtractor):
             cache = page_data.get(kind, {}).get('%sCache' % kind, {})
             if not cache:
                 continue
-            common_data = (cache.get(current_key) or list(cache.values())[0])[kind]
+            common_data = (
+                cache.get(current_key) or list(
+                    cache.values())[0])[kind]
             break
         else:
             raise ExtractorError('Unable to find video data')
@@ -69,15 +71,17 @@ class NineNowIE(InfoExtractor):
         if video_data.get('drm'):
             raise ExtractorError('This video is DRM protected.', expected=True)
 
-        brightcove_id = video_data.get('brightcoveId') or 'ref:' + video_data['referenceId']
+        brightcove_id = video_data.get(
+            'brightcoveId') or 'ref:' + video_data['referenceId']
         video_id = compat_str(video_data.get('id') or brightcove_id)
         title = common_data['name']
 
-        thumbnails = [{
-            'id': thumbnail_id,
-            'url': thumbnail_url,
-            'width': int_or_none(thumbnail_id[1:])
-        } for thumbnail_id, thumbnail_url in common_data.get('image', {}).get('sizes', {}).items()]
+        thumbnails = [{'id': thumbnail_id,
+                       'url': thumbnail_url,
+                       'width': int_or_none(thumbnail_id[1:])} for thumbnail_id,
+                      thumbnail_url in common_data.get('image',
+                                                       {}).get('sizes',
+                                                               {}).items()]
 
         return {
             '_type': 'url_transparent',

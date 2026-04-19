@@ -104,48 +104,39 @@ class PolskieRadioIE(InfoExtractor):
 
 class PolskieRadioCategoryIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?polskieradio\.pl/\d+(?:,[^/]+)?/(?P<id>\d+)'
-    _TESTS = [{
-        'url': 'http://www.polskieradio.pl/7/5102,HISTORIA-ZYWA',
-        'info_dict': {
-            'id': '5102',
-            'title': 'HISTORIA ŻYWA',
-        },
-        'playlist_mincount': 38,
-    }, {
-        'url': 'http://www.polskieradio.pl/7/4807',
-        'info_dict': {
-            'id': '4807',
-            'title': 'Vademecum 1050. rocznicy Chrztu Polski'
-        },
-        'playlist_mincount': 5
-    }, {
-        'url': 'http://www.polskieradio.pl/7/129,Sygnaly-dnia?ref=source',
-        'only_matching': True
-    }, {
-        'url': 'http://www.polskieradio.pl/37,RedakcjaKatolicka/4143,Kierunek-Krakow',
-        'info_dict': {
-            'id': '4143',
-            'title': 'Kierunek Kraków',
-        },
-        'playlist_mincount': 61
-    }, {
-        'url': 'http://www.polskieradio.pl/10,czworka/214,muzyka',
-        'info_dict': {
-            'id': '214',
-            'title': 'Muzyka',
-        },
-        'playlist_mincount': 61
-    }, {
-        'url': 'http://www.polskieradio.pl/7,Jedynka/5102,HISTORIA-ZYWA',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.polskieradio.pl/8,Dwojka/196,Publicystyka',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.polskieradio.pl/7/5102,HISTORIA-ZYWA',
+               'info_dict': {'id': '5102',
+                             'title': 'HISTORIA ŻYWA',
+                             },
+               'playlist_mincount': 38,
+               },
+              {'url': 'http://www.polskieradio.pl/7/4807',
+               'info_dict': {'id': '4807',
+                             'title': 'Vademecum 1050. rocznicy Chrztu Polski'},
+               'playlist_mincount': 5},
+              {'url': 'http://www.polskieradio.pl/7/129,Sygnaly-dnia?ref=source',
+               'only_matching': True},
+              {'url': 'http://www.polskieradio.pl/37,RedakcjaKatolicka/4143,Kierunek-Krakow',
+               'info_dict': {'id': '4143',
+                             'title': 'Kierunek Kraków',
+                             },
+               'playlist_mincount': 61},
+              {'url': 'http://www.polskieradio.pl/10,czworka/214,muzyka',
+               'info_dict': {'id': '214',
+                             'title': 'Muzyka',
+                             },
+               'playlist_mincount': 61},
+              {'url': 'http://www.polskieradio.pl/7,Jedynka/5102,HISTORIA-ZYWA',
+               'only_matching': True,
+               },
+              {'url': 'http://www.polskieradio.pl/8,Dwojka/196,Publicystyka',
+               'only_matching': True,
+               }]
 
     @classmethod
     def suitable(cls, url):
-        return False if PolskieRadioIE.suitable(url) else super(PolskieRadioCategoryIE, cls).suitable(url)
+        return False if PolskieRadioIE.suitable(url) else super(
+            PolskieRadioCategoryIE, cls).suitable(url)
 
     def _entries(self, url, page, category_id):
         content = page

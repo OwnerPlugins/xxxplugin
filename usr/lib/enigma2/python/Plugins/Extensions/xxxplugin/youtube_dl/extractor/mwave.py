@@ -32,8 +32,8 @@ class MwaveIE(InfoExtractor):
         video_id = self._match_id(url)
 
         vod_info = self._download_json(
-            'http://mwave.interest.me/onair/vod_info.m?vodtype=CL&sectorid=&endinfo=Y&id=%s' % video_id,
-            video_id, 'Download vod JSON')
+            'http://mwave.interest.me/onair/vod_info.m?vodtype=CL&sectorid=&endinfo=Y&id=%s' %
+            video_id, video_id, 'Download vod JSON')
 
         formats = []
         for num, cdn_info in enumerate(vod_info['cdn']):
@@ -48,7 +48,10 @@ class MwaveIE(InfoExtractor):
             if not f4m_url:
                 continue
             formats.extend(
-                self._extract_f4m_formats(f4m_url + '&hdcore=3.0.3', video_id, f4m_id=stream_name))
+                self._extract_f4m_formats(
+                    f4m_url + '&hdcore=3.0.3',
+                    video_id,
+                    f4m_id=stream_name))
         self._sort_formats(formats)
 
         return {

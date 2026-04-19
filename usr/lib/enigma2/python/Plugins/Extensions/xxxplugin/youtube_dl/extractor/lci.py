@@ -14,8 +14,7 @@ class LCIIE(InfoExtractor):
             'ext': 'mp4',
             'title': 'Hillary Clinton et sa quinte de toux, en plein meeting',
             'description': 'md5:a4363e3a960860132f8124b62f4a01c9',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

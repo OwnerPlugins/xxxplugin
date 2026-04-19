@@ -69,13 +69,14 @@ class LcpIE(InfoExtractor):
         webpage = self._download_webpage(url, display_id)
 
         play_url = self._search_regex(
-            r'<iframe[^>]+src=(["\'])(?P<url>%s?(?:(?!\1).)*)\1' % LcpPlayIE._VALID_URL,
-            webpage, 'play iframe', default=None, group='url')
+            r'<iframe[^>]+src=(["\'])(?P<url>%s?(?:(?!\1).)*)\1' %
+            LcpPlayIE._VALID_URL, webpage, 'play iframe', default=None, group='url')
 
         if not play_url:
             return self.url_result(url, 'Generic')
 
-        title = self._og_search_title(webpage, default=None) or self._html_search_meta(
+        title = self._og_search_title(
+            webpage, default=None) or self._html_search_meta(
             'twitter:title', webpage, fatal=True)
         description = self._html_search_meta(
             ('description', 'twitter:description'), webpage)

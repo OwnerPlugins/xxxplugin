@@ -52,14 +52,17 @@ class Varzesh3IE(InfoExtractor):
             r'(?s)<div class="matn">(.+?)</div>',
             webpage, 'description', default=None)
         if description is None:
-            description = clean_html(self._html_search_meta('description', webpage))
+            description = clean_html(
+                self._html_search_meta(
+                    'description', webpage))
 
         thumbnail = self._og_search_thumbnail(webpage, default=None)
         if thumbnail is None:
             fb_sharer_url = self._search_regex(
                 r'<a[^>]+href="(https?://www\.facebook\.com/sharer/sharer\.php?[^"]+)"',
                 webpage, 'facebook sharer URL', fatal=False)
-            sharer_params = compat_parse_qs(compat_urllib_parse_urlparse(fb_sharer_url).query)
+            sharer_params = compat_parse_qs(
+                compat_urllib_parse_urlparse(fb_sharer_url).query)
             thumbnail = sharer_params.get('p[images][0]', [None])[0]
 
         video_id = self._search_regex(

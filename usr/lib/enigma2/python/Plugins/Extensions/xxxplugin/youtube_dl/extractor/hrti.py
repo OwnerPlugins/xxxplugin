@@ -45,7 +45,8 @@ class HRTiBaseIE(InfoExtractor):
             'application_version': self._APP_VERSION
         }
 
-        req = sanitized_Request(self._API_URL, data=json.dumps(app_data).encode('utf-8'))
+        req = sanitized_Request(self._API_URL,
+                                data=json.dumps(app_data).encode('utf-8'))
         req.get_method = lambda: 'PUT'
 
         resources = self._download_json(
@@ -57,11 +58,12 @@ class HRTiBaseIE(InfoExtractor):
         modules = resources['modules']
 
         self._search_url = modules['vod_catalog']['resources']['search']['uri'].format(
-            language=self._APP_LANGUAGE,
-            application_id=self._APP_PUBLICATION_ID)
+            language=self._APP_LANGUAGE, application_id=self._APP_PUBLICATION_ID)
 
-        self._login_url = (modules['user']['resources']['login']['uri']
-                           + '/format/json').format(session_id=self._session_id)
+        self._login_url = (
+            modules['user']['resources']['login']['uri'] +
+            '/format/json').format(
+            session_id=self._session_id)
 
         self._logout_url = modules['user']['resources']['logout']['uri']
 
@@ -78,11 +80,15 @@ class HRTiBaseIE(InfoExtractor):
 
         try:
             auth_info = self._download_json(
-                self._login_url, None, note='Logging in', errnote='Unable to log in',
+                self._login_url,
+                None,
+                note='Logging in',
+                errnote='Unable to log in',
                 data=json.dumps(auth_data).encode('utf-8'))
         except ExtractorError as e:
             if isinstance(e.cause, compat_HTTPError) and e.cause.code == 406:
-                auth_info = self._parse_json(e.cause.read().encode('utf-8'), None)
+                auth_info = self._parse_json(
+                    e.cause.read().encode('utf-8'), None)
             else:
                 raise
 
@@ -154,7 +160,10 @@ class HRTiIE(HRTiBaseIE):
         self._sort_formats(formats)
 
         description = clean_html(title_info.get('summary_long'))
-        age_limit = parse_age_limit(video.get('parental_control', {}).get('rating'))
+        age_limit = parse_age_limit(
+            video.get(
+                'parental_control',
+                {}).get('rating'))
         view_count = int_or_none(video.get('views'))
         average_rating = int_or_none(video.get('user_rating'))
         duration = int_or_none(movie.get('duration'))
@@ -200,9 +209,14 @@ class HRTiPlaylistIE(HRTiBaseIE):
             display_id, 'Downloading video metadata JSON')
 
         video_ids = try_get(
-            response, lambda x: x['video_listings'][0]['alternatives'][0]['list'],
-            list) or [video['id'] for video in response.get('videos', []) if video.get('id')]
+            response,
+            lambda x: x['video_listings'][0]['alternatives'][0]['list'],
+            list) or [
+            video['id'] for video in response.get(
+                'videos',
+                []) if video.get('id')]
 
-        entries = [self.url_result('hrti:%s' % video_id) for video_id in video_ids]
+        entries = [self.url_result('hrti:%s' % video_id)
+                   for video_id in video_ids]
 
         return self.playlist_result(entries, category_id, display_id)

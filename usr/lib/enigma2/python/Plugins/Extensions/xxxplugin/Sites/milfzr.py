@@ -28,25 +28,27 @@ import unicodedata
 from Plugins.Extensions.xxxplugin import (_, skin_path)
 from Plugins.Extensions.xxxplugin.lib import (Utils, html_conv)
 from Plugins.Extensions.xxxplugin.plugin import (
-        rvList,
-        Playstream1,
-        Playstream2,
-        showlist,
-        rvoneListEntry,
-        show_,
+    rvList,
+    Playstream1,
+    Playstream2,
+    showlist,
+    rvoneListEntry,
+    show_,
 )
 PY3 = sys.version_info.major >= 3
 
 if sys.version_info >= (2, 7, 9):
     try:
         sslContext = ssl._create_unverified_context()
-    except:
+    except BaseException:
         sslContext = None
 
 currversion = '1.0'
 title_plug = 'milfzr '
 desc_plugin = ('..:: milfzr by Lululla %s ::.. ' % currversion)
-PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, "Extensions/{}".format('xxxplugin'))
+PLUGIN_PATH = resolveFilename(
+    SCOPE_PLUGINS,
+    "Extensions/{}".format('xxxplugin'))
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
@@ -73,18 +75,24 @@ def normalize(title):
     try:
         try:
             return title.decode('ascii').encode("utf-8")
-        except:
+        except BaseException:
             pass
 
-        return str(''.join(c for c in unicodedata.normalize('NFKD', unicode(title.decode('utf-8'))) if unicodedata.category(c) != 'Mn'))
-    except:
+        return str(
+            ''.join(
+                c for c in unicodedata.normalize(
+                    'NFKD',
+                    unicode(
+                        title.decode('utf-8'))) if unicodedata.category(c) != 'Mn'))
+    except BaseException:
         return html_conv.html_unescape(title)
+
 
 Panel_list = [
     ('TAGS'),
     ('CATEGORY'),
     ('SEARCH'),
-    ]
+]
 
 
 class main(Screen):
@@ -138,7 +146,11 @@ class main(Screen):
         from Screens.VirtualKeyBoard import VirtualKeyBoard
         self.namex = name
         self.urlx = url
-        self.session.openWithCallback(self.filterChannels, VirtualKeyBoard, title=_("Filter this category..."), text='')
+        self.session.openWithCallback(
+            self.filterChannels,
+            VirtualKeyBoard,
+            title=_("Filter this category..."),
+            text='')
 
     def filterChannels(self, result):
         if result:
@@ -148,7 +160,7 @@ class main(Screen):
             try:
                 search = True
                 self.session.open(milfzrx, name, url)
-            except:
+            except BaseException:
                 return
         else:
             self.resetSearch()
@@ -466,7 +478,8 @@ class milfzr2(Screen):
                 regexcat = 'item cat.*?<a href="https://milfzr.com/category/(.*?)">(.*?)<'
                 match = re.compile(regexcat, re.DOTALL).findall(content)
                 for url, name in match:
-                    url1 = 'https://milfzr.com/category/' + str(url) + 'page/npage/'
+                    url1 = 'https://milfzr.com/category/' + \
+                        str(url) + 'page/npage/'
                     print('category name= ', name)
                     print('category url= ', url1)
                     name = str(name)  # html_conv.html_unescape(name)
@@ -633,7 +646,9 @@ class milfzr3(Screen):
             content = Utils.getUrl(self.url)
             if six.PY3:
                 content = six.ensure_str(content)
-            # clip-link" data-id="141033" title="Guys pay upfront before going all in" href="https://milfzr.com/guys-pay-upfront-before-going-all-in/">
+            # clip-link" data-id="141033" title="Guys pay upfront before going
+            # all in"
+            # href="https://milfzr.com/guys-pay-upfront-before-going-all-in/">
             regexcat = 'clip-link" data-id=.*?title="(.*?)".*?href="(.*?)"'
             match = re.compile(regexcat, re.DOTALL).findall(content)
             for name, url in match:

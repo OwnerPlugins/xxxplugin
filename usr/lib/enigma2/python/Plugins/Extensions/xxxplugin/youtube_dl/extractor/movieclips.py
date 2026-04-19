@@ -31,9 +31,13 @@ class MovieClipsIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
-        video = next(v for v in self._parse_json(self._search_regex(
-            r'var\s+__REACT_ENGINE__\s*=\s*({.+});',
-            webpage, 'react engine'), video_id)['playlist']['videos'] if v['id'] == video_id)
+        video = next(
+            v for v in self._parse_json(
+                self._search_regex(
+                    r'var\s+__REACT_ENGINE__\s*=\s*({.+});',
+                    webpage,
+                    'react engine'),
+                video_id)['playlist']['videos'] if v['id'] == video_id)
 
         return {
             '_type': 'url_transparent',

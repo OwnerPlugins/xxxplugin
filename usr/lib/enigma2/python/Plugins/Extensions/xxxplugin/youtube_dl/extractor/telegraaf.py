@@ -47,8 +47,8 @@ class TelegraafIE(InfoExtractor):
             })['data']['article']['videos'][0]['videoId']
 
         item = self._download_json(
-            'https://content.tmgvideo.nl/playlist/item=%s/playlist.json' % video_id,
-            video_id)['items'][0]
+            'https://content.tmgvideo.nl/playlist/item=%s/playlist.json' %
+            video_id, video_id)['items'][0]
         title = item['title']
 
         formats = []
@@ -59,8 +59,13 @@ class TelegraafIE(InfoExtractor):
                 continue
             ext = determine_ext(manifest_url)
             if ext == 'm3u8':
-                formats.extend(self._extract_m3u8_formats(
-                    manifest_url, video_id, ext='mp4', m3u8_id='hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        manifest_url,
+                        video_id,
+                        ext='mp4',
+                        m3u8_id='hls',
+                        fatal=False))
             elif ext == 'mpd':
                 formats.extend(self._extract_mpd_formats(
                     manifest_url, video_id, mpd_id='dash', fatal=False))

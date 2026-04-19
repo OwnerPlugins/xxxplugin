@@ -74,7 +74,8 @@ class Cache(object):
         if not is_outdated_version(version, min_ver or '0', assume_new=False):
             return data['data']
         self._ydl.to_screen(
-            'Discarding old cache from version {version} (needs {min_ver})'.format(**locals()))
+            'Discarding old cache from version {version} (needs {min_ver})'.format(
+                **locals()))
 
     def load(self, section, key, dtype='json', default=None, min_ver=None):
         assert dtype in ('json',)
@@ -93,7 +94,8 @@ class Cache(object):
                 except (OSError, IOError) as oe:
                     file_size = error_to_compat_str(oe)
                 self._ydl.report_warning(
-                    'Cache retrieval from %s failed (%s)' % (cache_fn, file_size))
+                    'Cache retrieval from %s failed (%s)' %
+                    (cache_fn, file_size))
         except IOError:
             pass  # No cache available
 
@@ -101,12 +103,15 @@ class Cache(object):
 
     def remove(self):
         if not self.enabled:
-            self._ydl.to_screen('Cache is disabled (Did you combine --no-cache-dir and --rm-cache-dir?)')
+            self._ydl.to_screen(
+                'Cache is disabled (Did you combine --no-cache-dir and --rm-cache-dir?)')
             return
 
         cachedir = self._get_root_dir()
         if not any((term in cachedir) for term in ('cache', 'tmp')):
-            raise Exception('Not removing directory %s - this does not look like a cache dir' % cachedir)
+            raise Exception(
+                'Not removing directory %s - this does not look like a cache dir' %
+                cachedir)
 
         self._ydl.to_screen(
             'Removing cache dir %s .' % cachedir, skip_eol=True)

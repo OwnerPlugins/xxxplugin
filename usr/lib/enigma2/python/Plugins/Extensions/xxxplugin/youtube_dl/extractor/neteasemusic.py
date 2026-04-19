@@ -76,7 +76,9 @@ class NetEaseMusicBaseIE(InfoExtractor):
         data = '{0}-36cd479b6b5-{1}-36cd479b6b5-{2}'.format(
             URL, request_text, msg_digest)
         data = pkcs7_padding(bytes_to_intlist(data))
-        encrypted = intlist_to_bytes(aes_ecb_encrypt(data, bytes_to_intlist(KEY)))
+        encrypted = intlist_to_bytes(
+            aes_ecb_encrypt(
+                data, bytes_to_intlist(KEY)))
         encrypted_params = hexlify(encrypted).decode('ascii').upper()
 
         cookie = '; '.join(
@@ -93,7 +95,8 @@ class NetEaseMusicBaseIE(InfoExtractor):
 
     def _call_player_api(self, song_id, bitrate):
         url = 'https://interface3.music.163.com/eapi/song/enhance/player/url'
-        data, headers = self.make_player_api_request_data_and_headers(song_id, bitrate)
+        data, headers = self.make_player_api_request_data_and_headers(
+            song_id, bitrate)
         try:
             msg = 'empty result'
             result = self._download_json(
@@ -144,7 +147,8 @@ class NetEaseMusicBaseIE(InfoExtractor):
                     '%s (site code %d)' % (msg, err, ), expected=True)
             else:
                 self.raise_geo_restricted(
-                    msg + ': probably this video is not available from your location due to geo restriction.',
+                    msg +
+                    ': probably this video is not available from your location due to geo restriction.',
                     countries=['CN'])
 
         return formats
@@ -163,56 +167,51 @@ class NetEaseMusicIE(NetEaseMusicBaseIE):
     IE_NAME = 'netease:song'
     IE_DESC = '网易云音乐'
     _VALID_URL = r'https?://(y\.)?music\.163\.com/(?:[#m]/)?song\?.*?\bid=(?P<id>[0-9]+)'
-    _TESTS = [{
-        'url': 'http://music.163.com/#/song?id=32102397',
-        'md5': '3e909614ce09b1ccef4a3eb205441190',
-        'info_dict': {
-            'id': '32102397',
-            'ext': 'mp3',
-            'title': 'Bad Blood',
-            'creator': 'Taylor Swift / Kendrick Lamar',
-            'upload_date': '20150516',
-            'timestamp': 1431792000,
-            'description': 'md5:25fc5f27e47aad975aa6d36382c7833c',
-        },
-    }, {
-        'note': 'No lyrics.',
-        'url': 'http://music.163.com/song?id=17241424',
-        'info_dict': {
-            'id': '17241424',
-            'ext': 'mp3',
-            'title': 'Opus 28',
-            'creator': 'Dustin O\'Halloran',
-            'upload_date': '20080211',
-            'description': 'md5:f12945b0f6e0365e3b73c5032e1b0ff4',
-            'timestamp': 1202745600,
-        },
-    }, {
-        'note': 'Has translated name.',
-        'url': 'http://music.163.com/#/song?id=22735043',
-        'info_dict': {
-            'id': '22735043',
-            'ext': 'mp3',
-            'title': '소원을 말해봐 (Genie)',
-            'creator': '少女时代',
-            'description': 'md5:79d99cc560e4ca97e0c4d86800ee4184',
-            'upload_date': '20100127',
-            'timestamp': 1264608000,
-            'alt_title': '说出愿望吧(Genie)',
-        },
-    }, {
-        'url': 'https://y.music.163.com/m/song?app_version=8.8.45&id=95670&uct2=sKnvS4+0YStsWkqsPhFijw%3D%3D&dlt=0846',
-        'md5': '95826c73ea50b1c288b22180ec9e754d',
-        'info_dict': {
-            'id': '95670',
-            'ext': 'mp3',
-            'title': '国际歌',
-            'creator': '马备',
-            'upload_date': '19911130',
-            'timestamp': 691516800,
-            'description': 'md5:1ba2f911a2b0aa398479f595224f2141',
-        },
-    }]
+    _TESTS = [{'url': 'http://music.163.com/#/song?id=32102397',
+               'md5': '3e909614ce09b1ccef4a3eb205441190',
+               'info_dict': {'id': '32102397',
+                             'ext': 'mp3',
+                             'title': 'Bad Blood',
+                             'creator': 'Taylor Swift / Kendrick Lamar',
+                             'upload_date': '20150516',
+                             'timestamp': 1431792000,
+                             'description': 'md5:25fc5f27e47aad975aa6d36382c7833c',
+                             },
+               },
+              {'note': 'No lyrics.',
+               'url': 'http://music.163.com/song?id=17241424',
+               'info_dict': {'id': '17241424',
+                             'ext': 'mp3',
+                             'title': 'Opus 28',
+                             'creator': 'Dustin O\'Halloran',
+                             'upload_date': '20080211',
+                             'description': 'md5:f12945b0f6e0365e3b73c5032e1b0ff4',
+                             'timestamp': 1202745600,
+                             },
+               },
+              {'note': 'Has translated name.',
+               'url': 'http://music.163.com/#/song?id=22735043',
+               'info_dict': {'id': '22735043',
+                             'ext': 'mp3',
+                             'title': '소원을 말해봐 (Genie)',
+                             'creator': '少女时代',
+                             'description': 'md5:79d99cc560e4ca97e0c4d86800ee4184',
+                             'upload_date': '20100127',
+                             'timestamp': 1264608000,
+                             'alt_title': '说出愿望吧(Genie)',
+                             },
+               },
+              {'url': 'https://y.music.163.com/m/song?app_version=8.8.45&id=95670&uct2=sKnvS4+0YStsWkqsPhFijw%3D%3D&dlt=0846',
+               'md5': '95826c73ea50b1c288b22180ec9e754d',
+               'info_dict': {'id': '95670',
+                             'ext': 'mp3',
+                             'title': '国际歌',
+                             'creator': '马备',
+                             'upload_date': '19911130',
+                             'timestamp': 691516800,
+                             'description': 'md5:1ba2f911a2b0aa398479f595224f2141',
+                             },
+               }]
 
     def _process_lyrics(self, lyrics_info):
         original = lyrics_info.get('lrc', {}).get('lyric')
@@ -224,8 +223,8 @@ class NetEaseMusicIE(NetEaseMusicBaseIE):
         lyrics_expr = r'(\[[0-9]{2}:[0-9]{2}\.[0-9]{2,}\])([^\n]+)'
         original_ts_texts = re.findall(lyrics_expr, original)
         translation_ts_dict = dict(
-            (time_stamp, text) for time_stamp, text in re.findall(lyrics_expr, translated)
-        )
+            (time_stamp, text) for time_stamp, text in re.findall(
+                lyrics_expr, translated))
         lyrics = '\n'.join([
             '%s%s / %s' % (time_stamp, text, translation_ts_dict.get(time_stamp, ''))
             for time_stamp, text in original_ts_texts
@@ -381,7 +380,8 @@ class NetEaseMusicListIE(NetEaseMusicBaseIE):
 
         if info.get('specialType') == 10:  # is a chart/toplist
             datestamp = datetime.fromtimestamp(
-                self.convert_milliseconds(info['updateTime'])).strftime('%Y-%m-%d')
+                self.convert_milliseconds(
+                    info['updateTime'])).strftime('%Y-%m-%d')
             name = '%s %s' % (name, datestamp)
 
         entries = [
@@ -491,8 +491,8 @@ class NetEaseMusicProgramIE(NetEaseMusicBaseIE):
         if not info['songs'] or self._downloader.params.get('noplaylist'):
             if info['songs']:
                 self.to_screen(
-                    'Downloading just the main audio %s because of --no-playlist'
-                    % info['mainSong']['id'])
+                    'Downloading just the main audio %s because of --no-playlist' %
+                    info['mainSong']['id'])
 
             formats = self.extract_formats(info['mainSong'])
             self._sort_formats(formats)
@@ -509,8 +509,8 @@ class NetEaseMusicProgramIE(NetEaseMusicBaseIE):
             }
 
         self.to_screen(
-            'Downloading playlist %s - add --no-playlist to just download the main audio %s'
-            % (program_id, info['mainSong']['id']))
+            'Downloading playlist %s - add --no-playlist to just download the main audio %s' %
+            (program_id, info['mainSong']['id']))
 
         song_ids = [info['mainSong']['id']]
         song_ids.extend([song['id'] for song in info['songs']])

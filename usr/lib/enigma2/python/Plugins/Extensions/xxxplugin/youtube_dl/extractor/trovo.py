@@ -20,13 +20,15 @@ class TrovoBaseIE(InfoExtractor):
         username = streamer_info.get('userName')
         return {
             'uploader': streamer_info.get('nickName'),
-            'uploader_id': str_or_none(streamer_info.get('uid')),
+            'uploader_id': str_or_none(
+                streamer_info.get('uid')),
             'uploader_url': 'https://trovo.live/' + username if username else None,
         }
 
 
 class TrovoIE(TrovoBaseIE):
-    _VALID_URL = TrovoBaseIE._VALID_URL_BASE + r'(?!(?:clip|video)/)(?P<id>[^/?&#]+)'
+    _VALID_URL = TrovoBaseIE._VALID_URL_BASE + \
+        r'(?!(?:clip|video)/)(?P<id>[^/?&#]+)'
 
     def _real_extract(self, url):
         username = self._match_id(url)
@@ -35,7 +37,7 @@ class TrovoIE(TrovoBaseIE):
                 'query': '''{
   getLiveInfo(params: {userName: "%s"}) {
     isLive
-    programInfo	{
+    programInfo    {
       coverUrl
       id
       streamInfo {
@@ -83,7 +85,8 @@ class TrovoIE(TrovoBaseIE):
 
 
 class TrovoVodIE(TrovoBaseIE):
-    _VALID_URL = TrovoBaseIE._VALID_URL_BASE + r'(?:clip|video)/(?P<id>[^/?&#]+)'
+    _VALID_URL = TrovoBaseIE._VALID_URL_BASE + \
+        r'(?:clip|video)/(?P<id>[^/?&#]+)'
     _TESTS = [{
         'url': 'https://trovo.live/video/ltv-100095501_100095501_1609596043',
         'info_dict': {
@@ -158,9 +161,12 @@ class TrovoVodIE(TrovoBaseIE):
         self._sort_formats(formats)
 
         category = vod_info.get('categoryName')
-        get_count = lambda x: int_or_none(vod_info.get(x + 'Num'))
+        def get_count(x): return int_or_none(vod_info.get(x + 'Num'))
 
-        comment_list = try_get(resp, lambda x: x[1]['data']['getCommentList']['commentList'], list) or []
+        comment_list = try_get(
+            resp,
+            lambda x: x[1]['data']['getCommentList']['commentList'],
+            list) or []
         comments = []
         for comment in comment_list:
             content = comment.get('content')

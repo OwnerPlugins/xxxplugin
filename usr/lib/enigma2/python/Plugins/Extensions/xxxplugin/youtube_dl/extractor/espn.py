@@ -38,67 +38,62 @@ class ESPNIE(OnceIE):
                         (?P<id>\d+)
                     '''
 
-    _TESTS = [{
-        'url': 'http://espn.go.com/video/clip?id=10365079',
-        'info_dict': {
-            'id': '10365079',
-            'ext': 'mp4',
-            'title': '30 for 30 Shorts: Judging Jewell',
-            'description': 'md5:39370c2e016cb4ecf498ffe75bef7f0f',
-            'timestamp': 1390936111,
-            'upload_date': '20140128',
-        },
-        'params': {
-            'skip_download': True,
-        },
-    }, {
-        'url': 'https://broadband.espn.go.com/video/clip?id=18910086',
-        'info_dict': {
-            'id': '18910086',
-            'ext': 'mp4',
-            'title': 'Kyrie spins around defender for two',
-            'description': 'md5:2b0f5bae9616d26fba8808350f0d2b9b',
-            'timestamp': 1489539155,
-            'upload_date': '20170315',
-        },
-        'params': {
-            'skip_download': True,
-        },
-        'expected_warnings': ['Unable to download f4m manifest'],
-    }, {
-        'url': 'http://nonredline.sports.espn.go.com/video/clip?id=19744672',
-        'only_matching': True,
-    }, {
-        'url': 'https://cdn.espn.go.com/video/clip/_/id/19771774',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espn.com/watch/player?id=19141491',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espn.com/watch/player?bucketId=257&id=19505875',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espn.com/watch/player/_/id/19141491',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espn.com/video/clip?id=10365079',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espn.com/video/clip/_/id/17989860',
-        'only_matching': True,
-    }, {
-        'url': 'https://espn.go.com/video/iframe/twitter/?cms=espn&id=10365079',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espnfc.us/video/espn-fc-tv/86/video/3319154/nashville-unveiled-as-the-newest-club-in-mls',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espnfc.com/english-premier-league/23/video/3324163/premier-league-in-90-seconds-golden-tweets',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.espn.com/espnw/video/26066627/arkansas-gibson-completes-hr-cycle-four-innings',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://espn.go.com/video/clip?id=10365079',
+               'info_dict': {'id': '10365079',
+                             'ext': 'mp4',
+                             'title': '30 for 30 Shorts: Judging Jewell',
+                             'description': 'md5:39370c2e016cb4ecf498ffe75bef7f0f',
+                             'timestamp': 1390936111,
+                             'upload_date': '20140128',
+                             },
+               'params': {'skip_download': True,
+                          },
+               },
+              {'url': 'https://broadband.espn.go.com/video/clip?id=18910086',
+               'info_dict': {'id': '18910086',
+                             'ext': 'mp4',
+                             'title': 'Kyrie spins around defender for two',
+                             'description': 'md5:2b0f5bae9616d26fba8808350f0d2b9b',
+                             'timestamp': 1489539155,
+                             'upload_date': '20170315',
+                             },
+               'params': {'skip_download': True,
+                          },
+               'expected_warnings': ['Unable to download f4m manifest'],
+               },
+              {'url': 'http://nonredline.sports.espn.go.com/video/clip?id=19744672',
+               'only_matching': True,
+               },
+              {'url': 'https://cdn.espn.go.com/video/clip/_/id/19771774',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espn.com/watch/player?id=19141491',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espn.com/watch/player?bucketId=257&id=19505875',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espn.com/watch/player/_/id/19141491',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espn.com/video/clip?id=10365079',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espn.com/video/clip/_/id/17989860',
+               'only_matching': True,
+               },
+              {'url': 'https://espn.go.com/video/iframe/twitter/?cms=espn&id=10365079',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espnfc.us/video/espn-fc-tv/86/video/3319154/nashville-unveiled-as-the-newest-club-in-mls',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espnfc.com/english-premier-league/23/video/3324163/premier-league-in-90-seconds-golden-tweets',
+               'only_matching': True,
+               },
+              {'url': 'http://www.espn.com/espnw/video/26066627/arkansas-gibson-completes-hr-cycle-four-innings',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -180,23 +175,23 @@ class ESPNIE(OnceIE):
 
 class ESPNArticleIE(InfoExtractor):
     _VALID_URL = r'https?://(?:espn\.go|(?:www\.)?espn)\.com/(?:[^/]+/)*(?P<id>[^/]+)'
-    _TESTS = [{
-        'url': 'http://espn.go.com/nba/recap?gameId=400793786',
-        'only_matching': True,
-    }, {
-        'url': 'http://espn.go.com/blog/golden-state-warriors/post/_/id/593/how-warriors-rapidly-regained-a-winning-edge',
-        'only_matching': True,
-    }, {
-        'url': 'http://espn.go.com/sports/endurance/story/_/id/12893522/dzhokhar-tsarnaev-sentenced-role-boston-marathon-bombings',
-        'only_matching': True,
-    }, {
-        'url': 'http://espn.go.com/nba/playoffs/2015/story/_/id/12887571/john-wall-washington-wizards-no-swelling-left-hand-wrist-game-5-return',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://espn.go.com/nba/recap?gameId=400793786',
+               'only_matching': True,
+               },
+              {'url': 'http://espn.go.com/blog/golden-state-warriors/post/_/id/593/how-warriors-rapidly-regained-a-winning-edge',
+               'only_matching': True,
+               },
+              {'url': 'http://espn.go.com/sports/endurance/story/_/id/12893522/dzhokhar-tsarnaev-sentenced-role-boston-marathon-bombings',
+               'only_matching': True,
+               },
+              {'url': 'http://espn.go.com/nba/playoffs/2015/story/_/id/12887571/john-wall-washington-wizards-no-swelling-left-hand-wrist-game-5-return',
+               'only_matching': True,
+               }]
 
     @classmethod
     def suitable(cls, url):
-        return False if ESPNIE.suitable(url) else super(ESPNArticleIE, cls).suitable(url)
+        return False if ESPNIE.suitable(url) else super(
+            ESPNArticleIE, cls).suitable(url)
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

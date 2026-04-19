@@ -22,8 +22,7 @@ class YesJapanIE(InfoExtractor):
             'timestamp': 1416391590,
             'upload_date': '20141119',
             'thumbnail': r're:^https?://.*\.jpg$',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -35,15 +34,25 @@ class YesJapanIE(InfoExtractor):
         thumbnail = self._og_search_thumbnail(webpage)
 
         timestamp = None
-        submit_info = get_element_by_attribute('class', 'pm-submit-data', webpage)
+        submit_info = get_element_by_attribute(
+            'class', 'pm-submit-data', webpage)
         if submit_info:
-            timestamp = parse_iso8601(self._search_regex(
-                r'datetime="([^"]+)"', submit_info, 'upload date', fatal=False, default=None))
+            timestamp = parse_iso8601(
+                self._search_regex(
+                    r'datetime="([^"]+)"',
+                    submit_info,
+                    'upload date',
+                    fatal=False,
+                    default=None))
 
         # attempt to resolve the final URL in order to get a proper extension
         redirect_req = HEADRequest(video_url)
         req = self._request_webpage(
-            redirect_req, video_id, note='Resolving final URL', errnote='Could not resolve final URL', fatal=False)
+            redirect_req,
+            video_id,
+            note='Resolving final URL',
+            errnote='Could not resolve final URL',
+            fatal=False)
         if req:
             video_url = req.geturl()
 

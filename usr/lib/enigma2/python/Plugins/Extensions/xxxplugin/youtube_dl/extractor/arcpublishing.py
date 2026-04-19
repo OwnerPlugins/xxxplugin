@@ -77,7 +77,9 @@ class ArcPublishingIE(InfoExtractor):
     def _extract_urls(webpage):
         entries = []
         # https://arcpublishing.atlassian.net/wiki/spaces/POWA/overview
-        for powa_el in re.findall(r'(<div[^>]+class="[^"]*\bpowa\b[^"]*"[^>]+data-uuid="%s"[^>]*>)' % ArcPublishingIE._UUID_REGEX, webpage):
+        for powa_el in re.findall(
+            r'(<div[^>]+class="[^"]*\bpowa\b[^"]*"[^>]+data-uuid="%s"[^>]*>)' %
+                ArcPublishingIE._UUID_REGEX, webpage):
             powa = extract_attributes(powa_el) or {}
             org = powa.get('data-org')
             uuid = powa.get('data-uuid')
@@ -137,7 +139,8 @@ class ArcPublishingIE(InfoExtractor):
                     if not height:
                         continue
                     vbr = self._search_regex(
-                        r'[_x]%d[_-](\d+)' % height, f['url'], 'vbr', default=None)
+                        r'[_x]%d[_-](\d+)' %
+                        height, f['url'], 'vbr', default=None)
                     if vbr:
                         f['vbr'] = int(vbr)
                 formats.extend(m3u8_formats)
@@ -153,10 +156,22 @@ class ArcPublishingIE(InfoExtractor):
                     'preference': -1,
                 })
         self._sort_formats(
-            formats, ('preference', 'width', 'height', 'vbr', 'filesize', 'tbr', 'ext', 'format_id'))
+            formats,
+            ('preference',
+             'width',
+             'height',
+             'vbr',
+             'filesize',
+             'tbr',
+             'ext',
+             'format_id'))
 
         subtitles = {}
-        for subtitle in (try_get(video, lambda x: x['subtitles']['urls'], list) or []):
+        for subtitle in (
+            try_get(
+                video,
+                lambda x: x['subtitles']['urls'],
+                list) or []):
             subtitle_url = subtitle.get('url')
             if subtitle_url:
                 subtitles.setdefault('en', []).append({'url': subtitle_url})
@@ -164,11 +179,18 @@ class ArcPublishingIE(InfoExtractor):
         return {
             'id': uuid,
             'title': self._live_title(title) if is_live else title,
-            'thumbnail': try_get(video, lambda x: x['promo_image']['url']),
-            'description': try_get(video, lambda x: x['subheadlines']['basic']),
+            'thumbnail': try_get(
+                video,
+                lambda x: x['promo_image']['url']),
+            'description': try_get(
+                video,
+                lambda x: x['subheadlines']['basic']),
             'formats': formats,
-            'duration': int_or_none(video.get('duration'), 100),
-            'timestamp': parse_iso8601(video.get('created_date')),
+            'duration': int_or_none(
+                video.get('duration'),
+                100),
+            'timestamp': parse_iso8601(
+                video.get('created_date')),
             'subtitles': subtitles,
             'is_live': is_live,
         }

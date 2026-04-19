@@ -19,8 +19,7 @@ class LoveHomePornIE(NuevoBaseIE):
         },
         'params': {
             'skip_download': True,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

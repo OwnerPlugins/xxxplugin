@@ -27,7 +27,9 @@ class NaverBaseIE(InfoExtractor):
         meta = video_data['meta']
         title = meta['subject']
         formats = []
-        get_list = lambda x: try_get(video_data, lambda y: y[x + 's']['list'], list) or []
+
+        def get_list(x): return try_get(
+            video_data, lambda y: y[x + 's']['list'], list) or []
 
         def extract_formats(streams, stream_type, query={}):
             for stream in streams:
@@ -66,7 +68,7 @@ class NaverBaseIE(InfoExtractor):
                     'mp4', 'm3u8_native', m3u8_id=stream_type, fatal=False))
         self._sort_formats(formats)
 
-        replace_ext = lambda x, y: re.sub(self._CAPTION_EXT_RE, '.' + y, x)
+        def replace_ext(x, y): return re.sub(self._CAPTION_EXT_RE, '.' + y, x)
 
         def get_subs(caption_url):
             if re.search(self._CAPTION_EXT_RE, caption_url):
@@ -84,8 +86,12 @@ class NaverBaseIE(InfoExtractor):
             caption_url = caption.get('source')
             if not caption_url:
                 continue
-            sub_dict = automatic_captions if caption.get('type') == 'auto' else subtitles
-            sub_dict.setdefault(dict_get(caption, ('locale', 'language')), []).extend(get_subs(caption_url))
+            sub_dict = automatic_captions if caption.get(
+                'type') == 'auto' else subtitles
+            sub_dict.setdefault(
+                dict_get(
+                    caption, ('locale', 'language')), []).extend(
+                get_subs(caption_url))
 
         user = meta.get('user', {})
 
@@ -106,36 +112,33 @@ class NaverBaseIE(InfoExtractor):
 class NaverIE(NaverBaseIE):
     _VALID_URL = r'https?://(?:m\.)?tv(?:cast)?\.naver\.com/(?:v|embed)/(?P<id>\d+)'
     _GEO_BYPASS = False
-    _TESTS = [{
-        'url': 'http://tv.naver.com/v/81652',
-        'info_dict': {
-            'id': '81652',
-            'ext': 'mp4',
-            'title': '[9월 모의고사 해설강의][수학_김상희] 수학 A형 16~20번',
-            'description': '메가스터디 수학 김상희 선생님이 9월 모의고사 수학A형 16번에서 20번까지 해설강의를 공개합니다.',
-            'timestamp': 1378200754,
-            'upload_date': '20130903',
-            'uploader': '메가스터디, 합격불변의 법칙',
-            'uploader_id': 'megastudy',
-        },
-    }, {
-        'url': 'http://tv.naver.com/v/395837',
-        'md5': '8a38e35354d26a17f73f4e90094febd3',
-        'info_dict': {
-            'id': '395837',
-            'ext': 'mp4',
-            'title': '9년이 지나도 아픈 기억, 전효성의 아버지',
-            'description': 'md5:eb6aca9d457b922e43860a2a2b1984d3',
-            'timestamp': 1432030253,
-            'upload_date': '20150519',
-            'uploader': '4가지쇼 시즌2',
-            'uploader_id': 'wrappinguser29',
-        },
-        'skip': 'Georestricted',
-    }, {
-        'url': 'http://tvcast.naver.com/v/81652',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://tv.naver.com/v/81652',
+               'info_dict': {'id': '81652',
+                             'ext': 'mp4',
+                             'title': '[9월 모의고사 해설강의][수학_김상희] 수학 A형 16~20번',
+                             'description': '메가스터디 수학 김상희 선생님이 9월 모의고사 수학A형 16번에서 20번까지 해설강의를 공개합니다.',
+                             'timestamp': 1378200754,
+                             'upload_date': '20130903',
+                             'uploader': '메가스터디, 합격불변의 법칙',
+                             'uploader_id': 'megastudy',
+                             },
+               },
+              {'url': 'http://tv.naver.com/v/395837',
+               'md5': '8a38e35354d26a17f73f4e90094febd3',
+               'info_dict': {'id': '395837',
+                             'ext': 'mp4',
+                             'title': '9년이 지나도 아픈 기억, 전효성의 아버지',
+                             'description': 'md5:eb6aca9d457b922e43860a2a2b1984d3',
+                             'timestamp': 1432030253,
+                             'upload_date': '20150519',
+                             'uploader': '4가지쇼 시즌2',
+                             'uploader_id': 'wrappinguser29',
+                             },
+               'skip': 'Georestricted',
+               },
+              {'url': 'http://tvcast.naver.com/v/81652',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -149,7 +152,9 @@ class NaverIE(NaverBaseIE):
         in_key = current_clip.get('inKey')
 
         if not vid or not in_key:
-            player_auth = try_get(player_info_json, lambda x: x['playerOption']['auth'])
+            player_auth = try_get(
+                player_info_json,
+                lambda x: x['playerOption']['auth'])
             if player_auth == 'notCountry':
                 self.raise_geo_restricted(countries=['KR'])
             elif player_auth == 'notLogin':

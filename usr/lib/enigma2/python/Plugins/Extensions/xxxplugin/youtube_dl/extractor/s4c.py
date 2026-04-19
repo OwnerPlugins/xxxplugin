@@ -49,29 +49,45 @@ class S4CIE(InfoExtractor):
             }, fatal=False)
 
         player_config = self._download_json(
-            'https://player-api.s4c-cdn.co.uk/player-configuration/prod', video_id, query={
+            'https://player-api.s4c-cdn.co.uk/player-configuration/prod',
+            video_id,
+            query={
                 'programme_id': video_id,
                 'signed': '0',
                 'lang': 'en',
                 'mode': 'od',
                 'appId': 'clic',
                 'streamName': '',
-            }, note='Downloading player config JSON')
+            },
+            note='Downloading player config JSON')
 
         m3u8_url = self._download_json(
-            'https://player-api.s4c-cdn.co.uk/streaming-urls/prod', video_id, query={
+            'https://player-api.s4c-cdn.co.uk/streaming-urls/prod',
+            video_id,
+            query={
                 'mode': 'od',
                 'application': 'clic',
                 'region': 'WW',
                 'extra': 'false',
                 'thirdParty': 'false',
                 'filename': player_config['filename'],
-            }, note='Downloading streaming urls JSON')['hls']
-        formats = self._extract_m3u8_formats(m3u8_url, video_id, 'mp4', m3u8_id='hls', entry_protocol='m3u8_native')
+            },
+            note='Downloading streaming urls JSON')['hls']
+        formats = self._extract_m3u8_formats(
+            m3u8_url,
+            video_id,
+            'mp4',
+            m3u8_id='hls',
+            entry_protocol='m3u8_native')
         self._sort_formats(formats)
 
         subtitles = {}
-        for sub in traverse_obj(player_config, ('subtitles', lambda _, v: url_or_none(v['0']))):
+        for sub in traverse_obj(
+            player_config,
+            ('subtitles',
+             lambda _,
+             v: url_or_none(
+                 v['0']))):
             subtitles.setdefault(sub.get('3', 'en'), []).append({
                 'url': sub['0'],
                 'name': sub.get('1'),

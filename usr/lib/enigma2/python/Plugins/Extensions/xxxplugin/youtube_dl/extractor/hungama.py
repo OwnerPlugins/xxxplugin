@@ -18,25 +18,22 @@ class HungamaIE(InfoExtractor):
                         )
                         (?P<id>\d+)
                     '''
-    _TESTS = [{
-        'url': 'http://www.hungama.com/video/krishna-chants/39349649/',
-        'md5': 'a845a6d1ebd08d80c1035126d49bd6a0',
-        'info_dict': {
-            'id': '2931166',
-            'ext': 'mp4',
-            'title': 'Lucky Ali - Kitni Haseen Zindagi',
-            'track': 'Kitni Haseen Zindagi',
-            'artist': 'Lucky Ali',
-            'album': 'Aks',
-            'release_year': 2000,
-        }
-    }, {
-        'url': 'https://www.hungama.com/movie/kahaani-2/44129919/',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.hungama.com/tv-show/padded-ki-pushup/season-1/44139461/episode/ep-02-training-sasu-pathlaag-karing/44139503/',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.hungama.com/video/krishna-chants/39349649/',
+               'md5': 'a845a6d1ebd08d80c1035126d49bd6a0',
+               'info_dict': {'id': '2931166',
+                             'ext': 'mp4',
+                             'title': 'Lucky Ali - Kitni Haseen Zindagi',
+                             'track': 'Kitni Haseen Zindagi',
+                             'artist': 'Lucky Ali',
+                             'album': 'Aks',
+                             'release_year': 2000,
+                             }},
+              {'url': 'https://www.hungama.com/movie/kahaani-2/44129919/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.hungama.com/tv-show/padded-ki-pushup/season-1/44139461/episode/ep-02-training-sasu-pathlaag-karing/44139503/',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

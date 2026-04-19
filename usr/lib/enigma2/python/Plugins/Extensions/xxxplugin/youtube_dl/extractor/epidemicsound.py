@@ -53,7 +53,8 @@ class EpidemicSoundIE(InfoExtractor):
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
-        json_data = self._download_json('https://www.epidemicsound.com/json/track/' + video_id, video_id)
+        json_data = self._download_json(
+            'https://www.epidemicsound.com/json/track/' + video_id, video_id)
 
         def fmt_or_none(f):
             if not f.get('format'):

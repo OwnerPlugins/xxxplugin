@@ -49,14 +49,18 @@ class CamWithHerIE(InfoExtractor):
         flv_id = self._html_search_regex(
             r'<a[^>]+href=["\']/download/\?v=(\d+)', webpage, 'video id')
 
-        # Video URL construction algorithm is reverse-engineered from cwhplayer.swf
+        # Video URL construction algorithm is reverse-engineered from
+        # cwhplayer.swf
         rtmp_url = 'rtmp://camwithher.tv/clipshare/%s' % (
             ('mp4:%s.mp4' % flv_id) if int(flv_id) > 2010 else flv_id)
 
         title = self._html_search_regex(
             r'<div[^>]+style="float:left"[^>]*>\s*<h2>(.+?)</h2>', webpage, 'title')
         description = self._html_search_regex(
-            r'>Description:</span>(.+?)</div>', webpage, 'description', default=None)
+            r'>Description:</span>(.+?)</div>',
+            webpage,
+            'description',
+            default=None)
 
         runtime = self._search_regex(
             r'Runtime\s*:\s*(.+?) \|', webpage, 'duration', default=None)
@@ -69,7 +73,10 @@ class CamWithHerIE(InfoExtractor):
             r'Comments\s*:\s*(\d+)', webpage, 'comment count', default=None))
 
         uploader = self._search_regex(
-            r'Added by\s*:\s*<a[^>]+>([^<]+)</a>', webpage, 'uploader', default=None)
+            r'Added by\s*:\s*<a[^>]+>([^<]+)</a>',
+            webpage,
+            'uploader',
+            default=None)
         upload_date = unified_strdate(self._search_regex(
             r'Added on\s*:\s*([\d-]+)', webpage, 'upload date', default=None))
 

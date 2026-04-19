@@ -35,7 +35,8 @@ class OnionStudiosIE(InfoExtractor):
     @staticmethod
     def _extract_url(webpage):
         mobj = re.search(
-            r'(?s)<(?:iframe|bulbs-video)[^>]+?src=(["\'])(?P<url>(?:https?:)?//(?:www\.)?onionstudios\.com/(?:embed.+?|video/\d+\.json))\1', webpage)
+            r'(?s)<(?:iframe|bulbs-video)[^>]+?src=(["\'])(?P<url>(?:https?:)?//(?:www\.)?onionstudios\.com/(?:embed.+?|video/\d+\.json))\1',
+            webpage)
         if mobj:
             return mobj.group('url')
 

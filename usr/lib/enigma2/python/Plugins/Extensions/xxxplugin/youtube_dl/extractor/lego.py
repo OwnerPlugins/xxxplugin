@@ -130,20 +130,23 @@ class LEGOIE(InfoExtractor):
             video_file_id = video.get('VideoFileId')
             video_version = video.get('VideoVersion')
             if net_storage_path and invariant_id and video_file_id and video_version:
-                subtitles.setdefault(locale[:2], []).append({
-                    'url': 'https://lc-mediaplayerns-live-s.legocdn.com/public/%s/%s_%s_%s_%s_sub.srt' % (net_storage_path, invariant_id, video_file_id, locale, video_version),
-                })
+                subtitles.setdefault(locale[:2], []).append({'url': 'https://lc-mediaplayerns-live-s.legocdn.com/public/%s/%s_%s_%s_%s_sub.srt' % (
+                    net_storage_path, invariant_id, video_file_id, locale, video_version), })
 
         return {
             'id': video_id,
             'title': title,
             'description': video.get('Description'),
             'thumbnail': video.get('GeneratedCoverImage') or video.get('GeneratedThumbnail'),
-            'duration': int_or_none(video.get('Length')),
+            'duration': int_or_none(
+                video.get('Length')),
             'formats': formats,
             'subtitles': subtitles,
-            'age_limit': int_or_none(video.get('AgeFrom')),
+            'age_limit': int_or_none(
+                video.get('AgeFrom')),
             'season': video.get('SeasonTitle'),
-            'season_number': int_or_none(video.get('Season')) or None,
-            'episode_number': int_or_none(video.get('Episode')) or None,
+            'season_number': int_or_none(
+                video.get('Season')) or None,
+            'episode_number': int_or_none(
+                video.get('Episode')) or None,
         }

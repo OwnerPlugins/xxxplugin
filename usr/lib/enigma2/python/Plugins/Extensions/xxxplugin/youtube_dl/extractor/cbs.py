@@ -14,8 +14,11 @@ from ..utils import (
 class CBSBaseIE(ThePlatformFeedIE):
     def _parse_smil_subtitles(self, smil, namespace=None, subtitles_lang='en'):
         subtitles = {}
-        for k, ext in [('sMPTE-TTCCURL', 'tt'), ('ClosedCaptionURL', 'ttml'), ('webVTTCaptionURL', 'vtt')]:
-            cc_e = find_xpath_attr(smil, self._xpath_ns('.//param', namespace), 'name', k)
+        for k, ext in [('sMPTE-TTCCURL', 'tt'), ('ClosedCaptionURL',
+                                                 'ttml'), ('webVTTCaptionURL', 'vtt')]:
+            cc_e = find_xpath_attr(
+                smil, self._xpath_ns(
+                    './/param', namespace), 'name', k)
             if cc_e is not None:
                 cc_url = cc_e.get('value')
                 if cc_url:
@@ -79,7 +82,8 @@ class CBSIE(CBSBaseIE):
                 'mbr': 'true',
                 'assetTypes': asset_type,
             }
-            if asset_type.startswith('HLS') or asset_type in ('OnceURL', 'StreamPack'):
+            if asset_type.startswith('HLS') or asset_type in (
+                    'OnceURL', 'StreamPack'):
                 query['formats'] = 'MPEG4,M3U'
             elif asset_type in ('RTMP', 'WIFI', '3G'):
                 query['formats'] = 'MPEG4,FLV'

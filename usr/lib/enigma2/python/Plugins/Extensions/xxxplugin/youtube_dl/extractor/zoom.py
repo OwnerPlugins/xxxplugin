@@ -23,8 +23,7 @@ class ZoomIE(InfoExtractor):
             'id': 'dUk_CNBETmZ5VA2BwEl-jjakPpJ3M1pcfVYAPRsoIbEByGsLjUZtaa4yCATQuOL3der8BlTwxQePl_j0.EImBkXzTIaPvdZO5',
             'ext': 'mp4',
             'title': 'China\'s "two sessions" and the new five-year plan',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         base_url, play_id = re.match(self._VALID_URL, url).groups()
@@ -38,7 +37,8 @@ class ZoomIE(InfoExtractor):
             password = self._downloader.params.get('videopassword')
             if not password:
                 raise ExtractorError(
-                    'This video is protected by a passcode, use the --video-password option', expected=True)
+                    'This video is protected by a passcode, use the --video-password option',
+                    expected=True)
             is_meeting = form.get('useWhichPasswd') == 'meeting'
             validation = self._download_json(
                 base_url + 'rec/validate%s_passwd' % ('_meet' if is_meeting else ''),

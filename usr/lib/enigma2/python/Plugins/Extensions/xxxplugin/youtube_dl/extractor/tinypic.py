@@ -33,17 +33,21 @@ class TinyPicIE(InfoExtractor):
 
         webpage = self._download_webpage(url, video_id, 'Downloading page')
 
-        mobj = re.search(r'(?m)fo\.addVariable\("file",\s"(?P<fileid>[\da-z]+)"\);\n'
-                         r'\s+fo\.addVariable\("s",\s"(?P<serverid>\d+)"\);', webpage)
+        mobj = re.search(
+            r'(?m)fo\.addVariable\("file",\s"(?P<fileid>[\da-z]+)"\);\n'
+            r'\s+fo\.addVariable\("s",\s"(?P<serverid>\d+)"\);', webpage)
         if mobj is None:
-            raise ExtractorError('Video %s does not exist' % video_id, expected=True)
+            raise ExtractorError(
+                'Video %s does not exist' %
+                video_id, expected=True)
 
         file_id = mobj.group('fileid')
         server_id = mobj.group('serverid')
 
         KEYWORDS_SUFFIX = ', Video, images, photos, videos, myspace, ebay, video hosting, photo hosting'
         keywords = self._html_search_meta('keywords', webpage, 'title')
-        title = keywords[:-len(KEYWORDS_SUFFIX)] if keywords.endswith(KEYWORDS_SUFFIX) else ''
+        title = keywords[:-len(KEYWORDS_SUFFIX)
+                         ] if keywords.endswith(KEYWORDS_SUFFIX) else ''
 
         video_url = 'http://v%s.tinypic.com/%s.flv' % (server_id, file_id)
         thumbnail = 'http://v%s.tinypic.com/%s_th.jpg' % (server_id, file_id)

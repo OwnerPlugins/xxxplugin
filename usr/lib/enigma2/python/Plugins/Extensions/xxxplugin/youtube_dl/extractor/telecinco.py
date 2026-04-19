@@ -111,8 +111,11 @@ class TelecincoIE(InfoExtractor):
             'id': video_id,
             'title': title,
             'formats': formats,
-            'thumbnail': content.get('dataPoster') or config.get('poster', {}).get('imageUrl'),
-            'duration': int_or_none(content.get('dataDuration')),
+            'thumbnail': content.get('dataPoster') or config.get(
+                'poster',
+                {}).get('imageUrl'),
+            'duration': int_or_none(
+                content.get('dataDuration')),
         }
 
     def _real_extract(self, url):

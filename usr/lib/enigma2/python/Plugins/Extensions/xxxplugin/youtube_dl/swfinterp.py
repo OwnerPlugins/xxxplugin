@@ -451,10 +451,11 @@ class SWFInterpreter(object):
         def resfunc(args):
             # Helper functions
             coder = io.BytesIO(m.code)
-            s24 = lambda: _s24(coder)
-            u30 = lambda: _u30(coder)
+            def s24(): return _s24(coder)
+            def u30(): return _u30(coder)
 
-            registers = [avm_class.variables] + list(args) + [None] * m.local_count
+            registers = [avm_class.variables] + \
+                list(args) + [None] * m.local_count
             stack = []
             scopes = collections.deque([
                 self._classes_by_name, avm_class.constants, avm_class.variables])

@@ -32,7 +32,8 @@ class YouPornIE(InfoExtractor):
             (?:/(?:(?P<display_id>[^/?#&]+)/?)?)?(?:[#?]|$)
     '''
     )
-    _EMBED_REGEX = [r'<iframe[^>]+\bsrc=["\'](?P<url>(?:https?:)?//(?:www\.)?youporn\.com/embed/\d+)']
+    _EMBED_REGEX = [
+        r'<iframe[^>]+\bsrc=["\'](?P<url>(?:https?:)?//(?:www\.)?youporn\.com/embed/\d+)']
     _TESTS = [{
         'url': 'http://www.youporn.com/watch/505835/sex-ed-is-it-safe-to-masturbate-daily/',
         'md5': '3744d24c50438cf5b6f6d59feb5055c2',
@@ -116,7 +117,8 @@ class YouPornIE(InfoExtractor):
     def _real_extract(self, url):
         # A different video ID (data-video-id) is hidden in the page but
         # never seems to be used
-        video_id, display_id = self._match_valid_url(url).group('id', 'display_id')
+        video_id, display_id = self._match_valid_url(
+            url).group('id', 'display_id')
         url = 'http://www.youporn.com/watch/%s' % (video_id,)
         webpage = self._download_webpage(
             url, video_id, headers={'Cookie': 'age_verified=1'})
@@ -150,10 +152,13 @@ class YouPornIE(InfoExtractor):
             if f not in defs_by_format:
                 return []
             return self._download_json(
-                defs_by_format[f]['videoUrl'], video_id, '{0}-formats'.format(f))
+                defs_by_format[f]['videoUrl'],
+                video_id,
+                '{0}-formats'.format(f))
 
         formats = []
-        # Try to extract only the actual master m3u8 first, avoiding the duplicate single resolution "master" m3u8s
+        # Try to extract only the actual master m3u8 first, avoiding the
+        # duplicate single resolution "master" m3u8s
         for hls_url in traverse_obj(
                 get_format_data('hls'),
                 (lambda _, v: not isinstance(v['defaultQuality'], bool), 'videoUrl'),
@@ -173,7 +178,9 @@ class YouPornIE(InfoExtractor):
             #  /201012/17/505835/vl_240p_240k_505835/YouPorn%20-%20Sex%20Ed%20Is%20It%20Safe%20To%20Masturbate%20Daily.mp4
             #  /videos/201703/11/109285532/1080P_4000K_109285532.mp4
             # We will benefit from it by extracting some metadata
-            mobj = re.search(r'(?P<height>\d{3,4})[pP]_(?P<bitrate>\d+)[kK]_\d+', f['videoUrl'])
+            mobj = re.search(
+                r'(?P<height>\d{3,4})[pP]_(?P<bitrate>\d+)[kK]_\d+',
+                f['videoUrl'])
             if mobj:
                 if not f.get('height'):
                     f['height'] = int(mobj.group('height'))
@@ -204,12 +211,15 @@ class YouPornIE(InfoExtractor):
         uploader = self._html_search_regex(
             r'(?s)<div[^>]+class=["\']submitByLink["\'][^>]*>(.+?)</div>',
             webpage, 'uploader', fatal=False)
-        upload_date = unified_strdate(self._html_search_regex(
-            (r'UPLOADED:\s*<span>([^<]+)',
-             r'Date\s+[Aa]dded:\s*<span>([^<]+)',
-             r'''(?s)<div[^>]+class=["']videoInfo(?:Date|Time)\b[^>]*>(.+?)</div>''',
-             r'(?s)<label\b[^>]*>Uploaded[^<]*</label>\s*<span\b[^>]*>(.+?)</span>'),
-            webpage, 'upload date', fatal=False))
+        upload_date = unified_strdate(
+            self._html_search_regex(
+                (r'UPLOADED:\s*<span>([^<]+)',
+                 r'Date\s+[Aa]dded:\s*<span>([^<]+)',
+                 r'''(?s)<div[^>]+class=["']videoInfo(?:Date|Time)\b[^>]*>(.+?)</div>''',
+                 r'(?s)<label\b[^>]*>Uploaded[^<]*</label>\s*<span\b[^>]*>(.+?)</span>'),
+                webpage,
+                'upload date',
+                fatal=False))
 
         age_limit = self._rta_search(webpage)
 
@@ -218,7 +228,8 @@ class YouPornIE(InfoExtractor):
             r'(<div\s[^>]*\bdata-value\s*=[^>]+>)\s*<label>Views:</label>',
             webpage, 'views', default=None)
         if views:
-            view_count = parse_count(extract_attributes(views).get('data-value'))
+            view_count = parse_count(
+                extract_attributes(views).get('data-value'))
         comment_count = parse_count(self._search_regex(
             r'>All [Cc]omments? \(([\d,.]+)\)',
             webpage, 'comment count', default=None))
@@ -235,7 +246,11 @@ class YouPornIE(InfoExtractor):
             r'(?s)Tags:.*?</div>\s*<div[^>]+class=["\']tagBoxContent["\'][^>]*>(.+?)</div>',
             'tags')
 
-        data = self._search_json_ld(webpage, video_id, expected_type='VideoObject', fatal=False) or {}
+        data = self._search_json_ld(
+            webpage,
+            video_id,
+            expected_type='VideoObject',
+            fatal=False) or {}
         data.pop('url', None)
 
         result = merge_dicts(data, {
@@ -322,7 +337,10 @@ class YouPornListBase(InfoExtractor):
                 if not frag:
                     continue
                 t_text = get_element_by_class('title-text', frag or '')
-                if not (t_text and re.search(self._PLAYLIST_TITLEBAR_RE, t_text)):
+                if not (
+                    t_text and re.search(
+                        self._PLAYLIST_TITLEBAR_RE,
+                        t_text)):
                     continue
                 for m in re.finditer(VIDEO_URL_RE, frag):
                     video_url = urljoin(url, m.group('url'))
@@ -343,7 +361,8 @@ class YouPornListBase(InfoExtractor):
                         first_url = from_['url']
                         if first_url == last_first_url:
                             # sometimes (/porntags/) the site serves the previous page
-                            # instead but may provide the correct page after a delay
+                            # instead but may provide the correct page after a
+                            # delay
                             page_data = retry_page(
                                 'Retrying duplicate page...', tries_left, page_data)
                             if page_data:
@@ -368,7 +387,8 @@ class YouPornListBase(InfoExtractor):
     def _real_extract(self, url, html=None):
         # exceptionally, id may be None
         m_dict = self._match_valid_url(url).groupdict()
-        pl_id, page_type, sort = (m_dict.get(k) for k in ('id', 'type', 'sort'))
+        pl_id, page_type, sort = (m_dict.get(k)
+                                  for k in ('id', 'type', 'sort'))
 
         qs = parse_qs(url)
         for q, v in qs.items():
@@ -494,7 +514,11 @@ class YouPornCollectionIE(YouPornListBase):
     def _real_extract(self, url):
         pl_id = self._match_id(url)
         html = self._download_webpage(url, pl_id)
-        playlist = super(YouPornCollectionIE, self)._real_extract(url, html=html)
+        playlist = super(
+            YouPornCollectionIE,
+            self)._real_extract(
+            url,
+            html=html)
         infos = re.sub(r'\s+', ' ', clean_html(get_element_by_class(
             'collection-infos', html)) or '')
         title, uploader = self._search_regex(
@@ -607,7 +631,12 @@ class YouPornStarIE(YouPornListBase):
             (?P<info>[\s\S]+?)(?:</div>\s*){6,}
         '''
 
-        infos = self._search_regex(INFO_ELEMENT_RE, html, 'infos', group='info', default='')
+        infos = self._search_regex(
+            INFO_ELEMENT_RE,
+            html,
+            'infos',
+            group='info',
+            default='')
         if infos:
             infos = re.sub(
                 r'(?:\s*nl=nl)+\s*', ' ',

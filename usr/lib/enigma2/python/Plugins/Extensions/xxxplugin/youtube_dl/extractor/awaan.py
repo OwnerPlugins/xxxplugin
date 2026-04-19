@@ -45,8 +45,11 @@ class AWAANBaseIE(InfoExtractor):
             'title': self._live_title(title) if is_live else title,
             'description': video_data.get('description_en') or video_data.get('description_ar'),
             'thumbnail': 'http://admin.mangomolo.com/analytics/%s' % img if img else None,
-            'duration': int_or_none(video_data.get('duration')),
-            'timestamp': parse_iso8601(video_data.get('create_time'), ' '),
+            'duration': int_or_none(
+                video_data.get('duration')),
+            'timestamp': parse_iso8601(
+                video_data.get('create_time'),
+                ' '),
             'is_live': is_live,
             'uploader_id': video_data.get('user_id'),
         }
@@ -55,31 +58,29 @@ class AWAANBaseIE(InfoExtractor):
 class AWAANVideoIE(AWAANBaseIE):
     IE_NAME = 'awaan:video'
     _VALID_URL = r'https?://(?:www\.)?(?:awaan|dcndigital)\.ae/(?:#/)?(?:video(?:/[^/]+)?|media|catchup/[^/]+/[^/]+)/(?P<id>\d+)'
-    _TESTS = [{
-        'url': 'http://www.dcndigital.ae/#/video/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D8%B1-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-1/17375',
-        'md5': '5f61c33bfc7794315c671a62d43116aa',
-        'info_dict':
-        {
-            'id': '17375',
-            'ext': 'mp4',
-            'title': 'رحلة العمر : الحلقة 1',
-            'description': 'md5:0156e935d870acb8ef0a66d24070c6d6',
-            'duration': 2041,
-            'timestamp': 1227504126,
-            'upload_date': '20081124',
-            'uploader_id': '71',
-        },
-    }, {
-        'url': 'http://awaan.ae/video/26723981/%D8%AF%D8%A7%D8%B1-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85:-%D8%AE%D9%8A%D8%B1-%D8%AF%D9%88%D8%B1-%D8%A7%D9%84%D8%A3%D9%86%D8%B5%D8%A7%D8%B1',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.dcndigital.ae/#/video/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D8%B1-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-1/17375',
+               'md5': '5f61c33bfc7794315c671a62d43116aa',
+               'info_dict': {'id': '17375',
+                             'ext': 'mp4',
+                             'title': 'رحلة العمر : الحلقة 1',
+                             'description': 'md5:0156e935d870acb8ef0a66d24070c6d6',
+                             'duration': 2041,
+                             'timestamp': 1227504126,
+                             'upload_date': '20081124',
+                             'uploader_id': '71',
+                             },
+               },
+              {'url': 'http://awaan.ae/video/26723981/%D8%AF%D8%A7%D8%B1-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85:-%D8%AE%D9%8A%D8%B1-%D8%AF%D9%88%D8%B1-%D8%A7%D9%84%D8%A3%D9%86%D8%B5%D8%A7%D8%B1',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
         video_data = self._download_json(
-            'http://admin.mangomolo.com/analytics/index.php/plus/video?id=%s' % video_id,
-            video_id, headers={'Origin': 'http://awaan.ae'})
+            'http://admin.mangomolo.com/analytics/index.php/plus/video?id=%s' %
+            video_id, video_id, headers={
+                'Origin': 'http://awaan.ae'})
         info = self._parse_video_data(video_data, video_id, False)
 
         embed_url = 'http://admin.mangomolo.com/analytics/index.php/customers/embed/video?' + compat_urllib_parse_urlencode({
@@ -120,8 +121,9 @@ class AWAANLiveIE(AWAANBaseIE):
         channel_id = self._match_id(url)
 
         channel_data = self._download_json(
-            'http://admin.mangomolo.com/analytics/index.php/plus/getchanneldetails?channel_id=%s' % channel_id,
-            channel_id, headers={'Origin': 'http://awaan.ae'})
+            'http://admin.mangomolo.com/analytics/index.php/plus/getchanneldetails?channel_id=%s' %
+            channel_id, channel_id, headers={
+                'Origin': 'http://awaan.ae'})
         info = self._parse_video_data(channel_data, channel_id, True)
 
         embed_url = 'http://admin.mangomolo.com/analytics/index.php/customers/embed/index?' + compat_urllib_parse_urlencode({
@@ -144,8 +146,7 @@ class AWAANSeasonIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?(?:awaan|dcndigital)\.ae/(?:#/)?program/(?:(?P<show_id>\d+)|season/(?P<season_id>\d+))'
     _TEST = {
         'url': 'http://dcndigital.ae/#/program/205024/%D9%85%D8%AD%D8%A7%D8%B6%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%B4%D9%8A%D8%AE-%D8%A7%D9%84%D8%B4%D8%B9%D8%B1%D8%A7%D9%88%D9%8A',
-        'info_dict':
-        {
+        'info_dict': {
             'id': '7910',
             'title': 'محاضرات الشيخ الشعراوي',
         },
@@ -162,8 +163,9 @@ class AWAANSeasonIE(InfoExtractor):
             show_id = smuggled_data.get('show_id')
             if show_id is None:
                 season = self._download_json(
-                    'http://admin.mangomolo.com/analytics/index.php/plus/season_info?id=%s' % season_id,
-                    season_id, headers={'Origin': 'http://awaan.ae'})
+                    'http://admin.mangomolo.com/analytics/index.php/plus/season_info?id=%s' %
+                    season_id, season_id, headers={
+                        'Origin': 'http://awaan.ae'})
                 show_id = season['id']
         data['show_id'] = show_id
         show = self._download_json(
@@ -181,7 +183,9 @@ class AWAANSeasonIE(InfoExtractor):
                 entries = []
                 for video in show['videos']:
                     video_id = compat_str(video['id'])
-                    entries.append(self.url_result(
-                        'http://awaan.ae/media/%s' % video_id, 'AWAANVideo', video_id))
+                    entries.append(
+                        self.url_result(
+                            'http://awaan.ae/media/%s' %
+                            video_id, 'AWAANVideo', video_id))
 
                 return self.playlist_result(entries, season_id, title)

@@ -29,8 +29,9 @@ class BaiduVideoIE(InfoExtractor):
     }]
 
     def _call_api(self, path, category, playlist_id, note):
-        return self._download_json('http://app.video.baidu.com/%s/?worktype=adnative%s&id=%s' % (
-            path, category, playlist_id), playlist_id, note)
+        return self._download_json(
+            'http://app.video.baidu.com/%s/?worktype=adnative%s&id=%s' %
+            (path, category, playlist_id), playlist_id, note)
 
     def _real_extract(self, url):
         category, playlist_id = re.match(self._VALID_URL, url).groups()
@@ -46,7 +47,10 @@ class BaiduVideoIE(InfoExtractor):
         playlist_description = unescapeHTML(playlist_detail.get('intro'))
 
         episodes_detail = self._call_api(
-            'xqsingle', category, playlist_id, 'Download episodes JSON metadata')
+            'xqsingle',
+            category,
+            playlist_id,
+            'Download episodes JSON metadata')
 
         entries = [self.url_result(
             episode['url'], video_title=episode['title']

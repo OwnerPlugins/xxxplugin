@@ -72,7 +72,8 @@ class MSNIE(InfoExtractor):
         webpage = self._download_webpage(url, display_id)
 
         entries = []
-        for _, metadata in re.findall(r'data-metadata\s*=\s*(["\'])(?P<data>.+?)\1', webpage):
+        for _, metadata in re.findall(
+                r'data-metadata\s*=\s*(["\'])(?P<data>.+?)\1', webpage):
             video = self._parse_json(unescapeHTML(metadata), display_id)
 
             provider_id = video.get('providerId')
@@ -95,8 +96,10 @@ class MSNIE(InfoExtractor):
                         provider_id, 'Youtube', provider_id)
                 elif player_name == 'NBCSports':
                     entry = self.url_result(
-                        'http://vplayer.nbcsports.com/p/BxmELC/nbcsports_embed/select/media/' + provider_id,
-                        'NBCSportsVPlayer', provider_id)
+                        'http://vplayer.nbcsports.com/p/BxmELC/nbcsports_embed/select/media/' +
+                        provider_id,
+                        'NBCSportsVPlayer',
+                        provider_id)
                 if entry:
                     entries.append(entry)
                     continue
@@ -111,7 +114,8 @@ class MSNIE(InfoExtractor):
                     continue
                 if 'format=m3u8-aapl' in format_url:
                     # m3u8_native should not be used here until
-                    # https://github.com/ytdl-org/youtube-dl/issues/9913 is fixed
+                    # https://github.com/ytdl-org/youtube-dl/issues/9913 is
+                    # fixed
                     formats.extend(self._extract_m3u8_formats(
                         format_url, display_id, 'mp4',
                         m3u8_id='hls', fatal=False))
@@ -166,6 +170,8 @@ class MSNIE(InfoExtractor):
             error = unescapeHTML(self._search_regex(
                 r'data-error=(["\'])(?P<error>.+?)\1',
                 webpage, 'error', group='error'))
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, error), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, error), expected=True)
 
         return self.playlist_result(entries, page_id)

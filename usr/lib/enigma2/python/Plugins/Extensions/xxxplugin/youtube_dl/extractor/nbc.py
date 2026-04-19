@@ -139,9 +139,11 @@ class NBCIE(AdobePassIE):
                 title, video_id, video_data.get('rating'))
             query['auth'] = self._extract_mvpd_auth(
                 url, video_id, 'nbcentertainment', resource)
-        theplatform_url = smuggle_url(update_url_query(
-            'http://link.theplatform.com/s/NnzsPC/media/guid/%s/%s' % (video_data.get('mpxAccountId') or '2410887629', video_id),
-            query), {'force_smil_url': True})
+        theplatform_url = smuggle_url(
+            update_url_query(
+                'http://link.theplatform.com/s/NnzsPC/media/guid/%s/%s' %
+                (video_data.get('mpxAccountId') or '2410887629', video_id), query), {
+                'force_smil_url': True})
         return {
             '_type': 'url_transparent',
             'id': video_id,
@@ -161,29 +163,27 @@ class NBCSportsVPlayerIE(InfoExtractor):
     _VALID_URL_BASE = r'https?://(?:vplayer\.nbcsports\.com|(?:www\.)?nbcsports\.com/vplayer)/'
     _VALID_URL = _VALID_URL_BASE + r'(?:[^/]+/)+(?P<id>[0-9a-zA-Z_]+)'
 
-    _TESTS = [{
-        'url': 'https://vplayer.nbcsports.com/p/BxmELC/nbcsports_embed/select/9CsDKds0kvHI',
-        'info_dict': {
-            'id': '9CsDKds0kvHI',
-            'ext': 'mp4',
-            'description': 'md5:df390f70a9ba7c95ff1daace988f0d8d',
-            'title': 'Tyler Kalinoski hits buzzer-beater to lift Davidson',
-            'timestamp': 1426270238,
-            'upload_date': '20150313',
-            'uploader': 'NBCU-SPORTS',
-        }
-    }, {
-        'url': 'https://vplayer.nbcsports.com/p/BxmELC/nbcsports_embed/select/media/_hqLjQ95yx8Z',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.nbcsports.com/vplayer/p/BxmELC/nbcsports/select/PHJSaFWbrTY9?form=html&autoPlay=true',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://vplayer.nbcsports.com/p/BxmELC/nbcsports_embed/select/9CsDKds0kvHI',
+               'info_dict': {'id': '9CsDKds0kvHI',
+                             'ext': 'mp4',
+                             'description': 'md5:df390f70a9ba7c95ff1daace988f0d8d',
+                             'title': 'Tyler Kalinoski hits buzzer-beater to lift Davidson',
+                             'timestamp': 1426270238,
+                             'upload_date': '20150313',
+                             'uploader': 'NBCU-SPORTS',
+                             }},
+              {'url': 'https://vplayer.nbcsports.com/p/BxmELC/nbcsports_embed/select/media/_hqLjQ95yx8Z',
+               'only_matching': True,
+               },
+              {'url': 'https://www.nbcsports.com/vplayer/p/BxmELC/nbcsports/select/PHJSaFWbrTY9?form=html&autoPlay=true',
+               'only_matching': True,
+               }]
 
     @staticmethod
     def _extract_url(webpage):
         iframe_m = re.search(
-            r'<(?:iframe[^>]+|div[^>]+data-(?:mpx-)?)src="(?P<url>%s[^"]+)"' % NBCSportsVPlayerIE._VALID_URL_BASE, webpage)
+            r'<(?:iframe[^>]+|div[^>]+data-(?:mpx-)?)src="(?P<url>%s[^"]+)"' %
+            NBCSportsVPlayerIE._VALID_URL_BASE, webpage)
         if iframe_m:
             return iframe_m.group('url')
 
@@ -259,7 +259,8 @@ class NBCSportsStreamIE(AdobePassIE):
                 break
         else:
             source_url = video_source['ottStreamUrl']
-        is_live = video_source.get('type') == 'live' or video_source.get('status') == 'Live'
+        is_live = video_source.get(
+            'type') == 'live' or video_source.get('status') == 'Live'
         resource = self._get_mvpd_resource('nbcsports', title, video_id, '')
         token = self._extract_mvpd_auth(url, video_id, 'nbcsports', resource)
         tokenized_url = self._download_json(
@@ -367,7 +368,8 @@ class NBCNewsIE(ThePlatformIE):
             'only_matching': True,
         },
         {
-            # From http://www.vulture.com/2016/06/letterman-couldnt-care-less-about-late-night.html
+            # From
+            # http://www.vulture.com/2016/06/letterman-couldnt-care-less-about-late-night.html
             'url': 'http://www.nbcnews.com/widget/video-embed/701714499682',
             'only_matching': True,
         },
@@ -391,7 +393,8 @@ class NBCNewsIE(ThePlatformIE):
             if not public_url:
                 continue
             if '://link.theplatform.com/' in public_url:
-                public_url = update_url_query(public_url, {'format': 'redirect'})
+                public_url = update_url_query(
+                    public_url, {'format': 'redirect'})
             format_id = va.get('format')
             if format_id == 'M3U':
                 formats.extend(self._extract_m3u8_formats(

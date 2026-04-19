@@ -76,8 +76,13 @@ class RutubeBaseIE(InfoExtractor):
         for format_id, format_url in options['video_balancer'].items():
             ext = determine_ext(format_url)
             if ext == 'm3u8':
-                formats.extend(self._extract_m3u8_formats(
-                    format_url, video_id, 'mp4', m3u8_id=format_id, fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        format_url,
+                        video_id,
+                        'mp4',
+                        m3u8_id=format_id,
+                        fatal=False))
             elif ext == 'f4m':
                 formats.extend(self._extract_f4m_formats(
                     format_url, video_id, f4m_id=format_id, fatal=False))
@@ -99,44 +104,44 @@ class RutubeIE(RutubeBaseIE):
     IE_DESC = 'Rutube videos'
     _VALID_URL = r'https?://rutube\.ru/(?:video|(?:play/)?embed)/(?P<id>[\da-z]{32})'
 
-    _TESTS = [{
-        'url': 'http://rutube.ru/video/3eac3b4561676c17df9132a9a1e62e3e/',
-        'md5': '1d24f180fac7a02f3900712e5a5764d6',
-        'info_dict': {
-            'id': '3eac3b4561676c17df9132a9a1e62e3e',
-            'ext': 'mp4',
-            'title': 'Раненный кенгуру забежал в аптеку',
-            'description': 'http://www.ntdtv.ru ',
-            'duration': 81,
-            'uploader': 'NTDRussian',
-            'uploader_id': '29790',
-            'timestamp': 1381943602,
-            'upload_date': '20131016',
-            'age_limit': 0,
-        },
-    }, {
-        'url': 'http://rutube.ru/play/embed/a10e53b86e8f349080f718582ce4c661',
-        'only_matching': True,
-    }, {
-        'url': 'http://rutube.ru/embed/a10e53b86e8f349080f718582ce4c661',
-        'only_matching': True,
-    }, {
-        'url': 'http://rutube.ru/video/3eac3b4561676c17df9132a9a1e62e3e/?pl_id=4252',
-        'only_matching': True,
-    }, {
-        'url': 'https://rutube.ru/video/10b3a03fc01d5bbcc632a2f3514e8aab/?pl_type=source',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://rutube.ru/video/3eac3b4561676c17df9132a9a1e62e3e/',
+               'md5': '1d24f180fac7a02f3900712e5a5764d6',
+               'info_dict': {'id': '3eac3b4561676c17df9132a9a1e62e3e',
+                             'ext': 'mp4',
+                             'title': 'Раненный кенгуру забежал в аптеку',
+                             'description': 'http://www.ntdtv.ru ',
+                             'duration': 81,
+                             'uploader': 'NTDRussian',
+                             'uploader_id': '29790',
+                             'timestamp': 1381943602,
+                             'upload_date': '20131016',
+                             'age_limit': 0,
+                             },
+               },
+              {'url': 'http://rutube.ru/play/embed/a10e53b86e8f349080f718582ce4c661',
+               'only_matching': True,
+               },
+              {'url': 'http://rutube.ru/embed/a10e53b86e8f349080f718582ce4c661',
+               'only_matching': True,
+               },
+              {'url': 'http://rutube.ru/video/3eac3b4561676c17df9132a9a1e62e3e/?pl_id=4252',
+               'only_matching': True,
+               },
+              {'url': 'https://rutube.ru/video/10b3a03fc01d5bbcc632a2f3514e8aab/?pl_type=source',
+               'only_matching': True,
+               }]
 
     @classmethod
     def suitable(cls, url):
-        return False if RutubePlaylistIE.suitable(url) else super(RutubeIE, cls).suitable(url)
+        return False if RutubePlaylistIE.suitable(
+            url) else super(RutubeIE, cls).suitable(url)
 
     @staticmethod
     def _extract_urls(webpage):
-        return [mobj.group('url') for mobj in re.finditer(
-            r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//rutube\.ru/embed/[\da-z]{32}.*?)\1',
-            webpage)]
+        return [
+            mobj.group('url') for mobj in re.finditer(
+                r'<iframe[^>]+?src=(["\'])(?P<url>(?:https?:)?//rutube\.ru/embed/[\da-z]{32}.*?)\1',
+                webpage)]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -301,7 +306,12 @@ class RutubePlaylistIE(RutubePlaylistBaseIE):
         if not super(RutubePlaylistIE, cls).suitable(url):
             return False
         params = compat_parse_qs(compat_urllib_parse_urlparse(url).query)
-        return params.get('pl_type', [None])[0] and int_or_none(params.get('pl_id', [None])[0])
+        return params.get(
+            'pl_type',
+            [None])[0] and int_or_none(
+            params.get(
+                'pl_id',
+                [None])[0])
 
     def _next_page_url(self, page_num, playlist_id, item_kind):
         return self._PAGE_TEMPLATE % (item_kind, playlist_id, page_num)

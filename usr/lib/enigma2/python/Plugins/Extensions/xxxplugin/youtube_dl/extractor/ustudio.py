@@ -25,8 +25,7 @@ class UstudioIE(InfoExtractor):
             'thumbnail': r're:^https?://.*\.jpg$',
             'upload_date': '20111107',
             'uploader': 'Tony Farley',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id, display_id = re.match(self._VALID_URL, url).groups()
@@ -36,11 +35,14 @@ class UstudioIE(InfoExtractor):
             display_id)
 
         def extract(kind):
-            return [{
-                'url': unescapeHTML(item.attrib['url']),
-                'width': int_or_none(item.get('width')),
-                'height': int_or_none(item.get('height')),
-            } for item in config.findall('./qualities/quality/%s' % kind) if item.get('url')]
+            return [
+                {
+                    'url': unescapeHTML(
+                        item.attrib['url']), 'width': int_or_none(
+                        item.get('width')), 'height': int_or_none(
+                        item.get('height')), } for item in config.findall(
+                    './qualities/quality/%s' %
+                    kind) if item.get('url')]
 
         formats = extract('video')
         self._sort_formats(formats)
@@ -85,8 +87,8 @@ class UstudioEmbedIE(InfoExtractor):
     def _real_extract(self, url):
         uploader_id, video_id = re.match(self._VALID_URL, url).groups()
         video_data = self._download_json(
-            'http://app.ustudio.com/embed/%s/%s/config.json' % (uploader_id, video_id),
-            video_id)['videos'][0]
+            'http://app.ustudio.com/embed/%s/%s/config.json' %
+            (uploader_id, video_id), video_id)['videos'][0]
         title = video_data['name']
 
         formats = []

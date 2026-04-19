@@ -17,8 +17,7 @@ class M6IE(InfoExtractor):
             'title': 'Emeline est la Reine du Shopping sur le thème « Ma fête d’anniversaire ! »',
             'description': 'md5:1212ae8fb4b7baa4dc3886c5676007c2',
             'duration': 100,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

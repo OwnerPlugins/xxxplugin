@@ -37,7 +37,8 @@ class Pr0grammStaticIE(InfoExtractor):
         self._sort_formats(media_info.get('formats') or [])
 
         # Fetch author
-        uploader = self._html_search_regex(r'by\W+([\w-]+)\W+', webpage, 'uploader')
+        uploader = self._html_search_regex(
+            r'by\W+([\w-]+)\W+', webpage, 'uploader')
 
         # Fetch approx upload timestamp from filename
         # Have None-defaults in case the extraction fails
@@ -46,7 +47,9 @@ class Pr0grammStaticIE(InfoExtractor):
         uploadYear = None
         uploadTimestr = None
         # (//img.pr0gramm.com/2022/12/21/62ae8aa5e2da0ebf.mp4)
-        m = re.search(r'//img\.pr0gramm\.com/(?P<year>[\d]+)/(?P<mon>[\d]+)/(?P<day>[\d]+)/\w+\.\w{,4}', webpage)
+        m = re.search(
+            r'//img\.pr0gramm\.com/(?P<year>[\d]+)/(?P<mon>[\d]+)/(?P<day>[\d]+)/\w+\.\w{,4}',
+            webpage)
 
         if (m):
             # Up to a day of accuracy should suffice...

@@ -164,9 +164,12 @@ class YouNowChannelIE(InfoExtractor):
 
     def _real_extract(self, url):
         username = self._match_id(url)
-        channel_id = compat_str(self._download_json(
-            'https://api.younow.com/php/api/broadcast/info/curId=0/user=%s'
-            % username, username, note='Downloading user information')['userId'])
+        channel_id = compat_str(
+            self._download_json(
+                'https://api.younow.com/php/api/broadcast/info/curId=0/user=%s' %
+                username,
+                username,
+                note='Downloading user information')['userId'])
         return self.playlist_result(
             self._entries(username, channel_id), channel_id,
             '%s moments' % username)

@@ -94,8 +94,13 @@ class VVVVIDIE(InfoExtractor):
         if query:
             q.update(query)
         response = self._download_json(
-            'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
-            video_id, headers=self.geo_verification_headers(), query=q, fatal=fatal)
+            'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' %
+            (show_id,
+             path),
+            video_id,
+            headers=self.geo_verification_headers(),
+            query=q,
+            fatal=fatal)
         if not (response or fatal):
             return
         if response.get('result') == 'error':
@@ -122,7 +127,8 @@ class VVVVIDIE(InfoExtractor):
         title = video_data['title']
         formats = []
 
-        # vvvvid embed_info decryption algorithm is reverse engineered from function $ds(h) at vvvvid.js
+        # vvvvid embed_info decryption algorithm is reverse engineered from
+        # function $ds(h) at vvvvid.js
         def ds(h):
             g = "MNOPIJKL89+/4567UVWXQRSTEFGHABCDcdefYZabstuvopqr0123wxyzklmnghij"
 
@@ -195,7 +201,12 @@ class VVVVIDIE(InfoExtractor):
                 continue
             embed_code = ds(embed_code)
             if video_type == 'video/kenc':
-                embed_code = re.sub(r'https?(://[^/]+)/z/', r'https\1/i/', embed_code).replace('/manifest.f4m', '/master.m3u8')
+                embed_code = re.sub(
+                    r'https?(://[^/]+)/z/',
+                    r'https\1/i/',
+                    embed_code).replace(
+                    '/manifest.f4m',
+                    '/master.m3u8')
                 kenc = self._download_json(
                     'https://www.vvvvid.it/kenc', video_id, query={
                         'action': 'kt',
@@ -208,7 +219,9 @@ class VVVVIDIE(InfoExtractor):
                 formats.extend(self._extract_m3u8_formats(
                     embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
             elif video_type == 'video/rcs':
-                formats.extend(self._extract_akamai_formats(embed_code, video_id))
+                formats.extend(
+                    self._extract_akamai_formats(
+                        embed_code, video_id))
             elif video_type == 'video/youtube':
                 info.update({
                     '_type': 'url_transparent',
@@ -221,8 +234,10 @@ class VVVVIDIE(InfoExtractor):
                 formats.extend(self._extract_m3u8_formats(
                     embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
             else:
-                formats.extend(self._extract_wowza_formats(
-                    'http://sb.top-ix.org/videomg/_definst_/mp4:%s/playlist.m3u8' % embed_code, video_id))
+                formats.extend(
+                    self._extract_wowza_formats(
+                        'http://sb.top-ix.org/videomg/_definst_/mp4:%s/playlist.m3u8' %
+                        embed_code, video_id))
             metadata_from_url(embed_code)
 
         if not is_youtube:
@@ -296,4 +311,7 @@ class VVVVIDShowIE(VVVVIDIE):
                 entries.append(info)
 
         return self.playlist_result(
-            entries, show_id, show_info.get('title'), show_info.get('description'))
+            entries,
+            show_id,
+            show_info.get('title'),
+            show_info.get('description'))

@@ -21,7 +21,10 @@ from ..utils import (
     std_headers,
 )
 
-_bytes_to_chr = (lambda x: x) if sys.version_info[0] == 2 else (lambda x: map(chr, x))
+_bytes_to_chr = (
+    lambda x: x) if sys.version_info[0] == 2 else (
+        lambda x: map(
+            chr, x))
 
 
 class RTVEALaCartaIE(InfoExtractor):
@@ -29,49 +32,47 @@ class RTVEALaCartaIE(InfoExtractor):
     IE_DESC = 'RTVE a la carta'
     _VALID_URL = r'https?://(?:www\.)?rtve\.es/(m/)?(alacarta/videos|filmoteca)/[^/]+/[^/]+/(?P<id>\d+)'
 
-    _TESTS = [{
-        'url': 'http://www.rtve.es/alacarta/videos/balonmano/o-swiss-cup-masculina-final-espana-suecia/2491869/',
-        'md5': '1d49b7e1ca7a7502c56a4bf1b60f1b43',
-        'info_dict': {
-            'id': '2491869',
-            'ext': 'mp4',
-            'title': 'Balonmano - Swiss Cup masculina. Final: España-Suecia',
-            'duration': 5024.566,
-            'series': 'Balonmano',
-        },
-        'expected_warnings': ['Failed to download MPD manifest', 'Failed to download m3u8 information'],
-    }, {
-        'note': 'Live stream',
-        'url': 'http://www.rtve.es/alacarta/videos/television/24h-live/1694255/',
-        'info_dict': {
-            'id': '1694255',
-            'ext': 'mp4',
-            'title': 're:^24H LIVE [0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$',
-            'is_live': True,
-        },
-        'params': {
-            'skip_download': 'live stream',
-        },
-    }, {
-        'url': 'http://www.rtve.es/alacarta/videos/servir-y-proteger/servir-proteger-capitulo-104/4236788/',
-        'md5': 'd850f3c8731ea53952ebab489cf81cbf',
-        'info_dict': {
-            'id': '4236788',
-            'ext': 'mp4',
-            'title': 'Servir y proteger - Capítulo 104',
-            'duration': 3222.0,
-        },
-        'expected_warnings': ['Failed to download MPD manifest', 'Failed to download m3u8 information'],
-    }, {
-        'url': 'http://www.rtve.es/m/alacarta/videos/cuentame-como-paso/cuentame-como-paso-t16-ultimo-minuto-nuestra-vida-capitulo-276/2969138/?media=tve',
-        'only_matching': True,
-    }, {
-        'url': 'http://www.rtve.es/filmoteca/no-do/not-1-introduccion-primer-noticiario-espanol/1465256/',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://www.rtve.es/alacarta/videos/balonmano/o-swiss-cup-masculina-final-espana-suecia/2491869/',
+               'md5': '1d49b7e1ca7a7502c56a4bf1b60f1b43',
+               'info_dict': {'id': '2491869',
+                             'ext': 'mp4',
+                             'title': 'Balonmano - Swiss Cup masculina. Final: España-Suecia',
+                             'duration': 5024.566,
+                             'series': 'Balonmano',
+                             },
+               'expected_warnings': ['Failed to download MPD manifest',
+                                     'Failed to download m3u8 information'],
+               },
+              {'note': 'Live stream',
+               'url': 'http://www.rtve.es/alacarta/videos/television/24h-live/1694255/',
+               'info_dict': {'id': '1694255',
+                             'ext': 'mp4',
+                             'title': 're:^24H LIVE [0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$',
+                             'is_live': True,
+                             },
+               'params': {'skip_download': 'live stream',
+                          },
+               },
+              {'url': 'http://www.rtve.es/alacarta/videos/servir-y-proteger/servir-proteger-capitulo-104/4236788/',
+               'md5': 'd850f3c8731ea53952ebab489cf81cbf',
+               'info_dict': {'id': '4236788',
+                             'ext': 'mp4',
+                             'title': 'Servir y proteger - Capítulo 104',
+                             'duration': 3222.0,
+                             },
+               'expected_warnings': ['Failed to download MPD manifest',
+                                     'Failed to download m3u8 information'],
+               },
+              {'url': 'http://www.rtve.es/m/alacarta/videos/cuentame-como-paso/cuentame-como-paso-t16-ultimo-minuto-nuestra-vida-capitulo-276/2969138/?media=tve',
+               'only_matching': True,
+               },
+              {'url': 'http://www.rtve.es/filmoteca/no-do/not-1-introduccion-primer-noticiario-espanol/1465256/',
+               'only_matching': True,
+               }]
 
     def _real_initialize(self):
-        user_agent_b64 = base64.b64encode(std_headers['User-Agent'].encode('utf-8')).decode('utf-8')
+        user_agent_b64 = base64.b64encode(
+            std_headers['User-Agent'].encode('utf-8')).decode('utf-8')
         self._manager = self._download_json(
             'http://www.rtve.es/odin/loki/' + user_agent_b64,
             None, 'Fetching manager info')['manager']
@@ -120,8 +121,9 @@ class RTVEALaCartaIE(InfoExtractor):
 
     def _extract_png_formats(self, video_id):
         png = self._download_webpage(
-            'http://www.rtve.es/ztnr/movil/thumbnail/%s/videos/%s.png' % (self._manager, video_id),
-            video_id, 'Downloading url information', query={'q': 'v2'})
+            'http://www.rtve.es/ztnr/movil/thumbnail/%s/videos/%s.png' %
+            (self._manager, video_id), video_id, 'Downloading url information', query={
+                'q': 'v2'})
         q = qualities(['Media', 'Alta', 'HQ', 'HD_READY', 'HD_FULL'])
         formats = []
         for quality, video_url in self._decrypt_url(png):
@@ -145,10 +147,12 @@ class RTVEALaCartaIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         info = self._download_json(
-            'http://www.rtve.es/api/videos/%s/config/alacarta_videos.json' % video_id,
-            video_id)['page']['items'][0]
+            'http://www.rtve.es/api/videos/%s/config/alacarta_videos.json' %
+            video_id, video_id)['page']['items'][0]
         if info['state'] == 'DESPU':
-            raise ExtractorError('The video is no longer available', expected=True)
+            raise ExtractorError(
+                'The video is no longer available',
+                expected=True)
         title = info['title'].strip()
         formats = self._extract_png_formats(video_id)
 
@@ -184,18 +188,21 @@ class RTVEInfantilIE(RTVEALaCartaIE):
     IE_DESC = 'RTVE infantil'
     _VALID_URL = r'https?://(?:www\.)?rtve\.es/infantil/serie/[^/]+/video/[^/]+/(?P<id>[0-9]+)/'
 
-    _TESTS = [{
-        'url': 'http://www.rtve.es/infantil/serie/cleo/video/maneras-vivir/3040283/',
-        'md5': '5747454717aedf9f9fdf212d1bcfc48d',
-        'info_dict': {
-            'id': '3040283',
-            'ext': 'mp4',
-            'title': 'Maneras de vivir',
-            'thumbnail': r're:https?://.+/1426182947956\.JPG',
-            'duration': 357.958,
-        },
-        'expected_warnings': ['Failed to download MPD manifest', 'Failed to download m3u8 information'],
-    }]
+    _TESTS = [
+        {
+            'url': 'http://www.rtve.es/infantil/serie/cleo/video/maneras-vivir/3040283/',
+            'md5': '5747454717aedf9f9fdf212d1bcfc48d',
+            'info_dict': {
+                'id': '3040283',
+                'ext': 'mp4',
+                'title': 'Maneras de vivir',
+                'thumbnail': r're:https?://.+/1426182947956\.JPG',
+                'duration': 357.958,
+            },
+            'expected_warnings': [
+                'Failed to download MPD manifest',
+                'Failed to download m3u8 information'],
+        }]
 
 
 class RTVELiveIE(RTVEALaCartaIE):
@@ -220,7 +227,9 @@ class RTVELiveIE(RTVEALaCartaIE):
         video_id = mobj.group('id')
 
         webpage = self._download_webpage(url, video_id)
-        title = remove_end(self._og_search_title(webpage), ' en directo en RTVE.es')
+        title = remove_end(
+            self._og_search_title(webpage),
+            ' en directo en RTVE.es')
         title = remove_start(title, 'Estoy viendo ')
 
         vidplayer_id = self._search_regex(

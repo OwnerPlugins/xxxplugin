@@ -101,8 +101,8 @@ class RtlNlIE(InfoExtractor):
     def _real_extract(self, url):
         uuid = self._match_id(url)
         info = self._download_json(
-            'http://www.rtl.nl/system/s4m/vfd/version=2/uuid=%s/fmt=adaptive/' % uuid,
-            uuid)
+            'http://www.rtl.nl/system/s4m/vfd/version=2/uuid=%s/fmt=adaptive/' %
+            uuid, uuid)
 
         material = info['material'][0]
         title = info['abstracts'][0]['name']
@@ -114,7 +114,9 @@ class RtlNlIE(InfoExtractor):
         meta = info.get('meta', {})
 
         videopath = material['videopath']
-        m3u8_url = meta.get('videohost', 'http://manifest.us.rtl.nl') + videopath
+        m3u8_url = meta.get(
+            'videohost',
+            'http://manifest.us.rtl.nl') + videopath
 
         formats = self._extract_m3u8_formats(
             m3u8_url, uuid, 'mp4', m3u8_id='hls', fatal=False)

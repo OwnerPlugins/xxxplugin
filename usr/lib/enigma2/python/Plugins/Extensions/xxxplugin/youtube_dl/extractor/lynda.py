@@ -26,13 +26,22 @@ class LyndaBaseIE(InfoExtractor):
 
     @staticmethod
     def _check_error(json_string, key_or_keys):
-        keys = [key_or_keys] if isinstance(key_or_keys, compat_str) else key_or_keys
+        keys = [key_or_keys] if isinstance(
+            key_or_keys, compat_str) else key_or_keys
         for key in keys:
             error = json_string.get(key)
             if error:
-                raise ExtractorError('Unable to login: %s' % error, expected=True)
+                raise ExtractorError(
+                    'Unable to login: %s' %
+                    error, expected=True)
 
-    def _login_step(self, form_html, fallback_action_url, extra_form_data, note, referrer_url):
+    def _login_step(
+            self,
+            form_html,
+            fallback_action_url,
+            extra_form_data,
+            note,
+            referrer_url):
         action_url = self._search_regex(
             r'<form[^>]+action=(["\'])(?P<url>.+?)\1', form_html,
             'post url', default=fallback_action_url, group='url')
@@ -245,7 +254,8 @@ class LyndaIE(LyndaBaseIE):
             text = seq_current['Caption'].strip()
             if text:
                 seq_counter += 1
-                srt += '%s\r\n%s --> %s\r\n%s\r\n\r\n' % (seq_counter, appear_time, disappear_time, text)
+                srt += '%s\r\n%s --> %s\r\n%s\r\n\r\n' % (
+                    seq_counter, appear_time, disappear_time, text)
         if srt:
             return srt
 
@@ -288,8 +298,8 @@ class LyndaCourseIE(LyndaBaseIE):
         item_template = 'https://www.lynda.com/%s/%%s-4.html' % course_path
 
         course = self._download_json(
-            'https://www.lynda.com/ajax/player?courseId=%s&type=course' % course_id,
-            course_id, 'Downloading course JSON', fatal=False)
+            'https://www.lynda.com/ajax/player?courseId=%s&type=course' %
+            course_id, course_id, 'Downloading course JSON', fatal=False)
 
         if not course:
             webpage = self._download_webpage(url, course_id)
@@ -332,10 +342,14 @@ class LyndaCourseIE(LyndaBaseIE):
 
         if unaccessible_videos > 0:
             self._downloader.report_warning(
-                '%s videos are only available for members (or paid members) and will not be downloaded. '
-                % unaccessible_videos + self._ACCOUNT_CREDENTIALS_HINT)
+                '%s videos are only available for members (or paid members) and will not be downloaded. ' %
+                unaccessible_videos + self._ACCOUNT_CREDENTIALS_HINT)
 
         course_title = course.get('Title')
         course_description = course.get('Description')
 
-        return self.playlist_result(entries, course_id, course_title, course_description)
+        return self.playlist_result(
+            entries,
+            course_id,
+            course_title,
+            course_description)

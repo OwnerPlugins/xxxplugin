@@ -152,8 +152,8 @@ class GoIE(AdobePassIE):
     def _extract_videos(self, brand, video_id='-1', show_id='-1'):
         display_id = video_id if video_id != '-1' else show_id
         return self._download_json(
-            'http://api.contents.watchabc.go.com/vp2/ws/contents/3000/videos/%s/001/-1/%s/-1/%s/-1/-1.json' % (brand, show_id, video_id),
-            display_id)['video']
+            'http://api.contents.watchabc.go.com/vp2/ws/contents/3000/videos/%s/001/-1/%s/-1/%s/-1/-1.json' %
+            (brand, show_id, video_id), display_id)['video']
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -169,7 +169,8 @@ class GoIE(AdobePassIE):
                     'data', default='{}'),
                 display_id or video_id, fatal=False)
             # https://abc.com/shows/modern-family/episode-guide/season-01/101-pilot
-            layout = try_get(data, lambda x: x['page']['content']['video']['layout'], dict)
+            layout = try_get(
+                data, lambda x: x['page']['content']['video']['layout'], dict)
             video_id = None
             if layout:
                 video_id = try_get(
@@ -198,13 +199,19 @@ class GoIE(AdobePassIE):
             if not video_id:
                 # show extraction works for Disney, DisneyJunior and DisneyXD
                 # ABC and Freeform has different layout
-                show_id = self._search_regex(r'data-show-id=["\']*(SH\d+)', webpage, 'show id')
+                show_id = self._search_regex(
+                    r'data-show-id=["\']*(SH\d+)', webpage, 'show id')
                 videos = self._extract_videos(brand, show_id=show_id)
-                show_title = self._search_regex(r'data-show-title="([^"]+)"', webpage, 'show title', fatal=False)
+                show_title = self._search_regex(
+                    r'data-show-title="([^"]+)"', webpage, 'show title', fatal=False)
                 entries = []
                 for video in videos:
-                    entries.append(self.url_result(
-                        video['url'], 'Go', video.get('id'), video.get('title')))
+                    entries.append(
+                        self.url_result(
+                            video['url'],
+                            'Go',
+                            video.get('id'),
+                            video.get('title')))
                 entries.reverse()
                 return self.playlist_result(entries, show_id, show_title)
         video_data = self._extract_videos(brand, video_id)[0]
@@ -227,7 +234,8 @@ class GoIE(AdobePassIE):
                     'device': '001',
                 }
                 if video_data.get('accesslevel') == '1':
-                    requestor_id = site_info.get('requestor_id', 'DisneyChannels')
+                    requestor_id = site_info.get(
+                        'requestor_id', 'DisneyChannels')
                     resource = site_info.get('resource_id') or self._get_mvpd_resource(
                         requestor_id, title, video_id, None)
                     auth = self._extract_mvpd_auth(
@@ -248,11 +256,19 @@ class GoIE(AdobePassIE):
                         if error.get('code') == 1002:
                             self.raise_geo_restricted(
                                 error['message'], countries=['US'])
-                    error_message = ', '.join([error['message'] for error in errors])
-                    raise ExtractorError('%s said: %s' % (self.IE_NAME, error_message), expected=True)
+                    error_message = ', '.join(
+                        [error['message'] for error in errors])
+                    raise ExtractorError(
+                        '%s said: %s' %
+                        (self.IE_NAME, error_message), expected=True)
                 asset_url += '?' + entitlement['uplynkData']['sessionKey']
-                formats.extend(self._extract_m3u8_formats(
-                    asset_url, video_id, 'mp4', m3u8_id=format_id or 'hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        asset_url,
+                        video_id,
+                        'mp4',
+                        m3u8_id=format_id or 'hls',
+                        fatal=False))
             else:
                 f = {
                     'format_id': format_id,
@@ -304,11 +320,24 @@ class GoIE(AdobePassIE):
             'id': video_id,
             'title': title,
             'description': video_data.get('longdescription') or video_data.get('description'),
-            'duration': int_or_none(video_data.get('duration', {}).get('value'), 1000),
-            'age_limit': parse_age_limit(video_data.get('tvrating', {}).get('rating')),
-            'episode_number': int_or_none(video_data.get('episodenumber')),
-            'series': video_data.get('show', {}).get('title'),
-            'season_number': int_or_none(video_data.get('season', {}).get('num')),
+            'duration': int_or_none(
+                video_data.get(
+                    'duration',
+                    {}).get('value'),
+                1000),
+            'age_limit': parse_age_limit(
+                video_data.get(
+                    'tvrating',
+                    {}).get('rating')),
+            'episode_number': int_or_none(
+                video_data.get('episodenumber')),
+            'series': video_data.get(
+                'show',
+                {}).get('title'),
+            'season_number': int_or_none(
+                video_data.get(
+                    'season',
+                    {}).get('num')),
             'thumbnails': thumbnails,
             'formats': formats,
             'subtitles': subtitles,

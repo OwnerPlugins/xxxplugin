@@ -49,13 +49,21 @@ class PokemonIE(InfoExtractor):
     def _real_extract(self, url):
         video_id, display_id = re.match(self._VALID_URL, url).groups()
         webpage = self._download_webpage(url, video_id or display_id)
-        video_data = extract_attributes(self._search_regex(
-            r'(<[^>]+data-video-id="%s"[^>]*>)' % (video_id if video_id else '[a-z0-9]{32}'),
-            webpage, 'video data element'))
+        video_data = extract_attributes(
+            self._search_regex(
+                r'(<[^>]+data-video-id="%s"[^>]*>)' %
+                (video_id if video_id else '[a-z0-9]{32}'),
+                webpage,
+                'video data element'))
         video_id = video_data['data-video-id']
         title = video_data.get('data-video-title') or self._html_search_meta(
-            'pkm-title', webpage, ' title', default=None) or self._search_regex(
-            r'<h1[^>]+\bclass=["\']us-title[^>]+>([^<]+)', webpage, 'title')
+            'pkm-title',
+            webpage,
+            ' title',
+            default=None) or self._search_regex(
+            r'<h1[^>]+\bclass=["\']us-title[^>]+>([^<]+)',
+            webpage,
+            'title')
         return {
             '_type': 'url_transparent',
             'id': video_id,
@@ -64,8 +72,10 @@ class PokemonIE(InfoExtractor):
             'description': video_data.get('data-video-summary'),
             'thumbnail': video_data.get('data-video-poster'),
             'series': 'Pokémon',
-            'season_number': int_or_none(video_data.get('data-video-season')),
+            'season_number': int_or_none(
+                video_data.get('data-video-season')),
             'episode': title,
-            'episode_number': int_or_none(video_data.get('data-video-episode')),
+            'episode_number': int_or_none(
+                video_data.get('data-video-episode')),
             'ie_key': 'LimelightMedia',
         }

@@ -101,7 +101,10 @@ class CSpanIE(InfoExtractor):
                     bc_attr.get('data-noprebcplayerid', 'SyGGpuJy3g'),
                     bc_attr.get('data-newbcplayerid', 'default'),
                     bc_attr['data-bcid'])
-                return self.url_result(smuggle_url(bc_url, {'source_url': url}))
+                return self.url_result(
+                    smuggle_url(
+                        bc_url, {
+                            'source_url': url}))
 
         def add_referer(formats):
             for f in formats:
@@ -128,8 +131,14 @@ class CSpanIE(InfoExtractor):
             ld_info = self._search_json_ld(webpage, video_id, default={})
             title = get_element_by_class('video-page-title', webpage) or \
                 self._og_search_title(webpage)
-            description = get_element_by_attribute('itemprop', 'description', webpage) or \
-                self._html_search_meta(['og:description', 'description'], webpage)
+            description = get_element_by_attribute(
+                'itemprop',
+                'description',
+                webpage) or self._html_search_meta(
+                [
+                    'og:description',
+                    'description'],
+                webpage)
             return merge_dicts(info, ld_info, {
                 'title': title,
                 'thumbnail': get_element_by_attribute('itemprop', 'thumbnailUrl', webpage),
@@ -146,14 +155,19 @@ class CSpanIE(InfoExtractor):
 
         # Obsolete
         # We first look for clipid, because clipprog always appears before
-        patterns = [r'id=\'clip(%s)\'\s*value=\'([0-9]+)\'' % t for t in ('id', 'prog')]
+        patterns = [
+            r'id=\'clip(%s)\'\s*value=\'([0-9]+)\'' %
+            t for t in (
+                'id', 'prog')]
         results = list(filter(None, (re.search(p, webpage) for p in patterns)))
         if results:
             matches = results[0]
             video_type, video_id = matches.groups()
             video_type = 'clip' if video_type == 'id' else 'program'
         else:
-            m = re.search(r'data-(?P<type>clip|prog)id=["\'](?P<id>\d+)', webpage)
+            m = re.search(
+                r'data-(?P<type>clip|prog)id=["\'](?P<id>\d+)',
+                webpage)
             if m:
                 video_id = m.group('id')
                 video_type = 'program' if m.group('type') == 'prog' else 'clip'
@@ -169,7 +183,8 @@ class CSpanIE(InfoExtractor):
                 if video_id:
                     video_type = 'program'
         if video_type is None or video_id is None:
-            error_message = get_element_by_class('VLplayer-error-message', webpage)
+            error_message = get_element_by_class(
+                'VLplayer-error-message', webpage)
             if error_message:
                 raise ExtractorError(error_message)
             raise ExtractorError('unable to find video id and type')
@@ -178,14 +193,20 @@ class CSpanIE(InfoExtractor):
             return d.get(attr, {}).get('#text')
 
         data = self._download_json(
-            'http://www.c-span.org/assets/player/ajax-player.php?os=android&html5=%s&id=%s' % (video_type, video_id),
-            video_id)['video']
+            'http://www.c-span.org/assets/player/ajax-player.php?os=android&html5=%s&id=%s' %
+            (video_type, video_id), video_id)['video']
         if data['@status'] != 'Success':
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, get_text_attr(data, 'error')), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME,
+                 get_text_attr(
+                     data,
+                     'error')),
+                expected=True)
 
         doc = self._download_xml(
-            'http://www.c-span.org/common/services/flashXml.php?%sid=%s' % (video_type, video_id),
-            video_id)
+            'http://www.c-span.org/common/services/flashXml.php?%sid=%s' %
+            (video_type, video_id), video_id)
 
         description = self._html_search_meta('description', webpage)
 

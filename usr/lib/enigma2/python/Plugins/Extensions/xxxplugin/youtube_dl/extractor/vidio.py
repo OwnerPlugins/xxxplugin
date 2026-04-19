@@ -61,11 +61,12 @@ class VidioIE(InfoExtractor):
             data['clips'][0]['hls_url'], display_id, 'mp4', 'm3u8_native')
         self._sort_formats(formats)
 
-        get_first = lambda x: try_get(data, lambda y: y[x + 's'][0], dict) or {}
+        def get_first(x): return try_get(
+            data, lambda y: y[x + 's'][0], dict) or {}
         channel = get_first('channel')
         user = get_first('user')
         username = user.get('username')
-        get_count = lambda x: int_or_none(video.get('total_' + x))
+        def get_count(x): return int_or_none(video.get('total_' + x))
 
         return {
             'id': video_id,

@@ -77,8 +77,7 @@ class Socks4Error(ProxyError):
     CODES = {
         91: 'request rejected or failed',
         92: 'request rejected because SOCKS server cannot connect to identd on the client',
-        93: 'request rejected because the client program and identd report different user-ids'
-    }
+        93: 'request rejected because the client program and identd report different user-ids'}
 
 
 class Socks5Error(ProxyError):
@@ -113,8 +112,18 @@ class sockssocket(socket.socket):
         self._proxy = None
         super(sockssocket, self).__init__(*args, **kwargs)
 
-    def setproxy(self, proxytype, addr, port, rdns=True, username=None, password=None):
-        assert proxytype in (ProxyType.SOCKS4, ProxyType.SOCKS4A, ProxyType.SOCKS5)
+    def setproxy(
+            self,
+            proxytype,
+            addr,
+            port,
+            rdns=True,
+            username=None,
+            password=None):
+        assert proxytype in (
+            ProxyType.SOCKS4,
+            ProxyType.SOCKS4A,
+            ProxyType.SOCKS5)
 
         self._proxy = Proxy(proxytype, addr, port, username, password, rdns)
 
@@ -152,9 +161,14 @@ class sockssocket(socket.socket):
     def _setup_socks4(self, address, is_4a=False):
         destaddr, port = address
 
-        ipaddr = self._resolve_address(destaddr, SOCKS4_DEFAULT_DSTIP, use_remote_dns=is_4a)
+        ipaddr = self._resolve_address(
+            destaddr, SOCKS4_DEFAULT_DSTIP, use_remote_dns=is_4a)
 
-        packet = compat_struct_pack('!BBH', SOCKS4_VERSION, Socks4Command.CMD_CONNECT, port) + ipaddr
+        packet = compat_struct_pack(
+            '!BBH',
+            SOCKS4_VERSION,
+            Socks4Command.CMD_CONNECT,
+            port) + ipaddr
 
         username = (self._proxy.username or '').encode('utf-8')
         packet += username + b'\x00'
@@ -164,7 +178,8 @@ class sockssocket(socket.socket):
 
         self.sendall(packet)
 
-        version, resp_code, dstport, dsthost = compat_struct_unpack('!BBHI', self.recvall(8))
+        version, resp_code, dstport, dsthost = compat_struct_unpack(
+            '!BBHI', self.recvall(8))
 
         self._check_response_version(SOCKS4_REPLY_VERSION, version)
 
@@ -185,7 +200,10 @@ class sockssocket(socket.socket):
             auth_methods.append(Socks5Auth.AUTH_USER_PASS)
 
         packet += compat_struct_pack('!B', len(auth_methods))
-        packet += compat_struct_pack('!{0}B'.format(len(auth_methods)), *auth_methods)
+        packet += compat_struct_pack(
+            '!{0}B'.format(
+                len(auth_methods)),
+            *auth_methods)
 
         self.sendall(packet)
 
@@ -194,7 +212,8 @@ class sockssocket(socket.socket):
         self._check_response_version(SOCKS5_VERSION, version)
 
         if method == Socks5Auth.AUTH_NO_ACCEPTABLE or (
-                method == Socks5Auth.AUTH_USER_PASS and (not self._proxy.username or not self._proxy.password)):
+            method == Socks5Auth.AUTH_USER_PASS and (
+                not self._proxy.username or not self._proxy.password)):
             self.close()
             raise Socks5Error(Socks5Auth.AUTH_NO_ACCEPTABLE)
 
@@ -202,7 +221,8 @@ class sockssocket(socket.socket):
             username = self._proxy.username.encode('utf-8')
             password = self._proxy.password.encode('utf-8')
             packet = compat_struct_pack('!B', SOCKS5_USER_AUTH_VERSION)
-            packet += self._len_and_data(username) + self._len_and_data(password)
+            packet += self._len_and_data(username) + \
+                self._len_and_data(password)
             self.sendall(packet)
 
             version, status = self._recv_bytes(2)
@@ -221,13 +241,19 @@ class sockssocket(socket.socket):
         self._socks5_auth()
 
         reserved = 0
-        packet = compat_struct_pack('!BBB', SOCKS5_VERSION, Socks5Command.CMD_CONNECT, reserved)
+        packet = compat_struct_pack(
+            '!BBB',
+            SOCKS5_VERSION,
+            Socks5Command.CMD_CONNECT,
+            reserved)
         if ipaddr is None:
             destaddr = destaddr.encode('utf-8')
-            packet += compat_struct_pack('!B', Socks5AddressType.ATYP_DOMAINNAME)
+            packet += compat_struct_pack('!B',
+                                         Socks5AddressType.ATYP_DOMAINNAME)
             packet += self._len_and_data(destaddr)
         else:
-            packet += compat_struct_pack('!B', Socks5AddressType.ATYP_IPV4) + ipaddr
+            packet += compat_struct_pack('!B',
+                                         Socks5AddressType.ATYP_IPV4) + ipaddr
         packet += compat_struct_pack('!H', port)
 
         self.sendall(packet)

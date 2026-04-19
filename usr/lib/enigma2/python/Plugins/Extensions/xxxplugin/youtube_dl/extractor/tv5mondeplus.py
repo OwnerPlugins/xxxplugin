@@ -57,7 +57,8 @@ class TV5MondePlusIE(InfoExtractor):
         if ">Ce programme n'est malheureusement pas disponible pour votre zone géographique.<" in webpage:
             self.raise_geo_restricted(countries=['FR'])
 
-        title = episode = self._html_search_regex(r'<h1>([^<]+)', webpage, 'title')
+        title = episode = self._html_search_regex(
+            r'<h1>([^<]+)', webpage, 'title')
         vpl_data = extract_attributes(self._search_regex(
             r'(<[^>]+class="video_player_loader"[^>]+>)',
             webpage, 'video player loader'))
@@ -109,7 +110,11 @@ class TV5MondePlusIE(InfoExtractor):
             'title': title,
             'description': description,
             'thumbnail': vpl_data.get('data-image'),
-            'duration': int_or_none(vpl_data.get('data-duration')) or parse_duration(self._html_search_meta('duration', webpage)),
+            'duration': int_or_none(
+                vpl_data.get('data-duration')) or parse_duration(
+                self._html_search_meta(
+                    'duration',
+                    webpage)),
             'upload_date': upload_date,
             'formats': formats,
             'series': series,

@@ -87,7 +87,8 @@ class PalcoMP3IE(PalcoMP3BaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if PalcoMP3VideoIE.suitable(url) else super(PalcoMP3IE, cls).suitable(url)
+        return False if PalcoMP3VideoIE.suitable(
+            url) else super(PalcoMP3IE, cls).suitable(url)
 
 
 class PalcoMP3ArtistIE(PalcoMP3BaseIE):
@@ -111,11 +112,16 @@ class PalcoMP3ArtistIE(PalcoMP3BaseIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if re.match(PalcoMP3IE._VALID_URL, url) else super(PalcoMP3ArtistIE, cls).suitable(url)
+        return False if re.match(
+            PalcoMP3IE._VALID_URL,
+            url) else super(
+            PalcoMP3ArtistIE,
+            cls).suitable(url)
 
     def _real_extract(self, url):
         artist_slug = self._match_id(url)
-        artist = self._call_api(artist_slug, self._ARTIST_FIELDS_TMPL)['artist']
+        artist = self._call_api(
+            artist_slug, self._ARTIST_FIELDS_TMPL)['artist']
 
         def entries():
             for music in traverse_obj(artist, (

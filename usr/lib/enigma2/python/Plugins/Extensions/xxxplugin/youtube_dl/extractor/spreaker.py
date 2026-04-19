@@ -71,31 +71,29 @@ class SpreakerIE(InfoExtractor):
                         )/
                         (?P<id>\d+)
                     '''
-    _TESTS = [{
-        'url': 'https://api.spreaker.com/episode/12534508',
-        'info_dict': {
-            'id': '12534508',
-            'display_id': 'swm-ep15-how-to-market-your-music-part-2',
-            'ext': 'mp3',
-            'title': 'EP:15 | Music Marketing (Likes) - Part 2',
-            'description': 'md5:0588c43e27be46423e183076fa071177',
-            'timestamp': 1502250336,
-            'upload_date': '20170809',
-            'uploader': 'SWM',
-            'uploader_id': '9780658',
-            'duration': 1063.42,
-            'view_count': int,
-            'like_count': int,
-            'comment_count': int,
-            'series': 'Success With Music (SWM)',
-        },
-    }, {
-        'url': 'https://api.spreaker.com/download/episode/12534508/swm_ep15_how_to_market_your_music_part_2.mp3',
-        'only_matching': True,
-    }, {
-        'url': 'https://api.spreaker.com/v2/episodes/12534508?export=episode_segments',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://api.spreaker.com/episode/12534508',
+               'info_dict': {'id': '12534508',
+                             'display_id': 'swm-ep15-how-to-market-your-music-part-2',
+                             'ext': 'mp3',
+                             'title': 'EP:15 | Music Marketing (Likes) - Part 2',
+                             'description': 'md5:0588c43e27be46423e183076fa071177',
+                             'timestamp': 1502250336,
+                             'upload_date': '20170809',
+                             'uploader': 'SWM',
+                             'uploader_id': '9780658',
+                             'duration': 1063.42,
+                             'view_count': int,
+                             'like_count': int,
+                             'comment_count': int,
+                             'series': 'Success With Music (SWM)',
+                             },
+               },
+              {'url': 'https://api.spreaker.com/download/episode/12534508/swm_ep15_how_to_market_your_music_part_2.mp3',
+               'only_matching': True,
+               },
+              {'url': 'https://api.spreaker.com/v2/episodes/12534508?export=episode_segments',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         episode_id = self._match_id(url)
@@ -156,7 +154,9 @@ class SpreakerShowIE(InfoExtractor):
 
     def _real_extract(self, url):
         show_id = self._match_id(url)
-        return self.playlist_result(self._entries(show_id), playlist_id=show_id)
+        return self.playlist_result(
+            self._entries(show_id),
+            playlist_id=show_id)
 
 
 class SpreakerShowPageIE(InfoExtractor):

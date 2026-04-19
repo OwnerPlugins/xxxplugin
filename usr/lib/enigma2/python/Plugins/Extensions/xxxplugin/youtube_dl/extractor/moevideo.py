@@ -73,7 +73,11 @@ class MoeVideoIE(InfoExtractor):
             'id': video_id,
             'title': title,
             'thumbnail': video.get('poster') or self._og_search_thumbnail(webpage),
-            'description': clean_html(self._og_search_description(webpage)),
-            'duration': int_or_none(self._og_search_property('video:duration', webpage)),
+            'description': clean_html(
+                self._og_search_description(webpage)),
+            'duration': int_or_none(
+                self._og_search_property(
+                    'video:duration',
+                    webpage)),
             'url': video['ourUrl'],
         }

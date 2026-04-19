@@ -75,9 +75,13 @@ class PinkbikeIE(InfoExtractor):
             webpage, 'location', fatal=False)
 
         def extract_count(webpage, label):
-            return str_to_int(self._search_regex(
-                r'<span[^>]+class="stat-num"[^>]*>([\d,.]+)</span>\s*<span[^>]+class="stat-label"[^>]*>%s' % label,
-                webpage, label, fatal=False))
+            return str_to_int(
+                self._search_regex(
+                    r'<span[^>]+class="stat-num"[^>]*>([\d,.]+)</span>\s*<span[^>]+class="stat-label"[^>]*>%s' %
+                    label,
+                    webpage,
+                    label,
+                    fatal=False))
 
         view_count = extract_count(webpage, 'Views')
         comment_count = extract_count(webpage, 'Comments')

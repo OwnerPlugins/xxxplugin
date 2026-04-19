@@ -14,12 +14,16 @@ class NhkBaseIE(InfoExtractor):
 
     def _call_api(self, m_id, lang, is_video, is_episode, is_clip):
         return self._download_json(
-            self._API_URL_TEMPLATE % (
-                'v' if is_video else 'r',
-                'clip' if is_clip else 'esd',
-                'episode' if is_episode else 'program',
-                m_id, lang, '/all' if is_video else ''),
-            m_id, query={'apikey': 'EJfK8jdS57GqlupFgAfAAwr573q01y6k'})['data']['episodes'] or []
+            self._API_URL_TEMPLATE %
+            ('v' if is_video else 'r',
+             'clip' if is_clip else 'esd',
+             'episode' if is_episode else 'program',
+             m_id,
+             lang,
+             '/all' if is_video else ''),
+            m_id,
+            query={
+                'apikey': 'EJfK8jdS57GqlupFgAfAAwr573q01y6k'})['data']['episodes'] or []
 
     def _extract_episode_info(self, url, episode=None):
         fetch_episode = episode is None
@@ -70,9 +74,13 @@ class NhkBaseIE(InfoExtractor):
             if fetch_episode:
                 audio_path = episode['audio']['audio']
                 info['formats'] = self._extract_m3u8_formats(
-                    'https://nhkworld-vh.akamaihd.net/i%s/master.m3u8' % audio_path,
-                    episode_id, 'm4a', entry_protocol='m3u8_native',
-                    m3u8_id='hls', fatal=False)
+                    'https://nhkworld-vh.akamaihd.net/i%s/master.m3u8' %
+                    audio_path,
+                    episode_id,
+                    'm4a',
+                    entry_protocol='m3u8_native',
+                    m3u8_id='hls',
+                    fatal=False)
                 for f in info['formats']:
                     f['language'] = lang
             else:
@@ -85,8 +93,10 @@ class NhkBaseIE(InfoExtractor):
 
 
 class NhkVodIE(NhkBaseIE):
-    # the 7-character IDs can have alphabetic chars too: assume [a-z] rather than just [a-f], eg
-    _VALID_URL = r'%s%s(?P<id>[0-9a-z]{7}|[^/]+?-\d{8}-[0-9a-z]+)' % (NhkBaseIE._BASE_URL_REGEX, NhkBaseIE._TYPE_REGEX)
+    # the 7-character IDs can have alphabetic chars too: assume [a-z] rather
+    # than just [a-f], eg
+    _VALID_URL = r'%s%s(?P<id>[0-9a-z]{7}|[^/]+?-\d{8}-[0-9a-z]+)' % (
+        NhkBaseIE._BASE_URL_REGEX, NhkBaseIE._TYPE_REGEX)
     # Content available only for a limited period of time. Visit
     # https://www3.nhk.or.jp/nhkworld/en/ondemand/ for working samples.
     _TESTS = [{
@@ -146,7 +156,8 @@ class NhkVodIE(NhkBaseIE):
 
 
 class NhkVodProgramIE(NhkBaseIE):
-    _VALID_URL = r'%s/program%s(?P<id>[0-9a-z]+)(?:.+?\btype=(?P<episode_type>clip|(?:radio|tv)Episode))?' % (NhkBaseIE._BASE_URL_REGEX, NhkBaseIE._TYPE_REGEX)
+    _VALID_URL = r'%s/program%s(?P<id>[0-9a-z]+)(?:.+?\btype=(?P<episode_type>clip|(?:radio|tv)Episode))?' % (
+        NhkBaseIE._BASE_URL_REGEX, NhkBaseIE._TYPE_REGEX)
     _TESTS = [{
         # video program episodes
         'url': 'https://www3.nhk.or.jp/nhkworld/en/ondemand/program/video/japanrailway',
@@ -173,7 +184,8 @@ class NhkVodProgramIE(NhkBaseIE):
     }]
 
     def _real_extract(self, url):
-        lang, m_type, program_id, episode_type = re.match(self._VALID_URL, url).groups()
+        lang, m_type, program_id, episode_type = re.match(
+            self._VALID_URL, url).groups()
 
         episodes = self._call_api(
             program_id, lang, m_type == 'video', False, episode_type == 'clip')

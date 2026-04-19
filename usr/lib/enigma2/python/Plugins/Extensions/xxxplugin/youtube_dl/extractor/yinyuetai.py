@@ -29,8 +29,8 @@ class YinYueTaiIE(InfoExtractor):
         video_id = self._match_id(url)
 
         info = self._download_json(
-            'http://ext.yinyuetai.com/main/get-h-mv-info?json=true&videoId=%s' % video_id, video_id,
-            'Downloading mv info')['videoInfo']['coreVideoInfo']
+            'http://ext.yinyuetai.com/main/get-h-mv-info?json=true&videoId=%s' %
+            video_id, video_id, 'Downloading mv info')['videoInfo']['coreVideoInfo']
 
         if info['error']:
             raise ExtractorError(info['errorMsg'], expected=True)

@@ -155,7 +155,8 @@ class HitboxLiveIE(HitboxIE):
 
     @classmethod
     def suitable(cls, url):
-        return False if HitboxIE.suitable(url) else super(HitboxLiveIE, cls).suitable(url)
+        return False if HitboxIE.suitable(url) else super(
+            HitboxLiveIE, cls).suitable(url)
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -183,7 +184,8 @@ class HitboxLiveIE(HitboxIE):
                     if not stream_url:
                         continue
                     bitrate = int_or_none(stream.get('bitrate'))
-                    if stream.get('provider') == 'hls' or determine_ext(stream_url) == 'm3u8':
+                    if stream.get('provider') == 'hls' or determine_ext(
+                            stream_url) == 'm3u8':
                         if not stream_url.startswith('http'):
                             continue
                         formats.append({

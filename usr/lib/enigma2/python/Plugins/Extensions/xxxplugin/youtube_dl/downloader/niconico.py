@@ -23,12 +23,16 @@ class NiconicoDmcFD(FileDownloader):
         ie = NiconicoIE(self.ydl)
         info_dict, heartbeat_info_dict = ie._get_heartbeat_info(info_dict)
 
-        fd = get_suitable_downloader(info_dict, params=self.params)(self.ydl, self.params)
+        fd = get_suitable_downloader(
+            info_dict, params=self.params)(
+            self.ydl, self.params)
         for ph in self._progress_hooks:
             fd.add_progress_hook(ph)
 
         if not threading:
-            self.to_screen('[%s] Threading for Heartbeat not available' % self.FD_NAME)
+            self.to_screen(
+                '[%s] Threading for Heartbeat not available' %
+                self.FD_NAME)
             return fd.real_download(filename, info_dict)
 
         success = download_complete = False
@@ -52,11 +56,16 @@ class NiconicoDmcFD(FileDownloader):
                     timer[0].start()
 
         heartbeat_info_dict['ping']()
-        self.to_screen('[%s] Heartbeat with %d second interval ...' % (self.FD_NAME, heartbeat_interval))
+        self.to_screen(
+            '[%s] Heartbeat with %d second interval ...' %
+            (self.FD_NAME, heartbeat_interval))
         try:
             heartbeat()
             if type(fd).__name__ == 'HlsFD':
-                info_dict.update(ie._extract_m3u8_formats(info_dict['url'], info_dict['id'])[0])
+                info_dict.update(
+                    ie._extract_m3u8_formats(
+                        info_dict['url'],
+                        info_dict['id'])[0])
             success = fd.real_download(filename, info_dict)
         finally:
             if heartbeat_lock:

@@ -51,7 +51,10 @@ class TechTVMITIE(InfoExtractor):
         ]
 
         title = get_element_by_id('edit-title', clean_page)
-        description = clean_html(get_element_by_id('edit-description', clean_page))
+        description = clean_html(
+            get_element_by_id(
+                'edit-description',
+                clean_page))
         thumbnail = self._search_regex(
             r'playlist:.*?url: \'(.+?)\'',
             raw_page, 'thumbnail', flags=re.DOTALL)
@@ -81,8 +84,7 @@ class OCWMITIE(InfoExtractor):
                 'upload_date': '20121109',
                 'uploader_id': 'MIT',
                 'uploader': 'MIT OpenCourseWare',
-            }
-        },
+            }},
         {
             'url': 'http://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/1.-differentiation/part-a-definition-and-basic-rules/session-1-introduction-to-derivatives/',
             'info_dict': {
@@ -93,9 +95,7 @@ class OCWMITIE(InfoExtractor):
                 'uploader_id': 'MIT',
                 'uploader': 'MIT OpenCourseWare',
                 'description': 'This section contains lecture video excerpts, lecture notes, an interactive mathlet with supporting documents, and problem solving videos.',
-            }
-        }
-    ]
+            }}]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -105,14 +105,17 @@ class OCWMITIE(InfoExtractor):
         title = self._html_search_meta('WT.cg_s', webpage)
         description = self._html_search_meta('Description', webpage)
 
-        # search for call to ocw_embed_chapter_media(container_id, media_url, provider, page_url, image_url, start, stop, captions_file)
-        embed_chapter_media = re.search(r'ocw_embed_chapter_media\((.+?)\)', webpage)
+        # search for call to ocw_embed_chapter_media(container_id, media_url,
+        # provider, page_url, image_url, start, stop, captions_file)
+        embed_chapter_media = re.search(
+            r'ocw_embed_chapter_media\((.+?)\)', webpage)
         if embed_chapter_media:
             metadata = re.sub(r'[\'"]', '', embed_chapter_media.group(1))
             metadata = re.split(r', ?', metadata)
             yt = metadata[1]
         else:
-            # search for call to ocw_embed_chapter_media(container_id, media_url, provider, page_url, image_url, captions_file)
+            # search for call to ocw_embed_chapter_media(container_id,
+            # media_url, provider, page_url, image_url, captions_file)
             embed_media = re.search(r'ocw_embed_media\((.+?)\)', webpage)
             if embed_media:
                 metadata = re.sub(r'[\'"]', '', embed_media.group(1))

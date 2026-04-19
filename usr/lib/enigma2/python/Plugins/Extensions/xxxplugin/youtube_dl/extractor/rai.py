@@ -73,7 +73,8 @@ class RaiBaseIE(InfoExtractor):
                 continue
 
             ext = determine_ext(media_url)
-            if (ext == 'm3u8' and platform != 'mon') or (ext == 'f4m' and platform != 'flash'):
+            if (ext == 'm3u8' and platform != 'mon') or (
+                    ext == 'f4m' and platform != 'flash'):
                 continue
 
             if ext == 'm3u8' or 'format=m3u8' in media_url or platform == 'mon':
@@ -150,7 +151,8 @@ class RaiBaseIE(InfoExtractor):
             for f in fmts:
                 if f.get('tbr'):
                     br_limit = math.floor(br / 100)
-                    if br_limit - 1 <= math.floor(f['tbr'] / 100) <= br_limit + 1:
+                    if br_limit - \
+                            1 <= math.floor(f['tbr'] / 100) <= br_limit + 1:
                         format_copy = f.copy()
             return {
                 'width': format_copy.get('width'),
@@ -177,7 +179,8 @@ class RaiBaseIE(InfoExtractor):
         if not mobj:
             return []
 
-        available_qualities = mobj.group('quality').split(',') if mobj.group('quality') else ['*']
+        available_qualities = mobj.group('quality').split(
+            ',') if mobj.group('quality') else ['*']
         available_qualities = [i for i in available_qualities if i]
 
         formats = []
@@ -286,7 +289,8 @@ class RaiPlayIE(RaiBaseIE):
 
         video = media['video']
 
-        relinker_info = self._extract_relinker_info(video['content_url'], video_id)
+        relinker_info = self._extract_relinker_info(
+            video['content_url'], video_id)
         self._sort_formats(relinker_info['formats'])
 
         thumbnails = []
@@ -482,8 +486,8 @@ class RaiIE(RaiBaseIE):
 
     def _extract_from_content_id(self, content_id, url):
         media = self._download_json(
-            'http://www.rai.tv/dl/RaiTV/programmi/media/ContentItem-%s.html?json' % content_id,
-            content_id, 'Downloading video JSON')
+            'http://www.rai.tv/dl/RaiTV/programmi/media/ContentItem-%s.html?json' %
+            content_id, content_id, 'Downloading video JSON')
 
         title = media['name'].strip()
 
@@ -497,7 +501,8 @@ class RaiIE(RaiBaseIE):
                 }]
             }
         elif 'Video' in media_type:
-            relinker_info = self._extract_relinker_info(media['mediaUri'], content_id)
+            relinker_info = self._extract_relinker_info(
+                media['mediaUri'], content_id)
         else:
             raise ExtractorError('not a media file')
 

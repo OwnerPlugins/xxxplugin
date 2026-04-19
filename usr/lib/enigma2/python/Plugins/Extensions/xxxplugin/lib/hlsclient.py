@@ -84,7 +84,7 @@ if PY3:
             link = response.read().decode(errors='ignore')
             response.close()
             return link
-        except:
+        except BaseException:
             import ssl
             gcontext = ssl._create_unverified_context()
             response = urlopen(req, context=gcontext)
@@ -101,7 +101,7 @@ if PY3:
             link = response.read().decode()
             response.close()
             return link
-        except:
+        except BaseException:
             import ssl
             gcontext = ssl._create_unverified_context()
             response = urlopen(req, context=gcontext)
@@ -119,7 +119,7 @@ else:
             link = response.read()
             response.close()
             return link
-        except:
+        except BaseException:
             import ssl
             gcontext = ssl._create_unverified_context()
             response = urlopen(req, context=gcontext)
@@ -136,7 +136,7 @@ else:
             link = response.read()
             response.close()
             return link
-        except:
+        except BaseException:
             import ssl
             gcontext = ssl._create_unverified_context()
             response = urlopen(req, context=gcontext)
@@ -286,11 +286,13 @@ class hlsclient(threading.Thread):
                 if tag == '#EXTINF':
                     duration = float(attribs[0])
                 elif tag == '#EXT-X-TARGETDURATION':
-                    assert len(attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-TARGETDURATION'
+                    assert len(
+                        attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-TARGETDURATION'
                     targetduration = int(attribs[0])
                     pass
                 elif tag == '#EXT-X-MEDIA-SEQUENCE':
-                    assert len(attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-MEDIA-SEQUENCE'
+                    assert len(
+                        attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-MEDIA-SEQUENCE'
                     seq = int(attribs[0])
                 elif tag == '#EXT-X-KEY':
                     attribs = self.parse_kv(attribs, ('METHOD', 'URI', 'IV'))
@@ -303,24 +305,30 @@ class hlsclient(threading.Thread):
                         from Crypto.Cipher import AES
                         assert 'URI' in attribs, '[hlsclient::handle_basic_m3u] EXT-X-KEY: METHOD=AES-128, but no URI found'
                         if 'https://' in attribs['URI']:
-                            key = self.download_file(attribs['URI'].strip('"'))  # key = self.download_file(base_key_url+attribs['URI'].strip('"'))
+                            # key = self.download_file(base_key_url+attribs['URI'].strip('"'))
+                            key = self.download_file(attribs['URI'].strip('"'))
                             print(attribs['URI'].strip('"'))
                         else:
                             # key = self.download_file(base_key_url+attribs['URI'].strip('"'))
-                            key = self.download_file('m3u8http://hls.fra.rtlnow.de/hls-vod-enc-key/vodkey.bin')
+                            key = self.download_file(
+                                'm3u8http://hls.fra.rtlnow.de/hls-vod-enc-key/vodkey.bin')
 
-                        assert len(key) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: downloaded key file has bad length'
+                        assert len(
+                            key) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: downloaded key file has bad length'
                         if 'IV' in attribs:
-                            assert attribs['IV'].lower().startswith('0x'), '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad format'
+                            assert attribs['IV'].lower().startswith(
+                                '0x'), '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad format'
                             iv = attribs['IV'][2:].zfill(32).decode('hex')
-                            assert len(iv) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad length'
+                            assert len(
+                                iv) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad length'
                         else:
                             iv = '\0' * 8 + struct.pack('>Q', seq)
                         enc = AES.new(key, AES.MODE_CBC, iv)
                     else:
                         assert False, '[hlsclient::handle_basic_m3u] EXT-X-KEY: METHOD=%s unknown' % attribs['METHOD']
                 elif tag == '#EXT-X-PROGRAM-DATE-TIME':
-                    assert len(attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-PROGRAM-DATE-TIME'
+                    assert len(
+                        attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-PROGRAM-DATE-TIME'
                     # TODO parse attribs[0] as ISO8601 date/time
                     pass
                 elif tag == '#EXT-X-ALLOW-CACHE':
@@ -336,11 +344,16 @@ class hlsclient(threading.Thread):
                     self.stop()
                 elif tag == '#EXT-X-DISCONTINUITY':
                     assert not attribs
-                    pass  # print '[hlsclient::handle_basic_m3u] discontinuity in stream'
+                    # print '[hlsclient::handle_basic_m3u] discontinuity in
+                    # stream'
+                    pass
                 elif tag == '#EXT-X-VERSION':
                     assert len(attribs) == 1
                     if int(attribs[0]) > SUPPORTED_VERSION:
-                        pass  # print '[hlsclient::handle_basic_m3u] file version %s exceeds supported version %d; some things might be broken' % (attribs[0], SUPPORTED_VERSION)
+                        # print '[hlsclient::handle_basic_m3u] file version %s
+                        # exceeds supported version %d; some things might be
+                        # broken' % (attribs[0], SUPPORTED_VERSION)
+                        pass
                 else:
                     os.remove(STREAM_PFILE)
                     self.stop()
@@ -362,11 +375,13 @@ class hlsclient(threading.Thread):
                 if tag == '#EXTINF':
                     duration = float(attribs[0])
                 elif tag == '#EXT-X-TARGETDURATION':
-                    assert len(attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-TARGETDURATION'
+                    assert len(
+                        attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-TARGETDURATION'
                     targetduration = int(attribs[0])
                     pass
                 elif tag == '#EXT-X-MEDIA-SEQUENCE':
-                    assert len(attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-MEDIA-SEQUENCE'
+                    assert len(
+                        attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-MEDIA-SEQUENCE'
                     seq = int(attribs[0])
                 elif tag == '#EXT-X-KEY':
                     attribs = self.parse_kv(attribs, ('METHOD', 'URI', 'IV'))
@@ -379,18 +394,22 @@ class hlsclient(threading.Thread):
                         from Crypto.Cipher import AES
                         assert 'URI' in attribs, '[hlsclient::handle_basic_m3u] EXT-X-KEY: METHOD=AES-128, but no URI found'
                         key = self.download_file(attribs['URI'].strip('"'))
-                        assert len(key) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: downloaded key file has bad length'
+                        assert len(
+                            key) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: downloaded key file has bad length'
                         if 'IV' in attribs:
-                            assert attribs['IV'].lower().startswith('0x'), '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad format'
+                            assert attribs['IV'].lower().startswith(
+                                '0x'), '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad format'
                             iv = attribs['IV'][2:].zfill(32).decode('hex')
-                            assert len(iv) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad length'
+                            assert len(
+                                iv) == 16, '[hlsclient::handle_basic_m3u] EXT-X-KEY: IV attribute has bad length'
                         else:
                             iv = '\0' * 8 + struct.pack('>Q', seq)
                         enc = AES.new(key, AES.MODE_CBC, iv)
                     else:
                         assert False, '[hlsclient::handle_basic_m3u] EXT-X-KEY: METHOD=%s unknown' % attribs['METHOD']
                 elif tag == '#EXT-X-PROGRAM-DATE-TIME':
-                    assert len(attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-PROGRAM-DATE-TIME'
+                    assert len(
+                        attribs) == 1, '[hlsclient::handle_basic_m3u] too many attribs in EXT-X-PROGRAM-DATE-TIME'
                     pass
                 elif tag == '#EXT-X-ALLOW-CACHE':
                     # XXX deliberately ignore
@@ -408,7 +427,10 @@ class hlsclient(threading.Thread):
                 elif tag == '#EXT-X-VERSION':
                     assert len(attribs) == 1
                     if int(attribs[0]) > SUPPORTED_VERSION:
-                        pass  # print '[hlsclient::handle_basic_m3u] file version %s exceeds supported version %d; some things might be broken' % (attribs[0], SUPPORTED_VERSION)
+                        # print '[hlsclient::handle_basic_m3u] file version %s
+                        # exceeds supported version %d; some things might be
+                        # broken' % (attribs[0], SUPPORTED_VERSION)
+                        pass
                 else:
                     # raise ValueError('[hlsclient::handle_basic_m3u] tag %s not known' % tag)
                     pass
@@ -452,7 +474,9 @@ class hlsclient(threading.Thread):
         if len(variants) == 1:
             self.url = urlparse.urljoin(self.url, variants[0][0])
         elif len(variants) >= 2:
-            pass  # print '[hlsclient::play] More than one variant of the stream was provided.'
+            # print '[hlsclient::play] More than one variant of the stream was
+            # provided.'
+            pass
             autoChoice = {}
             for i, (vurl, vattrs) in enumerate(variants):
                 for attr in vattrs:
@@ -476,7 +500,9 @@ class hlsclient(threading.Thread):
             self.url = urlparse.urljoin(self.url, variants[choice][0])
 
         queuex = queue(1024)  # 1024 blocks of 4K each ~ 4MB buffer
-        self.thread = threading.Thread(target=self.player_pipe, args=(queuex, videopipe))
+        self.thread = threading.Thread(
+            target=self.player_pipe, args=(
+                queuex, videopipe))
         self.thread.start()
         last_seq = -1
         targetduration = 5
@@ -487,12 +513,15 @@ class hlsclient(threading.Thread):
                 self.thread._Thread__stop()
             medialist = list(self.handle_basic_m3u(self.url))
             if None in medialist:
-                # choose to start playback at the start, since this is a VOD stream
+                # choose to start playback at the start, since this is a VOD
+                # stream
                 pass
             else:
-                # choose to start playback three files from the end, since this is a live stream
+                # choose to start playback three files from the end, since this
+                # is a live stream
                 medialist = medialist[-3:]
-                pass  # print 'Here in [hlsclient::play] medialist =', medialist
+                # print 'Here in [hlsclient::play] medialist =', medialist
+                pass
             for media in medialist:
                 try:
                     if media is None:
@@ -500,13 +529,14 @@ class hlsclient(threading.Thread):
                         return
                     seq, enc, duration, targetduration, media_url = media
                     if seq > last_seq:
-                        for chunk in self.download_chunks(urlparse.urljoin(self.url, media_url)):
+                        for chunk in self.download_chunks(
+                                urlparse.urljoin(self.url, media_url)):
                             if enc:
                                 chunk = enc.decrypt(chunk)
                             queue.put(chunk, block=True)
                         last_seq = seq
                         changed = 1
-                except:
+                except BaseException:
                     pass
             self._sleeping = True
             if changed == 1:
@@ -540,6 +570,6 @@ if __name__ == '__main__':
         if (sys.argv[2]) == '1':
             # h.start()
             h.play(header)
-    except:
+    except BaseException:
         os.remove(STREAM_PFILE)
         h.stop()

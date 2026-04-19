@@ -47,7 +47,8 @@ class SproutIE(AdobePassIE):
             'manifest': 'm3u',
         }
         if mpx_metadata.get('entitlement') == 'auth':
-            query['auth'] = self._extract_mvpd_auth(url, media_pid, 'sprout', 'sprout')
+            query['auth'] = self._extract_mvpd_auth(
+                url, media_pid, 'sprout', 'sprout')
         theplatform_url = smuggle_url(
             update_url_query(theplatform_url, query), {
                 'force_smil_url': True,

@@ -32,7 +32,9 @@ class ShowRoomLiveIE(InfoExtractor):
 
         is_live = room.get('is_onlive')
         if is_live is not True:
-            raise ExtractorError('%s is offline' % broadcaster_id, expected=True)
+            raise ExtractorError(
+                '%s is offline' %
+                broadcaster_id, expected=True)
 
         uploader = room.get('performer_name') or broadcaster_id
         title = room.get('room_name') or room.get('main_name') or uploader

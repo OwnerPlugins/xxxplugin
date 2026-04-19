@@ -81,7 +81,12 @@ class BandcampIE(InfoExtractor):
         },
     }]
 
-    def _extract_data_attr(self, webpage, video_id, attr='tralbum', fatal=True):
+    def _extract_data_attr(
+            self,
+            webpage,
+            video_id,
+            attr='tralbum',
+            fatal=True):
         return self._parse_json(self._html_search_regex(
             r'data-%s=(["\'])({.+?})\1' % attr, webpage,
             attr + ' data', group=2), video_id, fatal=fatal)
@@ -122,7 +127,8 @@ class BandcampIE(InfoExtractor):
 
         embed = self._extract_data_attr(webpage, title, 'embed', False)
         current = tralbum.get('current') or {}
-        artist = embed.get('artist') or current.get('artist') or tralbum.get('artist')
+        artist = embed.get('artist') or current.get(
+            'artist') or tralbum.get('artist')
         timestamp = unified_timestamp(
             current.get('publish_date') or tralbum.get('album_publish_date'))
 
@@ -153,7 +159,8 @@ class BandcampIE(InfoExtractor):
                     if isinstance(download_formats_list, list):
                         for f in blob['download_formats']:
                             name, ext = f.get('name'), f.get('file_extension')
-                            if all(isinstance(x, compat_str) for x in (name, ext)):
+                            if all(isinstance(x, compat_str)
+                                   for x in (name, ext)):
                                 download_formats[name] = ext.strip('.')
 
                     for format_id, f in downloads.items():
@@ -199,7 +206,8 @@ class BandcampIE(InfoExtractor):
             'thumbnail': thumbnail,
             'uploader': artist,
             'timestamp': timestamp,
-            'release_timestamp': unified_timestamp(tralbum.get('album_release_date')),
+            'release_timestamp': unified_timestamp(
+                tralbum.get('album_release_date')),
             'duration': duration,
             'track': track,
             'track_number': track_number,

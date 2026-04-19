@@ -94,15 +94,22 @@ class Laola1TvEmbedIE(InfoExtractor):
                 })
         else:
             data_abo = urlencode_postdata(
-                dict((i, v) for i, v in enumerate(_v('req_liga_abos').split(','))))
+                dict(
+                    (i, v) for i, v in enumerate(
+                        _v('req_liga_abos').split(','))))
             stream_access_url = update_url_query(
-                'https://club.laola1.tv/sp/laola1/api/v3/user/session/premium/player/stream-access', {
+                'https://club.laola1.tv/sp/laola1/api/v3/user/session/premium/player/stream-access',
+                {
                     'videoId': _v('id'),
-                    'target': self._search_regex(r'vs_target = (\d+);', webpage, 'vs target'),
+                    'target': self._search_regex(
+                        r'vs_target = (\d+);',
+                        webpage,
+                        'vs target'),
                     'label': _v('label'),
                     'area': _v('area'),
                 })
-            token_url = self._extract_token_url(stream_access_url, video_id, data_abo)
+            token_url = self._extract_token_url(
+                stream_access_url, video_id, data_abo)
 
         formats = self._extract_formats(token_url, video_id)
 
@@ -127,12 +134,21 @@ class Laola1TvBaseIE(Laola1TvEmbedIE):
         webpage = self._download_webpage(url, display_id)
 
         if 'Dieser Livestream ist bereits beendet.' in webpage:
-            raise ExtractorError('This live stream has already finished.', expected=True)
+            raise ExtractorError(
+                'This live stream has already finished.',
+                expected=True)
 
-        conf = self._parse_json(self._search_regex(
-            r'(?s)conf\s*=\s*({.+?});', webpage, 'conf'),
+        conf = self._parse_json(
+            self._search_regex(
+                r'(?s)conf\s*=\s*({.+?});',
+                webpage,
+                'conf'),
             display_id,
-            transform_source=lambda s: js_to_json(re.sub(r'shareurl:.+,', '', s)))
+            transform_source=lambda s: js_to_json(
+                re.sub(
+                    r'shareurl:.+,',
+                    '',
+                    s)))
         video_id = conf['videoid']
 
         config = self._download_json(conf['configUrl'], video_id, query={
@@ -143,7 +159,9 @@ class Laola1TvBaseIE(Laola1TvEmbedIE):
         })
         error = config.get('error')
         if error:
-            raise ExtractorError('%s said: %s' % (self.IE_NAME, error), expected=True)
+            raise ExtractorError(
+                '%s said: %s' %
+                (self.IE_NAME, error), expected=True)
 
         video_data = config['video']
         title = video_data['title']

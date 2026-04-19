@@ -35,10 +35,10 @@ class ZypeIE(InfoExtractor):
     @staticmethod
     def _extract_urls(webpage):
         return [
-            mobj.group('url')
-            for mobj in re.finditer(
-                r'<script[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?%s.+?)\1' % (ZypeIE._COMMON_RE % ZypeIE._ID_RE),
-                webpage)]
+            mobj.group('url') for mobj in re.finditer(
+                r'<script[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?%s.+?)\1' %
+                (ZypeIE._COMMON_RE %
+                 ZypeIE._ID_RE), webpage)]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -47,9 +47,17 @@ class ZypeIE(InfoExtractor):
             response = self._download_json(re.sub(
                 r'\.(?:js|html)\?', '.json?', url), video_id)['response']
         except ExtractorError as e:
-            if isinstance(e.cause, compat_HTTPError) and e.cause.code in (400, 401, 403):
-                raise ExtractorError(self._parse_json(
-                    e.cause.read().decode(), video_id)['message'], expected=True)
+            if isinstance(
+                    e.cause,
+                    compat_HTTPError) and e.cause.code in (
+                    400,
+                    401,
+                    403):
+                raise ExtractorError(
+                    self._parse_json(
+                        e.cause.read().decode(),
+                        video_id)['message'],
+                    expected=True)
             raise
 
         body = response['body']
@@ -96,7 +104,8 @@ class ZypeIE(InfoExtractor):
                         source, key, group='val')
 
                 if get_attr('integration') == 'verizon-media':
-                    m3u8_url = 'https://content.uplynk.com/%s.m3u8' % get_attr('id')
+                    m3u8_url = 'https://content.uplynk.com/%s.m3u8' % get_attr(
+                        'id')
             formats = self._extract_m3u8_formats(
                 m3u8_url, video_id, 'mp4', 'm3u8_native', m3u8_id='hls')
             text_tracks = self._search_regex(
@@ -113,9 +122,8 @@ class ZypeIE(InfoExtractor):
                 tt_url = dict_get(text_track, ('file', 'src'))
                 if not tt_url:
                     continue
-                subtitles.setdefault(text_track.get('label') or 'English', []).append({
-                    'url': tt_url,
-                })
+                subtitles.setdefault(text_track.get(
+                    'label') or 'English', []).append({'url': tt_url, })
 
         thumbnails = []
         for thumbnail in video.get('thumbnails', []):
@@ -133,13 +141,23 @@ class ZypeIE(InfoExtractor):
             'display_id': video.get('friendly_title'),
             'title': title,
             'thumbnails': thumbnails,
-            'description': dict_get(video, ('description', 'ott_description', 'short_description')),
-            'timestamp': parse_iso8601(video.get('published_at')),
-            'duration': int_or_none(video.get('duration')),
-            'view_count': int_or_none(video.get('request_count')),
-            'average_rating': int_or_none(video.get('rating')),
-            'season_number': int_or_none(video.get('season')),
-            'episode_number': int_or_none(video.get('episode')),
+            'description': dict_get(
+                video,
+                ('description',
+                 'ott_description',
+                 'short_description')),
+            'timestamp': parse_iso8601(
+                video.get('published_at')),
+            'duration': int_or_none(
+                video.get('duration')),
+            'view_count': int_or_none(
+                video.get('request_count')),
+            'average_rating': int_or_none(
+                video.get('rating')),
+            'season_number': int_or_none(
+                video.get('season')),
+            'episode_number': int_or_none(
+                video.get('episode')),
             'formats': formats,
             'subtitles': subtitles,
         }

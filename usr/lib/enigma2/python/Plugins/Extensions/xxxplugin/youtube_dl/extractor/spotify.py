@@ -30,15 +30,19 @@ class SpotifyBaseIE(InfoExtractor):
 
     def _call_api(self, operation, video_id, variables):
         return self._download_json(
-            'https://api-partner.spotify.com/pathfinder/v1/query', video_id, query={
+            'https://api-partner.spotify.com/pathfinder/v1/query',
+            video_id,
+            query={
                 'operationName': 'query' + operation,
                 'variables': json.dumps(variables),
-                'extensions': json.dumps({
-                    'persistedQuery': {
-                        'sha256Hash': self._OPERATION_HASHES[operation],
-                    },
-                })
-            }, headers={'authorization': 'Bearer ' + self._ACCESS_TOKEN})['data']
+                'extensions': json.dumps(
+                    {
+                        'persistedQuery': {
+                            'sha256Hash': self._OPERATION_HASHES[operation],
+                        },
+                    })},
+            headers={
+                'authorization': 'Bearer ' + self._ACCESS_TOKEN})['data']
 
     def _extract_episode(self, episode, series):
         episode_id = episode['id']
@@ -49,13 +53,17 @@ class SpotifyBaseIE(InfoExtractor):
         audio_preview_url = audio_preview.get('url')
         if audio_preview_url:
             f = {
-                'url': audio_preview_url.replace('://p.scdn.co/mp3-preview/', '://anon-podcast.scdn.co/'),
+                'url': audio_preview_url.replace(
+                    '://p.scdn.co/mp3-preview/',
+                    '://anon-podcast.scdn.co/'),
                 'vcodec': 'none',
             }
             audio_preview_format = audio_preview.get('format')
             if audio_preview_format:
                 f['format_id'] = audio_preview_format
-                mobj = re.match(r'([0-9A-Z]{3})_(?:[A-Z]+_)?(\d+)', audio_preview_format)
+                mobj = re.match(
+                    r'([0-9A-Z]{3})_(?:[A-Z]+_)?(\d+)',
+                    audio_preview_format)
                 if mobj:
                     f.update({
                         'abr': int(mobj.group(2)),
@@ -73,7 +81,10 @@ class SpotifyBaseIE(InfoExtractor):
             })
 
         thumbnails = []
-        for source in (try_get(episode, lambda x: x['coverArt']['sources']) or []):
+        for source in (
+            try_get(
+                episode,
+                lambda x: x['coverArt']['sources']) or []):
             source_url = source.get('url')
             if not source_url:
                 continue
@@ -111,8 +122,7 @@ class SpotifyIE(SpotifyBaseIE):
             'duration': 2083.605,
             'release_date': '20201217',
             'series': "The Guardian's Audio Long Reads",
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         episode_id = self._match_id(url)

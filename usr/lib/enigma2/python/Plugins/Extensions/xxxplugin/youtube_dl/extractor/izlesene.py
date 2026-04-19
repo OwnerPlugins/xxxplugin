@@ -36,8 +36,7 @@ class IzleseneIE(InfoExtractor):
                 'upload_date': '20140702',
                 'duration': 95.395,
                 'age_limit': 0,
-            }
-        },
+            }},
         {
             'url': 'http://www.izlesene.com/video/tarkan-dortmund-2006-konseri/17997',
             'md5': '97f09b6872bffa284cb7fa4f6910cb72',
@@ -51,14 +50,15 @@ class IzleseneIE(InfoExtractor):
                 'upload_date': '20061112',
                 'duration': 253.666,
                 'age_limit': 0,
-            }
-        },
+            }},
     ]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
-        webpage = self._download_webpage('http://www.izlesene.com/video/%s' % video_id, video_id)
+        webpage = self._download_webpage(
+            'http://www.izlesene.com/video/%s' %
+            video_id, video_id)
 
         video = self._parse_json(
             self._search_regex(

@@ -23,9 +23,7 @@ class SaveFromIE(InfoExtractor):
             'description': r're:(?s).* Hi, my name is Rene Dreifuss\. And I\'m here to show you some MMA.*',
         },
         'params': {
-            'skip_download': True
-        }
-    }
+            'skip_download': True}}
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)

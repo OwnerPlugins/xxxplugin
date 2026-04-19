@@ -55,7 +55,8 @@ class DWIE(InfoExtractor):
         title = hidden_inputs['media_title']
         media_id = hidden_inputs.get('media_id') or media_id
 
-        if hidden_inputs.get('player_type') == 'video' and hidden_inputs.get('stream_file') == '1':
+        if hidden_inputs.get('player_type') == 'video' and hidden_inputs.get(
+                'stream_file') == '1':
             formats = self._extract_smil_formats(
                 'http://www.dw.com/smil/v-%s' % media_id, media_id,
                 transform_source=lambda s: s.replace(
@@ -95,14 +96,15 @@ class DWArticleIE(InfoExtractor):
             'title': 'The harsh life of refugees in Idomeni',
             'description': 'md5:196015cc7e48ebf474db9399420043c7',
             'upload_date': '20160310',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         article_id = self._match_id(url)
         webpage = self._download_webpage(url, article_id)
         hidden_inputs = self._hidden_inputs(webpage)
         media_id = hidden_inputs['media_id']
-        media_path = self._search_regex(r'href="([^"]+av-%s)"\s+class="overlayLink"' % media_id, webpage, 'media url')
+        media_path = self._search_regex(
+            r'href="([^"]+av-%s)"\s+class="overlayLink"' %
+            media_id, webpage, 'media url')
         media_url = compat_urlparse.urljoin(url, media_path)
         return self.url_result(media_url, 'DW', media_id)

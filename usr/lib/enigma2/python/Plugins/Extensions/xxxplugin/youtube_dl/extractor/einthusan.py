@@ -41,7 +41,8 @@ class EinthusanIE(InfoExtractor):
         'only_matching': True,
     }]
 
-    # reversed from jsoncrypto.prototype.decrypt() in einthusan-PGMovieWatcher.js
+    # reversed from jsoncrypto.prototype.decrypt() in
+    # einthusan-PGMovieWatcher.js
     def _decrypt(self, encrypted_data, video_id):
         return self._parse_json(compat_b64decode((
             encrypted_data[:10] + encrypted_data[-1] + encrypted_data[12:-1]
@@ -56,8 +57,11 @@ class EinthusanIE(InfoExtractor):
 
         title = self._html_search_regex(r'<h3>([^<]+)</h3>', webpage, 'title')
 
-        player_params = extract_attributes(self._search_regex(
-            r'(<section[^>]+id="UIVideoPlayer"[^>]+>)', webpage, 'player parameters'))
+        player_params = extract_attributes(
+            self._search_regex(
+                r'(<section[^>]+id="UIVideoPlayer"[^>]+>)',
+                webpage,
+                'player parameters'))
 
         page_id = self._html_search_regex(
             '<html[^>]+data-pageid="([^"]+)"', webpage, 'page ID')
@@ -74,9 +78,12 @@ class EinthusanIE(InfoExtractor):
                 'gorilla.csrf.Token': page_id,
             }))['Data']
 
-        if isinstance(video_data, compat_str) and video_data.startswith('/ratelimited/'):
+        if isinstance(
+                video_data,
+                compat_str) and video_data.startswith('/ratelimited/'):
             raise ExtractorError(
-                'Download rate reached. Please try again later.', expected=True)
+                'Download rate reached. Please try again later.',
+                expected=True)
 
         ej_links = self._decrypt(video_data['EJLinks'], video_id)
 

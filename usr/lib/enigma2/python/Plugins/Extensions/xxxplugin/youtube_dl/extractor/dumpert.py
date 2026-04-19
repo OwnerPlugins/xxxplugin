@@ -34,7 +34,10 @@ class DumpertIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url).replace('_', '/')
         item = self._download_json(
-            'http://api-live.dumpert.nl/mobile_api/json/info/' + video_id.replace('/', '_'),
+            'http://api-live.dumpert.nl/mobile_api/json/info/' +
+            video_id.replace(
+                '/',
+                '_'),
             video_id)['items'][0]
         title = item['title']
         media = next(m for m in item['media'] if m.get('mediatype') == 'VIDEO')

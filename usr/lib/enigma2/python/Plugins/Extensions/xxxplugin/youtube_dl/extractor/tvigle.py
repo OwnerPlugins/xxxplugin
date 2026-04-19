@@ -22,36 +22,30 @@ class TvigleIE(InfoExtractor):
     _GEO_BYPASS = False
     _GEO_COUNTRIES = ['RU']
 
-    _TESTS = [
-        {
-            'url': 'http://www.tvigle.ru/video/sokrat/',
-            'info_dict': {
-                'id': '1848932',
-                'display_id': 'sokrat',
-                'ext': 'mp4',
-                'title': 'Сократ',
-                'description': 'md5:d6b92ffb7217b4b8ebad2e7665253c17',
-                'duration': 6586,
-                'age_limit': 12,
-            },
-            'skip': 'georestricted',
-        },
-        {
-            'url': 'http://www.tvigle.ru/video/vladimir-vysotskii/vedushchii-teleprogrammy-60-minut-ssha-o-vladimire-vysotskom/',
-            'info_dict': {
-                'id': '5142516',
-                'ext': 'flv',
-                'title': 'Ведущий телепрограммы «60 минут» (США) о Владимире Высоцком',
-                'description': 'md5:027f7dc872948f14c96d19b4178428a4',
-                'duration': 186.080,
-                'age_limit': 0,
-            },
-            'skip': 'georestricted',
-        }, {
-            'url': 'https://cloud.tvigle.ru/video/5267604/',
-            'only_matching': True,
-        }
-    ]
+    _TESTS = [{'url': 'http://www.tvigle.ru/video/sokrat/',
+               'info_dict': {'id': '1848932',
+                             'display_id': 'sokrat',
+                             'ext': 'mp4',
+                             'title': 'Сократ',
+                             'description': 'md5:d6b92ffb7217b4b8ebad2e7665253c17',
+                             'duration': 6586,
+                             'age_limit': 12,
+                             },
+               'skip': 'georestricted',
+               },
+              {'url': 'http://www.tvigle.ru/video/vladimir-vysotskii/vedushchii-teleprogrammy-60-minut-ssha-o-vladimire-vysotskom/',
+               'info_dict': {'id': '5142516',
+                             'ext': 'flv',
+                             'title': 'Ведущий телепрограммы «60 минут» (США) о Владимире Высоцком',
+                             'description': 'md5:027f7dc872948f14c96d19b4178428a4',
+                             'duration': 186.080,
+                             'age_limit': 0,
+                             },
+               'skip': 'georestricted',
+               },
+              {'url': 'https://cloud.tvigle.ru/video/5267604/',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -95,9 +89,14 @@ class TvigleIE(InfoExtractor):
                 m3u8_url = url_or_none(url_or_fmts)
                 if not m3u8_url:
                     continue
-                formats.extend(self._extract_m3u8_formats(
-                    m3u8_url, video_id, ext='mp4', entry_protocol='m3u8_native',
-                    m3u8_id='hls', fatal=False))
+                formats.extend(
+                    self._extract_m3u8_formats(
+                        m3u8_url,
+                        video_id,
+                        ext='mp4',
+                        entry_protocol='m3u8_native',
+                        m3u8_id='hls',
+                        fatal=False))
             elif vcodec == 'dash':
                 mpd_url = url_or_none(url_or_fmts)
                 if not mpd_url:
@@ -115,8 +114,10 @@ class TvigleIE(InfoExtractor):
                         continue
                     height = self._search_regex(
                         r'^(\d+)[pP]$', format_id, 'height', default=None)
-                    filesize = int_or_none(try_get(
-                        item, lambda x: x['video_files_size'][vcodec][format_id]))
+                    filesize = int_or_none(
+                        try_get(
+                            item,
+                            lambda x: x['video_files_size'][vcodec][format_id]))
                     formats.append({
                         'url': video_url,
                         'format_id': '%s-%s' % (vcodec, format_id),

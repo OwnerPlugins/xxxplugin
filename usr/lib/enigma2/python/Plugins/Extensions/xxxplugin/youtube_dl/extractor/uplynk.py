@@ -28,7 +28,8 @@ class UplynkIE(InfoExtractor):
     }
 
     def _extract_uplynk_info(self, uplynk_content_url):
-        path, external_id, video_id, session_id = re.match(UplynkIE._VALID_URL, uplynk_content_url).groups()
+        path, external_id, video_id, session_id = re.match(
+            UplynkIE._VALID_URL, uplynk_content_url).groups()
         display_id = video_id or external_id
         formats = self._extract_m3u8_formats(
             'http://content.uplynk.com/%s.m3u8' % path,
@@ -37,9 +38,12 @@ class UplynkIE(InfoExtractor):
             for f in formats:
                 f['extra_param_to_segment_url'] = 'pbs=' + session_id
         self._sort_formats(formats)
-        asset = self._download_json('http://content.uplynk.com/player/assetinfo/%s.json' % path, display_id)
+        asset = self._download_json(
+            'http://content.uplynk.com/player/assetinfo/%s.json' %
+            path, display_id)
         if asset.get('error') == 1:
-            raise ExtractorError('% said: %s' % (self.IE_NAME, asset['msg']), expected=True)
+            raise ExtractorError('% said: %s' %
+                                 (self.IE_NAME, asset['msg']), expected=True)
 
         return {
             'id': asset['asset'],

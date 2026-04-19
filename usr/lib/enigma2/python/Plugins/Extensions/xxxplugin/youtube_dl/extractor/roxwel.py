@@ -32,10 +32,13 @@ class RoxwelIE(InfoExtractor):
         info_url = 'http://www.roxwel.com/api/videos/%s' % filename
         info = self._download_json(info_url, filename)
 
-        rtmp_rates = sorted([int(r.replace('flv_', '')) for r in info['media_rates'] if r.startswith('flv_')])
+        rtmp_rates = sorted([int(r.replace('flv_', ''))
+                            for r in info['media_rates'] if r.startswith('flv_')])
         best_rate = rtmp_rates[-1]
-        url_page_url = 'http://roxwel.com/pl_one_time.php?filename=%s&quality=%s' % (filename, best_rate)
-        rtmp_url = self._download_webpage(url_page_url, filename, 'Downloading video url')
+        url_page_url = 'http://roxwel.com/pl_one_time.php?filename=%s&quality=%s' % (
+            filename, best_rate)
+        rtmp_url = self._download_webpage(
+            url_page_url, filename, 'Downloading video url')
         ext = determine_ext(rtmp_url)
         if ext == 'f4v':
             rtmp_url = rtmp_url.replace(filename, 'mp4:%s' % filename)
@@ -49,5 +52,6 @@ class RoxwelIE(InfoExtractor):
             'thumbnail': info.get('player_image_url') or info.get('image_url_large'),
             'uploader': info['artist'],
             'uploader_id': info['artistname'],
-            'upload_date': unified_strdate(info['dbdate']),
+            'upload_date': unified_strdate(
+                info['dbdate']),
         }

@@ -17,8 +17,7 @@ class SkylineWebcamsIE(InfoExtractor):
         },
         'params': {
             'skip_download': True,
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -26,8 +25,10 @@ class SkylineWebcamsIE(InfoExtractor):
         webpage = self._download_webpage(url, video_id)
 
         stream_url = self._search_regex(
-            r'(?:url|source)\s*:\s*(["\'])(?P<url>(?:https?:)?//.+?\.m3u8.*?)\1', webpage,
-            'stream url', group='url')
+            r'(?:url|source)\s*:\s*(["\'])(?P<url>(?:https?:)?//.+?\.m3u8.*?)\1',
+            webpage,
+            'stream url',
+            group='url')
 
         title = self._og_search_title(webpage)
         description = self._og_search_description(webpage)

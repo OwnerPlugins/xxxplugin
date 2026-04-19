@@ -15,30 +15,23 @@ from ..utils import (
 class AtresPlayerIE(InfoExtractor):
     _VALID_URL = r'https?://(?:www\.)?atresplayer\.com/[^/]+/[^/]+/[^/]+/[^/]+/(?P<display_id>.+?)_(?P<id>[0-9a-f]{24})'
     _NETRC_MACHINE = 'atresplayer'
-    _TESTS = [
-        {
-            'url': 'https://www.atresplayer.com/antena3/series/pequenas-coincidencias/temporada-1/capitulo-7-asuntos-pendientes_5d4aa2c57ed1a88fc715a615/',
-            'info_dict': {
-                'id': '5d4aa2c57ed1a88fc715a615',
-                'ext': 'mp4',
-                'title': 'Capítulo 7: Asuntos pendientes',
-                'description': 'md5:7634cdcb4d50d5381bedf93efb537fbc',
-                'duration': 3413,
-            },
-            'params': {
-                'format': 'bestvideo',
-            },
-            'skip': 'This video is only available for registered users'
-        },
-        {
-            'url': 'https://www.atresplayer.com/lasexta/programas/el-club-de-la-comedia/temporada-4/capitulo-10-especial-solidario-nochebuena_5ad08edf986b2855ed47adc4/',
-            'only_matching': True,
-        },
-        {
-            'url': 'https://www.atresplayer.com/antena3/series/el-secreto-de-puente-viejo/el-chico-de-los-tres-lunares/capitulo-977-29-12-14_5ad51046986b2886722ccdea/',
-            'only_matching': True,
-        },
-    ]
+    _TESTS = [{'url': 'https://www.atresplayer.com/antena3/series/pequenas-coincidencias/temporada-1/capitulo-7-asuntos-pendientes_5d4aa2c57ed1a88fc715a615/',
+               'info_dict': {'id': '5d4aa2c57ed1a88fc715a615',
+                             'ext': 'mp4',
+                             'title': 'Capítulo 7: Asuntos pendientes',
+                             'description': 'md5:7634cdcb4d50d5381bedf93efb537fbc',
+                             'duration': 3413,
+                             },
+               'params': {'format': 'bestvideo',
+                          },
+               'skip': 'This video is only available for registered users'},
+              {'url': 'https://www.atresplayer.com/lasexta/programas/el-club-de-la-comedia/temporada-4/capitulo-10-especial-solidario-nochebuena_5ad08edf986b2855ed47adc4/',
+               'only_matching': True,
+               },
+              {'url': 'https://www.atresplayer.com/antena3/series/el-secreto-de-puente-viejo/el-chico-de-los-tres-lunares/capitulo-977-29-12-14_5ad51046986b2886722ccdea/',
+               'only_matching': True,
+               },
+              ]
     _API_BASE = 'https://api.atresplayer.com/'
 
     def _real_initialize(self):
@@ -79,7 +72,10 @@ class AtresPlayerIE(InfoExtractor):
 
         try:
             episode = self._download_json(
-                self._API_BASE + 'client/v1/player/episode/' + video_id, video_id)
+                self._API_BASE +
+                'client/v1/player/episode/' +
+                video_id,
+                video_id)
         except ExtractorError as e:
             self._handle_error(e, 403)
 
@@ -102,7 +98,7 @@ class AtresPlayerIE(InfoExtractor):
 
         heartbeat = episode.get('heartbeat') or {}
         omniture = episode.get('omniture') or {}
-        get_meta = lambda x: heartbeat.get(x) or omniture.get(x)
+        def get_meta(x): return heartbeat.get(x) or omniture.get(x)
 
         return {
             'display_id': display_id,

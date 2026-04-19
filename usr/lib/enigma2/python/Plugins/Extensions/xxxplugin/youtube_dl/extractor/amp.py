@@ -28,7 +28,8 @@ class AMPIE(InfoExtractor):
         def get_media_node(name, default=None):
             media_name = 'media-%s' % name
             media_group = item.get('media-group') or item
-            return media_group.get(media_name) or item.get(media_name) or item.get(name, default)
+            return media_group.get(media_name) or item.get(
+                media_name) or item.get(name, default)
 
         thumbnails = []
         media_thumbnail = get_media_node('thumbnail')
@@ -89,7 +90,10 @@ class AMPIE(InfoExtractor):
 
         self._sort_formats(formats)
 
-        timestamp = unified_timestamp(item.get('pubDate'), ' ') or parse_iso8601(item.get('dc-date'))
+        timestamp = unified_timestamp(
+            item.get('pubDate'),
+            ' ') or parse_iso8601(
+            item.get('dc-date'))
 
         return {
             'id': video_id,
@@ -97,7 +101,10 @@ class AMPIE(InfoExtractor):
             'description': get_media_node('description'),
             'thumbnails': thumbnails,
             'timestamp': timestamp,
-            'duration': int_or_none(media_content[0].get('@attributes', {}).get('duration')),
+            'duration': int_or_none(
+                media_content[0].get(
+                    '@attributes',
+                    {}).get('duration')),
             'subtitles': subtitles,
             'formats': formats,
         }

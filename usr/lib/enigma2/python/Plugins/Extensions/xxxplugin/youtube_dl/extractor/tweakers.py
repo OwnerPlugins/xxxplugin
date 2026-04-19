@@ -21,14 +21,13 @@ class TweakersIE(InfoExtractor):
             'thumbnail': r're:^https?://.*\.jpe?g$',
             'duration': 386,
             'uploader_id': 's7JeEm',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
         video_data = self._download_json(
-            'https://tweakers.net/video/s1playlist/%s/1920/1080/playlist.json' % video_id,
-            video_id)['items'][0]
+            'https://tweakers.net/video/s1playlist/%s/1920/1080/playlist.json' %
+            video_id, video_id)['items'][0]
 
         title = video_data['title']
 
@@ -41,7 +40,8 @@ class TweakersIE(InfoExtractor):
                 source_url = source.get('src')
                 if not source_url:
                     continue
-                ext = mimetype2ext(source.get('type')) or determine_ext(source_url)
+                ext = mimetype2ext(
+                    source.get('type')) or determine_ext(source_url)
                 formats.append({
                     'format_id': format_id,
                     'url': source_url,

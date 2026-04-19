@@ -61,9 +61,8 @@ class SRGSSRIE(InfoExtractor):
     def _get_media_data(self, bu, media_type, media_id):
         query = {'onlyChapters': True} if media_type == 'video' else {}
         full_media_data = self._download_json(
-            'https://il.srgssr.ch/integrationlayer/2.0/%s/mediaComposition/%s/%s.json'
-            % (bu, media_type, media_id),
-            media_id, query=query)['chapterList']
+            'https://il.srgssr.ch/integrationlayer/2.0/%s/mediaComposition/%s/%s.json' %
+            (bu, media_type, media_id), media_id, query=query)['chapterList']
         try:
             media_data = next(
                 x for x in full_media_data if x.get('id') == media_id)
@@ -249,4 +248,5 @@ class SRGSSRPlayIE(InfoExtractor):
         bu = mobj.group('bu')
         media_type = mobj.group('type') or mobj.group('type_2')
         media_id = mobj.group('id')
-        return self.url_result('srgssr:%s:%s:%s' % (bu[:3], media_type, media_id), 'SRGSSR')
+        return self.url_result('srgssr:%s:%s:%s' %
+                               (bu[:3], media_type, media_id), 'SRGSSR')

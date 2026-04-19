@@ -69,9 +69,15 @@ class MedalTVIE(InfoExtractor):
         source_width = int_or_none(clip.get('sourceWidth'))
         source_height = int_or_none(clip.get('sourceHeight'))
 
-        aspect_ratio = source_width / source_height if source_width and source_height else 16 / 9
+        aspect_ratio = source_width / \
+            source_height if source_width and source_height else 16 / 9
 
-        def add_item(container, item_url, height, id_key='format_id', item_id=None):
+        def add_item(
+                container,
+                item_url,
+                height,
+                id_key='format_id',
+                item_id=None):
             item_id = item_id or '%dp' % height
             if item_id not in item_url:
                 return
@@ -116,9 +122,13 @@ class MedalTVIE(InfoExtractor):
         # Necessary because the id of the author is not known in advance.
         # Won't raise an issue if no profile can be found as this is optional.
         author = try_get(
-            hydration_data, lambda x: list(x['profiles'].values())[0], dict) or {}
+            hydration_data,
+            lambda x: list(
+                x['profiles'].values())[0],
+            dict) or {}
         author_id = str_or_none(author.get('id'))
-        author_url = 'https://medal.tv/users/{0}'.format(author_id) if author_id else None
+        author_url = 'https://medal.tv/users/{0}'.format(
+            author_id) if author_id else None
 
         return {
             'id': video_id,

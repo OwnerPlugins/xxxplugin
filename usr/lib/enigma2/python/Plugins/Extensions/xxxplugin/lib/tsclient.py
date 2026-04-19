@@ -82,7 +82,7 @@ def getLastPTS(data, rpid, type="video"):
                     scramblecontrol = packet.read(2).uint
                     adapt = packet.read(2).uint
                     concounter = packet.read(4).uint
-                except:
+                except BaseException:
                     return None
                 decodedpts = None
                 av = ""
@@ -103,7 +103,7 @@ def getLastPTS(data, rpid, type="video"):
                     if opcrpresent == 1:
                         opcr = packet.read(48)
                         restofadapt -= 6
-                    packet.pos += (restofadapt-3) * 8
+                    packet.pos += (restofadapt - 3) * 8
                     if ((packet.len - packet.pos) / 8) > 5:
                         pesync = packet.read(24)  # .hex
                         if pesync == ('0x000001'):
@@ -125,7 +125,8 @@ def getLastPTS(data, rpid, type="video"):
                                 pts.pos += 1
                                 thirdpartpts = pts.read(15)
                                 # decodedpts = bitstring.ConstBitArray().join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]).uint
-                                decodedpts = int(''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
+                                decodedpts = int(
+                                    ''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
                             if dtspresent:
                                 dts = packet.read(40)
                                 dts.pos = 4
@@ -135,7 +136,8 @@ def getLastPTS(data, rpid, type="video"):
                                 dts.pos += 1
                                 thirdpartdts = dts.read(15)
                                 # decodeddts = bitstring.ConstBitArray().join([firstpartdts.bin, secondpartdts.bin, thirdpartdts.bin]).uint
-                                decodeddts = int(''.join([firstpartdts.bin, secondpartdts.bin, thirdpartdts.bin]), 2)
+                                decodeddts = int(
+                                    ''.join([firstpartdts.bin, secondpartdts.bin, thirdpartdts.bin]), 2)
                 elif adapt == 2:
                     # if adapt is 2 the packet is only an adaptation field
                     adaptation_size = packet.read(8).uint
@@ -175,7 +177,8 @@ def getLastPTS(data, rpid, type="video"):
                             pts.pos += 1
                             thirdpartpts = pts.read(15)
                             # decodedpts = bitstring.ConstBitArray().join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]).uint
-                            decodedpts = int(''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
+                            decodedpts = int(
+                                ''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
                         if dtspresent:
                             dts = packet.read(40)
                             dts.pos = 4
@@ -185,7 +188,8 @@ def getLastPTS(data, rpid, type="video"):
                             dts.pos += 1
                             thirdpartdts = dts.read(15)
                             # decodeddts = bitstring.ConstBitArray().join([firstpartdts.bin, secondpartdts.bin, thirdpartdts.bin]).uint
-                            decodeddts = int(''.join([firstpartdts.bin, secondpartdts.bin, thirdpartdts.bin]), 2)
+                            decodeddts = int(
+                                ''.join([firstpartdts.bin, secondpartdts.bin, thirdpartdts.bin]), 2)
                 if decodedpts and (type == "" or av == type) and len(av) > 0:
                     return decodedpts
 
@@ -230,7 +234,7 @@ def getFirstPTSFrom(data, rpid, initpts, type="video"):
                     scramblecontrol = packet.read(2).uint
                     adapt = packet.read(2).uint
                     concounter = packet.read(4).uint
-                except:
+                except BaseException:
                     return None
                 decodedpts = None
                 av = ""
@@ -264,7 +268,8 @@ def getFirstPTSFrom(data, rpid, initpts, type="video"):
                                 secondpartpts = pts.read(15)
                                 pts.pos += 1
                                 thirdpartpts = pts.read(15)
-                                decodedpts = int(''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
+                                decodedpts = int(
+                                    ''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
                             if dtspresent:
                                 dts = packet.read(40)
                                 dts.pos = 4
@@ -302,7 +307,8 @@ def getFirstPTSFrom(data, rpid, initpts, type="video"):
                             secondpartpts = pts.read(15)
                             pts.pos += 1
                             thirdpartpts = pts.read(15)
-                            decodedpts = int(''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
+                            decodedpts = int(
+                                ''.join([firstpartpts.bin, secondpartpts.bin, thirdpartpts.bin]), 2)
                         if dtspresent:
                             dts = packet.read(40)
                             dts.pos = 4
@@ -366,7 +372,9 @@ class hlsclient(threading.Thread):
         os.system(cmd)
         videopipe = open(STREAM_PFILE, "w+b")
         queuex = queue(1024)  # 1024 blocks of 4K each ~ 4MB buffer
-        self.thread = threading.Thread(target=self.player_pipe, args=(queuex, videopipe))
+        self.thread = threading.Thread(
+            target=self.player_pipe, args=(
+                queuex, videopipe))
         self.thread.start()
         while self.thread.isAlive():
             if self._stop:
@@ -381,8 +389,9 @@ class hlsclient(threading.Thread):
                 if len(chunk) > 1:
                     if i == 0:
                         try:
-                            firstpts, pos = getFirstPTSFrom(chunk, fixpid, lastpts)
-                        except:
+                            firstpts, pos = getFirstPTSFrom(
+                                chunk, fixpid, lastpts)
+                        except BaseException:
                             continue
                     i += 1
                     queue.put(chunk, block=True)
@@ -448,6 +457,6 @@ if __name__ == '__main__':
         h.setUrl(sys.argv[1])
         if (sys.argv[2]) == '1':
             h.play()
-    except:
+    except BaseException:
         os.remove(STREAM_PFILE)
         h.stop()

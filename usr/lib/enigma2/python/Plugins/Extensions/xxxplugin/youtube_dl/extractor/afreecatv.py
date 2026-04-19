@@ -197,21 +197,19 @@ class AfreecaTVIE(InfoExtractor):
             'https://login.afreecatv.com/app/LoginAction.php', None,
             'Logging in', data=urlencode_postdata(login_form))
 
-        _ERRORS = {
-            -4: 'Your account has been suspended due to a violation of our terms and policies.',
-            -5: 'https://member.afreecatv.com/app/user_delete_progress.php',
-            -6: 'https://login.afreecatv.com/membership/changeMember.php',
-            -8: "Hello! AfreecaTV here.\nThe username you have entered belongs to \n an account that requires a legal guardian's consent. \nIf you wish to use our services without restriction, \nplease make sure to go through the necessary verification process.",
-            -9: 'https://member.afreecatv.com/app/pop_login_block.php',
-            -11: 'https://login.afreecatv.com/afreeca/second_login.php',
-            -12: 'https://member.afreecatv.com/app/user_security.php',
-            0: 'The username does not exist or you have entered the wrong password.',
-            -1: 'The username does not exist or you have entered the wrong password.',
-            -3: 'You have entered your username/password incorrectly.',
-            -7: 'You cannot use your Global AfreecaTV account to access Korean AfreecaTV.',
-            -10: 'Sorry for the inconvenience. \nYour account has been blocked due to an unauthorized access. \nPlease contact our Help Center for assistance.',
-            -32008: 'You have failed to log in. Please contact our Help Center.',
-        }
+        _ERRORS = {-
+                   4: 'Your account has been suspended due to a violation of our terms and policies.', -
+                   5: 'https://member.afreecatv.com/app/user_delete_progress.php', -
+                   6: 'https://login.afreecatv.com/membership/changeMember.php', -
+                   8: "Hello! AfreecaTV here.\nThe username you have entered belongs to \n an account that requires a legal guardian's consent. \nIf you wish to use our services without restriction, \nplease make sure to go through the necessary verification process.", -
+                   9: 'https://member.afreecatv.com/app/pop_login_block.php', -
+                   11: 'https://login.afreecatv.com/afreeca/second_login.php', -
+                   12: 'https://member.afreecatv.com/app/user_security.php', 0: 'The username does not exist or you have entered the wrong password.', -
+                   1: 'The username does not exist or you have entered the wrong password.', -
+                   3: 'You have entered your username/password incorrectly.', -
+                   7: 'You cannot use your Global AfreecaTV account to access Korean AfreecaTV.', -
+                   10: 'Sorry for the inconvenience. \nYour account has been blocked due to an unauthorized access. \nPlease contact our Help Center for assistance.', -
+                   32008: 'You have failed to log in. Please contact our Help Center.', }
 
         result = int_or_none(response.get('RESULT'))
         if result != 1:
@@ -315,9 +313,13 @@ class AfreecaTVIE(InfoExtractor):
                 format_id = key if key else '%s_%s' % (video_id, file_num)
                 if determine_ext(file_url) == 'm3u8':
                     formats = self._extract_m3u8_formats(
-                        file_url, video_id, 'mp4', entry_protocol='m3u8_native',
+                        file_url,
+                        video_id,
+                        'mp4',
+                        entry_protocol='m3u8_native',
                         m3u8_id='hls',
-                        note='Downloading part %d m3u8 information' % file_num)
+                        note='Downloading part %d m3u8 information' %
+                        file_num)
                 else:
                     formats = [{
                         'url': file_url,

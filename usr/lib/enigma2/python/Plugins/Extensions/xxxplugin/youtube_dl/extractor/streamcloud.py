@@ -62,7 +62,9 @@ class StreamcloudIE(InfoExtractor):
                 r'(?s)<div[^>]+class=(["\']).*?msgboxinfo.*?\1[^>]*>(?P<message>.+?)</div>',
                 webpage, 'message', default=None, group='message')
             if message:
-                raise ExtractorError('%s said: %s' % (self.IE_NAME, message), expected=True)
+                raise ExtractorError(
+                    '%s said: %s' %
+                    (self.IE_NAME, message), expected=True)
             raise
         thumbnail = self._search_regex(
             r'image:\s*"([^"]+)"', webpage, 'thumbnail URL', fatal=False)

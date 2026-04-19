@@ -28,8 +28,11 @@ class DiscoveryVRIE(InfoExtractor):
         bootstrap_data = self._parse_json(
             bootstrap_data.encode('utf-8').decode('unicode_escape'),
             display_id)
-        videos = self._parse_json(bootstrap_data['videos'], display_id)['allVideos']
-        video_data = next(video for video in videos if video.get('slug') == display_id)
+        videos = self._parse_json(
+            bootstrap_data['videos'],
+            display_id)['allVideos']
+        video_data = next(
+            video for video in videos if video.get('slug') == display_id)
 
         series = video_data.get('showTitle')
         title = episode = video_data.get('title') or series
@@ -37,7 +40,8 @@ class DiscoveryVRIE(InfoExtractor):
             title = '%s - %s' % (series, title)
 
         formats = []
-        for f, format_id in (('cdnUriM3U8', 'mobi'), ('webVideoUrlSd', 'sd'), ('webVideoUrlHd', 'hd')):
+        for f, format_id in (('cdnUriM3U8', 'mobi'),
+                             ('webVideoUrlSd', 'sd'), ('webVideoUrlHd', 'hd')):
             f_url = video_data.get(f)
             if not f_url:
                 continue

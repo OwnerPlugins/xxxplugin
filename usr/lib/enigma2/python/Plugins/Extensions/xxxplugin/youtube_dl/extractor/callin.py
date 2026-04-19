@@ -36,24 +36,41 @@ class CallinIE(InfoExtractor):
         }
     }]
 
-    def _search_nextjs_data(self, webpage, video_id, transform_source=None, fatal=True, **kw):
+    def _search_nextjs_data(
+            self,
+            webpage,
+            video_id,
+            transform_source=None,
+            fatal=True,
+            **kw):
         return self._parse_json(
             self._search_regex(
                 r'(?s)<script[^>]+id=[\'"]__NEXT_DATA__[\'"][^>]*>([^<]+)</script>',
-                webpage, 'next.js data', fatal=fatal, **kw),
-            video_id, transform_source=transform_source, fatal=fatal)
+                webpage,
+                'next.js data',
+                fatal=fatal,
+                **kw),
+            video_id,
+            transform_source=transform_source,
+            fatal=fatal)
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
         webpage = self._download_webpage(url, video_id)
 
         next_data = self._search_nextjs_data(webpage, video_id)
-        episode = traverse_obj(next_data, ('props', 'pageProps', 'episode'), expected_type=dict)
+        episode = traverse_obj(
+            next_data,
+            ('props',
+             'pageProps',
+             'episode'),
+            expected_type=dict)
         if not episode:
             raise ExtractorError('Failed to find episode data')
 
         title = episode.get('title') or self._og_search_title(webpage)
-        description = episode.get('description') or self._og_search_description(webpage)
+        description = episode.get(
+            'description') or self._og_search_description(webpage)
 
         formats = []
         formats.extend(self._extract_m3u8_formats(
@@ -62,7 +79,10 @@ class CallinIE(InfoExtractor):
         self._sort_formats(formats)
 
         channel = try_get(episode, lambda x: x['show']['title'], compat_str)
-        channel_url = try_get(episode, lambda x: x['show']['linkObj']['resourceUrl'], compat_str)
+        channel_url = try_get(
+            episode,
+            lambda x: x['show']['linkObj']['resourceUrl'],
+            compat_str)
 
         return {
             'id': video_id,

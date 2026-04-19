@@ -38,7 +38,8 @@ class CarambaTVIE(InfoExtractor):
 
         title = video['title']
 
-        base_url = video.get('video') or 'http://video1.carambatv.ru/v/%s/' % video_id
+        base_url = video.get(
+            'video') or 'http://video1.carambatv.ru/v/%s/' % video_id
 
         formats = [{
             'url': base_url + f['fn'],
@@ -97,7 +98,8 @@ class CarambaTVPageIE(InfoExtractor):
                 'title': title,
             }
 
-        video_url = self._og_search_property('video:iframe', webpage, default=None)
+        video_url = self._og_search_property(
+            'video:iframe', webpage, default=None)
 
         if not video_url:
             video_id = self._search_regex(

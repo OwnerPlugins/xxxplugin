@@ -10,24 +10,22 @@ class WashingtonPostIE(InfoExtractor):
     IE_NAME = 'washingtonpost'
     _VALID_URL = r'(?:washingtonpost:|https?://(?:www\.)?washingtonpost\.com/(?:video|posttv)/(?:[^/]+/)*)(?P<id>[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})'
     _EMBED_URL = r'https?://(?:www\.)?washingtonpost\.com/video/c/embed/[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}'
-    _TESTS = [{
-        'url': 'https://www.washingtonpost.com/video/c/video/480ba4ee-1ec7-11e6-82c2-a7dcb313287d',
-        'md5': '6f537e1334b714eb15f9563bd4b9cdfa',
-        'info_dict': {
-            'id': '480ba4ee-1ec7-11e6-82c2-a7dcb313287d',
-            'ext': 'mp4',
-            'title': 'Egypt finds belongings, debris from plane crash',
-            'description': 'md5:a17ceee432f215a5371388c1f680bd86',
-            'upload_date': '20160520',
-            'timestamp': 1463775187,
-        },
-    }, {
-        'url': 'https://www.washingtonpost.com/video/world/egypt-finds-belongings-debris-from-plane-crash/2016/05/20/480ba4ee-1ec7-11e6-82c2-a7dcb313287d_video.html',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.washingtonpost.com/posttv/world/iraq-to-track-down-antiquities-after-islamic-state-museum-rampage/2015/02/28/7c57e916-bf86-11e4-9dfb-03366e719af8_video.html',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.washingtonpost.com/video/c/video/480ba4ee-1ec7-11e6-82c2-a7dcb313287d',
+               'md5': '6f537e1334b714eb15f9563bd4b9cdfa',
+               'info_dict': {'id': '480ba4ee-1ec7-11e6-82c2-a7dcb313287d',
+                             'ext': 'mp4',
+                             'title': 'Egypt finds belongings, debris from plane crash',
+                             'description': 'md5:a17ceee432f215a5371388c1f680bd86',
+                             'upload_date': '20160520',
+                             'timestamp': 1463775187,
+                             },
+               },
+              {'url': 'https://www.washingtonpost.com/video/world/egypt-finds-belongings-debris-from-plane-crash/2016/05/20/480ba4ee-1ec7-11e6-82c2-a7dcb313287d_video.html',
+               'only_matching': True,
+               },
+              {'url': 'https://www.washingtonpost.com/posttv/world/iraq-to-track-down-antiquities-after-islamic-state-museum-rampage/2015/02/28/7c57e916-bf86-11e4-9dfb-03366e719af8_video.html',
+               'only_matching': True,
+               }]
 
     @classmethod
     def _extract_urls(cls, webpage):
@@ -93,7 +91,8 @@ class WashingtonPostArticleIE(InfoExtractor):
 
     @classmethod
     def suitable(cls, url):
-        return False if WashingtonPostIE.suitable(url) else super(WashingtonPostArticleIE, cls).suitable(url)
+        return False if WashingtonPostIE.suitable(url) else super(
+            WashingtonPostArticleIE, cls).suitable(url)
 
     def _real_extract(self, url):
         page_id = self._match_id(url)
@@ -106,7 +105,12 @@ class WashingtonPostArticleIE(InfoExtractor):
                 <div\s+class="posttv-video-embed[^>]*?data-uuid=|
                 data-video-uuid=
             )"([^"]+)"''', webpage)
-        entries = [self.url_result('washingtonpost:%s' % uuid, 'WashingtonPost', uuid) for uuid in uuids]
+        entries = [
+            self.url_result(
+                'washingtonpost:%s' %
+                uuid,
+                'WashingtonPost',
+                uuid) for uuid in uuids]
 
         return {
             '_type': 'playlist',

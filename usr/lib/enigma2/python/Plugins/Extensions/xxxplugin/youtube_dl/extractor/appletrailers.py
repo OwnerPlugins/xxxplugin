@@ -76,7 +76,8 @@ class AppleTrailersIE(InfoExtractor):
         'playlist_mincount': 2,
         'expected_warnings': ['Unable to download JSON metadata'],
     }, {
-        # json data only available from http://trailers.apple.com/trailers/feeds/data/15881.json
+        # json data only available from
+        # http://trailers.apple.com/trailers/feeds/data/15881.json
         'url': 'http://trailers.apple.com/trailers/fox/kungfupanda3/',
         'info_dict': {
             'id': '15881',
@@ -99,7 +100,8 @@ class AppleTrailersIE(InfoExtractor):
         uploader_id = mobj.group('company')
 
         webpage = self._download_webpage(url, movie)
-        film_id = self._search_regex(r"FilmId\s*=\s*'(\d+)'", webpage, 'film id')
+        film_id = self._search_regex(
+            r"FilmId\s*=\s*'(\d+)'", webpage, 'film id')
         film_data = self._download_json(
             'http://trailers.apple.com/trailers/feeds/data/%s.json' % film_id,
             film_id, fatal=False)
@@ -111,7 +113,8 @@ class AppleTrailersIE(InfoExtractor):
 
                 formats = []
                 for version, version_data in clip.get('versions', {}).items():
-                    for size, size_data in version_data.get('sizes', {}).items():
+                    for size, size_data in version_data.get(
+                            'sizes', {}).items():
                         src = size_data.get('src')
                         if not src:
                             continue
@@ -135,9 +138,11 @@ class AppleTrailersIE(InfoExtractor):
                 })
 
             page_data = film_data.get('page', {})
-            return self.playlist_result(entries, film_id, page_data.get('movie_title'))
+            return self.playlist_result(
+                entries, film_id, page_data.get('movie_title'))
 
-        playlist_url = compat_urlparse.urljoin(url, 'includes/playlists/itunes.inc')
+        playlist_url = compat_urlparse.urljoin(
+            url, 'includes/playlists/itunes.inc')
 
         def fix_html(s):
             s = re.sub(r'(?s)<script[^<]*?>.*?</script>', '', s)
@@ -146,11 +151,13 @@ class AppleTrailersIE(InfoExtractor):
             # like: http://trailers.apple.com/trailers/wb/gravity/
 
             def _clean_json(m):
-                return 'iTunes.playURL(%s);' % m.group(1).replace('\'', '&#39;')
+                return 'iTunes.playURL(%s);' % m.group(
+                    1).replace('\'', '&#39;')
             s = re.sub(self._JSON_RE, _clean_json, s)
             s = '<html>%s</html>' % s
             return s
-        doc = self._download_xml(playlist_url, movie, transform_source=fix_html)
+        doc = self._download_xml(
+            playlist_url, movie, transform_source=fix_html)
 
         playlist = []
         for li in doc.findall('./div/ul/li'):
@@ -167,14 +174,19 @@ class AppleTrailersIE(InfoExtractor):
             upload_date = trailer_info['posted'].replace('-', '')
 
             runtime = trailer_info['runtime']
-            m = re.search(r'(?P<minutes>[0-9]+):(?P<seconds>[0-9]{1,2})', runtime)
+            m = re.search(
+                r'(?P<minutes>[0-9]+):(?P<seconds>[0-9]{1,2})',
+                runtime)
             duration = None
             if m:
-                duration = 60 * int(m.group('minutes')) + int(m.group('seconds'))
+                duration = 60 * int(m.group('minutes')) + \
+                    int(m.group('seconds'))
 
             trailer_id = first_url.split('/')[-1].rpartition('_')[0].lower()
-            settings_json_url = compat_urlparse.urljoin(url, 'includes/settings/%s.json' % trailer_id)
-            settings = self._download_json(settings_json_url, trailer_id, 'Downloading settings json')
+            settings_json_url = compat_urlparse.urljoin(
+                url, 'includes/settings/%s.json' % trailer_id)
+            settings = self._download_json(
+                settings_json_url, trailer_id, 'Downloading settings json')
 
             formats = []
             for format in settings['metadata']['sizes']:
@@ -275,9 +287,10 @@ class AppleTrailersSectionIE(InfoExtractor):
     def _real_extract(self, url):
         section = self._match_id(url)
         section_data = self._download_json(
-            'http://trailers.apple.com/trailers/home/feeds/%s.json' % self._SECTIONS[section]['feed_path'],
-            section)
+            'http://trailers.apple.com/trailers/home/feeds/%s.json' %
+            self._SECTIONS[section]['feed_path'], section)
         entries = [
             self.url_result('http://trailers.apple.com' + e['location'])
             for e in section_data]
-        return self.playlist_result(entries, section, self._SECTIONS[section]['title'])
+        return self.playlist_result(
+            entries, section, self._SECTIONS[section]['title'])

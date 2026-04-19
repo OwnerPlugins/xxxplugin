@@ -25,47 +25,49 @@ from ..utils import (
 class LivestreamIE(InfoExtractor):
     IE_NAME = 'livestream'
     _VALID_URL = r'https?://(?:new\.)?livestream\.com/(?:accounts/(?P<account_id>\d+)|(?P<account_name>[^/]+))/(?:events/(?P<event_id>\d+)|(?P<event_name>[^/]+))(?:/videos/(?P<id>\d+))?'
-    _TESTS = [{
-        'url': 'http://new.livestream.com/CoheedandCambria/WebsterHall/videos/4719370',
-        'md5': '53274c76ba7754fb0e8d072716f2292b',
-        'info_dict': {
-            'id': '4719370',
-            'ext': 'mp4',
-            'title': 'Live from Webster Hall NYC',
-            'timestamp': 1350008072,
-            'upload_date': '20121012',
-            'duration': 5968.0,
-            'like_count': int,
-            'view_count': int,
-            'thumbnail': r're:^http://.*\.jpg$'
-        }
-    }, {
-        'url': 'http://new.livestream.com/tedx/cityenglish',
-        'info_dict': {
-            'title': 'TEDCity2.0 (English)',
-            'id': '2245590',
-        },
-        'playlist_mincount': 4,
-    }, {
-        'url': 'http://new.livestream.com/chess24/tatasteelchess',
-        'info_dict': {
-            'title': 'Tata Steel Chess',
-            'id': '3705884',
-        },
-        'playlist_mincount': 60,
-    }, {
-        'url': 'https://new.livestream.com/accounts/362/events/3557232/videos/67864563/player?autoPlay=false&height=360&mute=false&width=640',
-        'only_matching': True,
-    }, {
-        'url': 'http://livestream.com/bsww/concacafbeachsoccercampeonato2015',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'http://new.livestream.com/CoheedandCambria/WebsterHall/videos/4719370',
+               'md5': '53274c76ba7754fb0e8d072716f2292b',
+               'info_dict': {'id': '4719370',
+                             'ext': 'mp4',
+                             'title': 'Live from Webster Hall NYC',
+                             'timestamp': 1350008072,
+                             'upload_date': '20121012',
+                             'duration': 5968.0,
+                             'like_count': int,
+                             'view_count': int,
+                             'thumbnail': r're:^http://.*\.jpg$'}},
+              {'url': 'http://new.livestream.com/tedx/cityenglish',
+               'info_dict': {'title': 'TEDCity2.0 (English)',
+                             'id': '2245590',
+                             },
+               'playlist_mincount': 4,
+               },
+              {'url': 'http://new.livestream.com/chess24/tatasteelchess',
+               'info_dict': {'title': 'Tata Steel Chess',
+                             'id': '3705884',
+                             },
+               'playlist_mincount': 60,
+               },
+              {'url': 'https://new.livestream.com/accounts/362/events/3557232/videos/67864563/player?autoPlay=false&height=360&mute=false&width=640',
+               'only_matching': True,
+               },
+              {'url': 'http://livestream.com/bsww/concacafbeachsoccercampeonato2015',
+               'only_matching': True,
+               }]
     _API_URL_TEMPLATE = 'http://livestream.com/api/accounts/%s/events/%s'
 
-    def _parse_smil_formats(self, smil, smil_url, video_id, namespace=None, f4m_params=None, transform_rtmp_url=None):
+    def _parse_smil_formats(
+            self,
+            smil,
+            smil_url,
+            video_id,
+            namespace=None,
+            f4m_params=None,
+            transform_rtmp_url=None):
         base_ele = find_xpath_attr(
             smil, self._xpath_ns('.//meta', namespace), 'name', 'httpBase')
-        base = base_ele.get('content') if base_ele is not None else 'http://livestreamvod-f.akamaihd.net/'
+        base = base_ele.get(
+            'content') if base_ele is not None else 'http://livestreamvod-f.akamaihd.net/'
 
         formats = []
         video_nodes = smil.findall(self._xpath_ns('.//video', namespace))
@@ -73,10 +75,10 @@ class LivestreamIE(InfoExtractor):
         for vn in video_nodes:
             tbr = int_or_none(vn.attrib.get('system-bitrate'), 1000)
             furl = (
-                update_url_query(compat_urlparse.urljoin(base, vn.attrib['src']), {
-                    'v': '3.0.3',
-                    'fp': 'WIN% 14,0,0,145',
-                }))
+                update_url_query(
+                    compat_urlparse.urljoin(
+                        base, vn.attrib['src']), {
+                        'v': '3.0.3', 'fp': 'WIN% 14,0,0,145', }))
             if 'clipBegin' in vn.attrib:
                 furl += '&ssek=' + vn.attrib['clipBegin']
             formats.append({
@@ -114,7 +116,9 @@ class LivestreamIE(InfoExtractor):
 
         smil_url = video_data.get('smil_url')
         if smil_url:
-            formats.extend(self._extract_smil_formats(smil_url, video_id, fatal=False))
+            formats.extend(
+                self._extract_smil_formats(
+                    smil_url, video_id, fatal=False))
 
         m3u8_url = video_data.get('m3u8_url')
         if m3u8_url:
@@ -176,7 +180,8 @@ class LivestreamIE(InfoExtractor):
         return {
             'id': broadcast_id,
             'formats': formats,
-            'title': self._live_title(stream_info['stream_title']) if is_live else stream_info['stream_title'],
+            'title': self._live_title(
+                stream_info['stream_title']) if is_live else stream_info['stream_title'],
             'thumbnail': stream_info.get('thumbnail_url'),
             'is_live': is_live,
         }
@@ -184,7 +189,8 @@ class LivestreamIE(InfoExtractor):
     def _extract_event(self, event_data):
         event_id = compat_str(event_data['id'])
         account_id = compat_str(event_data['owner_account_id'])
-        feed_root_url = self._API_URL_TEMPLATE % (account_id, event_id) + '/feed.json'
+        feed_root_url = self._API_URL_TEMPLATE % (
+            account_id, event_id) + '/feed.json'
 
         stream_info = event_data.get('stream_info')
         if stream_info:
@@ -200,14 +206,16 @@ class LivestreamIE(InfoExtractor):
                     root=feed_root_url, id=last_video)
             videos_info = self._download_json(
                 info_url, event_id, 'Downloading page {0}'.format(i))['data']
-            videos_info = [v['data'] for v in videos_info if v['type'] == 'video']
+            videos_info = [v['data']
+                           for v in videos_info if v['type'] == 'video']
             if not videos_info:
                 break
             for v in videos_info:
                 v_id = compat_str(v['id'])
-                entries.append(self.url_result(
-                    'http://livestream.com/accounts/%s/events/%s/videos/%s' % (account_id, event_id, v_id),
-                    'Livestream', v_id, v.get('caption')))
+                entries.append(
+                    self.url_result(
+                        'http://livestream.com/accounts/%s/events/%s/videos/%s' %
+                        (account_id, event_id, v_id), 'Livestream', v_id, v.get('caption')))
             last_video = videos_info[-1]['id']
         return self.playlist_result(entries, event_id, event_data['full_name'])
 
@@ -255,7 +263,8 @@ class LivestreamOriginalIE(InfoExtractor):
     }]
 
     def _extract_video_info(self, user, video_id):
-        api_url = 'http://x%sx.api.channel.livestream.com/2.0/clipdetails?extendedInfo=true&id=%s' % (user, video_id)
+        api_url = 'http://x%sx.api.channel.livestream.com/2.0/clipdetails?extendedInfo=true&id=%s' % (
+            user, video_id)
         info = self._download_xml(api_url, video_id)
 
         item = info.find('channel').find('item')
@@ -338,7 +347,11 @@ class LivestreamOriginalIE(InfoExtractor):
                 info = {
                     'title': self._og_search_title(webpage),
                     'description': self._og_search_description(webpage),
-                    'thumbnail': self._search_regex(r'channelLogo\.src\s*=\s*"([^"]+)"', webpage, 'thumbnail', None),
+                    'thumbnail': self._search_regex(
+                        r'channelLogo\.src\s*=\s*"([^"]+)"',
+                        webpage,
+                        'thumbnail',
+                        None),
                 }
             video_data = self._download_json(stream_url, content_id)
             is_live = video_data.get('isLive')

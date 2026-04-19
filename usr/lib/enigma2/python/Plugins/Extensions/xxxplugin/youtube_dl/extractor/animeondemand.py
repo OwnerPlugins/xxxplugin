@@ -62,7 +62,8 @@ class AnimeOnDemandIE(InfoExtractor):
 
         if '>Our licensing terms allow the distribution of animes only to German-speaking countries of Europe' in login_page:
             self.raise_geo_restricted(
-                '%s is only available in German-speaking countries of Europe' % self.IE_NAME)
+                '%s is only available in German-speaking countries of Europe' %
+                self.IE_NAME)
 
         login_form = self._form_hidden_inputs('new_user', login_page)
 
@@ -84,12 +85,17 @@ class AnimeOnDemandIE(InfoExtractor):
                 'Referer': self._LOGIN_URL,
             })
 
-        if all(p not in response for p in ('>Logout<', 'href="/users/sign_out"')):
+        if all(
+            p not in response for p in (
+                '>Logout<',
+                'href="/users/sign_out"')):
             error = self._search_regex(
                 r'<p[^>]+\bclass=(["\'])(?:(?!\1).)*\balert\b(?:(?!\1).)*\1[^>]*>(?P<error>.+?)</p>',
                 response, 'error', default=None, group='error')
             if error:
-                raise ExtractorError('Unable to login: %s' % error, expected=True)
+                raise ExtractorError(
+                    'Unable to login: %s' %
+                    error, expected=True)
             raise ExtractorError('Unable to log in')
 
     def _real_initialize(self):
@@ -125,7 +131,10 @@ class AnimeOnDemandIE(InfoExtractor):
                 attributes = extract_attributes(input_)
                 title = attributes.get('data-dialog-header')
                 playlist_urls = []
-                for playlist_key in ('data-playlist', 'data-otherplaylist', 'data-stream'):
+                for playlist_key in (
+                    'data-playlist',
+                    'data-otherplaylist',
+                        'data-stream'):
                     playlist_url = attributes.get(playlist_key)
                     if isinstance(playlist_url, compat_str) and re.match(
                             r'/?[\da-zA-Z]+', playlist_url):
@@ -154,14 +163,19 @@ class AnimeOnDemandIE(InfoExtractor):
                         item_id_list.append(format_id)
                     item_id_list.append('videomaterial')
                     playlist = self._download_json(
-                        urljoin(url, playlist_url), video_id,
-                        'Downloading %s JSON' % ' '.join(item_id_list),
+                        urljoin(
+                            url,
+                            playlist_url),
+                        video_id,
+                        'Downloading %s JSON' %
+                        ' '.join(item_id_list),
                         headers={
                             'X-Requested-With': 'XMLHttpRequest',
                             'X-CSRF-Token': csrf_token,
                             'Referer': url,
                             'Accept': 'application/json, text/javascript, */*; q=0.01',
-                        }, fatal=False)
+                        },
+                        fatal=False)
                     if not playlist:
                         continue
                     stream_url = url_or_none(playlist.get('streamurl'))

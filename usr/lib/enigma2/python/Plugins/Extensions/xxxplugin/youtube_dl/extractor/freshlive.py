@@ -49,7 +49,9 @@ class FreshLiveIE(InfoExtractor):
         title = info['title']
 
         if info.get('status') == 'upcoming':
-            raise ExtractorError('Stream %s is upcoming' % video_id, expected=True)
+            raise ExtractorError(
+                'Stream %s is upcoming' %
+                video_id, expected=True)
 
         stream_url = info.get('liveStreamUrl') or info['archiveStreamUrl']
 

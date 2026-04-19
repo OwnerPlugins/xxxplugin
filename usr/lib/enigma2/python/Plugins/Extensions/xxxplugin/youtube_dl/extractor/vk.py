@@ -57,7 +57,8 @@ class VKBaseIE(InfoExtractor):
 
         if re.search(r'onLoginFailed', login_page):
             raise ExtractorError(
-                'Unable to login, incorrect username and/or password', expected=True)
+                'Unable to login, incorrect username and/or password',
+                expected=True)
 
     def _real_initialize(self):
         self._login()
@@ -138,7 +139,8 @@ class VKIE(VKBaseIE):
         },
         {
             # VIDEO NOW REMOVED
-            # please update if you find a video whose URL follows the same pattern
+            # please update if you find a video whose URL follows the same
+            # pattern
             'url': 'http://vk.com/video-8871596_164049491',
             'md5': 'a590bcaf3d543576c9bd162812387666',
             'note': 'Only available for registered users',
@@ -303,9 +305,11 @@ class VKIE(VKBaseIE):
     @staticmethod
     def _extract_sibnet_urls(webpage):
         # https://help.sibnet.ru/?sibnet_video_embed
-        return [unescapeHTML(mobj.group('url')) for mobj in re.finditer(
-            r'<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//video\.sibnet\.ru/shell\.php\?.*?\bvideoid=\d+.*?)\1',
-            webpage)]
+        return [
+            unescapeHTML(
+                mobj.group('url')) for mobj in re.finditer(
+                r'<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:https?:)?//video\.sibnet\.ru/shell\.php\?.*?\bvideoid=\d+.*?)\1',
+                webpage)]
 
     def _real_extract(self, url):
         mobj = re.match(self._VALID_URL, url)
@@ -317,7 +321,8 @@ class VKIE(VKBaseIE):
                 'act': 'show_inline',
                 'video': video_id,
             }
-            # Some videos (removed?) can only be downloaded with list id specified
+            # Some videos (removed?) can only be downloaded with list id
+            # specified
             list_id = mobj.group('list_id')
             if list_id:
                 data['list'] = list_id
@@ -331,7 +336,9 @@ class VKIE(VKBaseIE):
             video_id = '%s_%s' % (mobj.group('oid'), mobj.group('id'))
 
             info_page = self._download_webpage(
-                'http://vk.com/video_ext.php?' + mobj.group('embed_query'), video_id)
+                'http://vk.com/video_ext.php?' +
+                mobj.group('embed_query'),
+                video_id)
 
             error_message = self._html_search_regex(
                 [r'(?s)<!><div[^>]+class="video_layer_message"[^>]*>(.+?)</div>',
@@ -401,7 +408,8 @@ class VKIE(VKBaseIE):
             return self.url_result(pladform_url, PladformIE.ie_key())
 
         m_rutube = re.search(
-            r'\ssrc="((?:https?:)?//rutube\.ru\\?/(?:video|play)\\?/embed(?:.*?))\\?"', info_page)
+            r'\ssrc="((?:https?:)?//rutube\.ru\\?/(?:video|play)\\?/embed(?:.*?))\\?"',
+            info_page)
         if m_rutube is not None:
             rutube_url = self._proto_relative_url(
                 m_rutube.group(1).replace('\\', ''))
@@ -421,7 +429,9 @@ class VKIE(VKBaseIE):
 
         m_opts = re.search(r'(?s)var\s+opts\s*=\s*({.+?});', info_page)
         if m_opts:
-            m_opts_url = re.search(r"url\s*:\s*'((?!/\b)[^']+)", m_opts.group(1))
+            m_opts_url = re.search(
+                r"url\s*:\s*'((?!/\b)[^']+)",
+                m_opts.group(1))
             if m_opts_url:
                 opts_url = m_opts_url.group(1)
                 if opts_url.startswith('//'):
@@ -448,10 +458,11 @@ class VKIE(VKBaseIE):
         formats = []
         for format_id, format_url in data.items():
             format_url = url_or_none(format_url)
-            if not format_url or not format_url.startswith(('http', '//', 'rtmp')):
+            if not format_url or not format_url.startswith(
+                    ('http', '//', 'rtmp')):
                 continue
-            if (format_id.startswith(('url', 'cache'))
-                    or format_id in ('extra_data', 'live_mp4', 'postlive_mp4')):
+            if (format_id.startswith(('url', 'cache')) or format_id in (
+                    'extra_data', 'live_mp4', 'postlive_mp4')):
                 height = int_or_none(self._search_regex(
                     r'^(?:url|cache)(\d+)', format_id, 'height', default=None))
                 formats.append({
@@ -477,12 +488,16 @@ class VKIE(VKBaseIE):
             'title': title,
             'thumbnail': data.get('jpg'),
             'uploader': data.get('md_author'),
-            'uploader_id': str_or_none(data.get('author_id') or mv_data.get('authorId')),
-            'duration': int_or_none(data.get('duration') or mv_data.get('duration')),
+            'uploader_id': str_or_none(
+                data.get('author_id') or mv_data.get('authorId')),
+            'duration': int_or_none(
+                data.get('duration') or mv_data.get('duration')),
             'timestamp': timestamp,
             'view_count': view_count,
-            'like_count': int_or_none(mv_data.get('likes')),
-            'comment_count': int_or_none(mv_data.get('commcount')),
+            'like_count': int_or_none(
+                mv_data.get('likes')),
+            'comment_count': int_or_none(
+                mv_data.get('commcount')),
             'is_live': is_live,
         }
 
@@ -610,7 +625,23 @@ class VKWallPostIE(VKBaseIE):
         'only_matching': True,
     }]
     _BASE64_CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/='
-    _AUDIO = collections.namedtuple('Audio', ['id', 'owner_id', 'url', 'title', 'performer', 'duration', 'album_id', 'unk', 'author_link', 'lyrics', 'flags', 'context', 'extra', 'hashes', 'cover_url', 'ads'])
+    _AUDIO = collections.namedtuple('Audio',
+                                    ['id',
+                                     'owner_id',
+                                     'url',
+                                     'title',
+                                     'performer',
+                                     'duration',
+                                     'album_id',
+                                     'unk',
+                                     'author_link',
+                                     'lyrics',
+                                     'flags',
+                                     'context',
+                                     'extra',
+                                     'hashes',
+                                     'cover_url',
+                                     'ads'])
 
     def _decode(self, enc):
         dec = ''
@@ -651,7 +682,9 @@ class VKWallPostIE(VKBaseIE):
             'w': 'wall' + post_id,
         })[1]
 
-        description = clean_html(get_element_by_class('wall_post_text', webpage))
+        description = clean_html(
+            get_element_by_class(
+                'wall_post_text', webpage))
         uploader = clean_html(get_element_by_class('author', webpage))
 
         entries = []
@@ -677,9 +710,14 @@ class VKWallPostIE(VKBaseIE):
             })
 
         for video in re.finditer(
-                r'<a[^>]+href=(["\'])(?P<url>/video(?:-?[\d_]+).*?)\1', webpage):
-            entries.append(self.url_result(
-                compat_urlparse.urljoin(url, video.group('url')), VKIE.ie_key()))
+            r'<a[^>]+href=(["\'])(?P<url>/video(?:-?[\d_]+).*?)\1',
+                webpage):
+            entries.append(
+                self.url_result(
+                    compat_urlparse.urljoin(
+                        url,
+                        video.group('url')),
+                    VKIE.ie_key()))
 
         title = 'Wall post %s' % post_id
 

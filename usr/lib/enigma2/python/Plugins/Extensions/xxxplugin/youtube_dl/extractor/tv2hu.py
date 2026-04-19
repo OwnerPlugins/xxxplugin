@@ -8,23 +8,17 @@ from ..utils import int_or_none
 class TV2HuIE(InfoExtractor):
     IE_NAME = 'tv2.hu'
     _VALID_URL = r'https?://(?:www\.)?tv2\.hu/(?:[^/]+/)+(?P<id>\d+)_[^/?#]+?\.html'
-    _TESTS = [{
-        'url': 'http://tv2.hu/ezek_megorultek/217679_ezek-megorultek---1.-adas-1.-resz.html',
-        'md5': '585e58e2e090f34603804bb2c48e98d8',
-        'info_dict': {
-            'id': '217679',
-            'ext': 'mp4',
-            'title': 'Ezek megőrültek! - 1. adás 1. rész',
-            'upload_date': '20160826',
-            'thumbnail': r're:^https?://.*\.jpg$'
-        }
-    }, {
-        'url': 'http://tv2.hu/ezek_megorultek/teljes_adasok/217677_ezek-megorultek---1.-adas-2.-resz.html',
-        'only_matching': True
-    }, {
-        'url': 'http://tv2.hu/musoraink/aktiv/aktiv_teljes_adas/217963_aktiv-teljes-adas---2016.08.30..html',
-        'only_matching': True
-    }]
+    _TESTS = [{'url': 'http://tv2.hu/ezek_megorultek/217679_ezek-megorultek---1.-adas-1.-resz.html',
+               'md5': '585e58e2e090f34603804bb2c48e98d8',
+               'info_dict': {'id': '217679',
+                             'ext': 'mp4',
+                             'title': 'Ezek megőrültek! - 1. adás 1. rész',
+                             'upload_date': '20160826',
+                             'thumbnail': r're:^https?://.*\.jpg$'}},
+              {'url': 'http://tv2.hu/ezek_megorultek/teljes_adasok/217677_ezek-megorultek---1.-adas-2.-resz.html',
+               'only_matching': True},
+              {'url': 'http://tv2.hu/musoraink/aktiv/aktiv_teljes_adas/217963_aktiv-teljes-adas---2016.08.30..html',
+               'only_matching': True}]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

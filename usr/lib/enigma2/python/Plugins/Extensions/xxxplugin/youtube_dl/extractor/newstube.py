@@ -33,11 +33,13 @@ class NewstubeIE(InfoExtractor):
         video_id = self._match_id(url)
 
         page = self._download_webpage(url, video_id)
-        title = self._html_search_meta(['og:title', 'twitter:title'], page, fatal=True)
+        title = self._html_search_meta(
+            ['og:title', 'twitter:title'], page, fatal=True)
 
         video_guid = self._html_search_regex(
             r'<meta\s+property="og:video(?::(?:(?:secure_)?url|iframe))?"\s+content="https?://(?:www\.)?newstube\.ru/embed/(?P<guid>[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})',
-            page, 'video GUID')
+            page,
+            'video GUID')
 
         enc_data = base64.b64decode(self._download_webpage(
             'https://www.newstube.ru/embed/api/player/getsources2',
@@ -45,12 +47,13 @@ class NewstubeIE(InfoExtractor):
                 'guid': video_guid,
                 'ff': 3,
             }))
-        key = hashlib.pbkdf2_hmac(
-            'sha1', video_guid.replace('-', '').encode(), enc_data[:16], 1)[:16]
+        key = hashlib.pbkdf2_hmac('sha1', video_guid.replace(
+            '-', '').encode(), enc_data[:16], 1)[:16]
         dec_data = aes_cbc_decrypt(
             bytes_to_intlist(enc_data[32:]), bytes_to_intlist(key),
             bytes_to_intlist(enc_data[16:32]))
-        sources = self._parse_json(intlist_to_bytes(dec_data[:-dec_data[-1]]), video_guid)
+        sources = self._parse_json(intlist_to_bytes(
+            dec_data[:-dec_data[-1]]), video_guid)
 
         formats = []
         for source in sources:

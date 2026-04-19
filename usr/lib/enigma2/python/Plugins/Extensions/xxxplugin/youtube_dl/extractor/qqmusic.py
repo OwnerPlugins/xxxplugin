@@ -77,9 +77,12 @@ class QQMusicIE(InfoExtractor):
         mid = self._match_id(url)
 
         detail_info_page = self._download_webpage(
-            'http://s.plcloud.music.qq.com/fcgi-bin/fcg_yqq_song_detail_info.fcg?songmid=%s&play=0' % mid,
-            mid, note='Download song detail info',
-            errnote='Unable to get song detail info', encoding='gbk')
+            'http://s.plcloud.music.qq.com/fcgi-bin/fcg_yqq_song_detail_info.fcg?songmid=%s&play=0' %
+            mid,
+            mid,
+            note='Download song detail info',
+            errnote='Unable to get song detail info',
+            encoding='gbk')
 
         song_name = self._html_search_regex(
             r"songname:\s*'([^']+)'", detail_info_page, 'song name')
@@ -110,8 +113,11 @@ class QQMusicIE(InfoExtractor):
         guid = self.m_r_get_ruin()
 
         vkey = self._download_json(
-            'http://base.music.qq.com/fcgi-bin/fcg_musicexpress.fcg?json=3&guid=%s' % guid,
-            mid, note='Retrieve vkey', errnote='Unable to get vkey',
+            'http://base.music.qq.com/fcgi-bin/fcg_musicexpress.fcg?json=3&guid=%s' %
+            guid,
+            mid,
+            note='Retrieve vkey',
+            errnote='Unable to get vkey',
             transform_source=strip_jsonp)['key']
 
         formats = []
@@ -128,8 +134,10 @@ class QQMusicIE(InfoExtractor):
         self._sort_formats(formats)
 
         actual_lrc_lyrics = ''.join(
-            line + '\n' for line in re.findall(
-                r'(?m)^(\[[0-9]{2}:[0-9]{2}(?:\.[0-9]{2,})?\][^\n]*|\[[^\]]*\])', lrc_content))
+            line +
+            '\n' for line in re.findall(
+                r'(?m)^(\[[0-9]{2}:[0-9]{2}(?:\.[0-9]{2,})?\][^\n]*|\[[^\]]*\])',
+                lrc_content))
 
         info_dict = {
             'id': mid,
@@ -153,11 +161,13 @@ class QQMusicIE(InfoExtractor):
 class QQPlaylistBaseIE(InfoExtractor):
     @staticmethod
     def qq_static_url(category, mid):
-        return 'http://y.qq.com/y/static/%s/%s/%s/%s.html' % (category, mid[-2], mid[-1], mid)
+        return 'http://y.qq.com/y/static/%s/%s/%s/%s.html' % (
+            category, mid[-2], mid[-1], mid)
 
     def get_singer_all_songs(self, singmid, num):
         return self._download_webpage(
-            r'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg', singmid,
+            r'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',
+            singmid,
             query={
                 'format': 'json',
                 'inCharset': 'utf8',
@@ -186,8 +196,10 @@ class QQPlaylistBaseIE(InfoExtractor):
         for item in json_obj_all_songs['data']['list']:
             if item['musicData'].get('songmid') is not None:
                 songmid = item['musicData']['songmid']
-                entries.append(self.url_result(
-                    r'https://y.qq.com/n/yqq/song/%s.html' % songmid, 'QQMusic', songmid))
+                entries.append(
+                    self.url_result(
+                        r'https://y.qq.com/n/yqq/song/%s.html' %
+                        songmid, 'QQMusic', songmid))
 
         return entries
 
@@ -212,7 +224,10 @@ class QQMusicSingerIE(QQPlaylistBaseIE):
         entries = self.get_entries_from_page(mid)
         singer_page = self._download_webpage(url, mid, 'Download singer page')
         singer_name = self._html_search_regex(
-            r"singername\s*:\s*'(.*?)'", singer_page, 'singer name', default=None)
+            r"singername\s*:\s*'(.*?)'",
+            singer_page,
+            'singer name',
+            default=None)
         singer_desc = None
 
         if mid:
@@ -254,14 +269,16 @@ class QQMusicAlbumIE(QQPlaylistBaseIE):
         mid = self._match_id(url)
 
         album = self._download_json(
-            'http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg?albummid=%s&format=json' % mid,
-            mid, 'Download album page')['data']
+            'http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg?albummid=%s&format=json' %
+            mid, mid, 'Download album page')['data']
 
         entries = [
             self.url_result(
-                'https://y.qq.com/n/yqq/song/' + song['songmid'] + '.html', 'QQMusic', song['songmid']
-            ) for song in album['list']
-        ]
+                'https://y.qq.com/n/yqq/song/' +
+                song['songmid'] +
+                '.html',
+                'QQMusic',
+                song['songmid']) for song in album['list']]
         album_name = album.get('name')
         album_detail = album.get('desc')
         if album_detail is not None:
@@ -317,7 +334,8 @@ class QQMusicToplistIE(QQPlaylistBaseIE):
         topinfo = toplist_json.get('topinfo', {})
         list_name = topinfo.get('ListName')
         list_description = topinfo.get('info')
-        return self.playlist_result(entries, list_id, list_name, list_description)
+        return self.playlist_result(
+            entries, list_id, list_name, list_description)
 
 
 class QQMusicPlaylistIE(QQPlaylistBaseIE):
@@ -349,21 +367,32 @@ class QQMusicPlaylistIE(QQPlaylistBaseIE):
 
         list_json = self._download_json(
             'http://i.y.qq.com/qzone-music/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
-            list_id, 'Download list page',
-            query={'type': 1, 'json': 1, 'utf8': 1, 'onlysong': 0, 'disstid': list_id},
+            list_id,
+            'Download list page',
+            query={
+                'type': 1,
+                'json': 1,
+                'utf8': 1,
+                'onlysong': 0,
+                'disstid': list_id},
             transform_source=strip_jsonp)
         if not len(list_json.get('cdlist', [])):
             if list_json.get('code'):
                 raise ExtractorError(
-                    'QQ Music said: error %d in fetching playlist info' % list_json['code'],
-                    expected=True)
+                    'QQ Music said: error %d in fetching playlist info' %
+                    list_json['code'], expected=True)
             raise ExtractorError('Unable to get playlist info')
 
         cdlist = list_json['cdlist'][0]
-        entries = [self.url_result(
-            'https://y.qq.com/n/yqq/song/' + song['songmid'] + '.html', 'QQMusic', song['songmid'])
-            for song in cdlist['songlist']]
+        entries = [
+            self.url_result(
+                'https://y.qq.com/n/yqq/song/' +
+                song['songmid'] +
+                '.html',
+                'QQMusic',
+                song['songmid']) for song in cdlist['songlist']]
 
         list_name = cdlist.get('dissname')
         list_description = clean_html(unescapeHTML(cdlist.get('desc')))
-        return self.playlist_result(entries, list_id, list_name, list_description)
+        return self.playlist_result(
+            entries, list_id, list_name, list_description)

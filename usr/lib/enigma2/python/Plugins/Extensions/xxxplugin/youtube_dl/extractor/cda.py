@@ -77,7 +77,8 @@ class CDAIE(InfoExtractor):
 
     def _download_age_confirm_page(self, url, video_id, *args, **kwargs):
         form_data = random_birthday('rok', 'miesiac', 'dzien')
-        form_data.update({'return': url, 'module': 'video', 'module_id': video_id})
+        form_data.update(
+            {'return': url, 'module': 'video', 'module_id': video_id})
         data, content_type = multipart_encode(form_data)
         return self._download_webpage(
             urljoin(url, '/a/validatebirth'), video_id, *args,
@@ -93,14 +94,21 @@ class CDAIE(InfoExtractor):
             self._BASE_URL + '/video/' + video_id, video_id)
 
         if 'Ten film jest dostępny dla użytkowników premium' in webpage:
-            raise ExtractorError('This video is only available for premium users.', expected=True)
+            raise ExtractorError(
+                'This video is only available for premium users.',
+                expected=True)
 
-        if re.search(r'niedostępn[ey] w(?:&nbsp;|\s+)Twoim kraju\s*<', webpage):
+        if re.search(
+            r'niedostępn[ey] w(?:&nbsp;|\s+)Twoim kraju\s*<',
+                webpage):
             self.raise_geo_restricted()
 
         need_confirm_age = False
-        if self._html_search_regex(r'(<form[^>]+action="[^"]*/a/validatebirth[^"]*")',
-                                   webpage, 'birthday validate form', default=None):
+        if self._html_search_regex(
+            r'(<form[^>]+action="[^"]*/a/validatebirth[^"]*")',
+            webpage,
+            'birthday validate form',
+                default=None):
             webpage = self._download_age_confirm_page(
                 url, video_id, note='Confirming age')
             need_confirm_age = True
@@ -117,7 +125,10 @@ class CDAIE(InfoExtractor):
             'view_count', default=None)
         average_rating = self._search_regex(
             (r'<(?:span|meta)[^>]+itemprop=(["\'])ratingValue\1[^>]*>(?P<rating_value>[0-9.]+)',
-             r'<span[^>]+\bclass=["\']rating["\'][^>]*>(?P<rating_value>[0-9.]+)'), webpage, 'rating', fatal=False,
+             r'<span[^>]+\bclass=["\']rating["\'][^>]*>(?P<rating_value>[0-9.]+)'),
+            webpage,
+            'rating',
+            fatal=False,
             group='rating_value')
 
         info_dict = {
@@ -137,13 +148,21 @@ class CDAIE(InfoExtractor):
 
         # Source: https://www.cda.pl/js/player.js?t=1606154898
         def decrypt_file(a):
-            for p in ('_XDDD', '_CDA', '_ADC', '_CXD', '_QWE', '_Q5', '_IKSDE'):
+            for p in (
+                '_XDDD',
+                '_CDA',
+                '_ADC',
+                '_CXD',
+                '_QWE',
+                '_Q5',
+                    '_IKSDE'):
                 a = a.replace(p, '')
             a = compat_urllib_parse_unquote(a)
             b = []
             for c in a:
                 f = compat_ord(c)
-                b.append(compat_chr(33 + (f + 14) % 94) if 33 <= f and 126 >= f else compat_chr(f))
+                b.append(compat_chr(33 + (f + 14) %
+                                    94) if 33 <= f and 126 >= f else compat_chr(f))
             a = ''.join(b)
             a = a.replace('.cda.mp4', '')
             for p in ('.2cda.pl', '.3cda.pl'):
@@ -165,7 +184,9 @@ class CDAIE(InfoExtractor):
                 return
             video = player_data.get('video')
             if not video or 'file' not in video:
-                self.report_warning('Unable to extract %s version information' % version)
+                self.report_warning(
+                    'Unable to extract %s version information' %
+                    version)
                 return
             if video['file'].startswith('uggc'):
                 video['file'] = codecs.decode(video['file'], 'rot_13')
@@ -204,7 +225,9 @@ class CDAIE(InfoExtractor):
             if not webpage:
                 # Manually report warning because empty page is returned when
                 # invalid version is requested.
-                self.report_warning('Unable to download %s version information' % resolution)
+                self.report_warning(
+                    'Unable to download %s version information' %
+                    resolution)
                 continue
 
             extract_format(webpage, resolution)

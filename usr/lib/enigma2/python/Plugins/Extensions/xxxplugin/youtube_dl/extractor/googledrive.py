@@ -39,7 +39,8 @@ class GoogleDriveIE(InfoExtractor):
         }
     }, {
         # video can't be watched anonymously due to view count limit reached,
-        # but can be downloaded (see https://github.com/ytdl-org/youtube-dl/issues/14046)
+        # but can be downloaded (see
+        # https://github.com/ytdl-org/youtube-dl/issues/14046)
         'url': 'https://drive.google.com/file/d/0B-vUyvmDLdWDcEt4WjBqcmI2XzQ/view',
         'only_matching': True,
     }, {
@@ -243,14 +244,17 @@ class GoogleDriveIE(InfoExtractor):
                         confirmed_source_url = update_url_query(source_url, {
                             'confirm': confirm,
                         })
-                        urlh = request_source_file(confirmed_source_url, 'confirmed source')
+                        urlh = request_source_file(
+                            confirmed_source_url, 'confirmed source')
                         if urlh and urlh.headers.get('Content-Disposition'):
                             add_source_format(urlh)
                     else:
                         self.report_warning(
-                            get_element_by_class('uc-error-subcaption', confirmation_webpage)
-                            or get_element_by_class('uc-error-caption', confirmation_webpage)
-                            or 'unable to extract confirmation code')
+                            get_element_by_class(
+                                'uc-error-subcaption',
+                                confirmation_webpage) or get_element_by_class(
+                                'uc-error-caption',
+                                confirmation_webpage) or 'unable to extract confirmation code')
 
         if not formats and reason:
             raise ExtractorError(reason, expected=True)

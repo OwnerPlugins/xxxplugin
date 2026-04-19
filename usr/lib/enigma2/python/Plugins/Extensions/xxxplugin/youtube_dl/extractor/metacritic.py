@@ -37,10 +37,15 @@ class MetacriticIE(InfoExtractor):
         video_id = mobj.group('id')
         webpage = self._download_webpage(url, video_id)
         # The xml is not well formatted, there are raw '&'
-        info = self._download_xml('http://www.metacritic.com/video_data?video=' + video_id,
-                                  video_id, 'Downloading info xml', transform_source=fix_xml_ampersands)
+        info = self._download_xml(
+            'http://www.metacritic.com/video_data?video=' +
+            video_id,
+            video_id,
+            'Downloading info xml',
+            transform_source=fix_xml_ampersands)
 
-        clip = next(c for c in info.findall('playList/clip') if c.find('id').text == video_id)
+        clip = next(c for c in info.findall('playList/clip')
+                    if c.find('id').text == video_id)
         formats = []
         for videoFile in clip.findall('httpURI/videoFile'):
             rate_str = videoFile.find('rate').text
@@ -53,8 +58,11 @@ class MetacriticIE(InfoExtractor):
             })
         self._sort_formats(formats)
 
-        description = self._html_search_regex(r'<b>Description:</b>(.*?)</p>',
-                                              webpage, 'description', flags=re.DOTALL)
+        description = self._html_search_regex(
+            r'<b>Description:</b>(.*?)</p>',
+            webpage,
+            'description',
+            flags=re.DOTALL)
 
         return {
             'id': video_id,

@@ -17,36 +17,32 @@ class TubiTvIE(InfoExtractor):
     _LOGIN_URL = 'http://tubitv.com/login'
     _NETRC_MACHINE = 'tubitv'
     _GEO_COUNTRIES = ['US']
-    _TESTS = [{
-        'url': 'http://tubitv.com/video/283829/the_comedian_at_the_friday',
-        'md5': '43ac06be9326f41912dc64ccf7a80320',
-        'info_dict': {
-            'id': '283829',
-            'ext': 'mp4',
-            'title': 'The Comedian at The Friday',
-            'description': 'A stand up comedian is forced to look at the decisions in his life while on a one week trip to the west coast.',
-            'uploader_id': 'bc168bee0d18dd1cb3b86c68706ab434',
-        },
-    }, {
-        'url': 'http://tubitv.com/tv-shows/321886/s01_e01_on_nom_stories',
-        'only_matching': True,
-    }, {
-        'url': 'http://tubitv.com/movies/383676/tracker',
-        'only_matching': True,
-    }, {
-        'url': 'https://tubitv.com/movies/560057/penitentiary?start=true',
-        'info_dict': {
-            'id': '560057',
-            'ext': 'mp4',
-            'title': 'Penitentiary',
-            'description': 'md5:8d2fc793a93cc1575ff426fdcb8dd3f9',
-            'uploader_id': 'd8fed30d4f24fcb22ec294421b9defc2',
-            'release_year': 1979,
-        },
-        'params': {
-            'skip_download': True,
-        },
-    }]
+    _TESTS = [{'url': 'http://tubitv.com/video/283829/the_comedian_at_the_friday',
+               'md5': '43ac06be9326f41912dc64ccf7a80320',
+               'info_dict': {'id': '283829',
+                             'ext': 'mp4',
+                             'title': 'The Comedian at The Friday',
+                             'description': 'A stand up comedian is forced to look at the decisions in his life while on a one week trip to the west coast.',
+                             'uploader_id': 'bc168bee0d18dd1cb3b86c68706ab434',
+                             },
+               },
+              {'url': 'http://tubitv.com/tv-shows/321886/s01_e01_on_nom_stories',
+               'only_matching': True,
+               },
+              {'url': 'http://tubitv.com/movies/383676/tracker',
+               'only_matching': True,
+               },
+              {'url': 'https://tubitv.com/movies/560057/penitentiary?start=true',
+               'info_dict': {'id': '560057',
+                             'ext': 'mp4',
+                             'title': 'Penitentiary',
+                             'description': 'md5:8d2fc793a93cc1575ff426fdcb8dd3f9',
+                             'uploader_id': 'd8fed30d4f24fcb22ec294421b9defc2',
+                             'release_year': 1979,
+                             },
+               'params': {'skip_download': True,
+                          },
+               }]
 
     def _login(self):
         username, password = self._get_login_info()

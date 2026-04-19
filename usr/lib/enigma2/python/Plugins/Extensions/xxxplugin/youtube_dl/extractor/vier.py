@@ -168,7 +168,8 @@ class VierIE(InfoExtractor):
             filename = self._search_regex(
                 [r'data-filename="([^"]+)"', r'"filename"\s*:\s*"([^"]+)"'],
                 webpage, 'filename')
-            playlist_url = 'http://vod.streamcloud.be/%s/_definst_/mp4:%s.mp4/playlist.m3u8' % (application, filename)
+            playlist_url = 'http://vod.streamcloud.be/%s/_definst_/mp4:%s.mp4/playlist.m3u8' % (
+                application, filename)
 
         formats = self._extract_wowza_formats(
             playlist_url, display_id, skip_protocols=['dash'])
@@ -179,16 +180,22 @@ class VierIE(InfoExtractor):
             r'(?s)<div\b[^>]+\bclass=(["\'])[^>]*?\bfield-type-text-with-summary\b[^>]*?\1[^>]*>.*?<p>(?P<value>.+?)</p>',
             webpage, 'description', default=None, group='value')
         thumbnail = self._og_search_thumbnail(webpage, default=None)
-        upload_date = unified_strdate(self._html_search_regex(
-            r'(?s)<div\b[^>]+\bclass=(["\'])[^>]*?\bfield-name-post-date\b[^>]*?\1[^>]*>.*?(?P<value>\d{2}/\d{2}/\d{4})',
-            webpage, 'upload date', default=None, group='value'))
+        upload_date = unified_strdate(
+            self._html_search_regex(
+                r'(?s)<div\b[^>]+\bclass=(["\'])[^>]*?\bfield-name-post-date\b[^>]*?\1[^>]*>.*?(?P<value>\d{2}/\d{2}/\d{4})',
+                webpage,
+                'upload date',
+                default=None,
+                group='value'))
 
         series = self._search_regex(
             r'data-program=(["\'])(?P<value>(?:(?!\1).)+)\1', webpage,
             'series', default=None, group='value')
         episode_number = int_or_none(self._search_regex(
             r'(?i)aflevering (\d+)', title, 'episode number', default=None))
-        tags = re.findall(r'<a\b[^>]+\bhref=["\']/tags/[^>]+>([^<]+)<', webpage)
+        tags = re.findall(
+            r'<a\b[^>]+\bhref=["\']/tags/[^>]+>([^<]+)<',
+            webpage)
 
         return {
             'id': video_id,
@@ -250,9 +257,9 @@ class VierVideosIE(InfoExtractor):
         entries = []
         for current_page_id in itertools.count(start_page):
             current_page = self._download_webpage(
-                'http://www.%s.be/%s/videos?page=%d' % (site, program, current_page_id),
-                program,
-                'Downloading page %d' % (current_page_id + 1))
+                'http://www.%s.be/%s/videos?page=%d' %
+                (site, program, current_page_id), program, 'Downloading page %d' %
+                (current_page_id + 1))
             page_entries = [
                 self.url_result('http://www.' + site + '.be' + video_url, 'Vier')
                 for video_url in re.findall(

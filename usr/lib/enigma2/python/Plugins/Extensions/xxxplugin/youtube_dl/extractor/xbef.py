@@ -15,8 +15,7 @@ class XBefIE(InfoExtractor):
             'title': 'md5:7358a9faef8b7b57acda7c04816f170e',
             'age_limit': 18,
             'thumbnail': r're:^http://.*\.jpg',
-        }
-    }
+        }}
 
     def _real_extract(self, url):
         video_id = self._match_id(url)

@@ -29,52 +29,49 @@ class TV2DKIE(InfoExtractor):
                         (:[^/]+/)*
                         (?P<id>[^/?\#&]+)
                     '''
-    _TESTS = [{
-        'url': 'https://www.tvsyd.dk/nyheder/28-10-2019/1930/1930-28-okt-2019?autoplay=1#player',
-        'info_dict': {
-            'id': '0_52jmwa0p',
-            'ext': 'mp4',
-            'title': '19:30 - 28. okt. 2019',
-            'timestamp': 1572290248,
-            'upload_date': '20191028',
-            'uploader_id': 'tvsyd',
-            'duration': 1347,
-            'view_count': int,
-        },
-        'add_ie': ['Kaltura'],
-    }, {
-        'url': 'https://www.tv2lorry.dk/gadekamp/gadekamp-6-hoejhuse-i-koebenhavn',
-        'info_dict': {
-            'id': '1_7iwll9n0',
-            'ext': 'mp4',
-            'upload_date': '20211027',
-            'title': 'Gadekamp #6 - Højhuse i København',
-            'uploader_id': 'tv2lorry',
-            'timestamp': 1635345229,
-        },
-        'add_ie': ['Kaltura'],
-    }, {
-        'url': 'https://www.tv2ostjylland.dk/artikel/minister-gaar-ind-i-sag-om-diabetes-teknologi',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tv2ostjylland.dk/nyheder/28-10-2019/22/2200-nyhederne-mandag-d-28-oktober-2019?autoplay=1#player',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tvmidtvest.dk/nyheder/27-10-2019/1930/1930-27-okt-2019',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tv2fyn.dk/artikel/fyn-kan-faa-landets-foerste-fabrik-til-groent-jetbraendstof',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tv2east.dk/artikel/gods-faar-indleveret-tonsvis-af-aebler-100-kilo-aebler-gaar-til-en-aeblebrandy',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tv2lorry.dk/koebenhavn/rasmus-paludan-evakueret-til-egen-demonstration#player',
-        'only_matching': True,
-    }, {
-        'url': 'https://www.tv2nord.dk/artikel/dybt-uacceptabelt',
-        'only_matching': True,
-    }]
+    _TESTS = [{'url': 'https://www.tvsyd.dk/nyheder/28-10-2019/1930/1930-28-okt-2019?autoplay=1#player',
+               'info_dict': {'id': '0_52jmwa0p',
+                             'ext': 'mp4',
+                             'title': '19:30 - 28. okt. 2019',
+                             'timestamp': 1572290248,
+                             'upload_date': '20191028',
+                             'uploader_id': 'tvsyd',
+                             'duration': 1347,
+                             'view_count': int,
+                             },
+               'add_ie': ['Kaltura'],
+               },
+              {'url': 'https://www.tv2lorry.dk/gadekamp/gadekamp-6-hoejhuse-i-koebenhavn',
+               'info_dict': {'id': '1_7iwll9n0',
+                             'ext': 'mp4',
+                             'upload_date': '20211027',
+                             'title': 'Gadekamp #6 - Højhuse i København',
+                             'uploader_id': 'tv2lorry',
+                             'timestamp': 1635345229,
+                             },
+               'add_ie': ['Kaltura'],
+               },
+              {'url': 'https://www.tv2ostjylland.dk/artikel/minister-gaar-ind-i-sag-om-diabetes-teknologi',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tv2ostjylland.dk/nyheder/28-10-2019/22/2200-nyhederne-mandag-d-28-oktober-2019?autoplay=1#player',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tvmidtvest.dk/nyheder/27-10-2019/1930/1930-27-okt-2019',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tv2fyn.dk/artikel/fyn-kan-faa-landets-foerste-fabrik-til-groent-jetbraendstof',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tv2east.dk/artikel/gods-faar-indleveret-tonsvis-af-aebler-100-kilo-aebler-gaar-til-en-aeblebrandy',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tv2lorry.dk/koebenhavn/rasmus-paludan-evakueret-til-egen-demonstration#player',
+               'only_matching': True,
+               },
+              {'url': 'https://www.tv2nord.dk/artikel/dybt-uacceptabelt',
+               'only_matching': True,
+               }]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -88,7 +85,9 @@ class TV2DKIE(InfoExtractor):
                 'kaltura:%s:%s' % (partner_id, kaltura_id), 'Kaltura',
                 video_id=kaltura_id))
 
-        for video_el in re.findall(r'(?s)<[^>]+\bdata-entryid\s*=[^>]*>', webpage):
+        for video_el in re.findall(
+            r'(?s)<[^>]+\bdata-entryid\s*=[^>]*>',
+                webpage):
             video = extract_attributes(video_el)
             kaltura_id = video.get('data-entryid')
             if not kaltura_id:

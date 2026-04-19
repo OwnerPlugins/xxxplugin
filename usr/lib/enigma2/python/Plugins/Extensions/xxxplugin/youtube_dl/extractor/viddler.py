@@ -114,7 +114,8 @@ class ViddlerIE(InfoExtractor):
 
             if filed.get('html5_video_source'):
                 f = f.copy()
-                f['url'] = self._proto_relative_url(filed['html5_video_source'])
+                f['url'] = self._proto_relative_url(
+                    filed['html5_video_source'])
                 f['format_id'] = format_id + '-html5'
                 f['source_preference'] = 0
                 formats.append(f)

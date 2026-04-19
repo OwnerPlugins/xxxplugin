@@ -77,16 +77,27 @@ class RadioCanadaIE(InfoExtractor):
             query['access_token'] = self._access_token
         try:
             return self._download_json(
-                'https://services.radio-canada.ca/media/' + path, video_id, query=query)
+                'https://services.radio-canada.ca/media/' +
+                path,
+                video_id,
+                query=query)
         except ExtractorError as e:
-            if isinstance(e.cause, compat_HTTPError) and e.cause.code in (401, 422):
+            if isinstance(
+                    e.cause,
+                    compat_HTTPError) and e.cause.code in (
+                    401,
+                    422):
                 data = self._parse_json(e.cause.read().decode(), None)
-                error = data.get('error_description') or data['errorMessage']['text']
+                error = data.get(
+                    'error_description') or data['errorMessage']['text']
                 raise ExtractorError(error, expected=True)
             raise
 
     def _extract_info(self, app_code, video_id):
-        metas = self._call_api('meta/v1/index.ashx', video_id, app_code)['Metas']
+        metas = self._call_api(
+            'meta/v1/index.ashx',
+            video_id,
+            app_code)['Metas']
 
         def get_meta(name):
             for meta in metas:
@@ -121,7 +132,8 @@ class RadioCanadaIE(InfoExtractor):
         self._sort_formats(formats)
 
         subtitles = {}
-        closed_caption_url = get_meta('closedCaption') or get_meta('closedCaptionHTML5')
+        closed_caption_url = get_meta(
+            'closedCaption') or get_meta('closedCaptionHTML5')
         if closed_caption_url:
             subtitles['fr'] = [{
                 'url': closed_caption_url,
@@ -133,11 +145,13 @@ class RadioCanadaIE(InfoExtractor):
             'title': get_meta('Title') or get_meta('AV-nomEmission'),
             'description': get_meta('Description') or get_meta('ShortDescription'),
             'thumbnail': get_meta('imageHR') or get_meta('imageMR') or get_meta('imageBR'),
-            'duration': int_or_none(get_meta('length')),
+            'duration': int_or_none(
+                get_meta('length')),
             'series': get_meta('Emission'),
             'season_number': int_or_none('SrcSaison'),
             'episode_number': int_or_none('SrcEpisode'),
-            'upload_date': unified_strdate(get_meta('Date')),
+            'upload_date': unified_strdate(
+                get_meta('Date')),
             'subtitles': subtitles,
             'formats': formats,
         }

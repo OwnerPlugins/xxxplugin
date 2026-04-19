@@ -55,8 +55,8 @@ class FragmentFD(FileDownloader):
 
     def report_retry_fragment(self, err, frag_index, count, retries):
         self.to_screen(
-            '[download] Got server HTTP error: %s. Retrying fragment %d (attempt %d of %s)...'
-            % (error_to_compat_str(err), frag_index, count, self.format_retries(retries)))
+            '[download] Got server HTTP error: %s. Retrying fragment %d (attempt %d of %s)...' %
+            (error_to_compat_str(err), frag_index, count, self.format_retries(retries)))
 
     def report_skip_fragment(self, frag_index):
         self.to_screen('[download] Skipping fragment %d...' % frag_index)
@@ -77,14 +77,16 @@ class FragmentFD(FileDownloader):
         assert 'ytdl_corrupt' not in ctx
         stream, _ = sanitize_open(self.ytdl_filename(ctx['filename']), 'r')
         try:
-            ctx['fragment_index'] = json.loads(stream.read())['downloader']['current_fragment']['index']
+            ctx['fragment_index'] = json.loads(
+                stream.read())['downloader']['current_fragment']['index']
         except Exception:
             ctx['ytdl_corrupt'] = True
         finally:
             stream.close()
 
     def _write_ytdl_file(self, ctx):
-        frag_index_stream, _ = sanitize_open(self.ytdl_filename(ctx['filename']), 'w')
+        frag_index_stream, _ = sanitize_open(
+            self.ytdl_filename(ctx['filename']), 'w')
         downloader = {
             'current_fragment': {
                 'index': ctx['fragment_index'],
@@ -96,7 +98,8 @@ class FragmentFD(FileDownloader):
         frag_index_stream.close()
 
     def _download_fragment(self, ctx, frag_url, info_dict, headers=None):
-        fragment_filename = '%s-Frag%d' % (ctx['tmpfilename'], ctx['fragment_index'])
+        fragment_filename = '%s-Frag%d' % (
+            ctx['tmpfilename'], ctx['fragment_index'])
         fragment_info_dict = {
             'url': frag_url,
             'http_headers': headers or info_dict.get('http_headers'),
@@ -169,7 +172,10 @@ class FragmentFD(FileDownloader):
         })
 
         if self.__do_ytdl_file(ctx):
-            ytdl_file_exists = os.path.isfile(encodeFilename(self.ytdl_filename(ctx['filename'])))
+            ytdl_file_exists = os.path.isfile(
+                encodeFilename(
+                    self.ytdl_filename(
+                        ctx['filename'])))
             if continuedl and ytdl_file_exists:
                 self._read_ytdl_file(ctx)
                 is_corrupt = ctx.get('ytdl_corrupt') is True
@@ -245,7 +251,8 @@ class FragmentFD(FileDownloader):
             if s['status'] == 'finished':
                 state['fragment_index'] += 1
                 ctx['fragment_index'] = state['fragment_index']
-                state['downloaded_bytes'] += frag_total_bytes - ctx['prev_frag_downloaded_bytes']
+                state['downloaded_bytes'] += frag_total_bytes - \
+                    ctx['prev_frag_downloaded_bytes']
                 ctx['complete_frags_downloaded_bytes'] = state['downloaded_bytes']
                 ctx['speed'] = state['speed'] = self.calc_speed(
                     ctx['fragment_started'], time_now, frag_total_bytes)
@@ -253,11 +260,13 @@ class FragmentFD(FileDownloader):
                 ctx['prev_frag_downloaded_bytes'] = 0
             else:
                 frag_downloaded_bytes = s['downloaded_bytes']
-                state['downloaded_bytes'] += frag_downloaded_bytes - ctx['prev_frag_downloaded_bytes']
+                state['downloaded_bytes'] += frag_downloaded_bytes - \
+                    ctx['prev_frag_downloaded_bytes']
                 ctx['speed'] = state['speed'] = self.calc_speed(
                     ctx['fragment_started'], time_now, frag_downloaded_bytes - ctx['frag_resume_len'])
                 if not ctx['live']:
-                    state['eta'] = self.calc_eta(state['speed'], estimated_size - state['downloaded_bytes'])
+                    state['eta'] = self.calc_eta(
+                        state['speed'], estimated_size - state['downloaded_bytes'])
                 ctx['prev_frag_downloaded_bytes'] = frag_downloaded_bytes
             self._hook_progress(state)
 

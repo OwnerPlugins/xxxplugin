@@ -12,54 +12,44 @@ from ..utils import (
 
 class GfycatIE(InfoExtractor):
     _VALID_URL = r'https?://(?:(?:www|giant|thumbs)\.)?gfycat\.com/(?:ru/|ifr/|gifs/detail/)?(?P<id>[^-/?#\.]+)'
-    _TESTS = [{
-        'url': 'http://gfycat.com/DeadlyDecisiveGermanpinscher',
-        'info_dict': {
-            'id': 'DeadlyDecisiveGermanpinscher',
-            'ext': 'mp4',
-            'title': 'Ghost in the Shell',
-            'timestamp': 1410656006,
-            'upload_date': '20140914',
-            'uploader': 'anonymous',
-            'duration': 10.4,
-            'view_count': int,
-            'like_count': int,
-            'dislike_count': int,
-            'categories': list,
-            'age_limit': 0,
-        }
-    }, {
-        'url': 'http://gfycat.com/ifr/JauntyTimelyAmazontreeboa',
-        'info_dict': {
-            'id': 'JauntyTimelyAmazontreeboa',
-            'ext': 'mp4',
-            'title': 'JauntyTimelyAmazontreeboa',
-            'timestamp': 1411720126,
-            'upload_date': '20140926',
-            'uploader': 'anonymous',
-            'duration': 3.52,
-            'view_count': int,
-            'like_count': int,
-            'dislike_count': int,
-            'categories': list,
-            'age_limit': 0,
-        }
-    }, {
-        'url': 'https://gfycat.com/ru/RemarkableDrearyAmurstarfish',
-        'only_matching': True
-    }, {
-        'url': 'https://gfycat.com/gifs/detail/UnconsciousLankyIvorygull',
-        'only_matching': True
-    }, {
-        'url': 'https://gfycat.com/acceptablehappygoluckyharborporpoise-baseball',
-        'only_matching': True
-    }, {
-        'url': 'https://thumbs.gfycat.com/acceptablehappygoluckyharborporpoise-size_restricted.gif',
-        'only_matching': True
-    }, {
-        'url': 'https://giant.gfycat.com/acceptablehappygoluckyharborporpoise.mp4',
-        'only_matching': True
-    }]
+    _TESTS = [{'url': 'http://gfycat.com/DeadlyDecisiveGermanpinscher',
+               'info_dict': {'id': 'DeadlyDecisiveGermanpinscher',
+                             'ext': 'mp4',
+                             'title': 'Ghost in the Shell',
+                             'timestamp': 1410656006,
+                             'upload_date': '20140914',
+                             'uploader': 'anonymous',
+                             'duration': 10.4,
+                             'view_count': int,
+                             'like_count': int,
+                             'dislike_count': int,
+                             'categories': list,
+                             'age_limit': 0,
+                             }},
+              {'url': 'http://gfycat.com/ifr/JauntyTimelyAmazontreeboa',
+               'info_dict': {'id': 'JauntyTimelyAmazontreeboa',
+                             'ext': 'mp4',
+                             'title': 'JauntyTimelyAmazontreeboa',
+                             'timestamp': 1411720126,
+                             'upload_date': '20140926',
+                             'uploader': 'anonymous',
+                             'duration': 3.52,
+                             'view_count': int,
+                             'like_count': int,
+                             'dislike_count': int,
+                             'categories': list,
+                             'age_limit': 0,
+                             }},
+              {'url': 'https://gfycat.com/ru/RemarkableDrearyAmurstarfish',
+               'only_matching': True},
+              {'url': 'https://gfycat.com/gifs/detail/UnconsciousLankyIvorygull',
+               'only_matching': True},
+              {'url': 'https://gfycat.com/acceptablehappygoluckyharborporpoise-baseball',
+               'only_matching': True},
+              {'url': 'https://thumbs.gfycat.com/acceptablehappygoluckyharborporpoise-size_restricted.gif',
+               'only_matching': True},
+              {'url': 'https://giant.gfycat.com/acceptablehappygoluckyharborporpoise.mp4',
+               'only_matching': True}]
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
@@ -85,7 +75,8 @@ class GfycatIE(InfoExtractor):
         fps = int_or_none(gfy.get('frameRate'))
         num_frames = int_or_none(gfy.get('numFrames'))
 
-        duration = float_or_none(num_frames, fps) if num_frames and fps else None
+        duration = float_or_none(
+            num_frames, fps) if num_frames and fps else None
 
         categories = gfy.get('tags') or gfy.get('extraLemmas') or []
 

@@ -112,7 +112,8 @@ class Channel9IE(InfoExtractor):
                 episode_data), content_path)
             content_id = episode_data['contentId']
             is_session = '/Sessions(' in episode_data['api']
-            content_url = 'https://channel9.msdn.com/odata' + episode_data['api'] + '?$select=Captions,CommentCount,MediaLengthInSeconds,PublishedDate,Rating,RatingCount,Title,VideoMP4High,VideoMP4Low,VideoMP4Medium,VideoPlayerPreviewImage,VideoWMV,VideoWMVHQ,Views,'
+            content_url = 'https://channel9.msdn.com/odata' + \
+                episode_data['api'] + '?$select=Captions,CommentCount,MediaLengthInSeconds,PublishedDate,Rating,RatingCount,Title,VideoMP4High,VideoMP4Low,VideoMP4Medium,VideoPlayerPreviewImage,VideoWMV,VideoWMVHQ,Views,'
             if is_session:
                 content_url += 'Code,Description,Room,Slides,Speakers,ZipFile&$expand=Speakers'
             else:
@@ -194,29 +195,35 @@ class Channel9IE(InfoExtractor):
 
             if not formats and not slides and not zip_file:
                 raise ExtractorError(
-                    'None of recording, slides or zip are available for %s' % content_path)
+                    'None of recording, slides or zip are available for %s' %
+                    content_path)
 
             subtitles = {}
             for caption in content_data.get('Captions', []):
                 caption_url = caption.get('Url')
                 if not caption_url:
                     continue
-                subtitles.setdefault(caption.get('Language', 'en'), []).append({
-                    'url': caption_url,
-                    'ext': 'vtt',
-                })
+                subtitles.setdefault(caption.get('Language', 'en'), []).append(
+                    {'url': caption_url, 'ext': 'vtt', })
 
             common = {
                 'id': content_id,
                 'title': title,
-                'description': clean_html(content_data.get('Description') or content_data.get('Body')),
+                'description': clean_html(
+                    content_data.get('Description') or content_data.get('Body')),
                 'thumbnail': content_data.get('VideoPlayerPreviewImage'),
-                'duration': int_or_none(content_data.get('MediaLengthInSeconds')),
-                'timestamp': parse_iso8601(content_data.get('PublishedDate')),
-                'avg_rating': int_or_none(content_data.get('Rating')),
-                'rating_count': int_or_none(content_data.get('RatingCount')),
-                'view_count': int_or_none(content_data.get('Views')),
-                'comment_count': int_or_none(content_data.get('CommentCount')),
+                'duration': int_or_none(
+                    content_data.get('MediaLengthInSeconds')),
+                'timestamp': parse_iso8601(
+                    content_data.get('PublishedDate')),
+                'avg_rating': int_or_none(
+                    content_data.get('Rating')),
+                'rating_count': int_or_none(
+                    content_data.get('RatingCount')),
+                'view_count': int_or_none(
+                    content_data.get('Views')),
+                'comment_count': int_or_none(
+                    content_data.get('CommentCount')),
                 'subtitles': subtitles,
             }
             if is_session:

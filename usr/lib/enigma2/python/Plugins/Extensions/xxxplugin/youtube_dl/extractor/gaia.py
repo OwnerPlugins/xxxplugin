@@ -71,7 +71,10 @@ class GaiaIE(InfoExtractor):
                     'password': password
                 }))
             if auth.get('success') is False:
-                raise ExtractorError(', '.join(auth['messages']), expected=True)
+                raise ExtractorError(
+                    ', '.join(
+                        auth['messages']),
+                    expected=True)
         if auth:
             self._jwt = auth.get('jwt')
 

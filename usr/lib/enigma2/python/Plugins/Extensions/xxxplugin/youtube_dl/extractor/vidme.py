@@ -77,7 +77,8 @@ class VidmeIE(InfoExtractor):
             'skip_download': True,
         },
     }, {
-        # nsfw test from http://naked-yogi.tumblr.com/post/118312946248/naked-smoking-stretching
+        # nsfw test from
+        # http://naked-yogi.tumblr.com/post/118312946248/naked-smoking-stretching
         'url': 'https://vid.me/e/Wmur',
         'info_dict': {
             'id': 'Wmur',
@@ -159,8 +160,7 @@ class VidmeIE(InfoExtractor):
         if video.get('state') in ('user-disabled', 'suspended'):
             raise ExtractorError(
                 'Vidme said: This video has been suspended either due to a copyright claim, '
-                'or for violating the terms of use.',
-                expected=True)
+                'or for violating the terms of use.', expected=True)
 
         formats = []
         for f in video.get('formats', []):
@@ -230,9 +230,17 @@ class VidmeListBaseIE(InfoExtractor):
     def _entries(self, user_id, user_name):
         for page_num in itertools.count(1):
             page = self._download_json(
-                'https://api.vid.me/videos/%s?user=%s&limit=%d&offset=%d'
-                % (self._API_ITEM, user_id, self._LIMIT, (page_num - 1) * self._LIMIT),
-                user_name, 'Downloading user %s page %d' % (self._API_ITEM, page_num))
+                'https://api.vid.me/videos/%s?user=%s&limit=%d&offset=%d' %
+                (self._API_ITEM,
+                 user_id,
+                 self._LIMIT,
+                 (page_num -
+                  1) *
+                    self._LIMIT),
+                user_name,
+                'Downloading user %s page %d' %
+                (self._API_ITEM,
+                 page_num))
 
             videos = page.get('videos', [])
             if not videos:
