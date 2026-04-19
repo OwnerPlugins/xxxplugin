@@ -1,0 +1,126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma 2\n"
+"PO-Revision-Date: 2026-04-19 14:14+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, fuzzy
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgstr "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+
+msgid "=========     SUPPORT ON:   ============\n"
+msgstr "=========     SUPPORT ON:   ============\n"
+
+msgid "ATTENTION PLEASE: \n"
+msgstr "ATTENTION PLEASE: \n"
+
+msgid "All cache fold empty!"
+msgstr "All cache fold empty!"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Cache folder"
+msgstr "Cache folder"
+
+msgid "Choose Directory"
+msgstr "Choose Directory"
+
+msgid "Choose Directory:"
+msgstr "Choose Directory:"
+
+msgid "Configure Service Player Reference, Enigma restart required"
+msgstr "Configure Service Player Reference, Enigma restart required"
+
+msgid "Download Failed!!!"
+msgstr "Download Failed!!!"
+
+msgid "Empty Cache"
+msgstr "Empty Cache"
+
+msgid "Error Report Issue!"
+msgstr "Error Report Issue!"
+
+msgid "Filter this category..."
+msgstr "Filter this category..."
+
+msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
+msgstr "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
+
+msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
+msgstr "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
+
+msgid "For Support visit our social links go to\n"
+msgstr "For Support visit our social links go to\n"
+
+msgid "If you are over 18 years old and wish to\n"
+msgstr "If you are over 18 years old and wish to\n"
+
+msgid "Install Streamlink first"
+msgstr "Install Streamlink first"
+
+msgid "Movie folder"
+msgstr "Movie folder"
+
+msgid "Nothing ... Retry"
+msgstr "Nothing ... Retry"
+
+msgid "Only VOD Movie allowed or not .ext Filtered!!!"
+msgstr "Only VOD Movie allowed or not .ext Filtered!!!"
+
+msgid "QRCODE  1,00\n"
+msgstr "QRCODE  1,00\n"
+
+msgid "Really close without saving settings?"
+msgstr "Really close without saving settings?"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "SELECT YOUR CHOICE"
+
+msgid "SETUP PLUGIN"
+msgstr "SETUP PLUGIN"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Services Player Reference type"
+msgstr "Services Player Reference type"
+
+msgid "Settings saved correctly!"
+msgstr "Settings saved correctly!"
+
+msgid "THANK'S TO:\n"
+msgstr "THANK'S TO:\n"
+
+msgid "Thank you with all my heart\n"
+msgstr "Thank you with all my heart\n"
+
+msgid "This plugin contains adult content not\n"
+msgstr "This plugin contains adult content not\n"
+
+msgid "You are already downloading!!!"
+msgstr "You are already downloading!!!"
+
+msgid "if you like what we do and how we do it\n"
+msgstr "if you like what we do and how we do it\n"
+
+msgid "no"
+msgstr "no"
+
+msgid "suitable for all readers.\n"
+msgstr "suitable for all readers.\n"
+
+msgid "tivustream.com or corvoboys.org and ask\n"
+msgstr "tivustream.com or corvoboys.org and ask\n"
+
+msgid "yes"
+msgstr "yes"

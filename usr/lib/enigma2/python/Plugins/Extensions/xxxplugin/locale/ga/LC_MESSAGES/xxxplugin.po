@@ -1,0 +1,125 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma 2\n"
+"PO-Revision-Date: 2026-04-19 14:15+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
+
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgstr ""
+
+msgid "=========     SUPPORT ON:   ============\n"
+msgstr ""
+
+msgid "ATTENTION PLEASE: \n"
+msgstr ""
+
+msgid "All cache fold empty!"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Cache folder"
+msgstr ""
+
+msgid "Choose Directory"
+msgstr ""
+
+msgid "Choose Directory:"
+msgstr ""
+
+msgid "Configure Service Player Reference, Enigma restart required"
+msgstr ""
+
+msgid "Download Failed!!!"
+msgstr ""
+
+msgid "Empty Cache"
+msgstr ""
+
+msgid "Error Report Issue!"
+msgstr ""
+
+msgid "Filter this category..."
+msgstr ""
+
+msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
+msgstr ""
+
+msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
+msgstr ""
+
+msgid "For Support visit our social links go to\n"
+msgstr ""
+
+msgid "If you are over 18 years old and wish to\n"
+msgstr ""
+
+msgid "Install Streamlink first"
+msgstr ""
+
+msgid "Movie folder"
+msgstr ""
+
+msgid "Nothing ... Retry"
+msgstr ""
+
+msgid "Only VOD Movie allowed or not .ext Filtered!!!"
+msgstr ""
+
+msgid "QRCODE  1,00\n"
+msgstr ""
+
+msgid "Really close without saving settings?"
+msgstr ""
+
+msgid "SELECT YOUR CHOICE"
+msgstr ""
+
+msgid "SETUP PLUGIN"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Services Player Reference type"
+msgstr ""
+
+msgid "Settings saved correctly!"
+msgstr ""
+
+msgid "THANK'S TO:\n"
+msgstr ""
+
+msgid "Thank you with all my heart\n"
+msgstr ""
+
+msgid "This plugin contains adult content not\n"
+msgstr ""
+
+msgid "You are already downloading!!!"
+msgstr ""
+
+msgid "if you like what we do and how we do it\n"
+msgstr ""
+
+msgid "no"
+msgstr ""
+
+msgid "suitable for all readers.\n"
+msgstr ""
+
+msgid "tivustream.com or corvoboys.org and ask\n"
+msgstr ""
+
+msgid "yes"
+msgstr ""
