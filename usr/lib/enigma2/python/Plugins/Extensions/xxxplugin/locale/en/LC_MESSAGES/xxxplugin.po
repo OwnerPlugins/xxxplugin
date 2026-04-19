@@ -74,6 +74,7 @@ msgstr "Nothing ... Retry"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Only VOD Movie allowed or not .ext Filtered!!!"
 
+#, fuzzy
 msgid "QRCODE  1,00\n"
 msgstr "QRCODE  1,00\n"
 
