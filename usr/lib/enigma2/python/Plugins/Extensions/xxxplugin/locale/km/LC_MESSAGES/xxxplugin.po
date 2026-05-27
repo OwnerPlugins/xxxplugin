@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= គាំទ្រលើ៖ ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "សូមយកចិត្តទុកដាក់៖ \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "ឃ្លាំងសម្ងាត់ទាំងអស់បត់ទទេ!"
 
 msgid "Back"
-msgstr ""
+msgstr "ត្រឡប់មកវិញ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "ថតឃ្លាំងសម្ងាត់"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "ជ្រើសរើសថត"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "ជ្រើសរើស​ថត៖"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "កំណត់រចនាសម្ព័ន្ធសេវាកម្មយោងអ្នកលេង តម្រូវឱ្យចាប់ផ្ដើម Enigma ឡើងវិញ"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Download បរាជ័យ!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "ឃ្លាំងសម្ងាត់ទទេ"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "របាយការណ៍បញ្ហា!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "ត្រងប្រភេទនេះ..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Folder Cache Path (ឧ.: /media/hdd), Enigma restart ទាមទារ"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "ផ្លូវថតភាពយន្ត (ឧ.៖ /media/hdd/movie), Enigma restart ទាមទារ"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "សម្រាប់ជំនួយ សូមចូលទៅកាន់តំណភ្ជាប់សង្គមរបស់យើងទៅកាន់\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "ប្រសិនបើអ្នកមានអាយុលើសពី 18 ឆ្នាំ ហើយចង់\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "ដំឡើង Streamlink ជាមុនសិន"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "ថតភាពយន្ត"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "គ្មានអ្វីទេ... ព្យាយាមម្តងទៀត"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "អនុញ្ញាតិតែ VOD Movie ឬអត់ .ext Filtered!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "ពិតជាបិទដោយមិនរក្សាទុកការកំណត់មែនទេ?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ជ្រើសរើសជម្រើសរបស់អ្នក។"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ដំឡើងកម្មវិធីជំនួយ"
 
 msgid "Save"
-msgstr ""
+msgstr "រក្សាទុក"
 
 msgid "Select"
-msgstr ""
+msgstr "ជ្រើសរើស"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "សេវាកម្មអ្នកលេងប្រភេទយោង"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "ការកំណត់ត្រូវបានរក្សាទុកយ៉ាងត្រឹមត្រូវ!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "សូមអរគុណដល់៖\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "អរគុណអស់ពីចិត្ត\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "កម្មវិធីជំនួយនេះមានខ្លឹមសារសម្រាប់មនុស្សពេញវ័យមិនមែន\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "អ្នកកំពុងទាញយកហើយ!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ប្រសិនបើអ្នកចូលចិត្តអ្វីដែលយើងធ្វើ និងរបៀបដែលយើងធ្វើវា\n"
 
 msgid "no"
-msgstr ""
+msgstr "ទេ"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "សាកសមសម្រាប់អ្នកអានទាំងអស់។\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ឬ corvoboys.org ហើយសួរ\n"
 
 msgid "yes"
-msgstr ""
+msgstr "បាទ"

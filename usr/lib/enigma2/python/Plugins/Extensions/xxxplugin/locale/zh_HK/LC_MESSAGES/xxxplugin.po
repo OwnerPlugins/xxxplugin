@@ -10,115 +10,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+WWW.TIVUSSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= 支援：============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "請注意：\n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "所有緩存摺疊清空！"
 
 msgid "Back"
-msgstr ""
+msgstr "後退"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "快取資料夾"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "選擇目錄"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "選擇目錄："
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "設定服務播放器參考，需要重新啟動 Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "下載失敗！ ！ ！"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "清空快取"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "錯誤回報問題！"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "過濾此類別..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "資料夾快取路徑（例如：/media/hdd），需要重新啟動 Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "資料夾電影路徑（例如：/media/hdd/movie），需要重新啟動 Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "如需支持，請訪問我們的社交鏈接，轉至\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "如果您年滿 18 歲並希望\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "首先安裝 Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "電影資料夾"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "沒什麼...重試"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "僅允許 VOD 電影或不允許 .ext 過濾！ ！ ！"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "二維碼1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "真的關閉而不儲存設定嗎？"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "選擇您的選擇"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "設定插件"
 
 msgid "Save"
-msgstr ""
+msgstr "節省"
 
 msgid "Select"
-msgstr ""
+msgstr "選擇"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "服務播放器參考類型"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "設定已正確儲存！"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "感謝：\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "我衷心感謝你\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "該插件不包含成人內容\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "你已經在下載了！ ！ ！"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "如果您喜歡我們所做的事情以及我們做事的方式\n"
 
 msgid "no"
-msgstr ""
+msgstr "不"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "適合所有讀者。 \n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com 或 corvoboys.org 並詢問\n"
 
 msgid "yes"
-msgstr ""
+msgstr "是的"

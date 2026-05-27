@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= QO'LLAB-QUVVAT: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "DIQQAT: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Barcha kesh bo'sh!"
 
 msgid "Back"
-msgstr ""
+msgstr "Orqaga"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Kesh papkasi"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Katalogni tanlang"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Katalogni tanlang:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Service Player Reference-ni sozlang, Enigma-ni qayta ishga tushirish talab qilinadi"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Yuklab olish amalga oshmadi!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Keshni bo'sh"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Xato haqida xabar berish muammosi!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Ushbu turkumni filtrlash..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Papka kesh yo'li (masalan: /media/hdd), Enigma-ni qayta ishga tushirish kerak"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Folder Movie Path (masalan: /media/hdd/movie), Enigma-ni qayta ishga tushirish talab qilinadi"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Yordam uchun ijtimoiy havolalarimizga tashrif buyuring\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Agar siz 18 yoshdan oshgan bo'lsangiz va xohlasangiz\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Avval Streamlink-ni o'rnating"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Kino papkasi"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Hech narsa... Qayta urinib ko‘ring"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Faqat VOD filmiga ruxsat beriladi yoki yo'q .ext Filtrlangan!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Haqiqatan ham sozlamalarni saqlamasdan yopilsinmi?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "TANLOVINGIZNI TANlang"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "PLAGINNI SOZLASH"
 
 msgid "Save"
-msgstr ""
+msgstr "Saqlash"
 
 msgid "Select"
-msgstr ""
+msgstr "Tanlang"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Xizmatlar o'yinchisiga havola turi"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Sozlamalar toʻgʻri saqlangan!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "RAHMAT:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Chin qalbimdan rahmat\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Ushbu plaginda kattalar uchun kontent mavjud emas\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Siz allaqachon yuklab olyapsiz!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "Agar sizga nima qilishimiz va buni qanday qilishimiz yoqsa\n"
 
 msgid "no"
-msgstr ""
+msgstr "yo'q"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "barcha kitobxonlar uchun mos.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com yoki corvoboys.org va so'rang\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ha"

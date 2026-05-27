@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= TUKI: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "HUOMIO: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Kaikki välimuisti on tyhjä!"
 
 msgid "Back"
-msgstr ""
+msgstr "Takaisin"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Välimuistikansio"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Valitse Hakemisto"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Valitse hakemisto:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Configure Service Player Reference, Enigma-uudelleenkäynnistys vaaditaan"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Lataus epäonnistui!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Tyhjennä välimuisti"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Virhe Ilmoita ongelmasta!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Suodata tämä luokka..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Kansion välimuistipolku (esim.: /media/hdd), Enigma-uudelleenkäynnistys vaaditaan"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Kansion elokuvapolku (esim. /media/hdd/movie), Enigma-uudelleenkäynnistys vaaditaan"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Saat tukea käymällä sosiaalisissa linkeissämme osoitteessa\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Jos olet yli 18-vuotias ja haluat\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Asenna Streamlink ensin"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Elokuvakansio"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ei mitään... Yritä uudelleen"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Vain VOD-elokuva sallittu tai ei .ext Filtered!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Suljetko todella tallentamatta asetuksia?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "VALITSE VALINTASI"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ASETUSPLAUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Tallentaa"
 
 msgid "Select"
-msgstr ""
+msgstr "Valitse"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Palvelut Playerin viitetyyppi"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Asetukset tallennettu oikein!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "KIITOS:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Kiitos koko sydämestäni\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Tämä laajennus sisältää vain aikuisille suunnattua sisältöä, ei\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Olet jo lataamassa!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "jos pidät siitä, mitä teemme ja miten teemme sen\n"
 
 msgid "no"
-msgstr ""
+msgstr "ei"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "sopii kaikille lukijoille.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com tai corvoboys.org ja kysy\n"
 
 msgid "yes"
-msgstr ""
+msgstr "kyllä"

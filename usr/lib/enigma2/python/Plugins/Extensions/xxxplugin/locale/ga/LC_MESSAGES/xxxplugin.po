@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "======== TACAÍOCHT AR: ==========="
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "TABHAIR FAOI DEARA LE DO THOIL: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Gach taisce fillte folamh!"
 
 msgid "Back"
-msgstr ""
+msgstr "Ar ais"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Fillteán taisce"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Roghnaigh Eolaire"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Roghnaigh Eolaire:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Cumraigh Tagairt Imreoir Seirbhíse, atosú Enigma ag teastáil"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Theip ar Íoslódáil!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Taisce Folamh"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Eisiúint Tuairisce Earráid!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Scag an chatagóir seo..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Cosán Taisce Fillteán (m.sh.: /media/hdd), atosú Enigma ag teastáil"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Conair Scannán Fillteán (m.sh.: /media/hdd/movie), atosú Enigma ag teastáil"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Le haghaidh Tacaíocht tabhair cuairt ar ár naisc shóisialta téigh go\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Má tá tú os cionn 18 mbliana d'aois agus más mian leat\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Suiteáil Streamlink ar dtús"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Fillteán scannán"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ní dhéanfaidh aon ní ... Atriail"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Scannán VOD amháin a cheadaítear nó nach bhfuil .ext Scagtha!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1. 00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Dún i ndáiríre gan socruithe a shábháil?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ROGHNAIGH DO ROGHA"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "SETUP breiseán"
 
 msgid "Save"
-msgstr ""
+msgstr "Sábháil"
 
 msgid "Select"
-msgstr ""
+msgstr "Roghnaigh"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Seinnteoir Seirbhísí Cineál tagartha"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Socruithe sábháilte i gceart!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "Go raibh maith agat DO:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Go raibh maith agat le mo chroí go léir\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Tá ábhar do dhaoine fásta nach bhfuil\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Tá tú ag íoslódáil cheana féin!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "más maith leat cad a dhéanaimid agus conas a dhéanaimid é\n"
 
 msgid "no"
-msgstr ""
+msgstr "níl"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "oiriúnach do gach léitheoir.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com nó corvoboys.org agus fiafraigh\n"
 
 msgid "yes"
-msgstr ""
+msgstr "tá"

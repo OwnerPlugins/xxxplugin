@@ -10,115 +10,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \ n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= قوللاش: ============ \ n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "دىققەت: \ n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "بارلىق غەملەك قۇرۇق!"
 
 msgid "Back"
-msgstr ""
+msgstr "قايتىش"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "ساقلىغۇچ قىسقۇچ"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "مۇندەرىجىنى تاللاڭ"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "مۇندەرىجىنى تاللاڭ:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "مۇلازىمەت قويغۇچ پايدىلىنىشىنى تەڭشەش ، Enigma نى قايتا قوزغىتىش تەلەپ قىلىنىدۇ"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "چۈشۈرۈش مەغلۇب بولدى !!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "بوش كەش"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "خاتالىق دوكلاتى مەسىلىسى!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "بۇ تۈرنى سۈزۈڭ ..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "ھۆججەت قىسقۇچ غەملەك يولى (مەسىلەن: / media / hdd) ، Enigma نى قايتا قوزغىتىش تەلەپ قىلىنىدۇ"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "ھۆججەت قىسقۇچ كىنو يولى (مەسىلەن: / media / hdd / movie) ، Enigma نى قايتا قوزغىتىش تەلەپ قىلىنىدۇ"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "قوللاش ئۈچۈن ئىجتىمائىي ئۇلانمىلىرىمىزنى زىيارەت قىلىڭ"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "ئەگەر سىز 18 ياشتىن يۇقىرى بولسىڭىز ھەمدە \ n نى ئارزۇ قىلسىڭىز"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "ئالدى بىلەن Streamlink نى قاچىلاڭ"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "كىنو ھۆججەت قىسقۇچى"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "ھېچنېمە ... قايتا سىناڭ"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "پەقەت VOD فىلىمى رۇخسەت قىلىنغان ياكى رۇخسەت قىلىنمىغان."
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00 \ n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "تەڭشەكلەرنى ساقلىماي راستىنلا تاقامسىز؟"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "تاللىشىڭىزنى تاللاڭ"
 
 msgid "SETUP PLUGIN"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "ساقلاش"
 
 msgid "Select"
-msgstr ""
+msgstr "تاللاڭ"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "مۇلازىمەت قويغۇچ پايدىلىنىش تىپى"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "تەڭشەكلەر توغرا ساقلاندى!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "رەھمەت: \ n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "چىن كۆڭلۈمدىن رەھمەت \ n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "بۇ قىستۇرما چوڭلارنىڭ مەزمۇنىنى ئۆز ئىچىگە ئالمايدۇ"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "ئاللىبۇرۇن چۈشۈرۈۋاتىسىز !!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ئەگەر بىزنىڭ نېمە قىلىۋاتقانلىقىمىزنى ۋە قانداق قىلىدىغانلىقىمىزنى ياقتۇرسىڭىز \ n"
 
 msgid "no"
-msgstr ""
+msgstr "ياق"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "بارلىق ئوقۇرمەنلەرگە ماس كېلىدۇ. \ n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ياكى corvoboys.org دىن سوراڭ"
 
 msgid "yes"
-msgstr ""
+msgstr "ھەئە"

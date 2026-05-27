@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= APPOĠĠ FUQ: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ATTENZJONI JEKK JOGĦĠBOK: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Il-cache kollha darbiet vojta!"
 
 msgid "Back"
-msgstr ""
+msgstr "Lura"
 
 msgid "Cache folder"
 msgstr ""
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Agħżel Direttorju"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Agħżel Direttorju:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Ikkonfigura r-Referenza tal-Plejer tas-Servizz, meħtieġ mill-ġdid Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Niżżel fallut!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache vojta"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Kwistjoni ta' Rapport ta' Żball!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Iffiltra din il-kategorija..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Folder Cache Path (eż.: /media/hdd), Enigma restart meħtieġ"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Folder Movie Path (eż.: /media/hdd/movie), Enigma restart meħtieġ"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Għall-Appoġġ żur il-links soċjali tagħna mur fuq\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Jekk għandek aktar minn 18-il sena u tixtieq\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Installa Streamlink l-ewwel"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Folder tal-films"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Xejn... Erġa' pprova"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Film VOD biss permess jew le .ext Iffiltrat!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Tassew tagħlaq mingħajr ma tissejvja s-settings?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "AGĦŻEL L-GĦAŻLA TIEGĦEK"
 
 msgid "SETUP PLUGIN"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Ħlief"
 
 msgid "Select"
-msgstr ""
+msgstr "Agħżel"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Servizzi Tip ta' referenza tal-Plejer"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Settings salvati b'mod korrett!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "GRAZZI LIL:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Grazzi b'qalbi kollha\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Dan il-plugin fih kontenut għall-adulti mhux\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Diġà qed tniżżel!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "jekk jogħġobkom dak li nagħmlu u kif nagħmluh\n"
 
 msgid "no"
-msgstr ""
+msgstr "le"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "addattat għall-qarrejja kollha.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com jew corvoboys.org u staqsi\n"
 
 msgid "yes"
-msgstr ""
+msgstr "iva"

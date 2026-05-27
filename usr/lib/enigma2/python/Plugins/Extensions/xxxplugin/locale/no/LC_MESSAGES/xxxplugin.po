@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= STØTTE PÅ: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "VENNLIGST OBS: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "All cache-fold tom!"
 
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Cache mappe"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Velg Katalog"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Velg katalog:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigurer Service Player Reference, Enigma omstart kreves"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Nedlasting mislyktes!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Tøm buffer"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Feilrapporter problem!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtrer denne kategorien..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Mappebufferbane (f.eks.: /media/hdd), Enigma-omstart kreves"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Mappe Movie Path (f.eks.: /media/hdd/movie), Enigma omstart kreves"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "For støtte besøk våre sosiale lenker gå til\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Hvis du er over 18 år og ønsker å\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Installer Streamlink først"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filmmappe"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ingenting ... Prøv på nytt"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Kun VOD-film tillatt eller ikke .ext filtrert!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Virkelig lukke uten å lagre innstillinger?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "VELG DITT VALG"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "OPPSETT PLUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Spare"
 
 msgid "Select"
-msgstr ""
+msgstr "Velge"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Tjenester Spillerreferansetype"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Innstillinger lagret riktig!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "TAKK TIL:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Takk av hele mitt hjerte\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Dette programtillegget inneholder ikke\n voksent innhold"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Du laster allerede ned!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "hvis du liker det vi gjør og hvordan vi gjør det\n"
 
 msgid "no"
-msgstr ""
+msgstr "ingen"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "passer for alle lesere.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com eller corvoboys.org og spør\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ja"

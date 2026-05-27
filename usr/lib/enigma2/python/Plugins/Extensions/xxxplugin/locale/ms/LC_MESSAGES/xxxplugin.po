@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SOKONGAN PADA: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "SILA PERHATIAN: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Semua lipatan cache kosong!"
 
 msgid "Back"
-msgstr ""
+msgstr "belakang"
 
 msgid "Cache folder"
 msgstr ""
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Pilih Direktori"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Pilih Direktori:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigurasi Rujukan Pemain Perkhidmatan, Enigma dimulakan semula diperlukan"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Muat turun Gagal!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache Kosong"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Isu Laporan Ralat!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Tapis kategori ini..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Laluan Cache Folder (cth.: /media/hdd), Enigma dimulakan semula diperlukan"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Laluan Filem Folder (cth.: /media/hdd/movie), Enigma dimulakan semula diperlukan"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Untuk Sokongan, lawati pautan sosial kami pergi ke\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Jika anda berumur 18 tahun ke atas dan ingin\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Pasang Streamlink dahulu"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Folder filem"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Tiada apa-apa... Cuba semula"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Hanya Filem VOD dibenarkan atau tidak .ext Ditapis!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Benar-benar tutup tanpa menyimpan tetapan?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "PILIH PILIHAN ANDA"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "PLUGIN PERSEDIAAN"
 
 msgid "Save"
-msgstr ""
+msgstr "Jimat"
 
 msgid "Select"
-msgstr ""
+msgstr "Pilih"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Jenis Rujukan Pemain Perkhidmatan"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Tetapan disimpan dengan betul!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "TERIMA KASIH KEPADA:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Terima kasih sepenuh hati\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Pemalam ini mengandungi kandungan dewasa bukan\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Anda sudah memuat turun!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "jika anda menyukai apa yang kami lakukan dan cara kami melakukannya\n"
 
 msgid "no"
-msgstr ""
+msgstr "tidak"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "sesuai untuk semua pembaca.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com atau corvoboys.org dan tanya\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ya"

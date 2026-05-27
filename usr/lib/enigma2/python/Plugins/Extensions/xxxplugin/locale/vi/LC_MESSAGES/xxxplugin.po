@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= HỖ TRỢ TRÊN: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "VUI LÒNG LƯU Ý: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Tất cả bộ nhớ cache đều trống rỗng!"
 
 msgid "Back"
-msgstr ""
+msgstr "Mặt sau"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Thư mục bộ đệm"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Chọn thư mục"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Chọn thư mục:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Định cấu hình Tham chiếu trình phát dịch vụ, yêu cầu khởi động lại Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Tải xuống không thành công!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Bộ nhớ đệm trống"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Vấn đề báo cáo lỗi!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Lọc danh mục này..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Đường dẫn bộ đệm thư mục (ví dụ: /media/hdd), yêu cầu khởi động lại Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Đường dẫn phim thư mục (ví dụ: /media/hdd/movie), yêu cầu khởi động lại Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Để được hỗ trợ, hãy truy cập các liên kết xã hội của chúng tôi, hãy truy cập\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Nếu bạn trên 18 tuổi và muốn\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Cài đặt Streamlink trước"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Thư mục phim"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Không có gì... Thử lại"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Chỉ cho phép Phim VOD hoặc không được lọc .ext!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Thực sự đóng mà không lưu cài đặt?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "CHỌN LỰA CHỌN CỦA BẠN"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "CÀI ĐẶT CÀI ĐẶT"
 
 msgid "Save"
-msgstr ""
+msgstr "Cứu"
 
 msgid "Select"
-msgstr ""
+msgstr "Lựa chọn"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Loại tham chiếu của người chơi dịch vụ"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Cài đặt đã được lưu chính xác!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "CẢM ƠN:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Cảm ơn bạn bằng cả trái tim\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Plugin này không chứa nội dung người lớn\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Bạn đã tải xuống rồi!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "nếu bạn thích những gì chúng tôi làm và cách chúng tôi làm điều đó\n"
 
 msgid "no"
-msgstr ""
+msgstr "KHÔNG"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "phù hợp với mọi độc giả.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com hoặc corvoboys.org và hỏi\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Đúng"

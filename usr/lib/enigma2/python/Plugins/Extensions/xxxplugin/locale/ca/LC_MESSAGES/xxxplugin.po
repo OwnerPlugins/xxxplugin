@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SUPORT A: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ATENCIÓ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Tot el plec de memòria cau buit!"
 
 msgid "Back"
-msgstr ""
+msgstr "Enrere"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Carpeta de memòria cau"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Trieu Directori"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Trieu el directori:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Configura la referència del reproductor de servei, cal reiniciar Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "La descàrrega ha fallat!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Buida la memòria cau"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Informe d'error problema!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtra aquesta categoria..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Ruta de la memòria cau de la carpeta (p. ex.: /media/hdd), cal reiniciar Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Carpeta Camí de la pel·lícula (p. ex.: /media/hdd/movie), cal reiniciar Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Per obtenir assistència, visiteu els nostres enllaços socials aneu a\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Si tens més de 18 anys i vols\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Instal·leu Streamlink primer"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Carpeta de pel·lícules"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Res... Torna-ho a provar"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Només pel·lícula VOD permesa o no .ext filtrat!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "CODI QR 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Tanqueu realment sense desar la configuració?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "SELECCIONA LA TEVA Elecció"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "CONFIGURACIÓ DEL PLUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Desa"
 
 msgid "Select"
-msgstr ""
+msgstr "Seleccioneu"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Serveis Tipus de referència del jugador"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "La configuració s'ha desat correctament!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "GRÀCIES A:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Gràcies de tot cor\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Aquest connector conté contingut per a adults no\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Ja esteu baixant!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "si t'agrada el que fem i com ho fem\n"
 
 msgid "no"
 msgstr ""
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "apte per a tots els lectors.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com o corvoboys.org i pregunta\n"
 
 msgid "yes"
-msgstr ""
+msgstr "sí"

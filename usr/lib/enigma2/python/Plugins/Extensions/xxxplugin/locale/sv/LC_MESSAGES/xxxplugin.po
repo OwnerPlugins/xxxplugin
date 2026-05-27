@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SUPPORT PÅ: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "OBSERVERA: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Alla cache-vikningar är tomma!"
 
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Cache-mapp"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Välj Katalog"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Välj katalog:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigurera Service Player Reference, Enigma-omstart krävs"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Nedladdning misslyckades!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Töm cache"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Felrapporteringsproblem!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtrera den här kategorin..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Mappcachesökväg (t.ex.: /media/hdd), Enigma-omstart krävs"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Folder Movie Path (t.ex.: /media/hdd/movie), Enigma-omstart krävs"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "För support besök våra sociala länkar gå till\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Om du är över 18 år och vill\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Installera Streamlink först"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filmmapp"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ingenting ... Försök igen"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Endast VOD-film tillåten eller inte .ext filtrerad!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Stäng verkligen utan att spara inställningar?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "VÄLJ DITT VAL"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "INSTÄLLNINGSPLUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 msgid "Select"
-msgstr ""
+msgstr "Välja"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Tjänster Spelarreferenstyp"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Inställningarna har sparats korrekt!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "TACK TILL:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Tack av hela mitt hjärta\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Detta plugin innehåller inte\n vuxet innehåll"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Du laddar redan ned!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "om du gillar vad vi gör och hur vi gör det\n"
 
 msgid "no"
-msgstr ""
+msgstr "inga"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "lämplig för alla läsare.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com eller corvoboys.org och fråga\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ja"

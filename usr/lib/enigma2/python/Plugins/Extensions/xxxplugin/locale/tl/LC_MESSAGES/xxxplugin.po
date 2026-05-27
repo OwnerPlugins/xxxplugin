@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SUPPORT ON: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "PANSIN PO: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Walang laman ang lahat ng cache fold!"
 
 msgid "Back"
-msgstr ""
+msgstr "Bumalik"
 
 msgid "Cache folder"
 msgstr ""
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Piliin ang Direktoryo"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Pumili ng Direktoryo:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "I-configure ang Service Player Reference, kailangan ang Enigma restart"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Nabigo ang pag-download!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Walang laman ang Cache"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Isyu sa Ulat ng Error!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "I-filter ang kategoryang ito..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Path ng Cache ng Folder (hal.: /media/hdd), kailangan ng Enigma restart"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Folder Movie Path (hal.: /media/hdd/movie), kailangan ang Enigma restart"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Para sa Suporta bisitahin ang aming mga social link pumunta sa\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Kung ikaw ay higit sa 18 taong gulang at nais na\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "I-install muna ang Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Folder ng pelikula"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Wala... Subukan muli"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD Movie lang ang pinapayagan o hindi .ext Na-filter!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Talagang malapit nang hindi nagse-save ng mga setting?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "PUMILI NG IYONG PAGPILI"
 
 msgid "SETUP PLUGIN"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "I-save"
 
 msgid "Select"
-msgstr ""
+msgstr "Pumili"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Mga Serbisyong Uri ng Sanggunian ng Manlalaro"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Na-save nang tama ang mga setting!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "SALAMAT KAY:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Salamat nang buong puso\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Ang plugin na ito ay naglalaman ng nilalamang pang-adulto hindi\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Nagda-download ka na!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "kung gusto mo ang ginagawa namin at kung paano namin ito ginagawa\n"
 
 msgid "no"
-msgstr ""
+msgstr "hindi"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "angkop para sa lahat ng mambabasa.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com o corvoboys.org at magtanong\n"
 
 msgid "yes"
-msgstr ""
+msgstr "oo"

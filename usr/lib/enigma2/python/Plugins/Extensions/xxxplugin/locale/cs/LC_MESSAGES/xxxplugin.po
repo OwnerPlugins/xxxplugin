@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= PODPORA ZAPNUTA: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "POZOR PROSÍM: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Veškerá vyrovnávací paměť je prázdná!"
 
 msgid "Back"
-msgstr ""
+msgstr "Zadní"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Složka mezipaměti"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Zvolte Adresář"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Vyberte adresář:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigurace Service Player Reference, je vyžadován restart Enigmy"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Stahování se nezdařilo!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Prázdná mezipaměť"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Problém s hlášením chyby!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtrovat tuto kategorii..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Cesta mezipaměti složky (např.: /media/hdd), je vyžadován restart Enigmy"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Cesta k filmu (např.: /media/hdd/movie), je vyžadován restart Enigmy"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Pro podporu navštivte naše sociální odkazy na\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Pokud je vám více než 18 let a přejete si\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Nejprve nainstalujte Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filmová složka"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Nic... Zkuste to znovu"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Pouze VOD film povolen nebo ne .ext Filtrováno!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Opravdu zavřít bez uložení nastavení?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "VYBERTE SI SVOU VOLBU"
 
 msgid "SETUP PLUGIN"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 msgid "Select"
-msgstr ""
+msgstr "Vybrat"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Typ reference přehrávače služeb"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Nastavení uloženo správně!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "DĚKUJI:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Děkuji z celého srdce\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Tento plugin neobsahuje obsah pro dospělé\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Už stahujete!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "pokud se vám líbí, co děláme a jak to děláme\n"
 
 msgid "no"
-msgstr ""
+msgstr "žádný"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "vhodné pro všechny čtenáře.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com nebo corvoboys.org a zeptejte se\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Ano"

@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ҚОЛДАУ ҚОСУ: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "НАЗАР АУДАРЫҢЫЗ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Барлық кэш бүктемелері бос!"
 
 msgid "Back"
-msgstr ""
+msgstr "Артқа"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Кэш қалтасы"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Каталог таңдаңыз"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Каталогты таңдаңыз:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Service Player анықтамасын конфигурациялаңыз, Enigma қайта іске қосылуы қажет"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Жүктеп алу сәтсіз аяқталды!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Бос кэш"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Қате туралы есеп беру мәселесі!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Осы санатты сүзу..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Қалта кэш жолы (мысалы: /media/hdd), Enigma қайта іске қосылуы қажет"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Қалтаның фильм жолы (мысалы: /media/hdd/movie), Enigma қайта іске қосылуы қажет"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Қолдау алу үшін біздің әлеуметтік сілтемелерімізге өтіңіз\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Жасыңыз 18-ден асқан болса және қаласаңыз\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Алдымен Streamlink орнатыңыз"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Фильм қалтасы"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ештеңе... Қайталап көріңіз"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Тек VOD фильміне рұқсат етілген немесе жоқ .ext сүзгіленген!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Параметрлерді сақтамай шынымен жабу керек пе?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ТАҢДАУЫҢЫЗДЫ ТАҢДАҢЫЗ"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ПЛАГИН ОРНАТУ"
 
 msgid "Save"
-msgstr ""
+msgstr "Сақтау"
 
 msgid "Select"
-msgstr ""
+msgstr "таңдаңыз"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Қызметтер ойнатқышының анықтамалық түрі"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Параметрлер дұрыс сақталды!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "РАХМЕТ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Шын жүректен рахмет\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Бұл плагинде ересектерге арналған мазмұн жоқ\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Жүктеп алып жатырсыз!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "егер сізге біздің не істейтініміз және оны қалай жасайтынымыз ұнаса\n"
 
 msgid "no"
-msgstr ""
+msgstr "жоқ"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "барлық оқырмандар үшін қолайлы.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com немесе corvoboys.org және сұраңыз\n"
 
 msgid "yes"
-msgstr ""
+msgstr "иә"

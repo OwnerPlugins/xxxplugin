@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "======= ድጋፍ በርቷል: ===========\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "እባክዎን ትኩረት ይስጡ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "ሁሉም መሸጎጫ ባዶ ይታጠፉ!"
 
 msgid "Back"
-msgstr ""
+msgstr "ተመለስ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "መሸጎጫ አቃፊ"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "ማውጫ ይምረጡ"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "ማውጫ ይምረጡ፡-"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "የአገልግሎት ማጫወቻ ማጣቀሻን ያዋቅሩ፣ Enigma ዳግም ማስጀመር ያስፈልጋል"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "ማውረድ አልተሳካም !!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "ባዶ መሸጎጫ"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "ችግር ሪፖርት አድርግ!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "ይህን ምድብ አጣራ..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "የአቃፊ መሸጎጫ መንገድ (ለምሳሌ፡ /media/hdd)፣ Enigma ዳግም ማስጀመር ያስፈልጋል"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "የአቃፊ ፊልም ዱካ (ለምሳሌ፡ /media/hdd/ፊልም)፣ Enigma ዳግም ማስጀመር ያስፈልጋል"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "ለድጋፍ የእኛን ማህበራዊ ሊንኮች ይጎብኙ ወደ\n ይሂዱ"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "እድሜዎ ከ18 ዓመት በላይ ከሆነ እና\n ከፈለጉ"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "መጀመሪያ Streamlink ጫን"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "የፊልም አቃፊ"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "ምንም... እንደገና ይሞክሩ"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "ቪኦዲ ፊልም ብቻ ይፈቀዳል ወይም አይፈቀድም .ext ተጣርቶ !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "ቅንብሮችን ሳታስቀምጥ በእርግጥ ይዘጋል?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ምርጫዎን ይምረጡ"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ማዋቀር ፕለጊን።"
 
 msgid "Save"
-msgstr ""
+msgstr "አስቀምጥ"
 
 msgid "Select"
-msgstr ""
+msgstr "ይምረጡ"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "የአገልግሎቶች ማጫወቻ ማጣቀሻ አይነት"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "ቅንብሮች በትክክል ተቀምጠዋል!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "አመሰግናለሁ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "በሙሉ ልቤ አመሰግናለው\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "ይህ ፕለጊን የአዋቂ ይዘት የለውም\n ይዟል"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "ቀድሞውንም እያወረዱ ነው!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "የምናደርገውን እና የምንሰራውን ከወደዳችሁ\n"
 
 msgid "no"
-msgstr ""
+msgstr "አይ"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "ለሁሉም አንባቢ ተስማሚ።\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ወይም corvoboys.org እና ይጠይቁ\n"
 
 msgid "yes"
-msgstr ""
+msgstr "አዎ"

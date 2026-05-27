@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ПАДТРЫМКА НА: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "УВАГА: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Увесь схованак пусты!"
 
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Тэчка кэша"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Выберыце Каталог"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Выберыце каталог:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Наладзьце даведку пра прайгравальнік службы, патрабуецца перазапуск Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Памылка спампоўкі!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Ачысціць кэш"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Паведаміць пра памылку!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Адфільтраваць гэтую катэгорыю..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Шлях да кэша папкі (напрыклад: /media/hdd), патрабуецца перазапуск Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Шлях да фільма ў папцы (напрыклад: /media/hdd/movie), патрабуецца перазапуск Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Каб атрымаць падтрымку, перайдзіце па спасылках у сацыяльных сетках\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Калі вам споўнілася 18 гадоў і вы хочаце\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Спачатку ўсталюйце Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Тэчка з фільмамі"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Нічога... Паўтарыце спробу"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Дазволены толькі фільмы VOD або не .ext Filtered!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Сапраўды закрыць без захавання налад?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ВЫБЕРЫ СВОЙ ВЫБАР"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ПЛАГІН НАСТРОЙКІ"
 
 msgid "Save"
-msgstr ""
+msgstr "Захаваць"
 
 msgid "Select"
-msgstr ""
+msgstr "Выберыце"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Паслугі Тып даведкі прайгравальніка"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Налады захаваны правільна!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ДЗЯКУЙ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Дзякуй ад усяго сэрца\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Гэты плагін не ўтрымлівае змесціва для дарослых\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Вы ўжо спампоўваеце!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "калі вам падабаецца тое, што мы робім і як мы гэта робім\n"
 
 msgid "no"
-msgstr ""
+msgstr "няма"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "падыходзіць для ўсіх чытачоў.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com або corvoboys.org і спытайце\n"
 
 msgid "yes"
-msgstr ""
+msgstr "так"

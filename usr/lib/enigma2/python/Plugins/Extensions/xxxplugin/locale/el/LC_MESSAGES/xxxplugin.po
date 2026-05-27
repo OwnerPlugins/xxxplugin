@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ΥΠΟΣΤΗΡΙΞΗ: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ΠΡΟΣΟΧΗ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Όλη η κρυφή μνήμη άδεια!"
 
 msgid "Back"
-msgstr ""
+msgstr "Πίσω"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Φάκελος προσωρινής μνήμης"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Επιλέξτε Κατάλογος"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Επιλέξτε Κατάλογο:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Διαμόρφωση αναφοράς προγράμματος αναπαραγωγής υπηρεσίας, απαιτείται επανεκκίνηση του Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Η λήψη απέτυχε!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Κενή προσωρινή μνήμη"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Ζήτημα αναφοράς σφάλματος!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Φιλτράρισμα αυτής της κατηγορίας..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Διαδρομή προσωρινής μνήμης φακέλου (π.χ.: /media/hdd), Απαιτείται επανεκκίνηση του Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Διαδρομή ταινίας φακέλου (π.χ.: /media/hdd/movie), Απαιτείται επανεκκίνηση του Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Για Υποστήριξη, επισκεφτείτε τους συνδέσμους κοινωνικής δικτύωσης, μεταβείτε στη διεύθυνση\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Εάν είστε άνω των 18 ετών και επιθυμείτε\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Εγκαταστήστε πρώτα το Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Φάκελος ταινίας"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Τίποτα... Επανάληψη"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Επιτρέπεται μόνο η ταινία VOD ή όχι .ext Filtered!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Κλείσιμο πραγματικά χωρίς αποθήκευση ρυθμίσεων;"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ΕΠΙΛΕΞΤΕ ΤΗΝ ΕΠΙΛΟΓΗ ΣΑΣ"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "PLUGIN ΡΥΘΜΙΣΗΣ"
 
 msgid "Save"
-msgstr ""
+msgstr "Εκτός"
 
 msgid "Select"
-msgstr ""
+msgstr "Επιλέγω"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Τύπος αναφοράς προγράμματος αναπαραγωγής υπηρεσιών"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν σωστά!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ΕΥΧΑΡΙΣΤΩ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Σας ευχαριστώ με όλη μου την καρδιά\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Αυτή η προσθήκη περιέχει περιεχόμενο για ενηλίκους όχι\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Κάνετε ήδη λήψη!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "αν σας αρέσει αυτό που κάνουμε και πώς το κάνουμε\n"
 
 msgid "no"
-msgstr ""
+msgstr "Όχι"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "κατάλληλο για όλους τους αναγνώστες.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ή corvoboys.org και ρωτήστε\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Ναί"

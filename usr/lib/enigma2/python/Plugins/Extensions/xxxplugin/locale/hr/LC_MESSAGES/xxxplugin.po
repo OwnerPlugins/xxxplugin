@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= PODRŠKA NA: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "MOLIM PAŽNJU: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Sva predmemorija je prazna!"
 
 msgid "Back"
-msgstr ""
+msgstr "Nazad"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Mapa predmemorije"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Odaberite imenik"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Odaberite imenik:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigurirajte referencu servisnog playera, potrebno je ponovno pokretanje Enigme"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Preuzimanje nije uspjelo!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Isprazni predmemoriju"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Prijava pogreške! Problem!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtriraj ovu kategoriju..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Putanja predmemorije mape (npr.: /media/hdd), potrebno je ponovno pokretanje Enigme"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Folder Movie Path (npr.: /media/hdd/movie), potrebno je ponovno pokretanje Enigme"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Za podršku posjetite naše društvene veze idite na\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Ako imate više od 18 godina i želite\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Prvo instalirajte Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Mapa filma"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ništa... Pokušaj ponovo"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Samo VOD film dopušten ili ne .ext filtrirano!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Stvarno zatvoriti bez spremanja postavki?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ODABERITE SVOJ IZBOR"
 
 msgid "SETUP PLUGIN"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Uštedjeti"
 
 msgid "Select"
-msgstr ""
+msgstr "Odaberite"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Vrsta reference igrača za usluge"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Postavke su ispravno spremljene!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "HVALA:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Hvala vam svim srcem\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Ovaj dodatak sadrži sadržaj za odrasle ne\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Već preuzimate!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ako vam se sviđa ono što radimo i kako to radimo\n"
 
 msgid "no"
-msgstr ""
+msgstr "Ne"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "pogodno za sve čitatelje.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ili corvoboys.org i pitajte\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Da"

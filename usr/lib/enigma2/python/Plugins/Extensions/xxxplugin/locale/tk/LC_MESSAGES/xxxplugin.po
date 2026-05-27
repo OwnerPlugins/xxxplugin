@@ -10,115 +10,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \ n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= GÖRNÜŞ: ============ \ n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "Üns beriň: \ n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Keşleriň hemmesi boş!"
 
 msgid "Back"
-msgstr ""
+msgstr "Yzyna"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Keş bukjasy"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Katalog saýlaň"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Katalogy saýlaň:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Hyzmat pleýer salgylanmasyny sazlaň, Enigma täzeden başlamaly"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Downloadüklemek şowsuz !!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Boş keş"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Roralňyşlyk barada hasabat!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Bu kategoriýany süzüň ..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Papka keş keşi (meselem: / media / hdd), Enigma täzeden açmaly"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Papka film ýoly (mysal üçin: / media / hdd / film), Enigma täzeden başlamaly"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Goldaw üçin sosial baglanyşyklarymyza giriň \ n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "18 ýaşdan uly bolsaňyz we \ n isleseňiz"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Ilki bilen “Streamlink” -i guruň"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Kino bukjasy"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Hiç zat ... Gaýtadan synanyşyň"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Diňe VOD filmine rugsat berildi ýa-da ýok .Sekst süzüldi !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00 \ n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Sazlamalary tygşytlamazdan hakykatdanam ýapykmy?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "Saýlawyňyzy saýlaň"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "GURAMAK"
 
 msgid "Save"
-msgstr ""
+msgstr "Saklaň"
 
 msgid "Select"
-msgstr ""
+msgstr "Saýlaň"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Hyzmatlar Pleýeriň salgylanma görnüşi"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Sazlamalar dogry saklandy!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "Şükür: \ n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Bütin ýüregim bilen sag bolsun aýdýaryn \ n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Bu plugin ulularyň mazmunyny öz içine alýar"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Siz eýýäm göçürip alýarsyňyz !!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "edýänlerimizi we nädip edýändigimizi halasaňyz \ n"
 
 msgid "no"
-msgstr ""
+msgstr "ýok"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "ähli okyjylar üçin amatly. \ n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ýa-da corvoboys.org we soraň \ n"
 
 msgid "yes"
-msgstr ""
+msgstr "hawa"

@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SOPORTE ACTIVADO: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ATENCIÓN POR FAVOR: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Toda a dobra da caché está baleira!"
 
 msgid "Back"
-msgstr ""
+msgstr "De volta"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Cartafol da caché"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Escolla Directorio"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Escolle directorio:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Configure Service Player Reference, é necesario reiniciar Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Fallou a descarga!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Caché baleira"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Informe de erro problema!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtrar esta categoría..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Ruta da caché do cartafol (por exemplo: /media/hdd), é necesario reiniciar Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Ruta da película do cartafol (por exemplo: /media/hdd/movie), é necesario reiniciar Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Para obter asistencia, visita as nosas ligazóns sociais, vai a\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Se tes máis de 18 anos e queres\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Instala Streamlink primeiro"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Cartafol de películas"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Nada... Volve tentar"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Só se permiten películas VOD ou non se filtran .ext!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Pechar de verdade sen gardar a configuración?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "SELECCIONA A SÚA ELECCIÓN"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "CONFIGURACIÓN DO COMPLEMENTO"
 
 msgid "Save"
-msgstr ""
+msgstr "Gardar"
 
 msgid "Select"
-msgstr ""
+msgstr "Seleccione"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Servizos Tipo de referencia do xogador"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "A configuración gardouse correctamente!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "GRAZAS A:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Grazas de todo corazón\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Este complemento contén contido para adultos non\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Xa estás descargando!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "se che gusta o que facemos e como o facemos\n"
 
 msgid "no"
-msgstr ""
+msgstr "non"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "axeitado para todos os lectores.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ou corvoboys.org e pregunta\n"
 
 msgid "yes"
-msgstr ""
+msgstr "si"

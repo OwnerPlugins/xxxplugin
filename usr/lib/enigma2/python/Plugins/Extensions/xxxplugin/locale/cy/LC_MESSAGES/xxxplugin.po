@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "======== CEFNOGAETH AR: ==========="
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "SYLWCH OS GWELWCH YN DDA: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Pob storfa'n plygu'n wag!"
 
 msgid "Back"
-msgstr ""
+msgstr "Yn ol"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Ffolder storfa"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Dewiswch Cyfeiriadur"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Dewiswch Cyfeiriadur:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Ffurfweddu Cyfeirnod Chwaraewr Gwasanaeth, mae angen ailgychwyn Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Wedi methu llwytho i lawr!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache Gwag"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Mater Adroddiad Gwall!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Hidlo'r categori hwn..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Llwybr Cache Ffolder (ee.: /media/hdd), mae angen ailgychwyn Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Llwybr Ffilm Ffolder (ee.: /media/hdd/movie), mae angen ailgychwyn Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Am Gymorth ewch i'n dolenni cymdeithasol ewch i\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Os ydych dros 18 oed ac yn dymuno\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Gosod Streamlink yn gyntaf"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Ffolder ffilm"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Dim byd ... Ailgeisio"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Dim ond VOD Movie a ganiateir neu beidio. est Hidlo!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Cau iawn heb gadw gosodiadau?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "DEWISWCH EICH DEWIS"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "Ategyn GOSOD"
 
 msgid "Save"
-msgstr ""
+msgstr "Arbed"
 
 msgid "Select"
-msgstr ""
+msgstr "Dewiswch"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Gwasanaethau Chwaraewr Math o gyfeirnod"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Gosodiadau wedi'u cadw'n gywir!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "DIOLCH I:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Diolch â'm holl galon\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Mae'r ategyn hwn yn cynnwys cynnwys oedolion nid\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Rydych chi'n llwytho i lawr yn barod!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "os ydych chi'n hoffi'r hyn rydyn ni'n ei wneud a sut rydyn ni'n ei wneud\n"
 
 msgid "no"
-msgstr ""
+msgstr "nac oes"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "addas ar gyfer pob darllenydd.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com neu corvoboys.org a gofynnwch\n"
 
 msgid "yes"
-msgstr ""
+msgstr "oes"

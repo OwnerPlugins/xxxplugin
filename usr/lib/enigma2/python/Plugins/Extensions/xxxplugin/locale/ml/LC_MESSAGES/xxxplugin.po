@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= പിന്തുണ: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ശ്രദ്ധിക്കുക: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "എല്ലാ കാഷെ ഫോൾഡും ശൂന്യമാണ്!"
 
 msgid "Back"
-msgstr ""
+msgstr "തിരികെ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "കാഷെ ഫോൾഡർ"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "ഡയറക്ടറി തിരഞ്ഞെടുക്കുക"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "ഡയറക്ടറി തിരഞ്ഞെടുക്കുക:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "സർവീസ് പ്ലെയർ റഫറൻസ് കോൺഫിഗർ ചെയ്യുക, എനിഗ്മ പുനരാരംഭിക്കേണ്ടതുണ്ട്"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "ഡൗൺലോഡ് പരാജയപ്പെട്ടു!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "ശൂന്യമായ കാഷെ"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "പിശക് റിപ്പോർട്ട് പ്രശ്നം!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "ഈ വിഭാഗം ഫിൽട്ടർ ചെയ്യുക..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "ഫോൾഡർ കാഷെ പാത്ത് (ഉദാ: /media/hdd), എനിഗ്മ പുനരാരംഭിക്കേണ്ടതുണ്ട്"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "ഫോൾഡർ മൂവി പാത്ത് (ഉദാ: /media/hdd/movie), Enigma പുനരാരംഭിക്കേണ്ടതുണ്ട്"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "പിന്തുണയ്‌ക്കായി ഞങ്ങളുടെ സോഷ്യൽ ലിങ്കുകൾ സന്ദർശിക്കുക\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "നിങ്ങൾക്ക് 18 വയസ്സിന് മുകളിൽ പ്രായമുണ്ടെങ്കിൽ\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "ആദ്യം Streamlink ഇൻസ്റ്റാൾ ചെയ്യുക"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "മൂവി ഫോൾഡർ"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "ഒന്നുമില്ല... വീണ്ടും ശ്രമിക്കുക"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD മൂവി മാത്രം അനുവദനീയമോ ഇല്ലയോ .ext ഫിൽട്ടർ ചെയ്‌തു!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "ക്രമീകരണങ്ങൾ സംരക്ഷിക്കാതെ ശരിക്കും അടയ്ക്കണോ?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "നിങ്ങളുടെ ചോയ്സ് തിരഞ്ഞെടുക്കുക"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "പ്ലഗിൻ സജ്ജീകരിക്കുക"
 
 msgid "Save"
-msgstr ""
+msgstr "സംരക്ഷിക്കുക"
 
 msgid "Select"
-msgstr ""
+msgstr "തിരഞ്ഞെടുക്കുക"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "സേവനങ്ങൾ പ്ലേയർ റഫറൻസ് തരം"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "ക്രമീകരണങ്ങൾ ശരിയായി സംരക്ഷിച്ചു!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "നന്ദി:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "പൂർണ്ണഹൃദയത്തോടെ നന്ദി\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "ഈ പ്ലഗിനിൽ മുതിർന്നവർക്കുള്ള ഉള്ളടക്കം അടങ്ങിയിട്ടില്ല\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "നിങ്ങൾ ഇതിനകം ഡൗൺലോഡ് ചെയ്യുന്നു!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ഞങ്ങൾ ചെയ്യുന്നതും എങ്ങനെ ചെയ്യുന്നതും നിങ്ങൾക്ക് ഇഷ്ടമാണെങ്കിൽ\n"
 
 msgid "no"
-msgstr ""
+msgstr "ഇല്ല"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "എല്ലാ വായനക്കാർക്കും അനുയോജ്യം.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com അല്ലെങ്കിൽ corvoboys.org എന്ന വിലാസത്തിൽ പോയി ചോദിക്കൂ\n"
 
 msgid "yes"
-msgstr ""
+msgstr "അതെ"

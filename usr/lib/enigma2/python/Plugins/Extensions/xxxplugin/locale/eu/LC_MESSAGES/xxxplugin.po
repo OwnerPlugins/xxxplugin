@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= LAGUNTZA ON: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ARRETA MESEDEZ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Cache tolestura guztia hutsik!"
 
 msgid "Back"
-msgstr ""
+msgstr "Itzuli"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Cache karpeta"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Aukeratu Direktorioa"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Aukeratu direktorioa:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfiguratu Service Player Reference, Enigma berrabiarazi behar da"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Deskargatu huts egin du!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache hutsa"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Errorearen berri eman arazoa!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Iragazi kategoria hau..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Karpetaren cachearen bidea (adibidez: /media/hdd), Enigma berrabiarazi behar da"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Karpeta Filmaren bidea (adibidez: /media/hdd/movie), Enigma berrabiarazi behar da"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Laguntzarako, bisitatu gure esteka sozialak hona\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "18 urte baino gehiago badituzu eta nahi baduzu\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Instalatu Streamlink lehenik"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filmaren karpeta"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ezer ez... Saiatu berriro"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD filma bakarrik onartzen da edo ez .ext filtratua!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Benetan itxi ezarpenak gorde gabe?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "HAUTATU ZURE AUKERA"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "KONFIGURATU PLUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Gorde"
 
 msgid "Select"
-msgstr ""
+msgstr "Hautatu"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Zerbitzuak Jokalari Erreferentzia mota"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Ezarpenak behar bezala gorde dira!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ESKERRIK ASKO:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Eskerrik asko bihotz-bihotzez\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Plugin honek helduentzako edukia dauka ez\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Jada deskargatzen ari zara!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "egiten duguna eta nola egiten dugun gustatzen bazaizu\n"
 
 msgid "no"
-msgstr ""
+msgstr "ez"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "irakurle guztientzat egokia.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com edo corvoboys.org eta galdetu\n"
 
 msgid "yes"
-msgstr ""
+msgstr "bai"

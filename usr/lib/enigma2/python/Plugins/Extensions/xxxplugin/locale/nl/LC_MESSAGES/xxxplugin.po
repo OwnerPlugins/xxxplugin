@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ONDERSTEUNING AAN: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "LET OP: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Alle cache leeggeklapt!"
 
 msgid "Back"
-msgstr ""
+msgstr "Rug"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Cache-map"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Kies Directory"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Kies map:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Configureer Service Player Reference, Enigma-herstart vereist"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Downloaden mislukt!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Lege cache"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Probleem met foutrapport!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filter deze categorie..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Mapcachepad (bijv.: /media/hdd), Enigma-herstart vereist"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Map Filmpad (bijv.: /media/hdd/movie), Enigma-herstart vereist"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Bezoek voor ondersteuning onze sociale links naar\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Als u ouder bent dan 18 jaar en dit wilt\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Installeer eerst Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Film map"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Niets... Probeer het opnieuw"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Alleen VOD-film toegestaan ​​of niet. Ext gefilterd!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Echt afsluiten zonder instellingen op te slaan?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "SELECTEER UW KEUZE"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "INSTALLATIEPLUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Redden"
 
 msgid "Select"
-msgstr ""
+msgstr "Selecteer"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Services Spelerreferentietype"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Instellingen correct opgeslagen!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "BEDANKT AAN:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Bedankt met heel mijn hart\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Deze plug-in bevat inhoud voor volwassenen en niet\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Je bent al aan het downloaden!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "als je het leuk vindt wat we doen en hoe we het doen\n"
 
 msgid "no"
-msgstr ""
+msgstr "Nee"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "geschikt voor alle lezers.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com of corvoboys.org en vraag\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Ja"

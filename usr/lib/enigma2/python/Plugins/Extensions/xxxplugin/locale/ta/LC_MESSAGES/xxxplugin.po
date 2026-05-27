@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ஆதரவு: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "கவனத்திற்கு: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "அனைத்து தற்காலிக சேமிப்பு மடிப்பு காலியாக உள்ளது!"
 
 msgid "Back"
-msgstr ""
+msgstr "மீண்டும்"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "கேச் கோப்புறை"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "கோப்பகத்தைத் தேர்வுசெய்க:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "சர்வீஸ் பிளேயர் குறிப்பை உள்ளமைக்கவும், எனிக்மா மறுதொடக்கம் தேவை"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "பதிவிறக்கம் தோல்வி!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "காலி கேச்"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "பிழை அறிக்கை சிக்கல்!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "இந்த வகையை வடிகட்டவும்..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "கோப்புறை கேச் பாதை (எ.கா.: /media/hdd), எனிக்மா மறுதொடக்கம் தேவை"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "கோப்புறை மூவி பாதை (எ.கா.: /media/hdd/movie), Enigma மறுதொடக்கம் தேவை"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "ஆதரவுக்கு எங்கள் சமூக இணைப்புகளைப் பார்வையிடவும்\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "நீங்கள் 18 வயதுக்கு மேல் இருந்தால்\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "முதலில் Streamlink ஐ நிறுவவும்"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "மூவி கோப்புறை"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "ஒன்றுமில்லை... மீண்டும் முயற்சிக்கவும்"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD திரைப்படம் மட்டுமே அனுமதிக்கப்படுகிறது அல்லது அனுமதிக்கப்படவில்லை .ext வடிகட்டப்பட்டது!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "அமைப்புகளைச் சேமிக்காமல் உண்மையில் மூடவா?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "உங்கள் விருப்பத்தைத் தேர்ந்தெடுக்கவும்"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "செருகுநிரலை அமைக்கவும்"
 
 msgid "Save"
-msgstr ""
+msgstr "சேமிக்கவும்"
 
 msgid "Select"
-msgstr ""
+msgstr "தேர்ந்தெடு"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "சேவைகள் பிளேயர் குறிப்பு வகை"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "அமைப்புகள் சரியாகச் சேமிக்கப்பட்டன!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "நன்றி:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "என் மனமார்ந்த நன்றி\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "இந்த செருகுநிரலில் வயது வந்தோருக்கான உள்ளடக்கம் இல்லை\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "நீங்கள் ஏற்கனவே பதிவிறக்கம் செய்கிறீர்கள்!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "நாங்கள் என்ன செய்கிறோம், எப்படி செய்கிறோம் என்பதை நீங்கள் விரும்பினால்\n"
 
 msgid "no"
-msgstr ""
+msgstr "இல்லை"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "அனைத்து வாசகர்களுக்கும் ஏற்றது.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com அல்லது corvoboys.org மற்றும் கேட்கவும்\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ஆம்"

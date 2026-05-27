@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= الدعم قيد التشغيل: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "يرجى الانتباه: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "كل ذاكرة التخزين المؤقت قابلة للطي فارغة!"
 
 msgid "Back"
-msgstr ""
+msgstr "خلف"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "مجلد ذاكرة التخزين المؤقت"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "اختر الدليل"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "اختر الدليل:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "تكوين مرجع مشغل الخدمة، يلزم إعادة تشغيل Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "فشل التحميل!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "ذاكرة التخزين المؤقت فارغة"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "مشكلة تقرير الخطأ!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "تصفية هذه الفئة..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "مسار ذاكرة التخزين المؤقت للمجلد (على سبيل المثال: /media/hdd)، يلزم إعادة تشغيل Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "مسار فيلم المجلد (على سبيل المثال: /media/hdd/movie)، يلزم إعادة تشغيل Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "للحصول على الدعم، قم بزيارة روابطنا الاجتماعية، انتقل إلى\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "إذا كان عمرك يزيد عن 18 عامًا وترغب في ذلك\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "قم بتثبيت Streamlink أولاً"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "مجلد الفيلم"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "لا شيء... أعد المحاولة"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "يُسمح فقط بفيلم VOD أم لا. تمت تصفيته !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "رمز الاستجابة السريعة 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "إغلاق حقا دون حفظ الإعدادات؟"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "حدد اختيارك"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "البرنامج المساعد للإعداد"
 
 msgid "Save"
-msgstr ""
+msgstr "يحفظ"
 
 msgid "Select"
-msgstr ""
+msgstr "يختار"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "نوع مرجع مشغل الخدمات"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "تم حفظ الإعدادات بشكل صحيح!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "شكرًا لـ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "أشكركم من كل قلبي\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "يحتوي هذا البرنامج الإضافي على محتوى للبالغين لا\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "أنت تقوم بالتحميل بالفعل !!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "إذا كنت تحب ما نقوم به وكيف نفعل ذلك\n"
 
 msgid "no"
-msgstr ""
+msgstr "لا"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "مناسب لكافة القراء.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com أو corvoboys.org واسأل\n"
 
 msgid "yes"
-msgstr ""
+msgstr "نعم"

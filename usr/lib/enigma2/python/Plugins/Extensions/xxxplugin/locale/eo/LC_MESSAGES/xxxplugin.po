@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SUBTENO ON: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ATENTU BONVOLU: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Ĉiuj kaŝmemorfaldoj malplenaj!"
 
 msgid "Back"
-msgstr ""
+msgstr "Reen"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Cache dosierujo"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Elektu Dosierujon"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Elektu Dosierujon:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Agordi Servan Ludantan Referencon, Enigma rekomenco bezonata"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Elŝuto malsukcesis!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Malplena Kaŝmemoro"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Problemo pri Erara Raporto!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtri ĉi tiun kategorion..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Dosierujo Cache Vojo (ekz.: /media/hdd), Enigma rekomenco necesas"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Dosierujo Film Vojo (ekz.: /media/hdd/movie), Enigma rekomenco necesas"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Por Subteno vizitu niajn sociajn ligilojn iru al\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Se vi estas pli ol 18-jara kaj deziras\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Instalu Streamlink unue"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filma dosierujo"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Nenio... Reprovu"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Nur VOD-Filmo permesita aŭ ne .ext Filtrita!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Ĉu vere fermi sen konservi agordojn?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ELEKTU VIAN ELEKTON"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "Agordu kromprogramon"
 
 msgid "Save"
-msgstr ""
+msgstr "Konservu"
 
 msgid "Select"
-msgstr ""
+msgstr "Elektu"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Servoj Ludanta Referenca tipo"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Agordoj ĝuste konservitaj!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "DANKON AL:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Dankon tutkore\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Ĉi tiu kromaĵo enhavas plenkreskan enhavon ne\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Vi jam elŝutas!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "se vi ŝatas kion ni faras kaj kiel ni faras ĝin\n"
 
 msgid "no"
-msgstr ""
+msgstr "ne"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "taŭga por ĉiuj legantoj.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com aŭ corvoboys.org kaj demandu\n"
 
 msgid "yes"
-msgstr ""
+msgstr "jes"

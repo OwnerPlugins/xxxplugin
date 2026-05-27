@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ДАСТГИРӢ ДАР БОРАИ: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ДИККАТ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Ҳама ҷузвдони кэш холӣ!"
 
 msgid "Back"
-msgstr ""
+msgstr "Бозгашт"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Папкаи кэш"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Директорияро интихоб кунед"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Директорияро интихоб кунед:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Конфигуратсияи хидматрасонии Player Reference, Enigma аз нав оғоз кардан лозим аст"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Download Муваффақ шуд!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Кэш холӣ"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Масъалаи гузориши хато!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Филтри ин категория..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Роҳи кэши папка (масалан: /media/hdd), Enigma аз нав оғоз кардан лозим аст"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Роҳи филми папка (масалан: /media/hdd/movie), Enigma аз нав оғоз кардан лозим аст"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Барои дастгирӣ ба истинодҳои иҷтимоии мо муроҷиат кунед, ба\n гузаред"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Агар шумо аз 18-сола боло бошед ва мехоҳед\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Аввалан Streamlink насб кунед"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Папкаи филм"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ҳеҷ чиз ... Боз кӯшиш кунед"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Танҳо филми VOD иҷозат дода шудааст ё не .ext Филтр карда шудааст!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Дар ҳақиқат бе нигоҳ доштани танзимот пӯшида мешавад?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ИНТИХОБИ ХУДРО ИНТИХОБ КУНЕД"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ПЛАГИНРО НАЗОР КУНЕД"
 
 msgid "Save"
-msgstr ""
+msgstr "Захира кунед"
 
 msgid "Select"
-msgstr ""
+msgstr "Интихоб кунед"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Навъи истинод ба хидматҳо"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Танзимотҳо дуруст захира карда шуданд!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "РАХМАТ БА:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Аз тахти дил ташаккур\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Ин плагин дорои мундариҷаи калонсолон нест\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Шумо аллакай зеркашӣ карда истодаед!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "агар ба шумо коре, ки мо мекунем ва чӣ тавр мекунем\n"
 
 msgid "no"
-msgstr ""
+msgstr "не"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "барои ҳама хонандагон мувофиқ аст.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com ё corvoboys.org ва пурсед\n"
 
 msgid "yes"
-msgstr ""
+msgstr "бале"

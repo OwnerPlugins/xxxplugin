@@ -11,115 +11,115 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+WWW.TIVUSTREAM.COM – WWW.CORVOBOYS.ORG+\n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= PARAMA: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "DĖMESIO: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Visas talpyklos lankstymas tuščias!"
 
 msgid "Back"
-msgstr ""
+msgstr "Atgal"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Talpyklos aplankas"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Pasirinkite Katalogas"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Pasirinkite katalogą:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigūruokite „Service Player“ nuorodą, reikia iš naujo paleisti „Enigma“."
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Atsisiųsti nepavyko!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Ištuštinti talpyklą"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Pranešti apie klaidą apie problemą!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtruoti šią kategoriją..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Aplanko talpyklos kelias (pvz.: /media/hdd), reikia iš naujo paleisti „Enigma“."
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Aplanko filmo kelias (pvz.: /media/hdd/movie), reikia iš naujo paleisti „Enigma“."
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Norėdami gauti pagalbos, apsilankykite mūsų socialiniuose tinkluose adresu\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Jei esate vyresnis nei 18 metų ir norite\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Pirmiausia įdiekite „Streamlink“."
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filmo aplankas"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Nieko... Bandyk dar kartą"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Leidžiamas tik VOD filmas arba ne .ext Filtruotas!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Tikrai uždaryti neišsaugoję nustatymų?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "PASIRINKITE SAVO PASIRINKIMĄ"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "NUSTATYMO Papildinys"
 
 msgid "Save"
-msgstr ""
+msgstr "Išsaugoti"
 
 msgid "Select"
-msgstr ""
+msgstr "Pasirinkite"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Paslaugos Grotuvo nuorodos tipas"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Nustatymai išsaugoti teisingai!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "AČIŪ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Iš visos širdies dėkoju\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Šiame papildinyje nėra suaugusiesiems skirto turinio\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Jūs jau atsisiunčiate!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "jei jums patinka tai, ką mes darome ir kaip mes tai darome\n"
 
 msgid "no"
-msgstr ""
+msgstr "ne"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "tinka visiems skaitytojams.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com arba corvoboys.org ir paklauskite\n"
 
 msgid "yes"
-msgstr ""
+msgstr "taip"

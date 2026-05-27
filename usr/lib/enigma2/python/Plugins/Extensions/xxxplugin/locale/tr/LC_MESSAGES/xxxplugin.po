@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= DESTEK AÇIK: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "DİKKAT LÜTFEN: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Tüm önbellek katları boş!"
 
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Önbellek klasörü"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Dizin Seçin"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Dizin Seçin:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Service Player Referansını Yapılandırın, Enigma'nın yeniden başlatılması gerekiyor"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "İndirme Başarısız!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Önbelleği Boşalt"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Hata Raporu Sorunu!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Bu kategoriyi filtrele..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Klasör Önbellek Yolu (örn.: /media/hdd), Enigma'nın yeniden başlatılması gerekiyor"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Klasör Film Yolu (örn.: /media/hdd/movie), Enigma'nın yeniden başlatılması gerekiyor"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Destek için\n adresindeki sosyal bağlantılarımızı ziyaret edin"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "18 yaşın üzerindeyseniz ve bunu yapmak istiyorsanız\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Önce Streamlink'i yükleyin"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Film klasörü"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Hiçbir şey... Tekrar dene"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Yalnızca VOD Filmine izin verilir veya verilmez. Ext Filtrelendi!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Ayarları kaydetmeden gerçekten kapatılsın mı?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "SEÇİMİNİZİ SEÇİN"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "KURULUM EKLENTİ"
 
 msgid "Save"
-msgstr ""
+msgstr "Kaydetmek"
 
 msgid "Select"
-msgstr ""
+msgstr "Seçme"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Hizmetler Oynatıcı Referans türü"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Ayarlar doğru şekilde kaydedildi!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "TEŞEKKÜR EDERİM:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Tüm kalbimle teşekkür ederim\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Bu eklenti yetişkinlere uygun içerik barındırıyor\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Zaten indiriyorsunuz!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "yaptığımız şeyi ve bunu nasıl yaptığımızı beğendiyseniz\n"
 
 msgid "no"
-msgstr ""
+msgstr "HAYIR"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "tüm okuyucular için uygundur.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com veya corvoboys.org adresine gidin ve sorun\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Evet"

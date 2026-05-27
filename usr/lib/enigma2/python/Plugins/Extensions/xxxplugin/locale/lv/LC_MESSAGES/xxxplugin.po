@@ -11,115 +11,115 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+WWW.TIVUSTREAM.COM — WWW.CORVOBOYS.ORG+\n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ATBALSTS: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "LŪDZU, UZMANĪBU: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Visa kešatmiņa ir tukša!"
 
 msgid "Back"
-msgstr ""
+msgstr "Atpakaļ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Kešatmiņas mape"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Izvēlieties direktoriju"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Izvēlieties direktoriju:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Konfigurējiet pakalpojuma atskaņotāja atsauci, nepieciešama Enigma restartēšana"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Lejupielāde neizdevās!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Iztukšojiet kešatmiņu"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Kļūda Ziņot par problēmu!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Filtrēt šo kategoriju..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Mapes kešatmiņas ceļš (piemēram, /media/hdd), nepieciešama Enigma restartēšana"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Mapes filmas ceļš (piemēram, /media/hdd/movie), nepieciešama Enigma restartēšana"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Lai saņemtu atbalstu, apmeklējiet mūsu sociālās saites\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Ja esat vecāks par 18 gadiem un vēlaties\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Vispirms instalējiet Streamlink"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Filmu mape"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Nekas... Mēģiniet vēlreiz"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Atļauts vai nav atļauts tikai VOD filmas .ext Filtrēts!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Vai tiešām aizvērt, nesaglabājot iestatījumus?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "IZVĒLIES SAVU IZVĒLI"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "Iestatīšanas spraudnis"
 
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 msgid "Select"
-msgstr ""
+msgstr "Izvēlieties"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Pakalpojumi Spēlētāja atsauces veids"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Iestatījumi saglabāti pareizi!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "PALDIES:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Paldies no visas sirds\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Šis spraudnis satur pieaugušajiem paredzētu saturu, nevis\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Jūs jau lejupielādējat!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ja jums patīk tas, ko mēs darām un kā mēs to darām\n"
 
 msgid "no"
-msgstr ""
+msgstr "nē"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "piemērots visiem lasītājiem.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com vai corvoboys.org un jautājiet\n"
 
 msgid "yes"
-msgstr ""
+msgstr "jā"

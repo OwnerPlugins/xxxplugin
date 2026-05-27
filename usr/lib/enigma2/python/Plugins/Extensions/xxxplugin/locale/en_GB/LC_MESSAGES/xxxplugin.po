@@ -13,7 +13,7 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= SUPPORT ON: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
 msgstr ""
@@ -73,7 +73,7 @@ msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr ""
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
 msgstr ""

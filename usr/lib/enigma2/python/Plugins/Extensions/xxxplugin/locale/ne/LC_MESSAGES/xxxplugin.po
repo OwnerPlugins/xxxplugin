@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= सपोर्ट अन: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "कृपया ध्यान दिनुहोस्: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "सबै क्यास फोल्ड खाली!"
 
 msgid "Back"
-msgstr ""
+msgstr "पछाडि"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "क्यास फोल्डर"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "निर्देशिका छान्नुहोस्"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "निर्देशिका छान्नुहोस्:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "सेवा प्लेयर सन्दर्भ कन्फिगर गर्नुहोस्, एनिग्मा पुन: सुरु गर्न आवश्यक छ"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "डाउनलोड असफल !!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "खाली क्यास"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "त्रुटि रिपोर्ट मुद्दा!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "यो श्रेणी फिल्टर गर्नुहोस्..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "फोल्डर क्यास पथ (जस्तै: /media/hdd), Enigma पुन: सुरु गर्न आवश्यक छ"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "फोल्डर चलचित्र पथ (उदाहरण: /media/hdd/movie), Enigma पुन: सुरु गर्न आवश्यक छ"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "समर्थनको लागि हाम्रो सामाजिक लिङ्कहरूमा जानुहोस्\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "यदि तपाईं १८ वर्षभन्दा माथिको हुनुहुन्छ र चाहनुहुन्छ भने\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "पहिले Streamlink स्थापना गर्नुहोस्"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "चलचित्र फोल्डर"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "केहि छैन ... पुन: प्रयास गर्नुहोस्"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD चलचित्र मात्र अनुमति छ वा छैन। ext फिल्टर गरिएको छ !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "सेटिङ्हरू बचत नगरी साँच्चै बन्द गर्ने हो?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "आफ्नो छनोट चयन गर्नुहोस्"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "सेटअप प्लगइन"
 
 msgid "Save"
-msgstr ""
+msgstr "बचत गर्नुहोस्"
 
 msgid "Select"
-msgstr ""
+msgstr "चयन गर्नुहोस्"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "सेवा प्लेयर सन्दर्भ प्रकार"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "सेटिङहरू सही रूपमा सुरक्षित गरियो!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "धन्यवाद:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "मेरो सम्पूर्ण हृदय देखि धन्यवाद\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "यो प्लगइनले वयस्क सामग्री समावेश गर्दछ\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "तपाईं पहिले नै डाउनलोड गर्दै हुनुहुन्छ !!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "यदि तपाईंलाई हामी के गर्छौं र कसरी गर्छौं भन्ने मनपर्छ"
 
 msgid "no"
-msgstr ""
+msgstr "छैन"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "सबै पाठकहरूको लागि उपयुक्त।\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com वा corvoboys.org र सोध्नुहोस्\n"
 
 msgid "yes"
-msgstr ""
+msgstr "हो"

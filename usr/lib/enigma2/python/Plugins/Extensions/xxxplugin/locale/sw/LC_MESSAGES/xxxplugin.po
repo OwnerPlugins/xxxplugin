@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= MSAADA KWA: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "TAFADHALI TAFADHALI: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Akiba yote mara tupu!"
 
 msgid "Back"
-msgstr ""
+msgstr "Nyuma"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Folda ya akiba"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Chagua Saraka"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Chagua Saraka:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Sanidi Rejeleo la Kicheza Huduma, Kuanzisha upya kwa mafumbo kunahitajika"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Imeshindwa Kupakua!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache tupu"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Tatizo la Ripoti ya Hitilafu!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Chuja aina hii..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Njia ya Akiba ya folda (kwa mfano: /media/hdd), Kuanzisha upya kwa mafumbo kunahitajika"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Njia ya Filamu ya Folda (km.: /media/hdd/movie), Kuanzisha upya kwa mafumbo kunahitajika"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Kwa Usaidizi tembelea viungo vyetu vya kijamii nenda kwa\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Ikiwa una umri wa zaidi ya miaka 18 na ungependa\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Sakinisha Streamlink kwanza"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Folda ya filamu"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Hakuna ... Jaribu tena"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Filamu ya VOD pekee ndiyo inayoruhusiwa au la .ext Imechujwa!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Je, ungependa kufunga bila kuhifadhi mipangilio?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "CHAGUA UCHAGUZI WAKO"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "WEKA Plugin"
 
 msgid "Save"
-msgstr ""
+msgstr "Hifadhi"
 
 msgid "Select"
-msgstr ""
+msgstr "Chagua"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Aina ya Marejeleo ya Kichezaji cha Huduma"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Mipangilio imehifadhiwa kwa usahihi!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "SHUKRANI KWA:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Asante kwa moyo wangu wote\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Programu-jalizi hii ina maudhui ya watu wazima sio\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Tayari unapakua!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ikiwa unapenda tunachofanya na jinsi tunavyofanya\n"
 
 msgid "no"
-msgstr ""
+msgstr "hapana"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "yanafaa kwa wasomaji wote.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com au corvoboys.org na uulize\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ndio"

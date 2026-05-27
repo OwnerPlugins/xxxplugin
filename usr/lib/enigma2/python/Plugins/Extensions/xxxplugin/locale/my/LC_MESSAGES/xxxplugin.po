@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ပံ့ပိုးမှုဖွင့်ထားသည်- ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ကျေးဇူးပြု၍ သတိပြုပါ- \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "ကက်ရှ်အားလုံး ဗလာခေါက်။"
 
 msgid "Back"
-msgstr ""
+msgstr "ကျော"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "ကက်ရှ်ဖိုဒါ"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "လမ်းညွှန်ကို ရွေးပါ။"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "လမ်းညွှန်ကို ရွေးပါ-"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "ဝန်ဆောင်မှုပလေယာအကိုးအကားကို စီစဉ်သတ်မှတ်ပါ၊ Enigma ပြန်လည်စတင်ရန် လိုအပ်သည်။"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "ဒေါင်းလုဒ် မအောင်မြင်ပါ!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "ကက်ရှ်ဗလာ"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "အမှားအယွင်း ပြဿနာကို တိုင်ကြားပါ။"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "ဤအမျိုးအစားကို စစ်ထုတ်ပါ..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Folder Cache Path (ဥပမာ။: /media/hdd), Enigma ကို ပြန်လည်စတင်ရန် လိုအပ်သည်။"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "ဖိုင်တွဲ ရုပ်ရှင်လမ်းကြောင်း (ဥပမာ။: /media/hdd/movie), Enigma ကို ပြန်လည်စတင်ရန် လိုအပ်သည်။"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "အကူအညီအတွက် ကျွန်ုပ်တို့၏လူမှုရေးလင့်ခ်များကို သွားရောက်ကြည့်ရှုပါ\n သို့သွားပါ။"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "အကယ်၍ သင်သည် အသက် 18 နှစ်ကျော်ပြီး လိုချင်ပါက\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "ပထမဦးစွာ Streamlink ကို install လုပ်ပါ။"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "ရုပ်ရှင်ဖိုင်တွဲ"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "ဘာမှမဟုတ်ပါဘူး... ပြန်စမ်းပါ။"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD Movie များကိုသာ ခွင့်ပြုသည် သို့မဟုတ် .ext Filtered !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "ဆက်တင်များကို မသိမ်းဘဲ အမှန်တကယ် ပိတ်မလား။"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "သင့်ရွေးချယ်မှုကို ရွေးချယ်ပါ။"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ပလပ်အင်ကို တပ်ဆင်ပါ။"
 
 msgid "Save"
-msgstr ""
+msgstr "သိမ်းဆည်းပါ။"
 
 msgid "Select"
-msgstr ""
+msgstr "ရွေးချယ်ပါ။"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Services Player ရည်ညွှန်းချက် အမျိုးအစား"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "ဆက်တင်များကို မှန်ကန်စွာ သိမ်းဆည်းထားသည်။"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ကျေးဇူးတင်ပါတယ်-\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "စိတ်နှလုံးအကြွင်းမဲ့ ကျေးဇူးတင်ပါတယ်\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "ဤပလပ်အင်တွင် အရွယ်ရောက်ပြီးသူ အကြောင်းအရာမပါဝင်ပါ\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "ဒေါင်းလုဒ်ဆွဲနေပြီ!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ကျွန်ုပ်တို့လုပ်သောအရာကို သင်နှစ်သက်ပါက၊ ၎င်းကို ကျွန်ုပ်တို့ပြုလုပ်နည်း\n"
 
 msgid "no"
-msgstr ""
+msgstr "မဟုတ်ဘူး"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "စာဖတ်သူအားလုံးအတွက် သင့်လျော်ပါသည်။\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com သို့မဟုတ် corvoboys.org သို့မေးပါ\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ဟုတ်တယ်"

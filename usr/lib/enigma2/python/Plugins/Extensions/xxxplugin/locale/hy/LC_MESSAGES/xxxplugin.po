@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ԱՋԱԿՑՈՒԹՅՈՒՆԸ՝ =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ՈՒՇԱԴՐՈՒԹՅՈՒՆ՝ \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Բոլոր քեշի ծալքը դատարկ է:"
 
 msgid "Back"
-msgstr ""
+msgstr "Ետ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Քեշի թղթապանակ"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Ընտրեք տեղեկատու"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Ընտրեք տեղեկատու."
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Կարգավորեք ծառայության նվագարկչի տեղեկանքը, Enigma-ի վերագործարկումը պահանջվում է"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Ներբեռնումը ձախողվեց!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Դատարկ քեշը"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Սխալի մասին զեկույցի խնդիր:"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Զտել այս կատեգորիան..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Թղթապանակի քեշի ուղին (օրինակ՝ /media/hdd), Enigma-ի վերագործարկումը պահանջվում է"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Թղթապանակ ֆիլմի ուղին (օրինակ՝ /media/hdd/movie), Enigma-ի վերագործարկումը պարտադիր է"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Աջակցության համար այցելեք մեր սոցիալական հղումները՝ անցեք\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Եթե ​​դուք 18 տարեկանից բարձր եք և ցանկանում եք\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Նախ տեղադրեք Streamlink-ը"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Ֆիլմի թղթապանակ"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ոչինչ... Կրկին փորձեք"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Միայն VOD ֆիլմը թույլատրվում է, թե ոչ .ext Filtered!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Իսկապե՞ս փակել առանց կարգավորումները պահելու:"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ԸՆՏՐԵՔ ՁԵՐ ԸՆՏՐՈՒԹՅՈՒՆԸ"
 
 msgid "SETUP PLUGIN"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Պահպանել"
 
 msgid "Select"
-msgstr ""
+msgstr "Ընտրել"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Ծառայություններ խաղացողի տեղեկանքի տեսակը"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Կարգավորումները ճիշտ են պահվել:"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ՇՆՈՐՀԱԿԱԼՈՒԹՅՈՒՆ՝\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Շնորհակալություն ամբողջ սրտով\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Այս փլագինը պարունակում է ոչ մեծահասակների համար նախատեսված բովանդակություն\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Դուք արդեն ներբեռնում եք!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "եթե ձեզ դուր է գալիս այն, ինչ մենք անում ենք և ինչպես ենք դա անում\n"
 
 msgid "no"
-msgstr ""
+msgstr "ոչ"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "հարմար է բոլոր ընթերցողների համար։\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com կամ corvoboys.org և հարցրեք\n"
 
 msgid "yes"
-msgstr ""
+msgstr "այո"

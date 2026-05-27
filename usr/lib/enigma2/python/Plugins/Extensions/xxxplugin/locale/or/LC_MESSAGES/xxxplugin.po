@@ -10,115 +10,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \ n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ସମର୍ଥନ ଅନ୍: ============ \ n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ଧ୍ୟାନ ଦୟାକରି: \ n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "ସମସ୍ତ କ୍ୟାଚ୍ ଖାଲି ଅଛି!"
 
 msgid "Back"
-msgstr ""
+msgstr "ପଛକୁ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "କ୍ୟାଚ୍ ଫୋଲ୍ଡର୍ |"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "ଡିରେକ୍ଟୋରୀ ବାଛନ୍ତୁ |"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "ଡିରେକ୍ଟୋରୀ ବାଛନ୍ତୁ:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "ସେବା ପ୍ଲେୟାର ରେଫରେନ୍ସ ବିନ୍ୟାସ କରନ୍ତୁ, ଏନିଗମା ପୁନ rest ଆରମ୍ଭ ଆବଶ୍ୟକ |"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "ଡାଉନଲୋଡ୍ ବିଫଳ !!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "ଖାଲି କ୍ୟାଚ୍ |"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "ତ୍ରୁଟି ରିପୋର୍ଟ ଇସୁ!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "ଏହି ବର୍ଗ ଫିଲ୍ଟର୍ କରନ୍ତୁ ..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "ଫୋଲ୍ଡର କ୍ୟାଚ୍ ପଥ (ଯଥା: / ମିଡିଆ / hdd), ଏନିଗମା ପୁନ rest ଆରମ୍ଭ ଆବଶ୍ୟକ |"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "ଫୋଲ୍ଡର ଚଳଚ୍ଚିତ୍ର ପଥ (ଯଥା: / ମିଡିଆ / hdd / ଚଳଚ୍ଚିତ୍ର), ଏନିଗମା ପୁନ rest ଆରମ୍ଭ ଆବଶ୍ୟକ |"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "ସମର୍ଥନ ପାଇଁ ଆମର ସାମାଜିକ ଲିଙ୍କ୍ ପରିଦର୍ଶନ କରନ୍ତୁ \ n କୁ ଯାଆନ୍ତୁ |"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "ଯଦି ତୁମେ 18 ବର୍ଷରୁ ଅଧିକ ଏବଂ \ n କରିବାକୁ ଇଚ୍ଛା କର |"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "ପ୍ରଥମେ ଷ୍ଟ୍ରିମ୍ ଲିଙ୍କ୍ ସଂସ୍ଥାପନ କରନ୍ତୁ |"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "ଚଳଚ୍ଚିତ୍ର ଫୋଲ୍ଡର"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "କିଛି ନାହିଁ ... ପୁନ ry ଚେଷ୍ଟା କର |"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "କେବଳ VOD ଚଳଚ୍ଚିତ୍ର ଅନୁମୋଦିତ କି ନୁହେଁ .ଏକ୍ସ ଫିଲ୍ଟର୍ !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00 \ n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "ସେଟିଂ ସେଭ୍ ନକରି ପ୍ରକୃତରେ ବନ୍ଦ?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ଆପଣଙ୍କର ପସନ୍ଦ ଚୟନ କରନ୍ତୁ |"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ସେଟଅପ୍ ପ୍ଲଗଇନ୍ |"
 
 msgid "Save"
-msgstr ""
+msgstr "ସଞ୍ଚୟ କରନ୍ତୁ |"
 
 msgid "Select"
-msgstr ""
+msgstr "ଚୟନ କରନ୍ତୁ |"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "ସେବା ପ୍ଲେୟାର୍ ରେଫରେନ୍ସ ପ୍ରକାର |"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "ସେଟିଂସମୂହ ସଠିକ୍ ଭାବରେ ସଞ୍ଚୟ ହୋଇଛି!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ଧନ୍ୟବାଦ: \ n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "ମୋର ସମସ୍ତ ହୃଦୟ ସହିତ ଧନ୍ୟବାଦ \ n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "ଏହି ପ୍ଲଗଇନ୍ ବୟସ୍କମାନଙ୍କ ବିଷୟବସ୍ତୁ ଧାରଣ କରେ \ n ନୁହେଁ |"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "ଆପଣ ପୂର୍ବରୁ ଡାଉନଲୋଡ୍ କରୁଛନ୍ତି !!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ଯଦି ଆପଣ ପସନ୍ଦ କରନ୍ତି ଆମେ କଣ କରୁ ଏବଂ ଆମେ ଏହା କିପରି କରୁ \ n |"
 
 msgid "no"
-msgstr ""
+msgstr "ନା"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "ସମସ୍ତ ପାଠକମାନଙ୍କ ପାଇଁ ଉପଯୁକ୍ତ | \ n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com କିମ୍ବା corvoboys.org ଏବଂ ପଚାର \ n"
 
 msgid "yes"
-msgstr ""
+msgstr "ହଁ"

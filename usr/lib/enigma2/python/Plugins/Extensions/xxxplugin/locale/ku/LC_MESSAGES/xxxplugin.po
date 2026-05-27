@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= PIŞTGIRÎ: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "HIŞYAR BIKIN: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Hemû qat cache vala!"
 
 msgid "Back"
-msgstr ""
+msgstr "Paş"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Peldanka cache"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Peldanka hilbijêrin"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Peldanka hilbijêrin:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Referansa Player Karûbarê mîheng bikin, Enigma ji nû ve dest pê bike hewce ye"
 
 msgid "Download Failed!!!"
 msgstr ""
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache vala"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Pirsgirêka Rapora Çewtiyê!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Vê kategoriyê fîlter bike..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Riya Cache ya Peldankê (mînak: /media/hdd), Ji nû ve destpêkirina Enigma hewce ye"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Riya Fîlmê Peldanka (mînak: /media/hdd/fîlm), Ji nû ve destpêkirina Enigma hewce ye"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Ji bo Piştgiriyê serdana girêdanên me yên civakî bikin biçin\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Heke hûn ji 18 salî mezintir in û dixwazin\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Pêşî Streamlink saz bikin"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Peldanka fîlmê"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Tiştek ... Dubare biceribîne"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Tenê VOD Fîlma destûr e an na .ext Parzkirî!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Bi rastî bêyî tomarkirina mîhengan bigire?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "HILBIJARTINA XWE HILBIJARTIN"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "PLUGIN SETUP"
 
 msgid "Save"
-msgstr ""
+msgstr "Rizgarkirin"
 
 msgid "Select"
-msgstr ""
+msgstr "Neqandin"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Xizmetên Player Reference type"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Mîhengên rast hatine tomarkirin!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "SIPAS JI BO:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Ji dil spas\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Di vê pêvekê de naveroka mezinan tune\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Hûn jixwe dakêşin!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "heke hûn ji tiştên ku em dikin û em çawa dikin hez dikin\n"
 
 msgid "no"
-msgstr ""
+msgstr "na"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "minasib ji bo hemû xwendevanan.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com an jî corvoboys.org û bipirsin\n"
 
 msgid "yes"
-msgstr ""
+msgstr "erê"

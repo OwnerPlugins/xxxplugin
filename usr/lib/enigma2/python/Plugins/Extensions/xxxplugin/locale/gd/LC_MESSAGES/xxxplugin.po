@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "======== TAIC AIR: ============="
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "THOIR AN AIRE: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Bidh a h-uile tasgadan falamh!"
 
 msgid "Back"
-msgstr ""
+msgstr "Air ais"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Pasgan tasgadan"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Tagh Directory"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Tagh Directory:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Dèan rèiteachadh air iomradh cluicheadair seirbheis, feumar Enigma ath-thòiseachadh"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Dh'fhàillig an luchdachadh sìos !!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Cache falamh"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Dèan aithris air mearachd!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Criathraich an roinn seo..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Slighe Cache Folder (me .: /media/hdd), feumar Enigma ath-thòiseachadh"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Slighe Film Folder (me .: /media/hdd/movie), feumar Enigma ath-thòiseachadh"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Airson Taic tadhal air na ceanglaichean sòisealta againn rach gu\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Ma tha thu nas sine na 18 bliadhna a dh'aois agus ag iarraidh\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Stàlaich Streamlink an toiseach"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Pasgan film"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Chan eil dad ... Feuch a-rithist"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Is e dìreach film VOD a tha ceadaichte no nach eil .ext Filtered !!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Dùin dha-rìribh gun a bhith a’ sàbhaladh roghainnean?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "ROGHAINN DO ROGHA"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "Plugin SETUP"
 
 msgid "Save"
-msgstr ""
+msgstr "Sàbhail"
 
 msgid "Select"
-msgstr ""
+msgstr "Tagh"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Seòrsa iomraidh cluicheadair seirbheis"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Suidhichidhean air an sàbhaladh gu ceart!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "MOLADH DO:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Tapadh leibh le m'uile chridhe\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Tha susbaint inbheach nach eil\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Tha thu mu thràth a’ luchdachadh sìos !!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "mas toil leat na bhios sinn a’ dèanamh agus mar a nì sinn e\n"
 
 msgid "no"
-msgstr ""
+msgstr "Chan eil"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "freagarrach airson a h-uile leughadair.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com no corvoboys.org agus faighnich\n"
 
 msgid "yes"
-msgstr ""
+msgstr "Tha"

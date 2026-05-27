@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= 지원 여부: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "주의 사항: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "모든 캐시 폴더가 비어 있습니다!"
 
 msgid "Back"
-msgstr ""
+msgstr "뒤쪽에"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "캐시 폴더"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "디렉토리 선택"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "디렉토리 선택:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "서비스 플레이어 참조 구성, Enigma 다시 시작 필요"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "다운로드 실패!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "캐시 비우기"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "오류 보고 문제!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "이 카테고리 필터링..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "폴더 캐시 경로(예: /media/hdd), Enigma 다시 시작 필요"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "폴더 동영상 경로(예: /media/hdd/movie), Enigma 다시 시작 필요"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "지원을 받으려면 소셜 링크를 방문하세요.\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "18세 이상이고 다음을 원하는 경우\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Streamlink를 먼저 설치하세요"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "영화 폴더"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "아무것도... 재시도하세요"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD 영화만 허용되거나 .ext 필터링되지 않습니다!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QR코드 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "설정을 저장하지 않고 닫으시겠습니까?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "원하는 것을 선택하세요"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "설정 플러그인"
 
 msgid "Save"
-msgstr ""
+msgstr "구하다"
 
 msgid "Select"
-msgstr ""
+msgstr "선택하다"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "서비스 플레이어 참조 유형"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "설정이 올바르게 저장되었습니다!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "감사합니다:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "진심으로 감사드립니다\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "이 플러그인에는 다음이 아닌 성인 콘텐츠가 포함되어 있습니다.\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "이미 다운로드 중입니다!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "우리가 하는 일과 방식이 마음에 든다면\n"
 
 msgid "no"
-msgstr ""
+msgstr "아니요"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "모든 독자에게 적합합니다.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com 또는 corvoboys.org로 문의하여\n"
 
 msgid "yes"
-msgstr ""
+msgstr "예"

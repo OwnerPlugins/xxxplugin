@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= STUÐNING Á: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "ATHUGIÐ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Allt skyndiminni brotið tómt!"
 
 msgid "Back"
-msgstr ""
+msgstr "Til baka"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Skyndimöppu"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Veldu Directory"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Veldu möppu:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Stilla Service Player Reference, Enigma endurræsa krafist"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Niðurhal mistókst!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Tæmdu skyndiminni"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Villutilkynna vandamál!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Sía þennan flokk..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Möppu skyndiminni leið (td: /media/hdd), Enigma endurræsa krafist"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Folder Movie Path (td: /media/hdd/movie), Enigma endurræsa krafist"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Til að fá stuðning skaltu fara á samfélagstenglana okkar á\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Ef þú ert eldri en 18 ára og vilt\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Settu upp Streamlink fyrst"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Kvikmyndamöppu"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Ekkert ... Reyndu aftur"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Aðeins VOD kvikmynd leyfð eða ekki .ext síuð!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Virkilega loka án þess að vista stillingar?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "VELDU ÞITT VAL"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "UPPSETNING PLUGIN"
 
 msgid "Save"
-msgstr ""
+msgstr "Vista"
 
 msgid "Select"
-msgstr ""
+msgstr "Veldu"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Þjónusta Player Reference tegund"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Stillingar vistaðar rétt!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "TAKK FYRIR:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Þakka þér af öllu hjarta\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Þessi viðbót inniheldur efni fyrir fullorðna ekki\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Þú ert nú þegar að hlaða niður!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ef þér líkar það sem við gerum og hvernig við gerum það\n"
 
 msgid "no"
-msgstr ""
+msgstr "nei"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "hentar öllum lesendum.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com eða corvoboys.org og spyrðu\n"
 
 msgid "yes"
-msgstr ""
+msgstr "já"

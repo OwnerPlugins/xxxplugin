@@ -14,112 +14,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= サポート: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "注意してください: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "すべてのキャッシュフォールドが空です!"
 
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "キャッシュフォルダー"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "ディレクトリの選択"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "ディレクトリを選択してください:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Service Player リファレンスの構成、Enigma の再起動が必要"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "ダウンロードに失敗しました!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "キャッシュを空にする"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "エラーレポートの問題!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "このカテゴリをフィルタリング..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "フォルダー キャッシュ パス (例: /media/hdd)、Enigma の再起動が必要です"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "フォルダー ムービー パス (例: /media/hdd/movie)、Enigma の再起動が必要です"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "サポートが必要な場合は、ソーシャル リンクにアクセスしてください\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "18 歳以上で希望する場合\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "まずStreamlinkをインストールしてください"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "動画フォルダー"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "何もありません...再試行してください"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "VOD 映画のみが許可されているか、.ext フィルタリングが許可されていません。"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRコード 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "本当に設定を保存せずに閉じますか?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "選択してください"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "セットアッププラグイン"
 
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 msgid "Select"
-msgstr ""
+msgstr "選択"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "サービス プレーヤーの参照タイプ"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "設定が正しく保存されました。"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ありがとう:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "心から感謝します\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "このプラグインにはアダルト コンテンツが含まれておりません\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "すでにダウンロード中です!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "私たちの活動とそのやり方が気に入っていただけましたら\n"
 
 msgid "no"
-msgstr ""
+msgstr "いいえ"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "すべての読者に適しています。\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com または corvoboys.org に問い合わせてください\n"
 
 msgid "yes"
-msgstr ""
+msgstr "はい"

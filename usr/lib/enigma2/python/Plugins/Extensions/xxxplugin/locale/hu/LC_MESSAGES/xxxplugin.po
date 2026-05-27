@@ -11,115 +11,115 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr ""
+msgstr "+WWW.TIVUSTREAM.COM – WWW.CORVOBOYS.ORG+\n"
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= TÁMOGATÁS: =============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "FIGYELEM: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Az összes gyorsítótár üres!"
 
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Gyorsítótár mappa"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Válassza a Címtár lehetőséget"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Válasszon könyvtárat:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "A Service Player Reference konfigurálása, az Enigma újraindítása szükséges"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Sikertelen letöltés!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Ürítse ki a gyorsítótárat"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Hibajelentés Probléma!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Kategória szűrése..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Mappa gyorsítótár elérési útja (pl.: /media/hdd), Enigma újraindítás szükséges"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Mappa Movie Path (pl.: /media/hdd/movie), Enigma újraindítás szükséges"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Támogatásért keresse fel közösségi linkjeinket a következő címen:\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Ha elmúlt 18 éves és szeretné\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Először telepítse a Streamlinket"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Film mappa"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Semmi... Próbáld újra"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Csak VOD film engedélyezett vagy nem .ext Filtered!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Tényleg bezárja a beállítások mentése nélkül?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "VÁLASZD A VÁLASZTÁST"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "BEÁLLÍTÁSI BŐVÍTMÉNY"
 
 msgid "Save"
-msgstr ""
+msgstr "Megtakarítás"
 
 msgid "Select"
-msgstr ""
+msgstr "Válassza ki"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Szolgáltatások Játékos referencia típusa"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "A beállítások megfelelően mentve!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "KÖSZÖNJÜK:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Teljes szívemből köszönöm\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Ez a bővítmény nem tartalmaz felnőtteknek szóló tartalmat\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Már letöltöd!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ha tetszik, amit csinálunk és hogyan csináljuk\n"
 
 msgid "no"
-msgstr ""
+msgstr "nem"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "minden olvasó számára alkalmas.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com vagy corvoboys.org címen, és kérdezze meg\n"
 
 msgid "yes"
-msgstr ""
+msgstr "igen"

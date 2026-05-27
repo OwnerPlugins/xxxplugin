@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= สนับสนุน: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "โปรดทราบ: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "พับแคชทั้งหมดว่างเปล่า!"
 
 msgid "Back"
-msgstr ""
+msgstr "กลับ"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "โฟลเดอร์แคช"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "เลือกไดเรกทอรี"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "เลือกไดเรกทอรี:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "กำหนดค่าการอ้างอิงผู้เล่นบริการ จำเป็นต้องรีสตาร์ท Enigma"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "ดาวน์โหลดไม่สำเร็จ!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "แคชว่างเปล่า"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "รายงานข้อผิดพลาด!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "กรองหมวดหมู่นี้..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "เส้นทางแคชโฟลเดอร์ (เช่น: /media/hdd) ต้องรีสตาร์ท Enigma"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "เส้นทางภาพยนตร์ของโฟลเดอร์ (เช่น: /media/hdd/movie) ต้องรีสตาร์ท Enigma"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "สำหรับการสนับสนุน โปรดไปที่ลิงก์โซเชียลของเราไปที่\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "หากคุณอายุเกิน 18 ปีและต้องการ\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "ติดตั้ง Streamlink ก่อน"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "โฟลเดอร์ภาพยนตร์"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "ไม่มีอะไร ... ลองอีกครั้ง"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "อนุญาตเฉพาะภาพยนตร์ VOD หรือไม่ .ext กรอง!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "ปิดโดยไม่บันทึกการตั้งค่าจริงหรือ"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "เลือกตัวเลือกของคุณ"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "ตั้งค่าปลั๊กอิน"
 
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 msgid "Select"
-msgstr ""
+msgstr "เลือก"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "ประเภทการอ้างอิงผู้เล่นบริการ"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "บันทึกการตั้งค่าอย่างถูกต้อง!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "ขอขอบคุณ:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "ขอบคุณอย่างสุดหัวใจ\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "ปลั๊กอินนี้มีเนื้อหาสำหรับผู้ใหญ่ซึ่งไม่ใช่\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "คุณกำลังดาวน์โหลดแล้ว!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "ถ้าคุณชอบสิ่งที่เราทำและวิธีที่เราทำ\n"
 
 msgid "no"
-msgstr ""
+msgstr "เลขที่"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "เหมาะสำหรับผู้อ่านทุกคน\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com หรือ corvoboys.org และถาม\n"
 
 msgid "yes"
-msgstr ""
+msgstr "ใช่"

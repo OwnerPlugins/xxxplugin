@@ -13,112 +13,112 @@ msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
 msgstr ""
 
 msgid "=========     SUPPORT ON:   ============\n"
-msgstr ""
+msgstr "========= ДЭМЖИЖ БАЙНА: ============\n"
 
 msgid "ATTENTION PLEASE: \n"
-msgstr ""
+msgstr "АНХААРУУЛГА: \n"
 
 msgid "All cache fold empty!"
-msgstr ""
+msgstr "Бүх кэш хоосон байна!"
 
 msgid "Back"
-msgstr ""
+msgstr "Буцах"
 
 msgid "Cache folder"
-msgstr ""
+msgstr "Кэш хавтас"
 
 msgid "Choose Directory"
-msgstr ""
+msgstr "Лавлахыг сонгоно уу"
 
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Лавлахыг сонгоно уу:"
 
 msgid "Configure Service Player Reference, Enigma restart required"
-msgstr ""
+msgstr "Үйлчилгээний тоглуулагчийн лавлагааг тохируулах, Enigma-г дахин эхлүүлэх шаардлагатай"
 
 msgid "Download Failed!!!"
-msgstr ""
+msgstr "Татаж чадсангүй!!!"
 
 msgid "Empty Cache"
-msgstr ""
+msgstr "Хоосон кэш"
 
 msgid "Error Report Issue!"
-msgstr ""
+msgstr "Алдаа тайлангийн асуудал!"
 
 msgid "Filter this category..."
-msgstr ""
+msgstr "Энэ ангиллыг шүүх..."
 
 msgid "Folder Cache Path (eg.: /media/hdd), Enigma restart required"
-msgstr ""
+msgstr "Хавтасны кэш зам (жишээ нь: /media/hdd), Enigma-г дахин эхлүүлэх шаардлагатай"
 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
-msgstr ""
+msgstr "Фолдер киноны зам (жишээ нь: /media/hdd/movie), Enigma-г дахин эхлүүлэх шаардлагатай"
 
 msgid "For Support visit our social links go to\n"
-msgstr ""
+msgstr "Тусламж авах бол манай нийгмийн холбоосоор зочилно уу\n"
 
 msgid "If you are over 18 years old and wish to\n"
-msgstr ""
+msgstr "Хэрэв та 18-аас дээш настай, хүсвэл\n"
 
 msgid "Install Streamlink first"
-msgstr ""
+msgstr "Эхлээд Streamlink суулгана уу"
 
 msgid "Movie folder"
-msgstr ""
+msgstr "Киноны хавтас"
 
 msgid "Nothing ... Retry"
-msgstr ""
+msgstr "Юу ч биш ... Дахин оролдоно уу"
 
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
-msgstr ""
+msgstr "Зөвхөн VOD киног зөвшөөрсөн эсвэл үгүй ​​.ext шүүсэн!!!"
 
 msgid "QRCODE  1,00\n"
-msgstr ""
+msgstr "QRCODE 1.00\n"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Тохиргоог хадгалахгүйгээр үнэхээр хаах уу?"
 
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "СОНГОЛТОО СОНГООРОЙ"
 
 msgid "SETUP PLUGIN"
-msgstr ""
+msgstr "PLUGIN ТОХИРУУЛАХ"
 
 msgid "Save"
-msgstr ""
+msgstr "Хадгалах"
 
 msgid "Select"
-msgstr ""
+msgstr "Сонго"
 
 msgid "Services Player Reference type"
-msgstr ""
+msgstr "Үйлчилгээний Тоглогчийн лавлагааны төрөл"
 
 msgid "Settings saved correctly!"
-msgstr ""
+msgstr "Тохиргоог зөв хадгалсан!"
 
 msgid "THANK'S TO:\n"
-msgstr ""
+msgstr "БАЯРЛАЛАА:\n"
 
 msgid "Thank you with all my heart\n"
-msgstr ""
+msgstr "Бүх зүрх сэтгэлээсээ баярлалаа\n"
 
 msgid "This plugin contains adult content not\n"
-msgstr ""
+msgstr "Энэ залгаас нь насанд хүрэгчдийн агуулаагүй\n"
 
 msgid "You are already downloading!!!"
-msgstr ""
+msgstr "Та аль хэдийн татаж байна!!!"
 
 msgid "if you like what we do and how we do it\n"
-msgstr ""
+msgstr "Хэрэв та бидний юу хийдэг, хэрхэн хийдэг нь танд таалагдаж байвал\n"
 
 msgid "no"
-msgstr ""
+msgstr "үгүй"
 
 msgid "suitable for all readers.\n"
-msgstr ""
+msgstr "бүх уншигчдад тохиромжтой.\n"
 
 msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr ""
+msgstr "tivustream.com эсвэл corvoboys.org болон асуугаарай\n"
 
 msgid "yes"
-msgstr ""
+msgstr "тиймээ"
