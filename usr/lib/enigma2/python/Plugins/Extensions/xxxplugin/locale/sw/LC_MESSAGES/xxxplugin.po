@@ -72,6 +72,7 @@ msgstr "Hakuna ... Jaribu tena"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Filamu ya VOD pekee ndiyo inayoruhusiwa au la .ext Imechujwa!!!"
 
+#, fuzzy
 msgid "QRCODE  1,00\n"
 msgstr "QRCODE 1.00\n"
 

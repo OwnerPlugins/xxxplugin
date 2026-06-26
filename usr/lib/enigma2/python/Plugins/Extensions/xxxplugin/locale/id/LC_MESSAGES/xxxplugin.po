@@ -72,6 +72,7 @@ msgstr "Tidak ada... Coba lagi"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Hanya Film VOD yang diperbolehkan atau tidak .ext Difilter!!!"
 
+#, fuzzy
 msgid "QRCODE  1,00\n"
 msgstr "QRCODE 1.00\n"
 

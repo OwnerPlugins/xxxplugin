@@ -72,6 +72,7 @@ msgstr "Ezer ez... Saiatu berriro"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "VOD filma bakarrik onartzen da edo ez .ext filtratua!!!"
 
+#, fuzzy
 msgid "QRCODE  1,00\n"
 msgstr "QRCODE 1.00\n"
 
