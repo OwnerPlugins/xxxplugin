@@ -1,12 +1,12 @@
 <h1 align="center">🔞 Adult XXX Plugin</h1>
 
-![Visitors](https://komarev.com/ghpvc/?username=Belfagor2005&label=Repository%20Views&color=blueviolet)
 [![Version](https://img.shields.io/badge/Version-1.4-blue.svg)](https://github.com/Belfagor2005/xxxplugin)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Python](https://img.shields.io/badge/Python-2.7%2F3.x-yellow.svg)](https://python.org)
+
+[![Visitors](https://komarev.com/ghpvc/?username=Belfagor2005&label=Repository%20Views&color=blueviolet)](https://github.com/Belfagor2005)
 [![Donate](https://img.shields.io/badge/_-Donate-red.svg?logo=githubsponsors&labelColor=555555&style=for-the-badge)](https://ko-fi.com/lululla)
-
-
+[![Donate](https://img.shields.io/badge/_-Donate-green.svg?logo=githubsponsors&labelColor=555555&style=for-the-badge)](https://paypal.me/belfagor2005)
 
 This plugin is intended for **Adult XXX content**.
 
