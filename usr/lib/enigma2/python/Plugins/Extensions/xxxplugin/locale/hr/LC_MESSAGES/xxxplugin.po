@@ -10,14 +10,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= PODRŠKA NA: =============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= PODRŠKA NA: =============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "MOLIM PAŽNJU: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "MOLIM PAŽNJU: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Sva predmemorija je prazna!"
@@ -55,11 +55,11 @@ msgstr "Putanja predmemorije mape (npr.: /media/hdd), potrebno je ponovno pokret
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Folder Movie Path (npr.: /media/hdd/movie), potrebno je ponovno pokretanje Enigme"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Za podršku posjetite naše društvene veze idite na\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Za podršku posjetite naše društvene veze idite na\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Ako imate više od 18 godina i želite\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Ako imate više od 18 godina i želite\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Prvo instalirajte Streamlink"
@@ -73,8 +73,8 @@ msgstr "Ništa... Pokušaj ponovo"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Samo VOD film dopušten ili ne .ext filtrirano!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Stvarno zatvoriti bez spremanja postavki?"
@@ -97,29 +97,29 @@ msgstr "Vrsta reference igrača za usluge"
 msgid "Settings saved correctly!"
 msgstr "Postavke su ispravno spremljene!"
 
-msgid "THANK'S TO:\n"
-msgstr "HVALA:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "HVALA:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Hvala vam svim srcem\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Hvala vam svim srcem\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Ovaj dodatak sadrži sadržaj za odrasle ne\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Ovaj dodatak sadrži sadržaj za odrasle ne\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Već preuzimate!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "ako vam se sviđa ono što radimo i kako to radimo\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "ako vam se sviđa ono što radimo i kako to radimo\\\\\\\\n"
 
 msgid "no"
 msgstr "Ne"
 
-msgid "suitable for all readers.\n"
-msgstr "pogodno za sve čitatelje.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "pogodno za sve čitatelje.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com ili corvoboys.org i pitajte\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com ili corvoboys.org i pitajte\\\\\\\\n"
 
 msgid "yes"
 msgstr "Da"

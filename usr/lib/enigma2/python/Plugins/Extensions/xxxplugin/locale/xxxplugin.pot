@@ -1,20 +1,12 @@
 #, fuzzy
 
-
-
-
-
-
-
-
-
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
+msgid "=========     SUPPORT ON:   ============\\n"
 msgstr ""
 
-msgid "ATTENTION PLEASE: \n"
+msgid "ATTENTION PLEASE: \\n"
 msgstr ""
 
 msgid "All cache fold empty!"
@@ -53,10 +45,10 @@ msgstr ""
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr ""
 
-msgid "For Support visit our social links go to\n"
+msgid "For Support visit our social links go to\\n"
 msgstr ""
 
-msgid "If you are over 18 years old and wish to\n"
+msgid "If you are over 18 years old and wish to\\n"
 msgstr ""
 
 msgid "Install Streamlink first"
@@ -71,7 +63,7 @@ msgstr ""
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr ""
 
-msgid "QRCODE € 1,00\n"
+msgid "QRCODE € 1,00\\n"
 msgstr ""
 
 msgid "Really close without saving settings?"
@@ -95,28 +87,28 @@ msgstr ""
 msgid "Settings saved correctly!"
 msgstr ""
 
-msgid "THANK'S TO:\n"
+msgid "THANK'S TO:\\n"
 msgstr ""
 
-msgid "Thank you with all my heart\n"
+msgid "Thank you with all my heart\\n"
 msgstr ""
 
-msgid "This plugin contains adult content not\n"
+msgid "This plugin contains adult content not\\n"
 msgstr ""
 
 msgid "You are already downloading!!!"
 msgstr ""
 
-msgid "if you like what we do and how we do it\n"
+msgid "if you like what we do and how we do it\\n"
 msgstr ""
 
 msgid "no"
 msgstr ""
 
-msgid "suitable for all readers.\n"
+msgid "suitable for all readers.\\n"
 msgstr ""
 
-msgid "tivustream.com or corvoboys.org and ask\n"
+msgid "tivustream.com or corvoboys.org and ask\\n"
 msgstr ""
 
 msgid "yes"

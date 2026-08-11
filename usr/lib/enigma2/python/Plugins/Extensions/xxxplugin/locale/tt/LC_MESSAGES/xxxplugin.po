@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \ n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \\\\\\\\ n"
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= ЯРДӘМ: ============ \ n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= ЯРДӘМ: ============ \\\\\\\\ n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "Игътибар итегез: \ n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "Игътибар итегез: \\\\\\\\ n"
 
 msgid "All cache fold empty!"
 msgstr "Барлык кэш буш!"
@@ -54,11 +54,11 @@ msgstr "Папка Кэш юлы (мәсәлән: / media / hdd), Энигман
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Папка кино юлы (мәсәлән: / медиа / hdd / кино), Энигманы яңадан башлау кирәк"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Ярдәм өчен безнең социаль сылтамаларга керегез \ n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Ярдәм өчен безнең социаль сылтамаларга керегез \\\\\\\\ n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Әгәр дә сез 18 яшьтән узган булсагыз һәм \ n телисез икән"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Әгәр дә сез 18 яшьтән узган булсагыз һәм \\\\\\\\ n телисез икән"
 
 msgid "Install Streamlink first"
 msgstr "Башта Streamlink урнаштырыгыз"
@@ -72,8 +72,8 @@ msgstr "Бернәрсә дә"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Бары тик VOD кино рөхсәт ителә яки рөхсәт ителми .Текст Фильтрланган !!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00 \ n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00 \\\\\\\\ n"
 
 msgid "Really close without saving settings?"
 msgstr "Чыннан да көйләүләрне сакламыйча ябыкмы?"
@@ -96,29 +96,29 @@ msgstr "Хезмәтләр Плейер Белешмә төре"
 msgid "Settings saved correctly!"
 msgstr "Көйләүләр дөрес сакланган!"
 
-msgid "THANK'S TO:\n"
-msgstr "РӘХМӘТ: \ n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "РӘХМӘТ: \\\\\\\\ n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Бөтен йөрәгем белән рәхмәт \ n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Бөтен йөрәгем белән рәхмәт \\\\\\\\ n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Бу плагинда олылар эчтәлеге бар \ n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Бу плагинда олылар эчтәлеге бар \\\\\\\\ n"
 
 msgid "You are already downloading!!!"
 msgstr "Сез инде йөклисез !!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "безнең нәрсә эшләвебез һәм аны ничек эшләвебез ошаса \ n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "безнең нәрсә эшләвебез һәм аны ничек эшләвебез ошаса \\\\\\\\ n"
 
 msgid "no"
 msgstr "юк"
 
-msgid "suitable for all readers.\n"
-msgstr "барлык укучылар өчен дә яраклы. \ n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "барлык укучылар өчен дә яраклы. \\\\\\\\ n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com яки corvoboys.org һәм сорагыз \ n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com яки corvoboys.org һәм сорагыз \\\\\\\\ n"
 
 msgid "yes"
 msgstr "әйе"

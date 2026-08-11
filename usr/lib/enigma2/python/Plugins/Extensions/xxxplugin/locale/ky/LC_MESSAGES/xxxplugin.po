@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= КОЛДОО КҮЙҮК: ============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= КОЛДОО КҮЙҮК: ============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "КӨҢҮЛ БЕРҮҮ: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "КӨҢҮЛ БЕРҮҮ: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Бардык кэш бүктөлмөлөрү бош!"
@@ -54,11 +54,11 @@ msgstr "Папканын кэшинин жолу (мис.: /media/hdd), Enigma �
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Папканын кино жолу (мис.: /media/hdd/movie), Enigma кайра күйгүзүлүшү керек"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Колдоо үчүн социалдык шилтемелерибизге өтүңүз\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Колдоо үчүн социалдык шилтемелерибизге өтүңүз\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Жашыңыз 18ден ашкан жана кааласаңыз\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Жашыңыз 18ден ашкан жана кааласаңыз\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Алгач Streamlink орнотуңуз"
@@ -72,8 +72,8 @@ msgstr "Эч нерсе... Кайталап көрүңүз"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "VOD фильмине гана уруксат берилет же жок. ext чыпкаланган!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Жөндөөлөрдү сактабастан чын эле жабылабы?"
@@ -96,29 +96,29 @@ msgstr "Кызматтар Player шилтеме түрү"
 msgid "Settings saved correctly!"
 msgstr "Орнотуулар туура сакталды!"
 
-msgid "THANK'S TO:\n"
-msgstr "РАХМАТ :\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "РАХМАТ :\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Чын жүрөгүмдөн рахмат\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Чын жүрөгүмдөн рахмат\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Бул плагинде чоңдорго арналган мазмун камтылган эмес\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Бул плагинде чоңдорго арналган мазмун камтылган эмес\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Сиз буга чейин жүктөп жатасыз!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "эгер сизге биздин ишибиз жана аны кантип жасаганыбыз жакса\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "эгер сизге биздин ишибиз жана аны кантип жасаганыбыз жакса\\\\\\\\n"
 
 msgid "no"
 msgstr "жок"
 
-msgid "suitable for all readers.\n"
-msgstr "бардык окурмандарга ылайыктуу.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "бардык окурмандарга ылайыктуу.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com же corvoboys.org жана сураңыз\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com же corvoboys.org жана сураңыз\\\\\\\\n"
 
 msgid "yes"
 msgstr "ооба"

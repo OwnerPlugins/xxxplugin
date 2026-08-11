@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= MBËSHTETJA ON: =============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= MBËSHTETJA ON: =============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "KUJDES JU LUTEM: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "KUJDES JU LUTEM: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "E gjithë palosja e cache-it është bosh!"
@@ -54,11 +54,11 @@ msgstr "Rruga e memories së dosjes (p.sh.: /media/hdd), kërkohet rinisja e Eni
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Rruga e filmit në dosje (p.sh.: /media/hdd/movie), kërkohet rinisja e Enigma"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Për Mbështetje, vizitoni lidhjet tona sociale, shkoni te\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Për Mbështetje, vizitoni lidhjet tona sociale, shkoni te\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Nëse jeni mbi 18 vjeç dhe dëshironi\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Nëse jeni mbi 18 vjeç dhe dëshironi\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Fillimisht instaloni Streamlink"
@@ -72,8 +72,8 @@ msgstr "Asgjë ... Provo sërish"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Vetëm filmi VOD lejohet ose jo .ext Filtered!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Vërtet mbyllet pa ruajtur cilësimet?"
@@ -96,29 +96,29 @@ msgstr "Lloji i referencës së lojtarit të shërbimeve"
 msgid "Settings saved correctly!"
 msgstr "Cilësimet u ruajtën saktë!"
 
-msgid "THANK'S TO:\n"
-msgstr "FALEMINDERIT:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "FALEMINDERIT:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Faleminderit me gjithë zemër\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Faleminderit me gjithë zemër\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Kjo shtojcë nuk përmban përmbajtje për të rriturit\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Kjo shtojcë nuk përmban përmbajtje për të rriturit\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Ju tashmë jeni duke shkarkuar!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "nëse ju pëlqen ajo që bëjmë dhe si e bëjmë atë\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "nëse ju pëlqen ajo që bëjmë dhe si e bëjmë atë\\\\\\\\n"
 
 msgid "no"
 msgstr "nr"
 
-msgid "suitable for all readers.\n"
-msgstr "i përshtatshëm për të gjithë lexuesit.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "i përshtatshëm për të gjithë lexuesit.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com ose corvoboys.org dhe pyesni\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com ose corvoboys.org dhe pyesni\\\\\\\\n"
 
 msgid "yes"
 msgstr "po"

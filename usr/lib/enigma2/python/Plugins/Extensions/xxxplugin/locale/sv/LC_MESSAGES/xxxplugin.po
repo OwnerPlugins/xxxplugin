@@ -10,14 +10,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= SUPPORT PÅ: =============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= SUPPORT PÅ: =============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "OBSERVERA: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "OBSERVERA: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Alla cache-vikningar är tomma!"
@@ -55,11 +55,11 @@ msgstr "Mappcachesökväg (t.ex.: /media/hdd), Enigma-omstart krävs"
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Folder Movie Path (t.ex.: /media/hdd/movie), Enigma-omstart krävs"
 
-msgid "For Support visit our social links go to\n"
-msgstr "För support besök våra sociala länkar gå till\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "För support besök våra sociala länkar gå till\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Om du är över 18 år och vill\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Om du är över 18 år och vill\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Installera Streamlink först"
@@ -73,8 +73,8 @@ msgstr "Ingenting ... Försök igen"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Endast VOD-film tillåten eller inte .ext filtrerad!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Stäng verkligen utan att spara inställningar?"
@@ -97,29 +97,29 @@ msgstr "Tjänster Spelarreferenstyp"
 msgid "Settings saved correctly!"
 msgstr "Inställningarna har sparats korrekt!"
 
-msgid "THANK'S TO:\n"
-msgstr "TACK TILL:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "TACK TILL:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Tack av hela mitt hjärta\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Tack av hela mitt hjärta\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Detta plugin innehåller inte\n vuxet innehåll"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Detta plugin innehåller inte\\\\\\\\n vuxet innehåll"
 
 msgid "You are already downloading!!!"
 msgstr "Du laddar redan ned!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "om du gillar vad vi gör och hur vi gör det\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "om du gillar vad vi gör och hur vi gör det\\\\\\\\n"
 
 msgid "no"
 msgstr "inga"
 
-msgid "suitable for all readers.\n"
-msgstr "lämplig för alla läsare.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "lämplig för alla läsare.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com eller corvoboys.org och fråga\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com eller corvoboys.org och fråga\\\\\\\\n"
 
 msgid "yes"
 msgstr "ja"

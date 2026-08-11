@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
-msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \ n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgstr "+ WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG + \\\\\\\\ n"
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= GÖRNÜŞ: ============ \ n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= GÖRNÜŞ: ============ \\\\\\\\ n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "Üns beriň: \ n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "Üns beriň: \\\\\\\\ n"
 
 msgid "All cache fold empty!"
 msgstr "Keşleriň hemmesi boş!"
@@ -54,11 +54,11 @@ msgstr "Papka keş keşi (meselem: / media / hdd), Enigma täzeden açmaly"
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Papka film ýoly (mysal üçin: / media / hdd / film), Enigma täzeden başlamaly"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Goldaw üçin sosial baglanyşyklarymyza giriň \ n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Goldaw üçin sosial baglanyşyklarymyza giriň \\\\\\\\ n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "18 ýaşdan uly bolsaňyz we \ n isleseňiz"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "18 ýaşdan uly bolsaňyz we \\\\\\\\ n isleseňiz"
 
 msgid "Install Streamlink first"
 msgstr "Ilki bilen “Streamlink” -i guruň"
@@ -72,8 +72,8 @@ msgstr "Hiç zat ... Gaýtadan synanyşyň"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Diňe VOD filmine rugsat berildi ýa-da ýok .Sekst süzüldi !!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00 \ n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00 \\\\\\\\ n"
 
 msgid "Really close without saving settings?"
 msgstr "Sazlamalary tygşytlamazdan hakykatdanam ýapykmy?"
@@ -96,29 +96,29 @@ msgstr "Hyzmatlar Pleýeriň salgylanma görnüşi"
 msgid "Settings saved correctly!"
 msgstr "Sazlamalar dogry saklandy!"
 
-msgid "THANK'S TO:\n"
-msgstr "Şükür: \ n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "Şükür: \\\\\\\\ n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Bütin ýüregim bilen sag bolsun aýdýaryn \ n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Bütin ýüregim bilen sag bolsun aýdýaryn \\\\\\\\ n"
 
-msgid "This plugin contains adult content not\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
 msgstr "Bu plugin ulularyň mazmunyny öz içine alýar"
 
 msgid "You are already downloading!!!"
 msgstr "Siz eýýäm göçürip alýarsyňyz !!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "edýänlerimizi we nädip edýändigimizi halasaňyz \ n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "edýänlerimizi we nädip edýändigimizi halasaňyz \\\\\\\\ n"
 
 msgid "no"
 msgstr "ýok"
 
-msgid "suitable for all readers.\n"
-msgstr "ähli okyjylar üçin amatly. \ n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "ähli okyjylar üçin amatly. \\\\\\\\ n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com ýa-da corvoboys.org we soraň \ n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com ýa-da corvoboys.org we soraň \\\\\\\\ n"
 
 msgid "yes"
 msgstr "hawa"

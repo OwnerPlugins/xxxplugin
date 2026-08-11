@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= สนับสนุน: ============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= สนับสนุน: ============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "โปรดทราบ: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "โปรดทราบ: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "พับแคชทั้งหมดว่างเปล่า!"
@@ -54,11 +54,11 @@ msgstr "เส้นทางแคชโฟลเดอร์ (เช่น: /m
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "เส้นทางภาพยนตร์ของโฟลเดอร์ (เช่น: /media/hdd/movie) ต้องรีสตาร์ท Enigma"
 
-msgid "For Support visit our social links go to\n"
-msgstr "สำหรับการสนับสนุน โปรดไปที่ลิงก์โซเชียลของเราไปที่\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "สำหรับการสนับสนุน โปรดไปที่ลิงก์โซเชียลของเราไปที่\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "หากคุณอายุเกิน 18 ปีและต้องการ\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "หากคุณอายุเกิน 18 ปีและต้องการ\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "ติดตั้ง Streamlink ก่อน"
@@ -72,8 +72,8 @@ msgstr "ไม่มีอะไร ... ลองอีกครั้ง"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "อนุญาตเฉพาะภาพยนตร์ VOD หรือไม่ .ext กรอง!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "ปิดโดยไม่บันทึกการตั้งค่าจริงหรือ"
@@ -96,29 +96,29 @@ msgstr "ประเภทการอ้างอิงผู้เล่นบ
 msgid "Settings saved correctly!"
 msgstr "บันทึกการตั้งค่าอย่างถูกต้อง!"
 
-msgid "THANK'S TO:\n"
-msgstr "ขอขอบคุณ:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "ขอขอบคุณ:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "ขอบคุณอย่างสุดหัวใจ\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "ขอบคุณอย่างสุดหัวใจ\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "ปลั๊กอินนี้มีเนื้อหาสำหรับผู้ใหญ่ซึ่งไม่ใช่\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "ปลั๊กอินนี้มีเนื้อหาสำหรับผู้ใหญ่ซึ่งไม่ใช่\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "คุณกำลังดาวน์โหลดแล้ว!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "ถ้าคุณชอบสิ่งที่เราทำและวิธีที่เราทำ\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "ถ้าคุณชอบสิ่งที่เราทำและวิธีที่เราทำ\\\\\\\\n"
 
 msgid "no"
 msgstr "เลขที่"
 
-msgid "suitable for all readers.\n"
-msgstr "เหมาะสำหรับผู้อ่านทุกคน\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "เหมาะสำหรับผู้อ่านทุกคน\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com หรือ corvoboys.org และถาม\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com หรือ corvoboys.org และถาม\\\\\\\\n"
 
 msgid "yes"
 msgstr "ใช่"

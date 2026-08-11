@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= SUPORT A: ============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= SUPORT A: ============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "ATENCIÓ: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "ATENCIÓ: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Tot el plec de memòria cau buit!"
@@ -54,11 +54,11 @@ msgstr "Ruta de la memòria cau de la carpeta (p. ex.: /media/hdd), cal reinicia
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Carpeta Camí de la pel·lícula (p. ex.: /media/hdd/movie), cal reiniciar Enigma"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Per obtenir assistència, visiteu els nostres enllaços socials aneu a\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Per obtenir assistència, visiteu els nostres enllaços socials aneu a\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Si tens més de 18 anys i vols\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Si tens més de 18 anys i vols\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Instal·leu Streamlink primer"
@@ -72,8 +72,8 @@ msgstr "Res... Torna-ho a provar"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Només pel·lícula VOD permesa o no .ext filtrat!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "CODI QR 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "CODI QR 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Tanqueu realment sense desar la configuració?"
@@ -96,29 +96,29 @@ msgstr "Serveis Tipus de referència del jugador"
 msgid "Settings saved correctly!"
 msgstr "La configuració s'ha desat correctament!"
 
-msgid "THANK'S TO:\n"
-msgstr "GRÀCIES A:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "GRÀCIES A:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Gràcies de tot cor\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Gràcies de tot cor\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Aquest connector conté contingut per a adults no\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Aquest connector conté contingut per a adults no\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Ja esteu baixant!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "si t'agrada el que fem i com ho fem\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "si t'agrada el que fem i com ho fem\\\\\\\\n"
 
 msgid "no"
 msgstr ""
 
-msgid "suitable for all readers.\n"
-msgstr "apte per a tots els lectors.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "apte per a tots els lectors.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com o corvoboys.org i pregunta\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com o corvoboys.org i pregunta\\\\\\\\n"
 
 msgid "yes"
 msgstr "sí"

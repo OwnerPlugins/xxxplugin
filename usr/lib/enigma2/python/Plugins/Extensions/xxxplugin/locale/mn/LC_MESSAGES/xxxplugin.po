@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= ДЭМЖИЖ БАЙНА: ============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= ДЭМЖИЖ БАЙНА: ============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "АНХААРУУЛГА: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "АНХААРУУЛГА: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Бүх кэш хоосон байна!"
@@ -54,11 +54,11 @@ msgstr "Хавтасны кэш зам (жишээ нь: /media/hdd), Enigma-г 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Фолдер киноны зам (жишээ нь: /media/hdd/movie), Enigma-г дахин эхлүүлэх шаардлагатай"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Тусламж авах бол манай нийгмийн холбоосоор зочилно уу\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Тусламж авах бол манай нийгмийн холбоосоор зочилно уу\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Хэрэв та 18-аас дээш настай, хүсвэл\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Хэрэв та 18-аас дээш настай, хүсвэл\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Эхлээд Streamlink суулгана уу"
@@ -72,8 +72,8 @@ msgstr "Юу ч биш ... Дахин оролдоно уу"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Зөвхөн VOD киног зөвшөөрсөн эсвэл үгүй ​​.ext шүүсэн!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Тохиргоог хадгалахгүйгээр үнэхээр хаах уу?"
@@ -96,29 +96,29 @@ msgstr "Үйлчилгээний Тоглогчийн лавлагааны тө�
 msgid "Settings saved correctly!"
 msgstr "Тохиргоог зөв хадгалсан!"
 
-msgid "THANK'S TO:\n"
-msgstr "БАЯРЛАЛАА:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "БАЯРЛАЛАА:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Бүх зүрх сэтгэлээсээ баярлалаа\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Бүх зүрх сэтгэлээсээ баярлалаа\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Энэ залгаас нь насанд хүрэгчдийн агуулаагүй\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Энэ залгаас нь насанд хүрэгчдийн агуулаагүй\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Та аль хэдийн татаж байна!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "Хэрэв та бидний юу хийдэг, хэрхэн хийдэг нь танд таалагдаж байвал\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "Хэрэв та бидний юу хийдэг, хэрхэн хийдэг нь танд таалагдаж байвал\\\\\\\\n"
 
 msgid "no"
 msgstr "үгүй"
 
-msgid "suitable for all readers.\n"
-msgstr "бүх уншигчдад тохиромжтой.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "бүх уншигчдад тохиромжтой.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com эсвэл corvoboys.org болон асуугаарай\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com эсвэл corvoboys.org болон асуугаарай\\\\\\\\n"
 
 msgid "yes"
 msgstr "тиймээ"

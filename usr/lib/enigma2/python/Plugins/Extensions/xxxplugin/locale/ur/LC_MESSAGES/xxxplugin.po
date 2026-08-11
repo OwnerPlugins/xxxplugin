@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= سپورٹ آن: =============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= سپورٹ آن: =============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "براہ کرم توجہ فرمائیں: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "براہ کرم توجہ فرمائیں: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "تمام کیشے فولڈ خالی!"
@@ -54,11 +54,11 @@ msgstr "فولڈر کیش پاتھ (مثال کے طور پر: /media/hdd)، Eni
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "فولڈر مووی پاتھ (مثال کے طور پر: /media/hdd/movie)، Enigma دوبارہ شروع کرنے کی ضرورت ہے۔"
 
-msgid "For Support visit our social links go to\n"
-msgstr "سپورٹ کے لیے ہمارے سوشل لنکس پر جائیں\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "سپورٹ کے لیے ہمارے سوشل لنکس پر جائیں\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "اگر آپ کی عمر 18 سال سے زیادہ ہے اور آپ چاہتے ہیں کہ\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "اگر آپ کی عمر 18 سال سے زیادہ ہے اور آپ چاہتے ہیں کہ\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "پہلے Streamlink انسٹال کریں۔"
@@ -72,8 +72,8 @@ msgstr "کچھ نہیں... دوبارہ کوشش کریں۔"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "صرف VOD فلم کی اجازت ہے یا نہیں .ext فلٹر شدہ!!!"
 
-msgid "QRCODE  1,00\n"
-msgstr "QRCODE 1.00\n"
+msgid "QRCODE  1,00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "سیٹنگز کو محفوظ کیے بغیر واقعی بند کریں؟"
@@ -96,29 +96,29 @@ msgstr "سروسز پلیئر ریفرنس کی قسم"
 msgid "Settings saved correctly!"
 msgstr "ترتیبات کو صحیح طریقے سے محفوظ کیا گیا ہے!"
 
-msgid "THANK'S TO:\n"
-msgstr "شکریہ:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "شکریہ:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "آپ کا تہہ دل سے شکریہ\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "آپ کا تہہ دل سے شکریہ\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "اس پلگ ان میں بالغوں کا مواد نہیں ہے\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "اس پلگ ان میں بالغوں کا مواد نہیں ہے\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "آپ پہلے ہی ڈاؤن لوڈ کر رہے ہیں !!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "اگر آپ کو پسند ہے کہ ہم کیا کرتے ہیں اور کیسے کرتے ہیں\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "اگر آپ کو پسند ہے کہ ہم کیا کرتے ہیں اور کیسے کرتے ہیں\\\\\\\\n"
 
 msgid "no"
 msgstr "نہیں"
 
-msgid "suitable for all readers.\n"
-msgstr "تمام قارئین کے لیے موزوں۔\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "تمام قارئین کے لیے موزوں۔\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com یا corvoboys.org اور پوچھیں\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com یا corvoboys.org اور پوچھیں\\\\\\\\n"
 
 msgid "yes"
 msgstr "ہاں"

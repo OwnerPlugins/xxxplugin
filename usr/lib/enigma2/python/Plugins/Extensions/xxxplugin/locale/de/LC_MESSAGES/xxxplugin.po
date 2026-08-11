@@ -17,14 +17,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: plugin.py\n"
 "X-Poedit-SearchPath-1: Sites\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\n"
-msgstr "========= UNTERSTÜTZUNG AUF: ============\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
+msgstr "========= UNTERSTÜTZUNG AUF: ============\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \n"
-msgstr "ACHTUNG BITTE: \n"
+msgid "ATTENTION PLEASE: \\\\\\\\n"
+msgstr "ACHTUNG BITTE: \\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Alle Caches sind leer!"
@@ -62,11 +62,11 @@ msgstr "Ordner-Cache-Pfad (z. B.: /media/hdd), Enigma-Neustart erforderlich"
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Ordner-Filmpfad (z. B.: /media/hdd/movie), Enigma-Neustart erforderlich"
 
-msgid "For Support visit our social links go to\n"
-msgstr "Für Support besuchen Sie unsere sozialen Links unter\n"
+msgid "For Support visit our social links go to\\\\\\\\n"
+msgstr "Für Support besuchen Sie unsere sozialen Links unter\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\n"
-msgstr "Wenn Sie über 18 Jahre alt sind und möchten\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\n"
+msgstr "Wenn Sie über 18 Jahre alt sind und möchten\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Installieren Sie zuerst Streamlink"
@@ -80,7 +80,7 @@ msgstr "Nichts ... Wiederholen Sie den Versuch"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Nur VOD-Filme erlaubt oder nicht. .ext-gefiltert!!!"
 
-msgid "QRCODE € 1,00\n"
+msgid "QRCODE € 1,00\\\\\\\\n"
 msgstr ""
 
 msgid "Really close without saving settings?"
@@ -104,29 +104,29 @@ msgstr "Referenztyp des Dienste-Players"
 msgid "Settings saved correctly!"
 msgstr "Einstellungen korrekt gespeichert!"
 
-msgid "THANK'S TO:\n"
-msgstr "DANKE AN:\n"
+msgid "THANK'S TO:\\\\\\\\n"
+msgstr "DANKE AN:\\\\\\\\n"
 
-msgid "Thank you with all my heart\n"
-msgstr "Ich danke Ihnen von ganzem Herzen\n"
+msgid "Thank you with all my heart\\\\\\\\n"
+msgstr "Ich danke Ihnen von ganzem Herzen\\\\\\\\n"
 
-msgid "This plugin contains adult content not\n"
-msgstr "Dieses Plugin enthält keine Inhalte für Erwachsene\n"
+msgid "This plugin contains adult content not\\\\\\\\n"
+msgstr "Dieses Plugin enthält keine Inhalte für Erwachsene\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Sie laden bereits herunter!!!"
 
-msgid "if you like what we do and how we do it\n"
-msgstr "wenn Ihnen gefällt, was wir tun und wie wir es tun\n"
+msgid "if you like what we do and how we do it\\\\\\\\n"
+msgstr "wenn Ihnen gefällt, was wir tun und wie wir es tun\\\\\\\\n"
 
 msgid "no"
 msgstr "NEIN"
 
-msgid "suitable for all readers.\n"
-msgstr "Geeignet für alle Leser.\n"
+msgid "suitable for all readers.\\\\\\\\n"
+msgstr "Geeignet für alle Leser.\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\n"
-msgstr "tivustream.com oder corvoboys.org und fragen\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
+msgstr "tivustream.com oder corvoboys.org und fragen\\\\\\\\n"
 
 msgid "yes"
 msgstr "Ja"
