@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= ਸਮਰਥਨ ਜਾਰੀ: =============\\\\\\\\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "========= ਸਮਰਥਨ ਜਾਰੀ: =============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ: \\\\\\\\n"
+msgid "ATTENTION PLEASE: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "ਸਾਰੇ ਕੈਸ਼ ਫੋਲਡ ਖਾਲੀ!"
@@ -54,11 +54,11 @@ msgstr "ਫੋਲਡਰ ਕੈਸ਼ ਪਾਥ (ਉਦਾਹਰਨ ਲਈ: /medi
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "ਫੋਲਡਰ ਮੂਵੀ ਪਾਥ (ਉਦਾਹਰਨ ਲਈ: /media/hdd/movie), Enigma ਰੀਸਟਾਰਟ ਦੀ ਲੋੜ ਹੈ"
 
-msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "ਸਹਾਇਤਾ ਲਈ ਸਾਡੇ ਸੋਸ਼ਲ ਲਿੰਕ 'ਤੇ ਜਾਓ\\\\\\\\n"
+msgid "For Support visit our social links go to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਸਹਾਇਤਾ ਲਈ ਸਾਡੇ ਸੋਸ਼ਲ ਲਿੰਕ 'ਤੇ ਜਾਓ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "ਜੇਕਰ ਤੁਸੀਂ 18 ਸਾਲ ਤੋਂ ਵੱਧ ਉਮਰ ਦੇ ਹੋ ਅਤੇ ਚਾਹੁੰਦੇ ਹੋ \\\\\\\\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਜੇਕਰ ਤੁਸੀਂ 18 ਸਾਲ ਤੋਂ ਵੱਧ ਉਮਰ ਦੇ ਹੋ ਅਤੇ ਚਾਹੁੰਦੇ ਹੋ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "ਪਹਿਲਾਂ ਸਟ੍ਰੀਮਲਿੰਕ ਸਥਾਪਿਤ ਕਰੋ"
@@ -72,8 +72,8 @@ msgstr "ਕੁਝ ਨਹੀਂ... ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "ਸਿਰਫ਼ VOD ਮੂਵੀ ਦੀ ਇਜਾਜ਼ਤ ਹੈ ਜਾਂ ਨਹੀਂ .ext ਫਿਲਟਰ ਕੀਤੀ ਗਈ ਹੈ!!!"
 
-msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgid "QRCODE  1,00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "ਕੀ ਸੈਟਿੰਗਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕੀਤੇ ਬਿਨਾਂ ਅਸਲ ਵਿੱਚ ਬੰਦ ਕਰਨਾ ਹੈ?"
@@ -96,29 +96,29 @@ msgstr "ਸਰਵਿਸਿਜ਼ ਪਲੇਅਰ ਹਵਾਲਾ ਕਿਸਮ"
 msgid "Settings saved correctly!"
 msgstr "ਸੈਟਿੰਗਾਂ ਸਹੀ ਢੰਗ ਨਾਲ ਸੁਰੱਖਿਅਤ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ!"
 
-msgid "THANK'S TO:\\\\\\\\n"
-msgstr "ਇਸ ਲਈ ਧੰਨਵਾਦ:\\\\\\\\n"
+msgid "THANK'S TO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਇਸ ਲਈ ਧੰਨਵਾਦ:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "ਤਹਿ ਦਿਲੋਂ ਧੰਨਵਾਦ\\\\\\\\n"
+msgid "Thank you with all my heart\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਤਹਿ ਦਿਲੋਂ ਧੰਨਵਾਦ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "ਇਸ ਪਲੱਗਇਨ ਵਿੱਚ ਬਾਲਗ ਸਮੱਗਰੀ ਸ਼ਾਮਲ ਹੈ\\\\\\\\n ਨਹੀਂ"
+msgid "This plugin contains adult content not\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਇਸ ਪਲੱਗਇਨ ਵਿੱਚ ਬਾਲਗ ਸਮੱਗਰੀ ਸ਼ਾਮਲ ਹੈ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n ਨਹੀਂ"
 
 msgid "You are already downloading!!!"
 msgstr "ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਡਾਊਨਲੋਡ ਕਰ ਰਹੇ ਹੋ !!!"
 
-msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "ਜੇਕਰ ਤੁਸੀਂ ਪਸੰਦ ਕਰਦੇ ਹੋ ਕਿ ਅਸੀਂ ਕੀ ਕਰਦੇ ਹਾਂ ਅਤੇ ਅਸੀਂ ਇਸਨੂੰ ਕਿਵੇਂ ਕਰਦੇ ਹਾਂ\\\\\\\\n"
+msgid "if you like what we do and how we do it\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਜੇਕਰ ਤੁਸੀਂ ਪਸੰਦ ਕਰਦੇ ਹੋ ਕਿ ਅਸੀਂ ਕੀ ਕਰਦੇ ਹਾਂ ਅਤੇ ਅਸੀਂ ਇਸਨੂੰ ਕਿਵੇਂ ਕਰਦੇ ਹਾਂ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "ਨਹੀਂ"
 
-msgid "suitable for all readers.\\\\\\\\n"
-msgstr "ਸਾਰੇ ਪਾਠਕਾਂ ਲਈ ਢੁਕਵਾਂ।\\\\\\\\n"
+msgid "suitable for all readers.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ਸਾਰੇ ਪਾਠਕਾਂ ਲਈ ਢੁਕਵਾਂ।\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com ਜਾਂ corvoboys.org ਅਤੇ ਪੁੱਛੋ\\\\\\\\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "tivustream.com ਜਾਂ corvoboys.org ਅਤੇ ਪੁੱਛੋ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "ਹਾਂ"

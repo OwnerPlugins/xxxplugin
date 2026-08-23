@@ -12,11 +12,13 @@ msgstr ""
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
+#, fuzzy
 msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= SOKONGAN PADA: ============\\\\\\\\n"
+msgstr "========= SOKONGAN PADA: ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "SILA PERHATIAN: \\\\\\\\n"
+msgstr "SILA PERHATIAN: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Semua lipatan cache kosong!"
@@ -54,11 +56,13 @@ msgstr "Laluan Cache Folder (cth.: /media/hdd), Enigma dimulakan semula diperluk
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Laluan Filem Folder (cth.: /media/hdd/movie), Enigma dimulakan semula diperlukan"
 
+#, fuzzy
 msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "Untuk Sokongan, lawati pautan sosial kami pergi ke\\\\\\\\n"
+msgstr "Untuk Sokongan, lawati pautan sosial kami pergi ke\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "Jika anda berumur 18 tahun ke atas dan ingin\\\\\\\\n"
+msgstr "Jika anda berumur 18 tahun ke atas dan ingin\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Pasang Streamlink dahulu"
@@ -74,7 +78,7 @@ msgstr "Hanya Filem VOD dibenarkan atau tidak .ext Ditapis!!!"
 
 #, fuzzy
 msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Benar-benar tutup tanpa menyimpan tetapan?"
@@ -97,29 +101,35 @@ msgstr "Jenis Rujukan Pemain Perkhidmatan"
 msgid "Settings saved correctly!"
 msgstr "Tetapan disimpan dengan betul!"
 
+#, fuzzy
 msgid "THANK'S TO:\\\\\\\\n"
-msgstr "TERIMA KASIH KEPADA:\\\\\\\\n"
+msgstr "TERIMA KASIH KEPADA:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "Terima kasih sepenuh hati\\\\\\\\n"
+msgstr "Terima kasih sepenuh hati\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "Pemalam ini mengandungi kandungan dewasa bukan\\\\\\\\n"
+msgstr "Pemalam ini mengandungi kandungan dewasa bukan\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Anda sudah memuat turun!!!"
 
+#, fuzzy
 msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "jika anda menyukai apa yang kami lakukan dan cara kami melakukannya\\\\\\\\n"
+msgstr "jika anda menyukai apa yang kami lakukan dan cara kami melakukannya\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "tidak"
 
+#, fuzzy
 msgid "suitable for all readers.\\\\\\\\n"
-msgstr "sesuai untuk semua pembaca.\\\\\\\\n"
+msgstr "sesuai untuk semua pembaca.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com atau corvoboys.org dan tanya\\\\\\\\n"
+msgstr "tivustream.com atau corvoboys.org dan tanya\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "ya"

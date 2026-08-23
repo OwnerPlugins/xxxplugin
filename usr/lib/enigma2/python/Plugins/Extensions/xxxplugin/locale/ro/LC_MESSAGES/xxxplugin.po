@@ -10,14 +10,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= SUPORT ACTIVAT: ============\\\\\\\\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "========= SUPORT ACTIVAT: ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "ATENȚIE VA ROG: \\\\\\\\n"
+msgid "ATTENTION PLEASE: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ATENȚIE VA ROG: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Toată cache-ul este gol!"
@@ -55,11 +55,11 @@ msgstr "Calea cache a folderului (de ex.: /media/hdd), este necesară repornirea
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Folder Movie Cale (de ex.: /media/hdd/movie), este necesară repornirea Enigma"
 
-msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "Pentru asistență, accesați linkurile noastre sociale, accesați\\\\\\\\n"
+msgid "For Support visit our social links go to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Pentru asistență, accesați linkurile noastre sociale, accesați\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "Dacă aveți peste 18 ani și doriți\\\\\\\\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Dacă aveți peste 18 ani și doriți\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Instalați mai întâi Streamlink"
@@ -73,8 +73,8 @@ msgstr "Nimic... Reîncercați"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Numai filmul VOD este permis sau nu .ext filtrat!!!"
 
-msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgid "QRCODE  1,00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Chiar se închide fără a salva setările?"
@@ -97,29 +97,29 @@ msgstr "Servicii Tip de referință pentru jucător"
 msgid "Settings saved correctly!"
 msgstr "Setările au fost salvate corect!"
 
-msgid "THANK'S TO:\\\\\\\\n"
-msgstr "MULȚUMIM:\\\\\\\\n"
+msgid "THANK'S TO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "MULȚUMIM:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "Mulțumesc din toată inima\\\\\\\\n"
+msgid "Thank you with all my heart\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Mulțumesc din toată inima\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "Acest plugin conține conținut pentru adulți, nu\\\\\\\\n"
+msgid "This plugin contains adult content not\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Acest plugin conține conținut pentru adulți, nu\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Descarci deja!!!"
 
-msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "dacă vă place ceea ce facem și cum o facem\\\\\\\\n"
+msgid "if you like what we do and how we do it\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "dacă vă place ceea ce facem și cum o facem\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "nu"
 
-msgid "suitable for all readers.\\\\\\\\n"
-msgstr "potrivit pentru toți cititorii.\\\\\\\\n"
+msgid "suitable for all readers.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "potrivit pentru toți cititorii.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com sau corvoboys.org și întreabă\\\\\\\\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "tivustream.com sau corvoboys.org și întreabă\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "Da"

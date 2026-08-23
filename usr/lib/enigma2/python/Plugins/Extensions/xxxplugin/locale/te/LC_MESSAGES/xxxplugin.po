@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= మద్దతు: ============\\\\\\\\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "========= మద్దతు: ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "దయచేసి శ్రద్ధ వహించండి: \\\\\\\\n"
+msgid "ATTENTION PLEASE: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "దయచేసి శ్రద్ధ వహించండి: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "మొత్తం కాష్ రెట్లు ఖాళీ!"
@@ -54,11 +54,11 @@ msgstr "ఫోల్డర్ కాష్ పాత్ (ఉదా.: /media/hdd)
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "ఫోల్డర్ మూవీ పాత్ (ఉదా.: /media/hdd/movie), ఎనిగ్మా పునఃప్రారంభం అవసరం"
 
-msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "మద్దతు కోసం మా సామాజిక లింక్‌లను సందర్శించండి\\\\\\\\n"
+msgid "For Support visit our social links go to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "మద్దతు కోసం మా సామాజిక లింక్‌లను సందర్శించండి\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "మీకు 18 ఏళ్లు పైబడి ఉంటే,\\\\\\\\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "మీకు 18 ఏళ్లు పైబడి ఉంటే,\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "ముందుగా స్ట్రీమ్‌లింక్‌ని ఇన్‌స్టాల్ చేయండి"
@@ -72,8 +72,8 @@ msgstr "ఏమీ లేదు... మళ్లీ ప్రయత్నించ
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "VOD సినిమా మాత్రమే అనుమతించబడిందా లేదా .ext ఫిల్టర్ చేయబడింది!!!"
 
-msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgid "QRCODE  1,00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "సెట్టింగ్‌లను సేవ్ చేయకుండానే మూసివేయాలా?"
@@ -96,29 +96,29 @@ msgstr "సేవలు ప్లేయర్ సూచన రకం"
 msgid "Settings saved correctly!"
 msgstr "సెట్టింగ్‌లు సరిగ్గా సేవ్ చేయబడ్డాయి!"
 
-msgid "THANK'S TO:\\\\\\\\n"
-msgstr "వీరికి ధన్యవాదాలు:\\\\\\\\n"
+msgid "THANK'S TO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "వీరికి ధన్యవాదాలు:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "నా హృదయపూర్వక ధన్యవాదాలు\\\\\\\\n"
+msgid "Thank you with all my heart\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "నా హృదయపూర్వక ధన్యవాదాలు\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "ఈ ప్లగ్‌ఇన్‌లో వయోజన కంటెంట్ లేదు\\\\\\\\n"
+msgid "This plugin contains adult content not\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "ఈ ప్లగ్‌ఇన్‌లో వయోజన కంటెంట్ లేదు\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "మీరు ఇప్పటికే డౌన్‌లోడ్ చేస్తున్నారు!!!"
 
-msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "మేము ఏమి చేస్తున్నాము మరియు ఎలా చేస్తాము అనేది మీకు నచ్చితే\\\\\\\\n"
+msgid "if you like what we do and how we do it\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "మేము ఏమి చేస్తున్నాము మరియు ఎలా చేస్తాము అనేది మీకు నచ్చితే\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "సంఖ్య"
 
-msgid "suitable for all readers.\\\\\\\\n"
-msgstr "పాఠకులందరికీ అనుకూలం.\\\\\\\\n"
+msgid "suitable for all readers.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "పాఠకులందరికీ అనుకూలం.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com లేదా corvoboys.org మరియు అడగండి\\\\\\\\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "tivustream.com లేదా corvoboys.org మరియు అడగండి\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "అవును"

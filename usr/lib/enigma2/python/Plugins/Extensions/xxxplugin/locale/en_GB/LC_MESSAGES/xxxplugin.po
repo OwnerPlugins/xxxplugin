@@ -12,8 +12,9 @@ msgstr ""
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
+#, fuzzy
 msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= SUPPORT ON: ============\\\\\\\\n"
+msgstr "========= SUPPORT ON: ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "ATTENTION PLEASE: \\\\\\\\n"
 msgstr ""
@@ -74,7 +75,7 @@ msgstr ""
 
 #, fuzzy
 msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr ""

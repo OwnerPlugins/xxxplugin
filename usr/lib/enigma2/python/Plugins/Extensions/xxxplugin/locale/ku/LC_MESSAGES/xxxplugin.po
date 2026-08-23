@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= PIŞTGIRÎ: =============\\\\\\\\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "========= PIŞTGIRÎ: =============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "HIŞYAR BIKIN: \\\\\\\\n"
+msgid "ATTENTION PLEASE: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "HIŞYAR BIKIN: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Hemû qat cache vala!"
@@ -54,11 +54,11 @@ msgstr "Riya Cache ya Peldankê (mînak: /media/hdd), Ji nû ve destpêkirina En
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Riya Fîlmê Peldanka (mînak: /media/hdd/fîlm), Ji nû ve destpêkirina Enigma hewce ye"
 
-msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "Ji bo Piştgiriyê serdana girêdanên me yên civakî bikin biçin\\\\\\\\n"
+msgid "For Support visit our social links go to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Ji bo Piştgiriyê serdana girêdanên me yên civakî bikin biçin\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "Heke hûn ji 18 salî mezintir in û dixwazin\\\\\\\\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Heke hûn ji 18 salî mezintir in û dixwazin\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Pêşî Streamlink saz bikin"
@@ -72,8 +72,8 @@ msgstr "Tiştek ... Dubare biceribîne"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Tenê VOD Fîlma destûr e an na .ext Parzkirî!!!"
 
-msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgid "QRCODE  1,00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Bi rastî bêyî tomarkirina mîhengan bigire?"
@@ -96,29 +96,29 @@ msgstr "Xizmetên Player Reference type"
 msgid "Settings saved correctly!"
 msgstr "Mîhengên rast hatine tomarkirin!"
 
-msgid "THANK'S TO:\\\\\\\\n"
-msgstr "SIPAS JI BO:\\\\\\\\n"
+msgid "THANK'S TO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "SIPAS JI BO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "Ji dil spas\\\\\\\\n"
+msgid "Thank you with all my heart\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Ji dil spas\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "Di vê pêvekê de naveroka mezinan tune\\\\\\\\n"
+msgid "This plugin contains adult content not\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Di vê pêvekê de naveroka mezinan tune\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Hûn jixwe dakêşin!!!"
 
-msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "heke hûn ji tiştên ku em dikin û em çawa dikin hez dikin\\\\\\\\n"
+msgid "if you like what we do and how we do it\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "heke hûn ji tiştên ku em dikin û em çawa dikin hez dikin\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "na"
 
-msgid "suitable for all readers.\\\\\\\\n"
-msgstr "minasib ji bo hemû xwendevanan.\\\\\\\\n"
+msgid "suitable for all readers.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "minasib ji bo hemû xwendevanan.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com an jî corvoboys.org û bipirsin\\\\\\\\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "tivustream.com an jî corvoboys.org û bipirsin\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "erê"

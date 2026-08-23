@@ -9,14 +9,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 msgstr ""
 
-msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= QO'LLAB-QUVVAT: ============\\\\\\\\n"
+msgid "=========     SUPPORT ON:   ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "========= QO'LLAB-QUVVAT: ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "DIQQAT: \\\\\\\\n"
+msgid "ATTENTION PLEASE: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "DIQQAT: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Barcha kesh bo'sh!"
@@ -54,11 +54,11 @@ msgstr "Papka kesh yo'li (masalan: /media/hdd), Enigma-ni qayta ishga tushirish 
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Folder Movie Path (masalan: /media/hdd/movie), Enigma-ni qayta ishga tushirish talab qilinadi"
 
-msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "Yordam uchun ijtimoiy havolalarimizga tashrif buyuring\\\\\\\\n"
+msgid "For Support visit our social links go to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Yordam uchun ijtimoiy havolalarimizga tashrif buyuring\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "Agar siz 18 yoshdan oshgan bo'lsangiz va xohlasangiz\\\\\\\\n"
+msgid "If you are over 18 years old and wish to\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Agar siz 18 yoshdan oshgan bo'lsangiz va xohlasangiz\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Avval Streamlink-ni o'rnating"
@@ -72,8 +72,8 @@ msgstr "Hech narsa... Qayta urinib ko‘ring"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Faqat VOD filmiga ruxsat beriladi yoki yo'q .ext Filtrlangan!!!"
 
-msgid "QRCODE  1,00\\\\\\\\n"
-msgstr "QRCODE 1.00\\\\\\\\n"
+msgid "QRCODE  1,00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "QRCODE 1.00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Haqiqatan ham sozlamalarni saqlamasdan yopilsinmi?"
@@ -96,29 +96,29 @@ msgstr "Xizmatlar o'yinchisiga havola turi"
 msgid "Settings saved correctly!"
 msgstr "Sozlamalar toʻgʻri saqlangan!"
 
-msgid "THANK'S TO:\\\\\\\\n"
-msgstr "RAHMAT:\\\\\\\\n"
+msgid "THANK'S TO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "RAHMAT:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "Chin qalbimdan rahmat\\\\\\\\n"
+msgid "Thank you with all my heart\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Chin qalbimdan rahmat\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "Ushbu plaginda kattalar uchun kontent mavjud emas\\\\\\\\n"
+msgid "This plugin contains adult content not\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Ushbu plaginda kattalar uchun kontent mavjud emas\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Siz allaqachon yuklab olyapsiz!!!"
 
-msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "Agar sizga nima qilishimiz va buni qanday qilishimiz yoqsa\\\\\\\\n"
+msgid "if you like what we do and how we do it\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "Agar sizga nima qilishimiz va buni qanday qilishimiz yoqsa\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "yo'q"
 
-msgid "suitable for all readers.\\\\\\\\n"
-msgstr "barcha kitobxonlar uchun mos.\\\\\\\\n"
+msgid "suitable for all readers.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "barcha kitobxonlar uchun mos.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
-msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com yoki corvoboys.org va so'rang\\\\\\\\n"
+msgid "tivustream.com or corvoboys.org and ask\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+msgstr "tivustream.com yoki corvoboys.org va so'rang\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "ha"

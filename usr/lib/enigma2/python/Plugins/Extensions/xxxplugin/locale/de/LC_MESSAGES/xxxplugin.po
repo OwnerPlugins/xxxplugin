@@ -20,11 +20,13 @@ msgstr ""
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
 msgstr ""
 
+#, fuzzy
 msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "========= UNTERSTÜTZUNG AUF: ============\\\\\\\\n"
+msgstr "========= UNTERSTÜTZUNG AUF: ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "ACHTUNG BITTE: \\\\\\\\n"
+msgstr "ACHTUNG BITTE: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Alle Caches sind leer!"
@@ -62,11 +64,13 @@ msgstr "Ordner-Cache-Pfad (z. B.: /media/hdd), Enigma-Neustart erforderlich"
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Ordner-Filmpfad (z. B.: /media/hdd/movie), Enigma-Neustart erforderlich"
 
+#, fuzzy
 msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "Für Support besuchen Sie unsere sozialen Links unter\\\\\\\\n"
+msgstr "Für Support besuchen Sie unsere sozialen Links unter\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "Wenn Sie über 18 Jahre alt sind und möchten\\\\\\\\n"
+msgstr "Wenn Sie über 18 Jahre alt sind und möchten\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Installieren Sie zuerst Streamlink"
@@ -104,29 +108,35 @@ msgstr "Referenztyp des Dienste-Players"
 msgid "Settings saved correctly!"
 msgstr "Einstellungen korrekt gespeichert!"
 
+#, fuzzy
 msgid "THANK'S TO:\\\\\\\\n"
-msgstr "DANKE AN:\\\\\\\\n"
+msgstr "DANKE AN:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "Ich danke Ihnen von ganzem Herzen\\\\\\\\n"
+msgstr "Ich danke Ihnen von ganzem Herzen\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "Dieses Plugin enthält keine Inhalte für Erwachsene\\\\\\\\n"
+msgstr "Dieses Plugin enthält keine Inhalte für Erwachsene\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Sie laden bereits herunter!!!"
 
+#, fuzzy
 msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "wenn Ihnen gefällt, was wir tun und wie wir es tun\\\\\\\\n"
+msgstr "wenn Ihnen gefällt, was wir tun und wie wir es tun\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "no"
 msgstr "NEIN"
 
+#, fuzzy
 msgid "suitable for all readers.\\\\\\\\n"
-msgstr "Geeignet für alle Leser.\\\\\\\\n"
+msgstr "Geeignet für alle Leser.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com oder corvoboys.org und fragen\\\\\\\\n"
+msgstr "tivustream.com oder corvoboys.org und fragen\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "Ja"

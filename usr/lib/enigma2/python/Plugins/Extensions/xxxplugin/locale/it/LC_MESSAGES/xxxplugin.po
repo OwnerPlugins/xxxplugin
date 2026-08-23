@@ -14,14 +14,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: plugin.py\n"
 "X-Poedit-SearchPath-1: Sites\n"
 
+#, fuzzy
 msgid "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
-msgstr "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\n"
+msgstr "+WWW.TIVUSTREAM.COM - WWW.CORVOBOYS.ORG+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "=========     SUPPORT ON:   ============\\\\\\\\n"
-msgstr "=========    SUPPORTO SU:   ============\\\\\\\\n"
+msgstr "=========    SUPPORTO SU:   ============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "ATTENTION PLEASE: \\\\\\\\n"
-msgstr "ATTENZIONE PREGO:\\\\\\\\n"
+msgstr "ATTENZIONE PREGO:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "All cache fold empty!"
 msgstr "Tutta la cache è vuota!"
@@ -59,11 +62,13 @@ msgstr "Percorso cache della cartella (es.: /media/hdd), è richiesto il riavvio
 msgid "Folder Movie Path (eg.: /media/hdd/movie), Enigma restart required"
 msgstr "Percorso del film della cartella (es.: /media/hdd/movie), è richiesto il riavvio di Enigma"
 
+#, fuzzy
 msgid "For Support visit our social links go to\\\\\\\\n"
-msgstr "Per supporto, visita i nostri collegamenti social vai a\\\\\\\\n"
+msgstr "Per supporto, visita i nostri collegamenti social vai a\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "If you are over 18 years old and wish to\\\\\\\\n"
-msgstr "Se hai più di 18 anni e lo desideri\\\\\\\\n"
+msgstr "Se hai più di 18 anni e lo desideri\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Install Streamlink first"
 msgstr "Devi installare Streamlink prima di proseguire"
@@ -77,8 +82,9 @@ msgstr "Niente.. riprova"
 msgid "Only VOD Movie allowed or not .ext Filtered!!!"
 msgstr "Sono ammessi solo film VOD!!!"
 
+#, fuzzy
 msgid "QRCODE € 1,00\\\\\\\\n"
-msgstr "QRCODE € 1,00\\\\\\\\n"
+msgstr "QRCODE € 1,00\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "Really close without saving settings?"
 msgstr "Chiudere davvero senza salvare le impostazioni?"
@@ -101,32 +107,41 @@ msgstr "Tipo di Services Player Reference"
 msgid "Settings saved correctly!"
 msgstr "Settings salvati correttamente"
 
+#, fuzzy
 msgid "THANK'S TO:\\\\\\\\n"
-msgstr "RINGRAZIAMENTI:\\\\\\\\n"
+msgstr "RINGRAZIAMENTI:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "Thank you with all my heart\\\\\\\\n"
-msgstr "Grazie con tutto il cuore\\\\\\\\n"
+msgstr "Grazie con tutto il cuore\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "This plugin contains adult content not\\\\\\\\n"
-msgstr "Questo plugin contiene contenuti per adulti\\\\\\\\n"
+msgstr "Questo plugin contiene contenuti per adulti\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "You are already downloading!!!"
 msgstr "Stai già scaricando!!!"
 
+#, fuzzy
 msgid "if you like what we do and how we do it\\\\\\\\n"
-msgstr "se ti piace cosa facciamo e come lo facciamo\\\\\\\\n"
+msgstr "se ti piace cosa facciamo e come lo facciamo,\\\\n"
 
 msgid "no"
 msgstr "no"
 
+#, fuzzy
 msgid "suitable for all readers.\\\\\\\\n"
-msgstr "adatto a tutti i lettori.\\\\\\\\n"
+msgstr "adatto a tutti i lettori.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
+#, fuzzy
 msgid "tivustream.com or corvoboys.org and ask\\\\\\\\n"
-msgstr "tivustream.com o corvoboys.org e chiedi\\\\\\\\n"
+msgstr "tivustream.com o corvoboys.org e chiedi\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
 
 msgid "yes"
 msgstr "si"
+
+#~ msgid "if you like what we do and how we do it\\\\\\\\\\\\\\\\n"
+#~ msgstr "se ti piace cosa facciamo e come lo facciamo\\\\\\\\\\\\\\\\n"
 
 #~ msgid "Please select ..."
 #~ msgstr "Seleziona prego..."
@@ -169,9 +184,6 @@ msgstr "si"
 #~ msgstr ""
 #~ "e al forum linuxsat-support\n"
 #~ "\n"
-
-#~ msgid "if you like what we do and how we do it,\n"
-#~ msgstr "se ti piace cosa facciamo e come lo facciamo,\n"
 
 #~ msgid ""
 #~ "do we deserve a coffee?\n"
